@@ -22,7 +22,7 @@ numSatsPerPlane = 8
 
 
 # 主程序入口
-def main():
+def run_stk():
     startTime = time.time()
 
     """
@@ -74,7 +74,7 @@ def main():
     scenario = stkRoot.CurrentScenario
 
     # Set time period
-    scenario.SetTimePeriod("1 Aug 2020 16:00:00", "2 Aug 2020 16:00:00")
+    scenario.SetTimePeriod("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
 
     if not useStkEngine:
         # Graphics calls are not available when running STK Engine in NoGraphics mode
@@ -91,111 +91,110 @@ def main():
     ############################################################################
     # Constellations and Facility
     ############################################################################
-    try:
-        # Create constellation object
-        constellation = scenario.Children.New(
-            AgESTKObjectType.eConstellation, "IridiumConstellation"
-        )
+    # Create constellation object
+    constellation = scenario.Children.New(
+        AgESTKObjectType.eConstellation, "IridiumConstellation"
+    )
 
-        # iridium
-        stkRoot.BeginUpdate()
-        for orbitPlaneNum, RAAN in enumerate(
-            range(0, 180, 180 // numOrbitPlanes), start=1
-        ):  # RAAN in degrees
+    # iridium
+    stkRoot.BeginUpdate()
+    for orbitPlaneNum, RAAN in enumerate(
+        range(0, 180, 180 // numOrbitPlanes), start=1
+    ):  # RAAN in degrees
 
-            for satNum, trueAnomaly in enumerate(
-                range(0, 360, 360 // numSatsPerPlane), start=1
-            ):  # trueAnomaly in degrees
+        for satNum, trueAnomaly in enumerate(
+            range(0, 360, 360 // numSatsPerPlane), start=1
+        ):  # trueAnomaly in degrees
 
-                # Insert satellite
-                satellite = scenario.Children.New(
-                    AgESTKObjectType.eSatellite, f"Sat{orbitPlaneNum}{satNum}"
-                )
+            # Insert satellite
+            satellite = scenario.Children.New(
+                AgESTKObjectType.eSatellite, f"Sat{orbitPlaneNum}{satNum}"
+            )
 
-                # Select Propagator
-                satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorTwoBody)
+            # Select Propagator
+            satellite.SetPropagatorType(AgEVePropagatorType.ePropagatorTwoBody)
 
-                # Set initial state
-                twoBodyPropagator = satellite.Propagator
-                keplerian = twoBodyPropagator.InitialState.Representation.ConvertTo(
-                    AgEOrbitStateType.eOrbitStateClassical.eOrbitStateClassical)
-                keplerian.SizeShapeType = AgEClassicalSizeShape.eSizeShapeSemimajorAxis
-                keplerian.Orientation.AscNodeType = AgEOrientationAscNode.eAscNodeRAAN
-                keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
+            # Set initial state
+            twoBodyPropagator = satellite.Propagator
+            keplerian = twoBodyPropagator.InitialState.Representation.ConvertTo(
+                AgEOrbitStateType.eOrbitStateClassical.eOrbitStateClassical)
+            keplerian.SizeShapeType = AgEClassicalSizeShape.eSizeShapeSemimajorAxis
+            keplerian.Orientation.AscNodeType = AgEOrientationAscNode.eAscNodeRAAN
+            keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
 
-                # Orbital Six Elements
-                keplerian.SizeShape.SemiMajorAxis = 8200  # km
-                keplerian.SizeShape.Eccentricity = 0
-                keplerian.Orientation.Inclination = 90  # degrees
-                keplerian.Orientation.ArgOfPerigee = 0  # degrees
-                keplerian.Orientation.AscNode.Value = RAAN  # degrees
-                # keplerian.Location.Value = trueAnomaly
-                keplerian.Location.Value = (
-                        trueAnomaly + (orbitPlaneNum - 1) * (180 // numOrbitPlanes // numSatsPerPlane)
-                )  # true anomalies (degrees) for every other orbital plane
+            # Orbital Six Elements
+            keplerian.SizeShape.SemiMajorAxis = 8200  # km
+            keplerian.SizeShape.Eccentricity = 0
+            keplerian.Orientation.Inclination = 90  # degrees
+            keplerian.Orientation.ArgOfPerigee = 0  # degrees
+            keplerian.Orientation.AscNode.Value = RAAN  # degrees
+            # keplerian.Location.Value = trueAnomaly
+            keplerian.Location.Value = (
+                    trueAnomaly + (orbitPlaneNum - 1) * (180 // numOrbitPlanes // numSatsPerPlane)
+            )  # true anomalies (degrees) for every other orbital plane
 
-                # Propagate
-                satellite.Propagator.InitialState.Representation.Assign(keplerian)
-                satellite.Propagator.Propagate()
+            # Propagate
+            satellite.Propagator.InitialState.Representation.Assign(keplerian)
+            satellite.Propagator.Propagate()
 
-                # Add to constellation object
-                constellation.Objects.AddObject(satellite)
+            # Add to constellation object
+            constellation.Objects.AddObject(satellite)
 
-        stkRoot.EndUpdate()
+    stkRoot.EndUpdate()
 
-        # Create faciliy
-        facility = scenario.Children.New(AgESTKObjectType.eFacility, "MyFacility")
+    # Create faciliy
+    facility = scenario.Children.New(AgESTKObjectType.eFacility, "MyFacility")
 
-        # Set position
-        facility.Position.AssignGeodetic(28.62, -80.62, 0.03)
+    # Set position
+    facility.Position.AssignGeodetic(28.62, -80.62, 0.03)
 
-        ############################################################################
-        # access report
-        ############################################################################
-        # Create fac to sat Chain
-        chain = scenario.Children.New(AgESTKObjectType.eChain, "Chain")
+    ############################################################################
+    # access report
+    ############################################################################
+    # Create fac to sat Chain
+    chain = scenario.Children.New(AgESTKObjectType.eChain, "Chain")
 
-        # Add satellite constellation and facility
-        chain.Objects.AddObject(constellation)
-        chain.Objects.AddObject(facility)
+    # Add satellite constellation and facility
+    chain.Objects.AddObject(constellation)
+    chain.Objects.AddObject(facility)
 
-        # create chain
-        print("Creating chain...")
-        all_satellites = scenario.Children.GetElements(AgESTKObjectType.eSatellite)
-        for orbitPlaneNum in range(1, numOrbitPlanes + 1):
-            for satNum in range(1, numSatsPerPlane + 1):
-
-                # satellite name
-                cur_sat_name = f"Sat{orbitPlaneNum}{satNum}"
+    # create chain
+    print("Creating chain...")
+    all_satellites = scenario.Children.GetElements(AgESTKObjectType.eSatellite)
+    for orbitPlaneNum in range(1, numOrbitPlanes):
+        for satNum in range(1, numSatsPerPlane + 1):
+            # satellite name init
+            cur_sat_name = f"Sat{orbitPlaneNum}{satNum}"
+            intra_sat_name = f"Sat{orbitPlaneNum + 1}{satNum}"
+            # circle connect
+            if satNum == numSatsPerPlane:
+                inter_sat_name = f"Sat{orbitPlaneNum}1"
+            else:
                 inter_sat_name = f"Sat{orbitPlaneNum}{satNum + 1}"
-                intra_sat_name = f"Sat{orbitPlaneNum + 1}{satNum}"
-                # cur_sat = next(sat for sat in all_satellites if sat.InstanceName == cur_sat_name)
-                if satNum == numSatsPerPlane:
-                    inter_sat_name = f"Sat{orbitPlaneNum}1"
-                if orbitPlaneNum == numOrbitPlanes:
-                    intra_sat_name = f"Sat1{satNum}"
+
+            # sat iteration
+            # print(f"current:{cur_sat_name}, inter_sat_name:{inter_sat_name}, intra_sat_name:{intra_sat_name}")
+            cur_sat = next(sat for sat in all_satellites if sat.InstanceName == cur_sat_name)
+            inter_sat = next(sat for sat in all_satellites if sat.InstanceName == inter_sat_name)
+            intra_sat = next(sat for sat in all_satellites if sat.InstanceName == intra_sat_name)
+
+            # create access
+            if inter_sat and intra_sat:
                 # print(f"current:{cur_sat_name}, inter_sat_name:{inter_sat_name}, intra_sat_name:{intra_sat_name}")
-                cur_sat = next(sat for sat in all_satellites if sat.InstanceName == cur_sat_name)
-                inter_sat = next(sat for sat in all_satellites if sat.InstanceName == inter_sat_name)
-                intra_sat = next(sat for sat in all_satellites if sat.InstanceName == intra_sat_name)
-                if inter_sat and intra_sat:
-                    # print(f"current:{cur_sat_name}, inter_sat_name:{inter_sat_name}, intra_sat_name:{intra_sat_name}")
+                # inter sat distance
+                temp_times, temp_ranges = compute_sat_access(scenario, cur_sat, inter_sat)
+                print(f"{cur_sat_name} to {inter_sat_name} distance:")
+                for temp_time, temp_range in zip(temp_times, temp_ranges):
+                    print(f"{temp_time}\t{temp_range}")
 
-                    # inter sat distance
-                    temp_times, temp_ranges = compute_sat_access(scenario, cur_sat, inter_sat)
-                    print(f"{cur_sat_name} to {inter_sat_name} distance:")
-                    for temp_time, temp_range in zip(temp_times, temp_ranges):
-                        print(f"{temp_time}\t{temp_range}")
+                # intra sat distance
+                temp_times, temp_ranges = compute_sat_access(scenario, cur_sat, intra_sat)
+                print(f"{cur_sat_name} to {intra_sat_name} distance:")
+                for temp_time, temp_range in zip(temp_times, temp_ranges):
+                    print(f"{temp_time}\t{temp_range}")
 
-                    # intra sat distance
-                    temp_times, temp_ranges = compute_sat_access(scenario, cur_sat, intra_sat)
-                    print(f"{cur_sat_name} to {intra_sat_name} distance:")
-                    for temp_time, temp_range in zip(temp_times, temp_ranges):
-                        print(f"{temp_time}\t{temp_range}")
-    except Exception as e:
-        print("发生错误：", e)
-        stkRoot.CloseScenario()
-        print("\nClosed scenario successfully.")
+        # stkRoot.CloseScenario()
+        # print("\nClosed scenario successfully.")
 
     # # Compute chain
     # chain.ComputeAccess()
@@ -229,12 +228,6 @@ def main():
     #     )
     # )
 
-    # 调用函数创建链路并输出距离信息
-    # create_and_output_chains(constellation, scenario, numOrbitPlanes, numSatsPerPlane)
-
-    # stkRoot.CloseScenario()
-    # print("\nClosed scenario successfully.")
-    # Print computation time
     totalTime = time.time() - startTime
     sectionTime = time.time() - splitTime
     splitTime = time.time()
@@ -248,26 +241,6 @@ def main():
     # stkRoot.CloseScenario()
     # stk.ShutDown()
     # print("\nClosed STK successfully.")
-
-    # stkRoot.CloseScenario()
-    # stk.ShutDown()
-    #
-    # print("\nClosed STK successfully.")
-    # 定义一个函数来创建并计算链路距离
-
-# def create_and_output_chains(constellation, scenario, numOrbitPlanes, numSatsPerPlane):
-#     all_satellites = scenario.Children.GetElements(AgESTKObjectType.eSatellite)
-#     for orbitPlaneNum in range(1, numOrbitPlanes + 1):
-#         for satNum in range(1, numSatsPerPlane + 1):
-#             current_sat_name = f"Sat{orbitPlaneNum}{satNum}"
-#             current_sat = next(sat for sat in all_satellites if sat.InstanceName == current_sat_name)
-#             previous_sat_name = f"Sat{orbitPlaneNum}{(2*satNum - 1) % numSatsPerPlane}"
-#             next_sat_name = f"Sat{orbitPlaneNum}{(satNum + 1) % numSatsPerPlane}"
-#             previous_sat = next(sat for sat in all_satellites if sat.InstanceName == previous_sat_name)
-#             next_sat = next(sat for sat in all_satellites if sat.InstanceName == next_sat_name)
-#             if previous_sat and next_sat:
-#                 create_and_compute_chain(scenario, previous_sat, current_sat, f"Chain_{previous_sat_name}_to_{current_sat_name}")
-#                 create_and_compute_chain(scenario, current_sat, next_sat, f"Chain_{current_sat_name}_to_{next_sat_name}")
 
 
 def compute_sat_access(scenario, sat1, sat2):
@@ -310,5 +283,5 @@ def compute_sat_access(scenario, sat1, sat2):
 
 # 运行主程序
 if __name__ == "__main__":
-    main()
+    run_stk()
 
