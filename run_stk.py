@@ -167,6 +167,7 @@ def run_stk():
     # create chain
     print("Creating chain...")
     sat_distance = {}
+    unique_times = set()
     all_satellites = scenario.Children.GetElements(AgESTKObjectType.eSatellite)
     for plane_num in range(1, num_orbit_planes + 1):
         for sat_num in range(1, num_sat_per_plane + 1):
@@ -190,26 +191,32 @@ def run_stk():
 
             # create access
             if inter_sat:
-                # print(f"current:{cur_sat_name}, inter_sat_name:{inter_sat_name}, intra_sat_name:{intra_sat_name}")
                 # inter sat distance
-                interSatD = compute_sat_access(scenario, cur_sat, inter_sat, time_step)
-                sat_distance[f"{cur_sat_name} to {inter_sat_name}"] = interSatD
+                sce_time, sat_distance[f"{cur_sat_name} to {inter_sat_name}"] = compute_sat_access(
+                    scenario, cur_sat, inter_sat)
+                unique_times.update(sce_time)
                 # print(f"{cur_sat_name} to {inter_sat_name} distance:")
                 # for temp_time, temp_range in zip(temp_times, temp_ranges):
                 #     print(f"{temp_time}\t{temp_range}")
             if intra_sat:
                 # intra sat distance
-                intraSarD = compute_sat_access(scenario, cur_sat, intra_sat, time_step)
-                sat_distance[f"{cur_sat_name} to {intra_sat_name}"] = intraSarD
+                sce_time, sat_distance[f"{cur_sat_name} to {intra_sat_name}"] = compute_sat_access(
+                    scenario, cur_sat, intra_sat)
+                unique_times.update(sce_time)
                 # print(f"{cur_sat_name} to {intra_sat_name} distance:")
                 # for temp_time, temp_range in zip(temp_times, temp_ranges):
                 #     print(f"{temp_time}\t{temp_range}")
 
-        # Iterate print
-        for list_key, list_value in sat_distance.items():
-            print(f"distance from {list_key} is: {list_value}")
+        # # Iterate print
+        # for list_key, list_value in sat_distance.items():
+        #     print(f"distance from {list_key} is: {list_value}")
 
-    # check directory
+    # sort the time list
+    unique_times_list = list(unique_times)
+    unique_times_list.sort()
+
+    # write distance and time data in files
+    print("Saving data...")
     directory = './data'  # 注意Windows中可能需要使用绝对路径或其他路径格式，例如 'C:/data'
     if not os.path.exists(directory):
         os.makedirs(directory)
@@ -218,10 +225,10 @@ def run_stk():
         for satellite_pair, distance_list in sat_distance.items():
             for distance in distance_list:
                 distance_data.append([satellite_pair, distance])
-        df = pd.DataFrame(distance_data, columns=['SatellitePair', 'Distance'])
-        df.to_csv(f'./{directory}/satellite_distances.csv', index=False)
-
-        print("Data saved to \\data\\satellite_distances.csv")
+        distance_df = pd.DataFrame(distance_data, columns=['SatellitePair', 'Distance'])
+        time_series = pd.Series(unique_times_list, name='Time Series')
+        distance_df.to_csv(f'{directory}/satellite_distances.csv', index=False)
+        time_series.to_csv(f'{directory}/time_series.csv', index=False)
 
         # stk_root.CloseScenario()
         # print("\nClosed scenario successfully.")
@@ -264,7 +271,7 @@ def run_stk():
     # print("\nClosed STK successfully.")
 
 
-def compute_sat_access(scenario, sat1, sat2, time_step):
+def compute_sat_access(scenario, sat1, sat2):
     # check validation
     if not sat1 or not sat2:
         print("一个或两个卫星对象无效。")
@@ -276,7 +283,7 @@ def compute_sat_access(scenario, sat1, sat2, time_step):
     else:
         access.ComputeAccess()
         # get dataprovider
-        rpt_elms = ["Range"]
+        rpt_elms = ["Time", "Range"]
         access_DP = access.DataProviders.GetDataPrvTimeVarFromPath("AER Data/Default")
         # access_DP = (access.DataProviders.Item('AER Data').Group.Item('Default').
         #             Exec(scenario.start_time, scenario.stop_time, rpt_elms))
@@ -284,13 +291,13 @@ def compute_sat_access(scenario, sat1, sat2, time_step):
             print("访问数据提供者对象无效。")
         else:
             # get distances
-            accessResults = access_DP.ExecElements(scenario.StartTime, scenario.StopTime, time_step, rpt_elms)
-            # readTime = accessResults.DataSets.GetDataSetByName('Time').GetValues()
-            sat_range = accessResults.DataSets.GetDataSetByName('Range').GetValues()
-            return sat_range
+            access_result = access_DP.ExecElements(scenario.StartTime, scenario.StopTime, time_step, rpt_elms)
+            sce_time = access_result.DataSets.GetDataSetByName('Time').GetValues()
+            sat_range = access_result.DataSets.GetDataSetByName('Range').GetValues()
+            return sce_time, sat_range
             # Data = pd.DataFrame(columns=('Time (UTC)', 'Range (km)'))
-            # for j in range(0, len(readTime)):
-            #     t = readTime[j]
+            # for j in range(0, len(sce_time)):
+            #     t = sce_time[j]
             #     ran = sat_range[j]
             #     Data = Data.append(pd.DataFrame(
             #         {'Time (UTC)': [t],
