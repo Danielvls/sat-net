@@ -1,8 +1,16 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2024/4/13 16:51
+# @Author  : DanielFu
+# @Email   : daniel_fys@163.com
+# @File    : run_stk.py
+
 import os
 import platform
 import time
 import pandas as pd
+from datetime import datetime
 from sim_config import *
+import re
 
 from agi.stk12.stkobjects import (
     AgEClassicalLocation,
@@ -89,10 +97,6 @@ def run_stk():
     # stk_root.NewScenario("Star")
     # scenario = stk_root.CurrentScenario
 
-
-
-
-    #
     ############################################################################
     # Constellations and Facility
     ############################################################################
@@ -148,19 +152,9 @@ def run_stk():
     stk_root.EndUpdate()
 
     ############################################################################
-    # create access report
+    # create access & report
     ############################################################################
-    # create chain
-    print("Creating chain...", end='')
-
-    # Create faciliy
-    facility = scenario.Children.New(AgESTKObjectType.eFacility, "MyFacility")
-
-    # Set position
-    facility.Position.AssignGeodetic(28.62, -80.62, 0.03)
-
-    # Compute chain
-    chain_data = compute_fac_access(scenario, facility, constellation)
+    print("Creating access&report...", end='')
 
     # create inter-sat access
     sat_distance = {}
@@ -209,8 +203,32 @@ def run_stk():
         #     print(f"distance from {list_key} is: {list_value}")
 
     # sort the time list
-    unique_times_list = list(unique_times)
-    unique_times_list.sort()
+    time_list = list(unique_times)
+    time_list.sort()
+
+    # time analyse
+    total_time = time.time() - start_time
+    section_time = time.time() - split_time
+    split_time = time.time()
+    print(
+        "access created: {a:4.3f} sec\t\tTotal time: {b:4.3f} sec".format(
+            a=section_time, b=total_time
+        )
+    )
+
+    ############################################################################
+    # create chain & report
+    ############################################################################
+    print("Creating chain&report...", end='')
+
+    # Create faciliy
+    Myfacility = scenario.Children.New(AgESTKObjectType.eFacility, "MyFacility")
+
+    # Set position
+    Myfacility.Position.AssignGeodetic(28.62, -80.62, 0.03)
+
+    # Compute chain
+    compute_fac_access(scenario, time_list, Myfacility, constellation)
 
     # time analyse
     total_time = time.time() - start_time
@@ -222,7 +240,9 @@ def run_stk():
         )
     )
 
-    # write distance and time data in files
+    ############################################################################
+    # saving data
+    ############################################################################
     print("Saving data...", end='')
     directory = './data'
     if not os.path.exists(directory):
@@ -233,10 +253,12 @@ def run_stk():
             for distance in distance_list:
                 distance_data.append([satellite_pair, distance])
         distance_df = pd.DataFrame(distance_data, columns=['SatellitePair', 'Distance'])
-        chain_df = pd.DataFrame(chain_data)
-        time_series = pd.Series(unique_times_list, name='Time Series')
+        # chain_df = pd.DataFrame(chain_data)
+        time_series = pd.Series(time_list, name='Time Series')
+
+        # use pandas to save
         distance_df.to_csv(f'{directory}/satellite_distances.csv', index=False)
-        chain_df.to_csv(f'{directory}/chain.csv', index=False)
+        # chain_df.to_csv(f'{directory}/chain.csv', index=False)
         time_series.to_csv(f'{directory}/time_series.csv', index=False)
 
         # time analyse
@@ -260,12 +282,12 @@ def run_stk():
 def compute_sat_access(scenario, sat1, sat2):
     # check validation
     if not sat1 or not sat2:
-        print("一个或两个卫星对象无效。")
+        print("satellite is not valid")
 
     # compute access
     access = sat1.GetAccessToObject(sat2)
     if not access:
-        print("访问对象无效。")
+        print("access object not valid")
     else:
         access.ComputeAccess()
         # get dataprovider
@@ -274,28 +296,21 @@ def compute_sat_access(scenario, sat1, sat2):
         # access_DP = (access.DataProviders.Item('AER Data').Group.Item('Default').
         #             Exec(scenario.start_time, scenario.stop_time, rpt_elms))
         if not access_DP:
-            print("访问数据提供者对象无效。")
+            print("data provider not valid")
         else:
             # get distances
             access_result = access_DP.ExecElements(scenario.StartTime, scenario.StopTime, time_step, rpt_elms)
-            sce_time = access_result.DataSets.GetDataSetByName('Time').GetValues()
+            time_origin = access_result.DataSets.GetDataSetByName('Time').GetValues()
             sat_range = access_result.DataSets.GetDataSetByName('Range').GetValues()
-            return sce_time, sat_range
-            # Data = pd.DataFrame(columns=('Time (UTC)', 'Range (km)'))
-            # for j in range(0, len(sce_time)):
-            #     t = sce_time[j]
-            #     ran = sat_range[j]
-            #     Data = Data.append(pd.DataFrame(
-            #         {'Time (UTC)': [t],
-            #          'Range (km)': [ran]}),
-            #         ignore_index=True)
-            #     print(Data.head())
 
-            # sat_range = access_DP.DataSets.GetDataSetByName('range').GetValues
-            # print(sat_range)
+            # Convert the truncated time string to a datetime object
+            sce_times = truncate_times(time_origin)
+            distance_between_sats = round_distances(sat_range)
+            return sce_times, distance_between_sats
 
 
-def compute_fac_access(scenario, facility, constellation):
+# calculate distance between sat and fac
+def compute_fac_access(scenario, time_list, facility, constellation):
     # Create fac to sat Chain
     chain = scenario.Children.New(AgESTKObjectType.eChain, "Chain")
 
@@ -304,38 +319,90 @@ def compute_fac_access(scenario, facility, constellation):
     chain.Objects.AddObject(facility)
     chain.ComputeAccess()
 
-    # Find satellite with most access time
-    chainDataProvider = chain.DataProviders.GetDataPrvIntervalFromPath("Strand Access")
-    chainResults = chainDataProvider.Exec(scenario.StartTime, scenario.StopTime)
-
+    # get data provider range data is TimeVar
+    rpt_elms = ["Time", "Strand Name", "Range"]
+    # chainDataProvider = chain.DataProviders.GetDataPrvIntervalFromPath("Range Data")
+    chainDataProvider = chain.DataProviders.GetDataPrvTimeVarFromPath("Range Data")
+    # chainResults = chainDataProvider.Exec(scenario.StartTime, scenario.StopTime, 300, rpt_elms)
+    chainResults = chainDataProvider.ExecElements(scenario.StartTime, scenario.StopTime, time_step, rpt_elms)
     chain_data = []
 
-    print(f"chainResults.Intervals.Count is {chainResults.Intervals.Count}")
     # Loop through all satellite access intervals
     for intervalNum in range(chainResults.Intervals.Count):
         # Get interval
         interval = chainResults.Intervals[intervalNum]
 
         # Get data for interval
-        strand_name = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
-        chain_start_time = interval.DataSets.GetDataSetByName("Start Time").GetValues()
-        chain_stop_time = interval.DataSets.GetDataSetByName("Stop Time").GetValues()
+        chain_times = interval.DataSets.GetDataSetByName("Time").GetValues()
+        strand_names = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
+        sat_fac_distances = interval.DataSets.GetDataSetByName("Range").GetValues()
 
-        chain_data.append({
-            'Strand Name': strand_name[0] if strand_name else None,
-            'Start Time': chain_start_time[0] if chain_start_time else None,
-            'Stop Time': chain_stop_time[0] if chain_stop_time else None
-        })
+        # Process each data point
+        chain_times = truncate_times(chain_times)
+        chain_time_list = approximate_time(chain_times, time_list)
+        sat_fac_distances = round_distances(sat_fac_distances)
+        sat_name, fac_name = extract_pattern_from_string(strand_names[0], pattern=r"\/(\w+)\s+To\s+.*\/(\w+)")
+        processed_data = [chain_time_list, sat_fac_distances]
 
-    return chain_data
-    # print(objectList, '\n', durationList)
-    # Considered Start and Stop time
-    # print('Chain considered strand name is: %s' % chain.Vgt.Events.Item('ConsideredStrandName').FindOccurrence().Epoch)
+        print("start to print chain data...", end='')
+        directory = f'./data/fac_sat_chain'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        else:
+            # make sure have the same
+            if len(chain_time_list) != len(sat_fac_distances):
+                raise ValueError("Time list and distances list must be of the same length")
+
+            # 创建包含多个列的 DataFrame
+            processed_data = list(zip(chain_time_list, sat_fac_distances))
+            distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
+            distance_df.to_csv(f'{directory}/{sat_name} To {fac_name}.csv', index=False)
+        print(f"Data saved to {directory}/{sat_name} To {fac_name}.csv")
+    # return
 
 
+# Function to approximate each time point in time_origin to the nearest time point in time_list, rounding down
+def approximate_time(time_origin, time_list):
+    approximated_times = []
+    for time_temp in time_origin:
+        approx_time = None
+        for tl_time in time_list:
+            if tl_time > time_temp:
+                break
+            approx_time = tl_time
+        if approx_time is not None:
+            approximated_times.append(approx_time)
+    return approximated_times
+
+
+# Truncate the given time string to remove microseconds or smaller units.
+def truncate_times(time_list, format_str="%d %b %Y %H:%M:%S"):
+    dt_times = []
+    for time_str in time_list:
+        # Strip off any microseconds or smaller units by truncating the string at the last '.'
+        if '.' in time_str:
+            time_str = time_str[:time_str.rfind('.')]
+        # Convert the truncated time string to a datetime object
+        dt_time = datetime.strptime(time_str, format_str)
+        # Add the datetime object to the list
+        dt_times.append(dt_time)
+    return dt_times
+
+
+def extract_pattern_from_string(input_string, pattern, default='Unknown'):
+    # Extracts a specific pattern from the given string using regular expressions.
+    match = re.search(pattern, input_string)
+    if match:
+        return match.group(1), match.group(2)
+    else:
+        return default, default
+
+
+def round_distances(distances):
+    # Rounding off the distance
+    return [round(distance) for distance in distances]
 
 
 # 运行主程序
 if __name__ == "__main__":
     run_stk()
-

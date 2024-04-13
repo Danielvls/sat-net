@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2024/4/13 16:51
+# @Author  : DanielFu
+# @Email   : daniel_fys@163.com
+# @File    : gen_topo.py
+
 from run_stk import *
 import networkx as nx
 import random
@@ -7,14 +13,16 @@ import numpy as np
 
 
 def gen_topo():
-    df = pd.read_csv('./data/satellite_distances.csv')
-    df['Distance'] = df['Distance'].round(0)
-    # print(df)  # 打印DataFrame的前几行以查看数据
+    sat_df = pd.read_csv('./data/satellite_distances.csv')
+    sat_df['Distance'] = sat_df['Distance'].round(0)
+    # print(sat_df)  # 打印DataFrame的前几行以查看数据
 
     # group by satellite
-    distance_group = df.groupby('SatellitePair')
+    distance_group = sat_df.groupby('SatellitePair')
     group_size = len(next(iter(distance_group.groups.values())))
     n = 1
+
+    # write in files according to time slice
     for i in range(1, group_size):
         nth_distance = distance_group.nth(n)
         print(nth_distance)
@@ -31,6 +39,8 @@ def gen_topo():
 
             # add weight
             G.add_edge(node1, node2, weight=distance)
+
+    # sat_df = pd.read_csv('./data/satellite_distances.csv')
 
         # write in file
         nx.write_graphml(G, f"./graphs/graph{i}.graphml")

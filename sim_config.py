@@ -1,4 +1,8 @@
-# sim_config.py
+# -*- coding: utf-8 -*-
+# @Time    : 2024/4/13 16:51
+# @Author  : DanielFu
+# @Email   : daniel_fys@163.com
+# @File    : sim_config.py.py
 
 # satellite network configure
 num_orbit_planes = 4
