@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
-  <key id="d0" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d0" for="edge" attr.name="weight" attr.type="long" />
   <graph edgedefault="undirected">
     <node id="Sat11" />
     <node id="Sat12" />
@@ -34,173 +34,177 @@
     <node id="Sat46" />
     <node id="Sat47" />
     <node id="Sat48" />
+    <node id="MyFacility" />
     <edge source="Sat11" target="Sat12">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat11" target="Sat21">
-      <data key="d0">6034.0</data>
+      <data key="d0">3117</data>
     </edge>
     <edge source="Sat11" target="Sat18">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat12" target="Sat13">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat12" target="Sat22">
-      <data key="d0">3009.0</data>
+      <data key="d0">1848</data>
     </edge>
     <edge source="Sat21" target="Sat22">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat21" target="Sat31">
-      <data key="d0">5852.0</data>
+      <data key="d0">2641</data>
     </edge>
     <edge source="Sat21" target="Sat28">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat13" target="Sat14">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat13" target="Sat23">
-      <data key="d0">1962.0</data>
+      <data key="d0">5527</data>
     </edge>
     <edge source="Sat22" target="Sat23">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat22" target="Sat32">
-      <data key="d0">2529.0</data>
+      <data key="d0">2340</data>
     </edge>
     <edge source="Sat14" target="Sat15">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat14" target="Sat24">
-      <data key="d0">5587.0</data>
+      <data key="d0">6070</data>
     </edge>
     <edge source="Sat23" target="Sat24">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat23" target="Sat33">
-      <data key="d0">2453.0</data>
+      <data key="d0">5770</data>
     </edge>
     <edge source="Sat15" target="Sat16">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat15" target="Sat25">
-      <data key="d0">6034.0</data>
+      <data key="d0">3117</data>
     </edge>
     <edge source="Sat24" target="Sat25">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat24" target="Sat34">
-      <data key="d0">5820.0</data>
+      <data key="d0">5898</data>
     </edge>
     <edge source="Sat16" target="Sat17">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat16" target="Sat26">
-      <data key="d0">3009.0</data>
+      <data key="d0">1848</data>
     </edge>
     <edge source="Sat25" target="Sat26">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat25" target="Sat35">
-      <data key="d0">5852.0</data>
+      <data key="d0">2641</data>
     </edge>
     <edge source="Sat17" target="Sat18">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat17" target="Sat27">
-      <data key="d0">1962.0</data>
+      <data key="d0">5527</data>
     </edge>
     <edge source="Sat26" target="Sat27">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat26" target="Sat36">
-      <data key="d0">2529.0</data>
+      <data key="d0">2340</data>
     </edge>
     <edge source="Sat18" target="Sat28">
-      <data key="d0">5587.0</data>
+      <data key="d0">6070</data>
     </edge>
     <edge source="Sat27" target="Sat28">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat27" target="Sat37">
-      <data key="d0">2453.0</data>
+      <data key="d0">5770</data>
     </edge>
     <edge source="Sat28" target="Sat38">
-      <data key="d0">5820.0</data>
+      <data key="d0">5898</data>
     </edge>
     <edge source="Sat31" target="Sat32">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat31" target="Sat41">
-      <data key="d0">5625.0</data>
+      <data key="d0">2152</data>
     </edge>
     <edge source="Sat31" target="Sat38">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat32" target="Sat33">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat32" target="Sat42">
-      <data key="d0">2038.0</data>
+      <data key="d0">2826</data>
     </edge>
     <edge source="Sat33" target="Sat34">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat33" target="Sat43">
-      <data key="d0">2936.0</data>
+      <data key="d0">5969</data>
     </edge>
     <edge source="Sat34" target="Sat35">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat34" target="Sat44">
-      <data key="d0">6009.0</data>
+      <data key="d0">5681</data>
     </edge>
     <edge source="Sat35" target="Sat36">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat35" target="Sat45">
-      <data key="d0">5625.0</data>
+      <data key="d0">2152</data>
     </edge>
     <edge source="Sat36" target="Sat37">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat36" target="Sat46">
-      <data key="d0">2038.0</data>
+      <data key="d0">2826</data>
     </edge>
     <edge source="Sat37" target="Sat38">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat37" target="Sat47">
-      <data key="d0">2936.0</data>
+      <data key="d0">5969</data>
     </edge>
     <edge source="Sat38" target="Sat48">
-      <data key="d0">6009.0</data>
+      <data key="d0">5681</data>
+    </edge>
+    <edge source="Sat38" target="MyFacility">
+      <data key="d0">3353</data>
     </edge>
     <edge source="Sat41" target="Sat42">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat41" target="Sat48">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat42" target="Sat43">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat43" target="Sat44">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat44" target="Sat45">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat45" target="Sat46">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat46" target="Sat47">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
     <edge source="Sat47" target="Sat48">
-      <data key="d0">6276.0</data>
+      <data key="d0">6276</data>
     </edge>
   </graph>
 </graphml>

@@ -342,9 +342,8 @@ def compute_fac_access(scenario, time_list, facility, constellation):
         chain_time_list = approximate_time(chain_times, time_list)
         sat_fac_distances = round_distances(sat_fac_distances)
         sat_name, fac_name = extract_pattern_from_string(strand_names[0], pattern=r"\/(\w+)\s+To\s+.*\/(\w+)")
-        processed_data = [chain_time_list, sat_fac_distances]
-
         print("start to print chain data...", end='')
+
         directory = f'./data/fac_sat_chain'
         if not os.path.exists(directory):
             os.makedirs(directory)
