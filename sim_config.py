@@ -12,4 +12,4 @@ num_sat_per_plane = 8
 time_step = 300   # 5min
 
 # service config
-num_services = 10
+num_services = 100

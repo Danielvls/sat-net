@@ -11,9 +11,48 @@ from bisect import bisect_left
 # import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import functools
 
 
-def gen_topo():
+def save_graph_after_modification(func):
+    @functools.wraps(func)
+    def wrapper(graph, idx, *args, **kwargs):
+        # 执行传入的函数
+        result = func(graph, idx, *args, **kwargs)
+
+        # 构建图的文件路径
+        graph_path = f"./graphs/graph{idx}.graphml"
+
+        # 保存图到文件
+        if graph:  # 确保图不为空
+            nx.write_graphml(graph, graph_path)
+            print(f"Graph {idx} has been updated and saved.")
+        else:
+            print(f"Warning: No graph was provided for saving at index {idx}.")
+
+        return result
+
+    return wrapper
+
+
+@save_graph_after_modification
+def add_bandwidth_to_edges(graph, idx):
+    if graph:
+        for u, v in graph.edges():
+            graph[u][v]['bandwidth'] = 1024 * 10
+    else:
+        print(f"Warning: No graph found to update at index {idx}.")
+
+
+@save_graph_after_modification
+def add_node_betweenness_centrality(graph, idx):
+    if graph:
+        graph = betweenness_centrality_cal(graph)
+    else:
+        print(f"Warning: No graph found to update at index {idx}.")
+
+
+def add_sat_to_topo():
     # generate sat links
     sat_df = pd.read_csv('./data/satellite_distances.csv')
     # sat_df['Distance'] = sat_df['Distance'].round(0)
@@ -79,16 +118,16 @@ def add_fac_to_topo():
                         graph.add_node(node_a)
                     if not graph.has_node(node_b):
                         graph.add_node(node_b)
-                    graph.add_edge(node_a, node_b, weight=distance)
+                    graph.add_edge(node_a, node_b, weight=distance, bidirectional=True)
                     # write in file
                     nx.write_graphml(graph, f"./graphs/graph{idx}.graphml")
                     print(f"edge {node_a} to {node_b} has added in to graph{idx}")
                 else:
                     print("graph not exist")
 
-            graph_path = f"./graphs/graph1.graphml"
-            graph = nx.read_graphml(graph_path)
-            draw_graph(graph, layout='grid')
+            # graph_path = f"./graphs/graph1.graphml"
+            # graph = nx.read_graphml(graph_path)
+            # draw_graph(graph, layout='grid')
 
 
 def find_time_index(time_list, time_point):
@@ -100,12 +139,17 @@ def find_time_index(time_list, time_point):
 
 
 # calculate betweenness centrality
-def betweenness_centrality_cal():
-    # load graph from GraphML
-    graph_loaded = nx.read_graphml("./graphs/graph1.graphml")
-    bet_centrality_values = nx.betweenness_centrality(graph_loaded)
-    for _, bet_centrality_value in bet_centrality_values.items():
-        print(bet_centrality_value)
+def betweenness_centrality_cal(graph):
+    # 计算图的介数中心性
+    bet_centrality_values = nx.betweenness_centrality(graph)
+
+    # 将介数中心性值存储为节点的属性
+    for node, bet_centrality_value in bet_centrality_values.items():
+        graph.nodes[node]['betweenness_centrality'] = bet_centrality_value
+        print(f"Node {node}: {bet_centrality_value}")
+
+    # 返回修改后的图
+    return graph
 
 
 def edge_betweenness_centrality():
@@ -126,24 +170,14 @@ def edge_betweenness_centrality():
             print(f"The shortest path length from {start_node} to {target_node} is {hops}")
 
 
-    # for node in graph_loaded.nodes():
-    #     sp = nx.shortest_path_length(graph_loaded, source=node)
-    #     for target in graph_loaded.nodes():
-    #         if target != node:
-    #             if node in sp[target]:
-    #                 sptotal = len(sp[target]) - 1
-    #                 for path in nx.all_shortest_paths(graph_loaded, source=node, target=target):
-    #                     path_length = len(path)
-    #                     for i in range(path_length - 1):
-    #                         u, v = path[i], path[i + 1]
-    #                         if (u, v) in btwn_cen_values:
-    #                             btwn_cen_values[(u, v)] += 1.0 / sptotal
-    #                         if (v, u) in btwn_cen_values:
-    #                             btwn_cen_values[(v, u)] += 1.0 / sptotal
-
-    # # print edge betweenness
-    # for edge, betweenness in btwn_cen_values.items():
-    #     print(f"The betweenness centrality of edge {edge} is: {betweenness}")
+def add_betweenness_to_topo(time_series):
+    print(time_series)
+    for index in range(len(time_series)):
+        # load graph from GraphML
+        graph = nx.read_graphml(f"./graphs/graph{index}.graphml")
+        print(f"the {index}-th graph service:")
+        for u, v in graph.edges():
+            graph[u][v]['bandwidth'] = 1024 * 10
 
 
 def draw_graph(graph, layout='spring'):
@@ -178,8 +212,22 @@ def draw_graph(graph, layout='spring'):
     plt.show()
 
 
+def gen_topo():
+    time_df = pd.read_csv("./data/time_series.csv")
+    time_series = time_df['Time Series']
+    # add_sat_to_topo()
+    # add_fac_to_topo()
+    for index in range(len(time_series)):
+        graph_path = f"./graphs/graph{index}.graphml"
+        if os.path.exists(graph_path):
+            graph = nx.read_graphml(graph_path)
+            add_bandwidth_to_edges(graph, index)
+            add_node_betweenness_centrality(graph, index)
+        else:
+            print(f"Graph file {graph_path} does not exist for index {index}")
+
+    # add_betweenness_to_topo(time_series)
+
+
 if __name__ == "__main__":
-    # gen_topo()
-    # edge_betweenness_centrality()
-    # betweenness_centrality_cal()
-    add_fac_to_topo()
+    gen_topo()
