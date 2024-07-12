@@ -149,7 +149,10 @@ def run_stk():
             # Add to constellation object
             constellation.Objects.AddObject(satellite)
 
-    stk_root.EndUpdate()
+    stk_root.EndUpdate()  # Apply changes
+
+
+
 
     ############################################################################
     # create access & report
@@ -325,7 +328,6 @@ def compute_fac_access(scenario, time_list, facility, constellation):
     chainDataProvider = chain.DataProviders.GetDataPrvTimeVarFromPath("Range Data")
     # chainResults = chainDataProvider.Exec(scenario.StartTime, scenario.StopTime, 300, rpt_elms)
     chainResults = chainDataProvider.ExecElements(scenario.StartTime, scenario.StopTime, time_step, rpt_elms)
-    chain_data = []
 
     # Loop through all satellite access intervals
     for intervalNum in range(chainResults.Intervals.Count):
