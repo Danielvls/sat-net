@@ -2,7 +2,7 @@
 # @Time    : 2024/4/13 16:51
 # @Author  : DanielFu
 # @Email   : daniel_fys@163.com
-# @File    : traffic_generator.py
+# @File    : old_traffic_generator.py
 
 import random
 import networkx as nx
@@ -206,7 +206,7 @@ def generate_node_lists(graph):
 
 def run():
     # 读取时间序列数据从 CSV 文件
-    time_df = pd.read_csv("./data/time_series.csv")
+    time_df = pd.read_csv("data/time_series.csv")
     time_series = pd.to_datetime(time_df['Time Series'])
 
     # 创建一个字典来存储图和对应的时间

@@ -5,7 +5,7 @@
 # @File    : main.py
 
 
-from utils import timeit_decorator
+from src.utils.utils import timeit_decorator
 
 
 @timeit_decorator

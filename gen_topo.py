@@ -88,7 +88,7 @@ def add_sat_to_topo():
 
 # add facility to topo
 def add_fac_to_topo():
-    directory_path = './data/fac_sat_chain'
+    directory_path = 'data/fac_sat_chains'
     time_df = pd.read_csv("./data/time_series.csv")
     time_list = pd.to_datetime(time_df['Time Series']).tolist()
 

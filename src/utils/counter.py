@@ -4,20 +4,10 @@
 # @Email   : daniel_fys@163.com
 # @File    : counter.py
 class Counter:
-    _instance = None  # 静态变量，用于存储单例实例
-
-    def __new__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super(Counter, cls).__new__(cls, *args, **kwargs)
-        return cls._instance
-
     def __init__(self):
-        if not hasattr(self, 'initialized'):  # 确保初始化一次
-            self.results = {}
-            self.initialized = True
-            self.total_services = 0
-            self.count_switches = 0
-            self.blocked_services = 0
+        self.total_services = 0
+        self.count_switches = 0
+        self.blocked_services = 0
 
     def increment_switches(self):
         self.count_switches += 1

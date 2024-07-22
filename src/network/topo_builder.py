@@ -4,44 +4,26 @@
 # @Email   : daniel_fys@163.com
 # @File    : topo_builder.py
 
-
 import os
 import networkx as nx
-import pandas as pd
-from utils import save_graph_after_modification
+from src.utils.utils import save_graph_after_modification
 from run_stk import *
 from bisect import bisect_left
+from pathlib import Path
 
 
 class TopoBuilder:
     def __init__(self):
+        self.current_file = Path(__file__).resolve()
+        self.project_root = self.current_file.parents[2]
         self.node_list = []
-        self.graph_path = f"./graphs"
-        self.data_directory = './data'
-
-    @staticmethod
-    def find_time_index(self, time_list, target_time):
-        # Use bisect_left to find the insertion position that would keep time_list sorted
-        pos = bisect_left(time_list, target_time)
-
-        # If pos is 0, it means target_time is less than all elements in time_list
-        if pos == 0:
-            return 0
-        # If pos is len(time_list), it means target_time is greater than all elements in time_list
-        elif pos == len(time_list):
-            return len(time_list) - 1
-        # Otherwise, find the closest time by comparing with the previous element
-        else:
-            prev_time = time_list[pos - 1]
-            next_time = time_list[pos]
-            # Return the index of the time which is closest to target_time
-            if (target_time - prev_time) <= (next_time - target_time):
-                return pos - 1
-            else:
-                return pos
+        self.graph_path = self.project_root / 'graphs'
+        self.sat_distance_file = self.project_root / 'data' / 'inter_satellite_distances.csv'
+        self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
+        self.fac_sat_chain_directory = self.project_root / 'data' / 'fac_sat_chains'
 
     def gen_topo(self):
-        time_df = pd.read_csv(f"{self.data_directory}/time_series.csv")
+        time_df = pd.read_csv(self.time_series_directory)
         time_series = time_df['Time Series']
 
         # create graph for each time step
@@ -53,15 +35,26 @@ class TopoBuilder:
 
     @save_graph_after_modification
     def _add_bandwidth_to_edges(self, graph, index):
+        if not graph:
+            print("Warning: No graph provided or graph is empty.")
+            return
+
+        if not graph.edges():
+            print("Warning: The graph has no edges.")
+            return
+
         if graph:
             for u, v in graph.edges():
-                graph[u][v]['bandwidth'] = 1024 * 10
+                # supose all wavelengths are available
+                graph[u][v]['wavelengths'] = [False] * 10
+                graph[u][v]['bandwidth_usage'] = 0
+                # graph[u][v]['wavelengths'][0] = True  # 假设第一个波长通道被占用
 
     # add satellite links to topo
     @save_graph_after_modification
     def _add_sat_to_topo(self, graph, index):
         # generate sat links
-        sat_df = pd.read_csv(f'{self.data_directory}/satellite_distances.csv')
+        sat_df = pd.read_csv(self.sat_distance_file)
         # sat_df['Distance'] = sat_df['Distance'].round(0)
 
         # calculate time steps
@@ -83,15 +76,15 @@ class TopoBuilder:
             # nx.write_graphml(graph, f"./graphs/graph{i}.graphml")
 
     # add facility to topo
+    @save_graph_after_modification
     def _add_fac_to_topo(self, graph, index):
-        directory_path = f"{self.data_directory}/fac_sat_chain"
-        time_df = pd.read_csv(f"{self.data_directory}/time_series.csv")
+        time_df = pd.read_csv(self.time_series_directory)
         time_list = pd.to_datetime(time_df['Time Series']).tolist()
 
         # Iterate over each file in the directory
-        for filename in os.listdir(directory_path):
+        for filename in os.listdir(self.fac_sat_chain_directory):
             if filename.endswith(".csv"):  # Ensure we are processing CSV files
-                filepath = os.path.join(directory_path, filename)
+                filepath = os.path.join(self.fac_sat_chain_directory, filename)
                 # Parse node names from the filename
                 node_a, node_b = filename[:-4].split(' To ')
 
@@ -113,8 +106,28 @@ class TopoBuilder:
                         if not graph.has_node(node_b):
                             graph.add_node(node_b)
                         graph.add_edge(node_a, node_b, weight=distance, bidirectional=True)
+                        break
 
-                        print(f"Edge from {node_a} to {node_b} with distance {distance} added to graph at index {idx}.")
+    @staticmethod
+    def find_time_index(time_list, target_time):
+        # Use bisect_left to find the insertion position that would keep time_list sorted
+        pos = bisect_left(time_list, target_time)
+
+        # If pos is 0, it means target_time is less than all elements in time_list
+        if pos == 0:
+            return 0
+        # If pos is len(time_list), it means target_time is greater than all elements in time_list
+        elif pos == len(time_list):
+            return len(time_list) - 1
+        # Otherwise, find the closest time by comparing with the previous element
+        else:
+            prev_time = time_list[pos - 1]
+            next_time = time_list[pos]
+            # Return the index of the time which is closest to target_time
+            if (target_time - prev_time) <= (next_time - target_time):
+                return pos - 1
+            else:
+                return pos
 
 
 if __name__ == "__main__":

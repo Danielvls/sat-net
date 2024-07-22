@@ -6,20 +6,15 @@
 
 import os
 import platform
-import time
 import pandas as pd
 from datetime import datetime
-from utils import timeit_decorator
+from src.utils.utils import timeit_decorator
 from sim_config import *
 import re
 
 from agi.stk12.stkobjects import (
     AgEClassicalLocation,
     AgEClassicalSizeShape,
-    AgECvBounds,
-    AgECvResolution,
-    AgEFmCompute,
-    AgEFmDefinitionType,
     AgEOrientationAscNode,
     AgESTKObjectType,
     AgEVePropagatorType,
@@ -42,7 +37,7 @@ class STKManager:
         self.sat_fac_distances = []
         self.sat_name = ""
         self.fac_name = ""
-        self.data_directory = './data'
+        self.data_directory = '../../data'
         if platform.system() == "Linux":
             # Only STK Engine is available on Linux
             self.use_stk_engine = True

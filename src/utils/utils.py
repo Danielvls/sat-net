@@ -6,6 +6,9 @@
 
 import time
 import networkx as nx
+import json
+import os
+from pathlib import Path
 
 
 # decorator to measure the running time of a function
@@ -24,10 +27,16 @@ def timeit_decorator(func):
 def save_graph_after_modification(func):
     def wrapper(self, graph, idx, *args, **kwargs):
         result = func(self, graph, idx, *args, **kwargs)
-        graph_path = f"./graphs/graph{idx}.graphml"
+        current_file = Path(__file__).resolve()
+        project_root = current_file.parents[2]
+        graph_path = project_root / "graphs" / f"graph{idx}.json"
         if graph:
-            nx.write_graphml(graph, graph_path)
-            print(f"Graph {idx} has been updated and saved.")
+            # save graph as json
+            data = nx.node_link_data(graph)  # or nx.adjacency_data(graph)
+            with open(graph_path, 'w') as f:
+                json.dump(data, f, indent=4)
+            # nx.write_graphml(graph, graph_path)
+            print(f"Graph {idx} successfully saved after {func.__name__} modification. File path: {graph_path}")
         else:
             print(f"Warning: No graph was provided for saving at index {idx}.")
         return result
