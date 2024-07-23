@@ -7,7 +7,7 @@
 import os
 import sys
 
-import counter
+
 import stk
 from pathlib import Path
 from stk.stk_manager import STKManager
@@ -26,12 +26,14 @@ def main():
     # manager.create_access()
     # manager.save_data()
 
+    counter = Counter()
+
     # build topo from csv files
     topo_builder = TopoBuilder()
     topo_builder.gen_topo()
 
     # generate traffic
-    flow_controller = FlowController()
+    flow_controller = FlowController(counter)
     flow_controller.control_fow()
 
     print("blocked services: ", flow_controller.counter.blocked_services)

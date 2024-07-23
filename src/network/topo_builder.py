@@ -48,6 +48,7 @@ class TopoBuilder:
                 # supose all wavelengths are available
                 graph[u][v]['wavelengths'] = [False] * 10
                 graph[u][v]['bandwidth_usage'] = 0
+                graph[u][v]['share_degree'] = [0] * 10
                 # graph[u][v]['wavelengths'][0] = True  # 假设第一个波长通道被占用
 
     # add satellite links to topo

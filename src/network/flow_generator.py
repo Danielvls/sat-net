@@ -27,7 +27,7 @@ class FlowGenerator:
         self.flows = []
         self.num_flows = 100
         self.satellites = []
-        self.ground_stations = []
+        self.facilities = []
 
     def generate_flows(self):
         # Process flow updates across time-series graphs
@@ -44,11 +44,11 @@ class FlowGenerator:
                 # each graph generate certain amount of flows
                 for _ in range(self.num_flows):
                     # sort the node list into sat and fac
-                    self.satellites, self.ground_stations = self._generate_node_lists(graph)
+                    self.satellites, self.facilities = self._generate_node_lists(graph)
 
                     # generate flows
                     start_node = random.choice(self.satellites)
-                    target_node = random.choice(self.ground_stations)
+                    target_node = random.choice(self.facilities)
                     # while target_node == start_node:
                     #     target_node = random.choice(nodes_list)
                     package_size = round(random.uniform(0, 1024), 2)
@@ -88,16 +88,16 @@ class FlowGenerator:
     @staticmethod
     def _generate_node_lists(graph):
         satellites = []
-        ground_stations = []
+        facilities = []
 
         # Separate satellites and ground stations
         for node in graph.nodes():
             if 'Sat' in node:
                 satellites.append(node)
             elif 'Fac' in node:
-                ground_stations.append(node)
+                facilities.append(node)
 
-        return satellites, ground_stations
+        return satellites, facilities
 
     def get_flow_info(self):
         return self.flows
