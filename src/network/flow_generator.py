@@ -17,7 +17,7 @@ from datetime import timedelta
 
 
 class FlowGenerator:
-    def __init__(self):
+    def __init__(self, num_flows):
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
         self.SPEED_OF_LIGHT = 300000
@@ -25,7 +25,7 @@ class FlowGenerator:
         self.graph_path = self.project_root / 'graphs'
         self.graph_dict = {}
         self.flows = []
-        self.num_flows = 100
+        self.num_flows = num_flows
         self.satellites = []
         self.facilities = []
 
@@ -51,7 +51,7 @@ class FlowGenerator:
                     target_node = random.choice(self.facilities)
                     # while target_node == start_node:
                     #     target_node = random.choice(nodes_list)
-                    package_size = round(random.uniform(0, 1024), 2)
+                    # package_size = round(random.uniform(2048, 4096), 2)
                     # delay = calculate_transmission_delay(graph, primary_path)
                     delay = round(random.uniform(1000, 5000), 2)
 
@@ -61,7 +61,7 @@ class FlowGenerator:
                         "backup_path": None,
                         "start_node": start_node,
                         "target_node": target_node,
-                        "package_size": package_size,
+                        # "package_size": package_size,
                         "delay": delay
                     }
                     self.flows.append(flow)

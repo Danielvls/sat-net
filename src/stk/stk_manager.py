@@ -8,9 +8,9 @@ import os
 import platform
 import pandas as pd
 from datetime import datetime
-from src.utils.utils import timeit_decorator
-from sim_config import *
+from src.utils import *
 import re
+
 
 from agi.stk12.stkobjects import (
     AgEClassicalLocation,

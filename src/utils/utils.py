@@ -9,6 +9,17 @@ import networkx as nx
 import json
 import os
 from pathlib import Path
+from datetime import timedelta
+
+
+# find time indices in the time series that are within the delay time of the flow
+def find_time_indices(time_series, start_time, delay):
+    end_time = start_time + timedelta(seconds=delay)
+    indices = []
+    for i, t in enumerate(time_series):
+        if start_time <= t <= end_time:
+            indices.append(i)
+    return indices
 
 
 # decorator to measure the running time of a function

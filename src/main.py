@@ -14,8 +14,10 @@ from stk.stk_manager import STKManager
 from network.topo_builder import TopoBuilder
 from network.flow_controller import FlowController
 from utils.counter import Counter
+from utils.utils import timeit_decorator
 
 
+@timeit_decorator
 def main():
     # manager = STKManager()
     # manager.attach_to_application()
@@ -26,17 +28,20 @@ def main():
     # manager.create_access()
     # manager.save_data()
 
-    counter = Counter()
-
     # build topo from csv files
-    topo_builder = TopoBuilder()
-    topo_builder.gen_topo()
+    # topo_builder = TopoBuilder()
+    # topo_builder.gen_topo()
 
-    # generate traffic
-    flow_controller = FlowController(counter)
+    # for i in [x * 0.02 for x in range(10)]:
+    #     thershold = i
+
+    # generate flows
+    counter = Counter()
+    thershold = 0.2
+    num_flows = 20
+    flow_controller = FlowController(thershold, num_flows, counter)
     flow_controller.control_fow()
-
-    print("blocked services: ", flow_controller.counter.blocked_services)
+    print("thershold: ", thershold,  "blocked rate: ", flow_controller.counter.get_blocked_rate(), '%')
 
     # print("total services: ", flow_controller.counter.total_services)
     # print("blocked rate: ", flow_controller.counter.get_blocked_rate())

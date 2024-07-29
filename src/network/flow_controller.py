@@ -11,16 +11,18 @@ import networkx as nx
 import os
 import numpy as np
 from pathlib import Path
+from src.utils import find_time_indices
 import json
 from itertools import islice
 from datetime import timedelta
 from src.network.flow_generator import FlowGenerator
-# from path_weight_calculator import PathWeightCalculator
+from src.network.edge_weight_calculator import EdgeWeightCalculator
 
 
 class FlowController:
-    def __init__(self, counter):
-        flow_generator = FlowGenerator()
+    def __init__(self, thershold, num_flows, counter):
+        self.thershold = thershold
+        flow_generator = FlowGenerator(num_flows)
         self.counter = counter
         flow_generator.load_graphs()
         self.flows = flow_generator.generate_flows()
@@ -43,9 +45,9 @@ class FlowController:
     def update_graph_according_to_flow(self, idx, flow):
         """set the graph according to the flow's start time and delay time"""
         start_time = pd.to_datetime(self.graph_dict[flow["graph_index"]]['time'])
-        indices = self.find_time_indices(start_time, flow['delay'])
+        indices = find_time_indices(self.time_series, start_time, flow['delay'])
 
-        print(f"Allocating bandwidth for flow {idx}...", end="")
+        print(f"Flow {idx} is being processed...", end="")
 
         # Distribute the service across all graphs it spans.
         for index in indices:
@@ -55,16 +57,17 @@ class FlowController:
 
                 if not (flow.get('primary_path') and flow.get('backup_path')):
                     primary_path_tuple, backup_path_tuple = self.use_shared_backup_path(
-                        graph, flow['start_node'], flow['target_node']
+                        graph,
+                        flow
                     )
 
-                    # if the
                     if primary_path_tuple and backup_path_tuple:
 
                         # if the length of primary path is 2, no need for backup path
                         if len(primary_path_tuple[0]) == 2:
-                            print("No need for backup path...", end="")
+                            # print("No need for backup path...", end="")
                             self.allocate_bandwidth(graph, primary_path_tuple, path_type='primary')
+                            break
 
                         # if the length of primary path is more than 2, allocate the backup path
                         elif len(primary_path_tuple[0]) >= 2:
@@ -76,51 +79,51 @@ class FlowController:
                     # if no path is found, increment the counter
                     else:
                         self.counter.blocked_services += 1
-                        print(f"No available path found for flow {idx}")
+                        print(f"No available path found for flow {idx}...", end="")
                         break
             else:
-                print(f"No graph info available for index {index}")
+                pass
+                # print(f"No graph info available for index {index}...", end="")
 
-    def use_shared_backup_path(self, graph, source, target):
-        primary_path_tuple = self.find_primary_path(graph, source, target)
+    def use_shared_backup_path(self, graph, flow):
+        primary_path_tuple = self.find_path(graph, flow, path_type='primary')
         if primary_path_tuple is None:
             return None, None
-        backup_path_tuple = self.find_backup_path(graph, source, target, primary_path_tuple[0])
-        return primary_path_tuple, backup_path_tuple
+        backup_path_tuple = self.find_path(
+            graph, flow, path_type='backup', existing_path=primary_path_tuple[0]
+        )
+        if backup_path_tuple is not None:
+            return primary_path_tuple, backup_path_tuple
+        else:
+            return None, None
 
-    def find_primary_path(self, graph, source, target):
-        paths = self.k_shortest_paths(graph, source, target)
-        primary_path_tuple = None
-        for path in paths:
-            available_wavelength = self.find_available_wavelength(graph, path, path_type='primary')
-            if available_wavelength is not None:
-                primary_path_tuple = (path, available_wavelength)
-                break
-        return primary_path_tuple
-
-    def find_backup_path(self, graph, start_node, target_node, shortest_path):
+    def find_path(self, graph, flow, path_type='primary', existing_path=None):
+        source = flow['start_node']
+        target = flow['target_node']
+        path_tuple = None
         try:
-            graph_copy = graph.copy()
-            backup_path_tuple = None
 
-            # remove the nodes between the start and target nodes
-            if len(shortest_path) > 2:
-                for node in shortest_path[1:-1]:
+            # if path type is backup, primary path must exist
+            if path_type == 'backup' and existing_path and len(existing_path) > 3:
+                graph_copy = graph.copy()
+                for node in existing_path[1:-2]:
                     graph_copy.remove_node(node)
-
-            paths = self.k_shortest_paths(graph_copy, start_node, target_node)
+                graph_to_use = graph_copy
+                source = existing_path[0]
+                target = existing_path[-2]
+            else:
+                graph_to_use = graph
+            paths = self.k_shortest_paths(graph_to_use, source, target)
             for path in paths:
-                available_wavelength = self.find_available_wavelength(graph, path, path_type='backup')
+                available_wavelength = self.find_available_wavelength(graph, path, flow, path_type=path_type)
                 if available_wavelength is not None:
-                    backup_path_tuple = (path, available_wavelength)
+                    path_tuple = (path, available_wavelength)
                     break
-            return backup_path_tuple
-
         except nx.NetworkXNoPath:
             return None
+        return path_tuple
 
-    @staticmethod
-    def find_available_wavelength(graph, path, path_type='primary'):
+    def find_available_wavelength(self, graph, path, flow, path_type='primary'):
         if len(path) < 2:
             return None
         wavelength_usage = [graph[path[i]][path[i + 1]]['wavelengths'] for i in range(len(path) - 1)]
@@ -134,9 +137,51 @@ class FlowController:
                         all(shares[wavelength_idx] == 0 for shares in share_degree)):
                     return wavelength_idx
             elif path_type == 'backup':
-                if all(shares[wavelength_idx] < 2 for shares in share_degree):
+                if all(shares[wavelength_idx] == 0 for shares in share_degree):
                     return wavelength_idx
+                else:
+                    # if the path need to share the wavelength, check if the wavelength can be shared
+                    valid_for_share = True
+
+                    # if every edge in the path can share the wavelength, return the wavelength index
+                    # else return None
+                    for i in range(len(path) - 1):
+                        if share_degree[i][wavelength_idx] > 1 or not self.is_wavelength_valid_for_share(
+                                graph,
+                                [path[i], path[i + 1]],
+                                flow,
+                                wavelength_idx,
+                                threshold=self.thershold
+                        ):
+                            valid_for_share = False
+                            break
+                    if valid_for_share:
+                        return wavelength_idx
+                    else:
+                        break
         return None
+
+    def is_wavelength_valid_for_share(self, graph, edge, flow, wavelength_idx, threshold):
+        share_degree = graph[edge[0]][edge[1]]['share_degree'][wavelength_idx]
+        if share_degree == 1:
+            edge_weight_calculator = EdgeWeightCalculator(
+                self.graph_dict,
+                edge,
+                flow['backup_path'],
+                flow,
+                self.time_series,
+                self.satellites,
+                self.facilities
+            )
+            edge_weight = edge_weight_calculator.calculate_edge_weight()
+
+            # if the edge weight is less than the threshold, the wavelength can be shared
+            if edge_weight <= threshold:
+                return True
+            else:
+                return False
+        else:
+            return True
 
     @staticmethod
     def allocate_bandwidth(graph, path_tuple, path_type='primary'):
@@ -158,15 +203,15 @@ class FlowController:
                         edge['bandwidth_usage'] += 1
                         edge['share_degree'][wavelength_idx] += 1
 
-                    # if the wavelength is shared, increase the share degree
+                    # if the wavelength is shared, increase the share degree, and set the wavelength usage to True
                     elif edge['share_degree'][wavelength_idx] == 1:
                         edge['share_degree'][wavelength_idx] += 1
                         edge['wavelengths'][wavelength_idx] = True
 
             print(f"Allocated wavelength {wavelength_idx} on {path_type} path {path}...", end='')
         else:
+            print(f"No available wavelength on {path_type} path {path}...", end='')
             pass
-            print(f"No available wavelength on {path_type} path {path}")
 
     # def weighted_ksp(self, graph, source, target):
     #     # find k shortest paths from source to target
@@ -188,23 +233,12 @@ class FlowController:
     #     else:
     #         return [(pw[0], pw[1]) for pw in path_weights[:2]]
 
-    # find time indices in the time series that are within the delay time of the flow
-    def find_time_indices(self, start_time, delay):
-        end_time = start_time + timedelta(seconds=delay)
-        indices = []
-        for i, time in enumerate(self.time_series):
-            if start_time <= time <= end_time:
-                indices.append(i)
-        return indices
-
     def k_shortest_paths(self, graph, source, target, k=4, weight=None):
         graph_copy = graph.copy()
         self.remove_other_facilities(graph_copy, target)
         return list(
             islice(nx.shortest_simple_paths(graph_copy, source, target, weight=weight), k)
         )
-
-    import networkx as nx
 
     def remove_other_facilities(self, graph, target_facility):
         # Iterate over all nodes in the graph

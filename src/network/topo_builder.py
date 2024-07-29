@@ -6,10 +6,10 @@
 
 import os
 import networkx as nx
-from src.utils.utils import save_graph_after_modification
-from run_stk import *
+from src.utils import save_graph_after_modification
 from bisect import bisect_left
 from pathlib import Path
+import pandas as pd
 
 
 class TopoBuilder:
