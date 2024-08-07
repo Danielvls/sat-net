@@ -5,14 +5,12 @@
 # @File    : sim_config.py.py
 
 # satellite network configure
-num_orbit_planes = 4
-num_sat_per_plane = 8
+num_orbit_planes = 6
+num_sat_per_plane = 11
 
+slot_num = 100
+slot_size = 1000
+avg_duration = 1000
+minimum_bandwidth, maximum_bandwidth = 1000, 2500
 # snapshot step
 time_step = 300   # 5min
-
-# service config
-# how many service generate in one topo
-flag = 1
-num_services = 300
-package_size = 20

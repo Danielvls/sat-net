@@ -13,7 +13,7 @@ from src.utils import find_time_indices
 class EdgeWeightCalculator:
     def __init__(
             self,
-            graph_dict,
+            graph_list,
             edge,
             path,
             flow,
@@ -23,7 +23,7 @@ class EdgeWeightCalculator:
     ):
         self.satellites = satellites
         self.facilities = facilities
-        self.graph_dict = graph_dict
+        self.graph_list = graph_list
         self.edge = edge
         self.path = path
         self.flow = flow
@@ -32,11 +32,11 @@ class EdgeWeightCalculator:
     # def compute_dynamic_centrality(self):
     #
     #     t = self.flow['start_time']
-    #     delta_t = self.flow['delay']
+    #     delta_t = self.flow['duration']
     #     total_paths_including_edge = 0
     #     total_paths = 0
     #
-    #     # calculate the indices of the time series that are within the delay time of the flow
+    #     # calculate the indices of the time series that are within the duration time of the flow
     #     indices = find_time_indices(self.time_series, t, delta_t)
     #
     #     for index in indices:
@@ -63,13 +63,13 @@ class EdgeWeightCalculator:
 
     def compute_dynamic_centrality(self):
         t = self.time_series[self.flow['graph_index']]
-        delta_t = self.flow['delay']
+        delta_t = self.flow['duration']
         indices = find_time_indices(self.time_series, t, delta_t)
         dynamic_centrality = defaultdict(float)
         total_interval_time = len(indices)
 
         for index in indices:
-            G = self.graph_dict.get(index, None)['graph']
+            G = self.graph_list[index]
             betweenness = defaultdict(float)
 
             # Iterating over all possible source and destination nodes

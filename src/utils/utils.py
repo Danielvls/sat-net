@@ -12,9 +12,9 @@ from pathlib import Path
 from datetime import timedelta
 
 
-# find time indices in the time series that are within the delay time of the flow
-def find_time_indices(time_series, start_time, delay):
-    end_time = start_time + timedelta(seconds=delay)
+# find time indices in the time series that are within the duration time of the flow
+def find_time_indices(time_series, start_time, duration):
+    end_time = start_time + timedelta(seconds=duration)
     indices = []
     for i, t in enumerate(time_series):
         if start_time <= t <= end_time:

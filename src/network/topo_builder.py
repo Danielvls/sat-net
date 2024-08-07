@@ -6,7 +6,7 @@
 
 import os
 import networkx as nx
-from src.utils import save_graph_after_modification
+from src.utils import save_graph_after_modification, slot_num
 from bisect import bisect_left
 from pathlib import Path
 import pandas as pd
@@ -17,10 +17,11 @@ class TopoBuilder:
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
         self.node_list = []
+        self.slot_num = slot_num
         self.graph_path = self.project_root / 'graphs'
         self.sat_distance_file = self.project_root / 'data' / 'inter_satellite_distances.csv'
         self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
-        self.fac_sat_chain_directory = self.project_root / 'data' / 'fac_sat_chains'
+        self.fac_sat_chains_directory = self.project_root / 'data' / 'fac_sat_chains'
 
     def gen_topo(self):
         time_df = pd.read_csv(self.time_series_directory)
@@ -46,9 +47,9 @@ class TopoBuilder:
         if graph:
             for u, v in graph.edges():
                 # supose all wavelengths are available
-                graph[u][v]['wavelengths'] = [False] * 10
+                graph[u][v]['wavelengths'] = [False] * self.slot_num
                 graph[u][v]['bandwidth_usage'] = 0
-                graph[u][v]['share_degree'] = [0] * 10
+                graph[u][v]['share_degree'] = [0] * self.slot_num
                 # graph[u][v]['wavelengths'][0] = True  # 假设第一个波长通道被占用
 
     # add satellite links to topo
@@ -83,9 +84,9 @@ class TopoBuilder:
         time_list = pd.to_datetime(time_df['Time Series']).tolist()
 
         # Iterate over each file in the directory
-        for filename in os.listdir(self.fac_sat_chain_directory):
+        for filename in os.listdir(self.fac_sat_chains_directory):
             if filename.endswith(".csv"):  # Ensure we are processing CSV files
-                filepath = os.path.join(self.fac_sat_chain_directory, filename)
+                filepath = os.path.join(self.fac_sat_chains_directory, filename)
                 # Parse node names from the filename
                 node_a, node_b = filename[:-4].split(' To ')
 

@@ -49,7 +49,25 @@
             "id": "Sat27"
         },
         {
+            "id": "Sat19"
+        },
+        {
             "id": "Sat28"
+        },
+        {
+            "id": "Sat110"
+        },
+        {
+            "id": "Sat29"
+        },
+        {
+            "id": "Sat111"
+        },
+        {
+            "id": "Sat210"
+        },
+        {
+            "id": "Sat211"
         },
         {
             "id": "Sat31"
@@ -76,6 +94,15 @@
             "id": "Sat38"
         },
         {
+            "id": "Sat39"
+        },
+        {
+            "id": "Sat310"
+        },
+        {
+            "id": "Sat311"
+        },
+        {
             "id": "Sat41"
         },
         {
@@ -100,18 +127,96 @@
             "id": "Sat48"
         },
         {
+            "id": "Sat49"
+        },
+        {
+            "id": "Sat410"
+        },
+        {
+            "id": "Sat411"
+        },
+        {
+            "id": "Sat51"
+        },
+        {
+            "id": "Sat52"
+        },
+        {
+            "id": "Sat53"
+        },
+        {
+            "id": "Sat54"
+        },
+        {
+            "id": "Sat55"
+        },
+        {
+            "id": "Sat56"
+        },
+        {
+            "id": "Sat57"
+        },
+        {
+            "id": "Sat58"
+        },
+        {
+            "id": "Sat59"
+        },
+        {
+            "id": "Sat510"
+        },
+        {
+            "id": "Sat511"
+        },
+        {
+            "id": "Sat61"
+        },
+        {
+            "id": "Sat62"
+        },
+        {
+            "id": "Sat63"
+        },
+        {
+            "id": "Sat64"
+        },
+        {
+            "id": "Sat65"
+        },
+        {
+            "id": "Sat66"
+        },
+        {
+            "id": "Sat67"
+        },
+        {
+            "id": "Sat68"
+        },
+        {
+            "id": "Sat69"
+        },
+        {
+            "id": "Sat610"
+        },
+        {
+            "id": "Sat611"
+        },
+        {
+            "id": "Facility4"
+        },
+        {
             "id": "Facility3"
         },
         {
-            "id": "Facility1"
+            "id": "Facility2"
         },
         {
-            "id": "Facility2"
+            "id": "Facility1"
         }
     ],
     "links": [
         {
-            "weight": 6276.00829081636,
+            "weight": 4620.413932229825,
             "wavelengths": [
                 false,
                 false,
@@ -141,7 +246,7 @@
             "target": "Sat12"
         },
         {
-            "weight": 661.2274228521412,
+            "weight": 4308.759390925558,
             "wavelengths": [
                 false,
                 false,
@@ -171,7 +276,7 @@
             "target": "Sat21"
         },
         {
-            "weight": 6276.008290817035,
+            "weight": 4620.413932229057,
             "wavelengths": [
                 false,
                 false,
@@ -198,10 +303,41 @@
                 0
             ],
             "source": "Sat11",
-            "target": "Sat18"
+            "target": "Sat111"
         },
         {
-            "weight": 6276.008290825167,
+            "weight": 5189,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat11",
+            "target": "Facility4"
+        },
+        {
+            "weight": 4620.4139322257,
             "wavelengths": [
                 false,
                 false,
@@ -231,7 +367,7 @@
             "target": "Sat13"
         },
         {
-            "weight": 4501.18380107161,
+            "weight": 3721.892418967172,
             "wavelengths": [
                 false,
                 false,
@@ -261,7 +397,7 @@
             "target": "Sat22"
         },
         {
-            "weight": 2408,
+            "weight": 3115,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -289,10 +425,10 @@
                 0
             ],
             "source": "Sat12",
-            "target": "Facility3"
+            "target": "Facility4"
         },
         {
-            "weight": 6276.008306913463,
+            "weight": 4620.413940933182,
             "wavelengths": [
                 false,
                 false,
@@ -322,7 +458,7 @@
             "target": "Sat22"
         },
         {
-            "weight": 871.1660591769374,
+            "weight": 4302.985996352702,
             "wavelengths": [
                 false,
                 false,
@@ -352,7 +488,7 @@
             "target": "Sat31"
         },
         {
-            "weight": 6276.008306912624,
+            "weight": 4620.413940933359,
             "wavelengths": [
                 false,
                 false,
@@ -379,10 +515,10 @@
                 0
             ],
             "source": "Sat21",
-            "target": "Sat28"
+            "target": "Sat211"
         },
         {
-            "weight": 4852,
+            "weight": 3589,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -410,10 +546,10 @@
                 0
             ],
             "source": "Sat21",
-            "target": "Facility3"
+            "target": "Facility4"
         },
         {
-            "weight": 6276.008290825843,
+            "weight": 4620.413932221446,
             "wavelengths": [
                 false,
                 false,
@@ -443,7 +579,7 @@
             "target": "Sat14"
         },
         {
-            "weight": 6310.688847878245,
+            "weight": 2034.7875642758447,
             "wavelengths": [
                 false,
                 false,
@@ -473,7 +609,38 @@
             "target": "Sat23"
         },
         {
-            "weight": 6276.008306922264,
+            "weight": 5154,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat13",
+            "target": "Facility4"
+        },
+        {
+            "weight": 4620.413940928607,
             "wavelengths": [
                 false,
                 false,
@@ -503,7 +670,7 @@
             "target": "Sat23"
         },
         {
-            "weight": 4866.053535579366,
+            "weight": 3503.5165673127804,
             "wavelengths": [
                 false,
                 false,
@@ -533,7 +700,7 @@
             "target": "Sat32"
         },
         {
-            "weight": 3149,
+            "weight": 1922,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -561,10 +728,10 @@
                 0
             ],
             "source": "Sat22",
-            "target": "Facility3"
+            "target": "Facility4"
         },
         {
-            "weight": 6276.008290817034,
+            "weight": 4620.4139322221135,
             "wavelengths": [
                 false,
                 false,
@@ -594,7 +761,7 @@
             "target": "Sat15"
         },
         {
-            "weight": 4472.283260463199,
+            "weight": 885.5288733350199,
             "wavelengths": [
                 false,
                 false,
@@ -624,7 +791,7 @@
             "target": "Sat24"
         },
         {
-            "weight": 6276.008306921396,
+            "weight": 4620.413940924968,
             "wavelengths": [
                 false,
                 false,
@@ -654,7 +821,7 @@
             "target": "Sat24"
         },
         {
-            "weight": 6285.147852569825,
+            "weight": 1696.8067937193134,
             "wavelengths": [
                 false,
                 false,
@@ -684,7 +851,38 @@
             "target": "Sat33"
         },
         {
-            "weight": 6276.00829081636,
+            "weight": 4582,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat23",
+            "target": "Facility4"
+        },
+        {
+            "weight": 4620.413932226839,
             "wavelengths": [
                 false,
                 false,
@@ -714,7 +912,7 @@
             "target": "Sat16"
         },
         {
-            "weight": 661.2274228521403,
+            "weight": 2776.299347347692,
             "wavelengths": [
                 false,
                 false,
@@ -744,7 +942,7 @@
             "target": "Sat25"
         },
         {
-            "weight": 6276.008306912619,
+            "weight": 4620.413940926515,
             "wavelengths": [
                 false,
                 false,
@@ -774,7 +972,7 @@
             "target": "Sat25"
         },
         {
-            "weight": 4072.284056916416,
+            "weight": 1146.3694622952812,
             "wavelengths": [
                 false,
                 false,
@@ -804,7 +1002,7 @@
             "target": "Sat34"
         },
         {
-            "weight": 6276.008290825167,
+            "weight": 4620.413932230133,
             "wavelengths": [
                 false,
                 false,
@@ -834,7 +1032,7 @@
             "target": "Sat17"
         },
         {
-            "weight": 4501.18380107161,
+            "weight": 4100.7873502071625,
             "wavelengths": [
                 false,
                 false,
@@ -864,7 +1062,7 @@
             "target": "Sat26"
         },
         {
-            "weight": 6276.008306913466,
+            "weight": 4620.413940931424,
             "wavelengths": [
                 false,
                 false,
@@ -894,7 +1092,7 @@
             "target": "Sat26"
         },
         {
-            "weight": 871.1660591769353,
+            "weight": 3067.472822980814,
             "wavelengths": [
                 false,
                 false,
@@ -924,7 +1122,7 @@
             "target": "Sat35"
         },
         {
-            "weight": 6276.008290825844,
+            "weight": 4620.413932228164,
             "wavelengths": [
                 false,
                 false,
@@ -954,7 +1152,7 @@
             "target": "Sat18"
         },
         {
-            "weight": 6310.688847878245,
+            "weight": 4178.573952098441,
             "wavelengths": [
                 false,
                 false,
@@ -984,7 +1182,7 @@
             "target": "Sat27"
         },
         {
-            "weight": 6276.008306922253,
+            "weight": 4620.413940933998,
             "wavelengths": [
                 false,
                 false,
@@ -1014,7 +1212,7 @@
             "target": "Sat27"
         },
         {
-            "weight": 4866.053535579363,
+            "weight": 4207.155263205512,
             "wavelengths": [
                 false,
                 false,
@@ -1044,7 +1242,37 @@
             "target": "Sat36"
         },
         {
-            "weight": 4472.283260463199,
+            "weight": 4620.4139322231895,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat18",
+            "target": "Sat19"
+        },
+        {
+            "weight": 2981.096005976635,
             "wavelengths": [
                 false,
                 false,
@@ -1074,7 +1302,38 @@
             "target": "Sat28"
         },
         {
-            "weight": 6276.008306921397,
+            "weight": 4113,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat18",
+            "target": "Facility3"
+        },
+        {
+            "weight": 4620.413940931189,
             "wavelengths": [
                 false,
                 false,
@@ -1104,7 +1363,7 @@
             "target": "Sat28"
         },
         {
-            "weight": 6285.1478525698285,
+            "weight": 4061.173383370589,
             "wavelengths": [
                 false,
                 false,
@@ -1134,7 +1393,128 @@
             "target": "Sat37"
         },
         {
-            "weight": 4072.284056916418,
+            "weight": 4620.413932221057,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat19",
+            "target": "Sat110"
+        },
+        {
+            "weight": 1058.1899600158858,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat19",
+            "target": "Sat29"
+        },
+        {
+            "weight": 5034,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat19",
+            "target": "Facility3"
+        },
+        {
+            "weight": 4620.413940926264,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat28",
+            "target": "Sat29"
+        },
+        {
+            "weight": 2683.194673411408,
             "wavelengths": [
                 false,
                 false,
@@ -1164,7 +1544,247 @@
             "target": "Sat38"
         },
         {
-            "weight": 6276.008313564555,
+            "weight": 4620.413932224253,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat110",
+            "target": "Sat111"
+        },
+        {
+            "weight": 1800.027067293294,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat110",
+            "target": "Sat210"
+        },
+        {
+            "weight": 4620.413940925047,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat29",
+            "target": "Sat210"
+        },
+        {
+            "weight": 827.7524537317003,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat29",
+            "target": "Sat39"
+        },
+        {
+            "weight": 3573.36116337606,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat111",
+            "target": "Sat211"
+        },
+        {
+            "weight": 4620.413940928895,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat210",
+            "target": "Sat211"
+        },
+        {
+            "weight": 2136.918956439276,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat210",
+            "target": "Sat310"
+        },
+        {
+            "weight": 3782.255543308684,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat211",
+            "target": "Sat311"
+        },
+        {
+            "weight": 4620.413947298292,
             "wavelengths": [
                 false,
                 false,
@@ -1194,7 +1814,7 @@
             "target": "Sat32"
         },
         {
-            "weight": 1291.993827224511,
+            "weight": 4259.446922793504,
             "wavelengths": [
                 false,
                 false,
@@ -1224,7 +1844,7 @@
             "target": "Sat41"
         },
         {
-            "weight": 6276.008313562227,
+            "weight": 4620.41394729933,
             "wavelengths": [
                 false,
                 false,
@@ -1251,10 +1871,10 @@
                 0
             ],
             "source": "Sat31",
-            "target": "Sat38"
+            "target": "Sat311"
         },
         {
-            "weight": 4921,
+            "weight": 3925,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -1282,10 +1902,10 @@
                 0
             ],
             "source": "Sat31",
-            "target": "Facility3"
+            "target": "Facility4"
         },
         {
-            "weight": 6276.008313573074,
+            "weight": 4620.413947293374,
             "wavelengths": [
                 false,
                 false,
@@ -1315,7 +1935,7 @@
             "target": "Sat33"
         },
         {
-            "weight": 5195.04674517777,
+            "weight": 3255.6506298078302,
             "wavelengths": [
                 false,
                 false,
@@ -1345,7 +1965,38 @@
             "target": "Sat42"
         },
         {
-            "weight": 6276.008313570723,
+            "weight": 3297,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat32",
+            "target": "Facility4"
+        },
+        {
+            "weight": 4620.413947290479,
             "wavelengths": [
                 false,
                 false,
@@ -1375,7 +2026,7 @@
             "target": "Sat34"
         },
         {
-            "weight": 6212.307266359745,
+            "weight": 1363.8219933333069,
             "wavelengths": [
                 false,
                 false,
@@ -1405,7 +2056,7 @@
             "target": "Sat43"
         },
         {
-            "weight": 6276.008313562217,
+            "weight": 4620.413947292862,
             "wavelengths": [
                 false,
                 false,
@@ -1435,7 +2086,7 @@
             "target": "Sat35"
         },
         {
-            "weight": 3643.2769851538046,
+            "weight": 1463.8275587189864,
             "wavelengths": [
                 false,
                 false,
@@ -1465,7 +2116,7 @@
             "target": "Sat44"
         },
         {
-            "weight": 6276.008313564556,
+            "weight": 4620.413947297834,
             "wavelengths": [
                 false,
                 false,
@@ -1495,7 +2146,7 @@
             "target": "Sat36"
         },
         {
-            "weight": 1291.9938272245115,
+            "weight": 3334.214425399575,
             "wavelengths": [
                 false,
                 false,
@@ -1525,7 +2176,7 @@
             "target": "Sat45"
         },
         {
-            "weight": 6276.008313573069,
+            "weight": 4620.413947299529,
             "wavelengths": [
                 false,
                 false,
@@ -1555,7 +2206,7 @@
             "target": "Sat37"
         },
         {
-            "weight": 5195.046745177769,
+            "weight": 4276.7099663247245,
             "wavelengths": [
                 false,
                 false,
@@ -1585,7 +2236,7 @@
             "target": "Sat46"
         },
         {
-            "weight": 6276.008313570731,
+            "weight": 4620.413947295968,
             "wavelengths": [
                 false,
                 false,
@@ -1615,7 +2266,7 @@
             "target": "Sat38"
         },
         {
-            "weight": 6212.307266359749,
+            "weight": 3908.426497055232,
             "wavelengths": [
                 false,
                 false,
@@ -1645,8 +2296,7 @@
             "target": "Sat47"
         },
         {
-            "weight": 4506,
-            "bidirectional": true,
+            "weight": 4620.413947291369,
             "wavelengths": [
                 false,
                 false,
@@ -1672,42 +2322,11 @@
                 0,
                 0
             ],
-            "source": "Sat37",
-            "target": "Facility1"
+            "source": "Sat38",
+            "target": "Sat39"
         },
         {
-            "weight": 4521,
-            "bidirectional": true,
-            "wavelengths": [
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false,
-                false
-            ],
-            "bandwidth_usage": 0,
-            "share_degree": [
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0,
-                0
-            ],
-            "source": "Sat37",
-            "target": "Facility2"
-        },
-        {
-            "weight": 3643.276985153808,
+            "weight": 2366.0196022422365,
             "wavelengths": [
                 false,
                 false,
@@ -1737,8 +2356,7 @@
             "target": "Sat48"
         },
         {
-            "weight": 4325,
-            "bidirectional": true,
+            "weight": 4620.4139472910265,
             "wavelengths": [
                 false,
                 false,
@@ -1764,12 +2382,11 @@
                 0,
                 0
             ],
-            "source": "Sat38",
-            "target": "Facility1"
+            "source": "Sat39",
+            "target": "Sat310"
         },
         {
-            "weight": 3472,
-            "bidirectional": true,
+            "weight": 756.2683297706874,
             "wavelengths": [
                 false,
                 false,
@@ -1795,11 +2412,101 @@
                 0,
                 0
             ],
-            "source": "Sat38",
-            "target": "Facility2"
+            "source": "Sat39",
+            "target": "Sat49"
         },
         {
-            "weight": 6276.008306874011,
+            "weight": 4620.413947295427,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat310",
+            "target": "Sat311"
+        },
+        {
+            "weight": 2464.514149673592,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat310",
+            "target": "Sat410"
+        },
+        {
+            "weight": 3958.6729928871446,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat311",
+            "target": "Sat411"
+        },
+        {
+            "weight": 4620.413949619418,
             "wavelengths": [
                 false,
                 false,
@@ -1829,7 +2536,7 @@
             "target": "Sat42"
         },
         {
-            "weight": 6276.008306870251,
+            "weight": 4178.573959128439,
             "wavelengths": [
                 false,
                 false,
@@ -1856,10 +2563,102 @@
                 0
             ],
             "source": "Sat41",
-            "target": "Sat48"
+            "target": "Sat51"
         },
         {
-            "weight": 6276.008306881999,
+            "weight": 4620.41394962142,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat41",
+            "target": "Sat411"
+        },
+        {
+            "weight": 5180,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat41",
+            "target": "Facility2"
+        },
+        {
+            "weight": 4802,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat41",
+            "target": "Facility4"
+        },
+        {
+            "weight": 4620.4139496144335,
             "wavelengths": [
                 false,
                 false,
@@ -1889,7 +2688,68 @@
             "target": "Sat43"
         },
         {
-            "weight": 6276.008306878233,
+            "weight": 2981.096018250795,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat42",
+            "target": "Sat52"
+        },
+        {
+            "weight": 4192,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat42",
+            "target": "Facility2"
+        },
+        {
+            "weight": 4620.413949612302,
             "wavelengths": [
                 false,
                 false,
@@ -1919,7 +2779,37 @@
             "target": "Sat44"
         },
         {
-            "weight": 6276.008306870248,
+            "weight": 1058.189965623298,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat43",
+            "target": "Sat53"
+        },
+        {
+            "weight": 4620.413949615495,
             "wavelengths": [
                 false,
                 false,
@@ -1949,7 +2839,37 @@
             "target": "Sat45"
         },
         {
-            "weight": 6276.008306874006,
+            "weight": 1800.0270621174957,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat44",
+            "target": "Sat54"
+        },
+        {
+            "weight": 4620.413949620289,
             "wavelengths": [
                 false,
                 false,
@@ -1979,7 +2899,37 @@
             "target": "Sat46"
         },
         {
-            "weight": 6276.008306881997,
+            "weight": 3573.3611559084497,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat45",
+            "target": "Sat55"
+        },
+        {
+            "weight": 4620.413949621084,
             "wavelengths": [
                 false,
                 false,
@@ -2009,7 +2959,37 @@
             "target": "Sat47"
         },
         {
-            "weight": 6276.008306878233,
+            "weight": 4308.759392336492,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat46",
+            "target": "Sat56"
+        },
+        {
+            "weight": 4620.413949616942,
             "wavelengths": [
                 false,
                 false,
@@ -2039,8 +3019,7 @@
             "target": "Sat48"
         },
         {
-            "weight": 3397,
-            "bidirectional": true,
+            "weight": 3721.8924300469566,
             "wavelengths": [
                 false,
                 false,
@@ -2067,11 +3046,161 @@
                 0
             ],
             "source": "Sat47",
+            "target": "Sat57"
+        },
+        {
+            "weight": 4620.413949612722,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat48",
+            "target": "Sat49"
+        },
+        {
+            "weight": 2034.7875745092365,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat48",
+            "target": "Sat58"
+        },
+        {
+            "weight": 4620.413949613349,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat49",
+            "target": "Sat410"
+        },
+        {
+            "weight": 885.5288731974099,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat49",
+            "target": "Sat59"
+        },
+        {
+            "weight": 4143,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat49",
             "target": "Facility1"
         },
         {
-            "weight": 4243,
-            "bidirectional": true,
+            "weight": 4620.41394961808,
             "wavelengths": [
                 false,
                 false,
@@ -2097,11 +3226,41 @@
                 0,
                 0
             ],
-            "source": "Sat47",
-            "target": "Facility2"
+            "source": "Sat410",
+            "target": "Sat411"
         },
         {
-            "weight": 4350,
+            "weight": 2776.299339438803,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat410",
+            "target": "Sat510"
+        },
+        {
+            "weight": 3687,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -2128,11 +3287,131 @@
                 0,
                 0
             ],
-            "source": "Sat48",
+            "source": "Sat410",
             "target": "Facility1"
         },
         {
-            "weight": 3952,
+            "weight": 4100.787346213426,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat411",
+            "target": "Sat511"
+        },
+        {
+            "weight": 4620.413947274524,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat51",
+            "target": "Sat52"
+        },
+        {
+            "weight": 4061.17339091913,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat51",
+            "target": "Sat61"
+        },
+        {
+            "weight": 4620.41394727733,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat51",
+            "target": "Sat511"
+        },
+        {
+            "weight": 3628,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -2159,11 +3438,71 @@
                 0,
                 0
             ],
-            "source": "Sat48",
+            "source": "Sat51",
             "target": "Facility2"
         },
         {
-            "weight": 4797,
+            "weight": 4620.413947269638,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat52",
+            "target": "Sat53"
+        },
+        {
+            "weight": 2683.1946847773875,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat52",
+            "target": "Sat62"
+        },
+        {
+            "weight": 2091,
             "bidirectional": true,
             "wavelengths": [
                 false,
@@ -2190,8 +3529,1282 @@
                 0,
                 0
             ],
-            "source": "Sat48",
+            "source": "Sat52",
+            "target": "Facility2"
+        },
+        {
+            "weight": 4620.413947268396,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat53",
+            "target": "Sat54"
+        },
+        {
+            "weight": 827.7524556204256,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat53",
+            "target": "Sat63"
+        },
+        {
+            "weight": 4665,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat53",
+            "target": "Facility2"
+        },
+        {
+            "weight": 5150,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat53",
             "target": "Facility3"
+        },
+        {
+            "weight": 4620.413947272197,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat54",
+            "target": "Sat55"
+        },
+        {
+            "weight": 2136.9189466360835,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat54",
+            "target": "Sat64"
+        },
+        {
+            "weight": 4437,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat54",
+            "target": "Facility3"
+        },
+        {
+            "weight": 4620.413947276653,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat55",
+            "target": "Sat56"
+        },
+        {
+            "weight": 3782.2555332690263,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat55",
+            "target": "Sat65"
+        },
+        {
+            "weight": 4620.413947276543,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat56",
+            "target": "Sat57"
+        },
+        {
+            "weight": 4302.985997808215,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat56",
+            "target": "Sat66"
+        },
+        {
+            "weight": 4620.413947271982,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat57",
+            "target": "Sat58"
+        },
+        {
+            "weight": 3503.5165785552035,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat57",
+            "target": "Sat67"
+        },
+        {
+            "weight": 4620.413947268273,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat58",
+            "target": "Sat59"
+        },
+        {
+            "weight": 1696.8068015985118,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat58",
+            "target": "Sat68"
+        },
+        {
+            "weight": 5142,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat58",
+            "target": "Facility1"
+        },
+        {
+            "weight": 4620.413947269858,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat59",
+            "target": "Sat510"
+        },
+        {
+            "weight": 1146.3694575922134,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat59",
+            "target": "Sat69"
+        },
+        {
+            "weight": 2189,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat59",
+            "target": "Facility1"
+        },
+        {
+            "weight": 4620.413947274759,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat510",
+            "target": "Sat511"
+        },
+        {
+            "weight": 3067.4728111880863,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat510",
+            "target": "Sat610"
+        },
+        {
+            "weight": 3135,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat510",
+            "target": "Facility1"
+        },
+        {
+            "weight": 4207.1552581042615,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat511",
+            "target": "Sat611"
+        },
+        {
+            "weight": 4620.413940891741,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat61",
+            "target": "Sat62"
+        },
+        {
+            "weight": 4620.413940895255,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat61",
+            "target": "Sat611"
+        },
+        {
+            "weight": 3860,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat61",
+            "target": "Facility2"
+        },
+        {
+            "weight": 4620.413940887113,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat62",
+            "target": "Sat63"
+        },
+        {
+            "weight": 3177,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat62",
+            "target": "Facility2"
+        },
+        {
+            "weight": 4620.413940886755,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat63",
+            "target": "Sat64"
+        },
+        {
+            "weight": 2220,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat63",
+            "target": "Facility3"
+        },
+        {
+            "weight": 4620.413940891097,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat64",
+            "target": "Sat65"
+        },
+        {
+            "weight": 3083,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat64",
+            "target": "Facility3"
+        },
+        {
+            "weight": 4620.4139408950805,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat65",
+            "target": "Sat66"
+        },
+        {
+            "weight": 4620.413940894045,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat66",
+            "target": "Sat67"
+        },
+        {
+            "weight": 4620.41394088914,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat67",
+            "target": "Sat68"
+        },
+        {
+            "weight": 4620.413940886193,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat68",
+            "target": "Sat69"
+        },
+        {
+            "weight": 4620.413940888591,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat69",
+            "target": "Sat610"
+        },
+        {
+            "weight": 4205,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat69",
+            "target": "Facility1"
+        },
+        {
+            "weight": 4620.413940893551,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat610",
+            "target": "Sat611"
+        },
+        {
+            "weight": 4631,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat610",
+            "target": "Facility1"
+        },
+        {
+            "weight": 4822,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat610",
+            "target": "Facility4"
+        },
+        {
+            "weight": 5189,
+            "bidirectional": true,
+            "wavelengths": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            ],
+            "bandwidth_usage": 0,
+            "share_degree": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "source": "Sat611",
+            "target": "Facility4"
         }
     ]
 }

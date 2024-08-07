@@ -37,13 +37,35 @@ class STKManager:
         self.sat_fac_distances = []
         self.sat_name = ""
         self.fac_name = ""
-        self.data_directory = '../../data'
+        self.data_directory = '../data'
         if platform.system() == "Linux":
             # Only STK Engine is available on Linux
             self.use_stk_engine = True
         else:
             # Change to true to run engine on Windows
             self.use_stk_engine = False
+
+    @timeit_decorator
+    def launch_stk(self):
+        if self.use_stk_engine:
+            from agi.stk12.stkengine import STKEngine
+
+            # Launch STK Engine with NoGraphics mode
+            print("Launching STK Engine...")
+            self.stk = STKEngine.StartApplication(noGraphics=True)
+
+            # Create root object
+            self.stk_root = self.stk.NewObjectRoot()
+
+        else:
+            from agi.stk12.stkdesktop import STKDesktop
+
+            # Launch GUI
+            print("Launching STK...")
+            self.stk = STKDesktop.StartApplication(visible=True, userControl=True)
+
+            # Get root object
+            self.stk_root = self.stk.Root
 
     @timeit_decorator
     def attach_to_application(self):
@@ -62,8 +84,9 @@ class STKManager:
 
     @timeit_decorator
     def create_scenario(self, scenario_name, start_time, end_time):
-        """Create a new scenario with specified name and time period."""
-        self.scenario = self.stk_root.Children.New(AgESTKObjectType.eScenario, scenario_name)
+        # Create new scenario
+        self.stk_root.NewScenario(scenario_name)
+        self.scenario = self.stk_root.CurrentScenario
         self.scenario.SetTimePeriod(start_time, end_time)
         if not self.use_stk_engine:
             # Graphics calls are not available when running STK Engine in NoGraphics mode
@@ -78,8 +101,8 @@ class STKManager:
                 range(0, 180, 180 // num_orbit_planes), start=1
         ):  # RAAN in degrees
 
-            for sat_num, trueAnomaly in enumerate(
-                    range(0, 360, 360 // num_sat_per_plane), start=1
+            for sat_num in range(
+                    1, 12
             ):  # trueAnomaly in degrees
 
                 # Insert satellite
@@ -106,7 +129,9 @@ class STKManager:
                 keplerian.Orientation.AscNode.Value = RAAN  # degrees
                 # keplerian.Location.Value = trueAnomaly
                 keplerian.Location.Value = (
-                        trueAnomaly + (plane_num - 1) * (180 // num_orbit_planes // num_sat_per_plane)
+                        # (sat_num - 1) * (360 / 11) + (plane_num - 1) * (360 / 66)
+                        (sat_num - 1) * (360 / num_sat_per_plane) + (plane_num - 1) *
+                        (360 / (num_orbit_planes * num_sat_per_plane))
                 )  # true anomalies (degrees) for every other orbital plane
 
                 # Propagate
@@ -123,9 +148,10 @@ class STKManager:
 
         # List of facility names and their geographical coordinates (latitude, longitude, altitude)
         facility_data = [
-            ("Facility1", 28.62, -80.62, 10.0),
-            ("Facility2", 34.73, -86.67, 20.0),
-            ("Facility3", 51.48, 0.00, 5.0)
+            ("Facility1", 28.62, -80.62, 10.0),  # 美国佛罗里达州
+            ("Facility2", 34.30, 108.95, 400.0),  # 中国西安卫星测控中心
+            ("Facility3", -23.80, 133.89, 600.0),  # 澳大利亚艾丽斯泉地面站
+            ("Facility4", 47.83, 11.14, 600.0)  # 德国魏尔海姆跟踪站
         ]
 
         # Loop through each entry in the facility data
@@ -246,12 +272,12 @@ class STKManager:
                 )
 
                 # Save satellite to facility chain data to csv file
-                os.makedirs(f"{self.data_directory}/fac_sat_chain", exist_ok=True)
+                os.makedirs(f"{self.data_directory}/fac_sat_chains", exist_ok=True)
                 processed_data = list(zip(self.chain_time_list, self.sat_fac_distances))
                 distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
-                filepath = f'{self.data_directory}/fac_sat_chain/{self.sat_name} To {self.fac_name}.csv'
+                filepath = f'{self.data_directory}/fac_sat_chains/{self.sat_name} To {self.fac_name}.csv'
                 distance_df.to_csv(filepath, index=False)
-                print(f"Data saved to {filepath}")
+                # print(f"Data saved to {filepath}")
 
     # Truncate the given time string to remove microseconds or smaller units.
     @staticmethod
