@@ -9,8 +9,8 @@ num_orbit_planes = 6
 num_sat_per_plane = 11
 
 slot_num = 100
-slot_size = 1000
-avg_duration = 1000
-minimum_bandwidth, maximum_bandwidth = 1000, 2500
+slot_size = 100
+avg_duration = 1800
+minimum_bandwidth, maximum_bandwidth = 1000, 1000
 # snapshot step
 time_step = 300   # 5min

@@ -4,29 +4,18 @@
 # @Email   : daniel_fys@163.com
 # @File    : edge_weight_calculator.py
 
-import networkx as nx
+
 from collections import deque, defaultdict
-from src.network.flow_controller import find_time_indices
-from src.utils import find_time_indices
+from src.utils import find_time_indices, save_graph_after_modification
 
 
 class EdgeWeightCalculator:
     def __init__(
             self,
             graph_list,
-            edge,
-            path,
-            flow,
-            time_series,
-            satellites,
-            facilities
+            time_series
     ):
-        self.satellites = satellites
-        self.facilities = facilities
         self.graph_list = graph_list
-        self.edge = edge
-        self.path = path
-        self.flow = flow
         self.time_series = time_series
 
     # def compute_dynamic_centrality(self):
@@ -61,44 +50,82 @@ class EdgeWeightCalculator:
     #     dynamic_centrality = (total_paths_including_edge / total_paths) / delta_t
     #     return dynamic_centrality
 
-    def compute_dynamic_centrality(self):
-        t = self.time_series[self.flow['graph_index']]
-        delta_t = self.flow['duration']
-        indices = find_time_indices(self.time_series, t, delta_t)
-        dynamic_centrality = defaultdict(float)
-        total_interval_time = len(indices)
+    @save_graph_after_modification
+    def compute_static_centrality(self, graph, index, satellites, facilities):
+        # S is the shortest path from s to g, P is the path, sigma is the number of nodes in S
+        G = graph
+        betweenness = defaultdict(float)
 
-        for index in indices:
-            G = self.graph_list[index]
-            betweenness = defaultdict(float)
+        # Iterating over all possible source and destination nodes
+        for s in satellites:
+            for g in facilities:
+                if G.has_node(s) and G.has_node(g):
+                    # Using Dijkstra's algorithm for weighted graphs
+                    S, P, sigma, _ = self._single_source_shortest_path_basic(G, s, g)
 
-            # Iterating over all possible source and destination nodes
-            for s in self.satellites:
-                for g in self.facilities:
-                    if G.has_node(s) and G.has_node(g):
-                        # Using Dijkstra's algorithm for weighted graphs
-                        S, P, sigma, _ = self._single_source_shortest_path_basic(G, s)
+                    # Accumulate edge betweenness values
+                    betweenness = self._accumulate_edges(betweenness, S, P, sigma, s)
 
-                        # Accumulate edge betweenness values
-                        betweenness = self._accumulate_edges(betweenness, S, P, sigma, s)
+        # remove nodes to only return edges
+        for node in list(betweenness.keys()):
+            if isinstance(node, tuple) and len(node) == 2:
+                continue
+            del betweenness[node]
 
-            for s in G:  # remove nodes to only return edges
-                del betweenness[s]
+        # The centrality value of the normalized edge
+        betweenness = self._rescale_e(
+            betweenness, len(G), normalized=True, directed=G.is_directed()
+        )
 
-            betweenness = self._rescale_e(
-                betweenness, len(G), normalized=True, directed=G.is_directed()
-            )
+        # The computed centrality value is written to the edge property of the graph
+        for edge in G.edges():
+            # Set centrality to infinity for edges connecting facilities
+            if edge[0] in facilities or edge[1] in facilities:
+                G[edge[0]][edge[1]]['betweenness'] = float('inf')
+            else:
+                # Determines whether edges exist in the betweenness dictionary, and defaults to 0 if they do not
+                G[edge[0]][edge[1]]['betweenness'] = betweenness.get((edge[0], edge[1]), 0.0)
 
-            # Update dynamic_centrality
-            for edge in betweenness:
-                dynamic_centrality[edge] += betweenness[edge]
+        return G
 
-        # Normalize the betweenness values for this time slice
-        for edge in dynamic_centrality:
-            dynamic_centrality[edge] /= total_interval_time
-
-        # print(self.edge, ': ', dynamic_centrality[(self.edge[0], self.edge[1])])
-        return dynamic_centrality[(self.edge[0], self.edge[1])]
+    # def compute_dynamic_centrality(self):
+    #     t = self.time_series[self.flow['graph_index']]
+    #     delta_t = self.flow['duration']
+    #     indices = find_time_indices(self.time_series, t, delta_t)
+    #     dynamic_centrality = defaultdict(float)
+    #     total_interval_time = len(indices)
+    #
+    #     for index in indices:
+    #         G = self.graph_list[index]
+    #         betweenness = defaultdict(float)
+    #
+    #         # Iterating over all possible source and destination nodes
+    #         for s in self.satellites:
+    #             for g in self.facilities:
+    #                 if G.has_node(s) and G.has_node(g):
+    #                     # Using Dijkstra's algorithm for weighted graphs
+    #                     S, P, sigma, _ = self._single_source_shortest_path_basic(G, s)
+    #
+    #                     # Accumulate edge betweenness values
+    #                     betweenness = self._accumulate_edges(betweenness, S, P, sigma, s)
+    #
+    #         for s in G:  # remove nodes to only return edges
+    #             del betweenness[s]
+    #
+    #         betweenness = self._rescale_e(
+    #             betweenness, len(G), normalized=True, directed=G.is_directed()
+    #         )
+    #
+    #         # Update dynamic_centrality
+    #         for edge in betweenness:
+    #             dynamic_centrality[edge] += betweenness[edge]
+    #
+    #     # Normalize the betweenness values for this time slice
+    #     for edge in dynamic_centrality:
+    #         dynamic_centrality[edge] /= total_interval_time
+    #
+    #     # print(self.edge, ': ', dynamic_centrality[(self.edge[0], self.edge[1])])
+    #     return dynamic_centrality[(self.edge[0], self.edge[1])]
 
     @staticmethod
     def _rescale_e(betweenness, n, normalized, directed=False, k=None):
@@ -121,6 +148,10 @@ class EdgeWeightCalculator:
 
     @staticmethod
     def _accumulate_edges(betweenness, S, P, sigma, s):
+        # S: 从节点 s 可到达的所有节点集合，按照从终点到起点的顺序排列。
+        # P: 一个字典，P[w] 表示从 s 到 w 的所有最短路径的前驱节点集合。
+        # sigma: 一个字典，sigma[w] 表示从起点 s 到节点 w 的最短路径的总数。
+
         delta = dict.fromkeys(S, 0)
         while S:
             w = S.pop()
@@ -137,9 +168,12 @@ class EdgeWeightCalculator:
         return betweenness
 
     @staticmethod
-    def _single_source_shortest_path_basic(G, s):
-        S = []
-        P = {}
+    def _single_source_shortest_path_basic(G, s, g):
+        # find shortest paths from s to all other nodes in G
+        S = []  # source
+        P = {}  # previous node
+
+        #
         for v in G:
             P[v] = []
         sigma = dict.fromkeys(G, 0.0)  # sigma[v]=0 for v in G
@@ -161,13 +195,6 @@ class EdgeWeightCalculator:
                     P[w].append(v)  # predecessors
         return S, P, sigma, D
 
-
-    # @staticmethod
-    # def calculate_sigma_s_g_e(graph, s, g, edge, t):
-    #     paths = nx.all_shortest_paths(graph, source=s, target=g)
-    #     count = sum(1 for path in paths if edge in zip(path, path[1:]))
-    #     return count
-
     def calculate_edge_weight(self):
         R_total = 0
         D_e = self.compute_dynamic_centrality()
@@ -178,18 +205,3 @@ class EdgeWeightCalculator:
         # R_total += R_e
         return D_e
 
-    # def calculate_path_load(self):
-    #     load = 0
-    #     for i in range(len(self.path) - 1):
-    #         load += self.graph[self.path[i]][self.path[i + 1]]['bandwidth_usage']
-    #     return load
-
-
-
-def main():
-    edge_weight_calculator = EdgeWeightCalculator()
-    edge_weight_calculator.calculate_edge_weight()
-
-
-if __name__ == "__main__":
-    main()

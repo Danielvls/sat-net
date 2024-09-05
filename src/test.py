@@ -4,26 +4,21 @@
 # @Email   : daniel_fys@163.com
 # @File    : test.py
 
-import cProfile
-import pstats
-import io
+from multiprocessing import Manager, Process
 
-def some_function_to_profile():
-    print("Processing...")
-    # 这里放入你需要分析的代码块
+def modify_graph(graph_proxy):
+    graph_proxy['new_edge'] = (1, 2)
+    print("Modified graph in process.")
 
-def main():
-    some_function_to_profile()
+if __name__ == "__main__":
+    with Manager() as manager:
+        # 创建一个代理字典来模拟图操作
+        graph_proxy = manager.dict()
+        graph_proxy['edge'] = (1, 2)
 
-# 创建一个 Profile 对象
-profiler = cProfile.Profile()
-profiler.enable()  # 开始监控
+        p = Process(target=modify_graph, args=(graph_proxy,))
+        p.start()
+        p.join()
 
-main()  # 执行你的主函数或者需要分析的代码
+        print(graph_proxy)  # 查看修改后的图
 
-profiler.disable()  # 停止监控
-s = io.StringIO()
-sortby = 'cumulative'  # 可以选择不同的排序方式，如'cumulative', 'time'
-ps = pstats.Stats(profiler, stream=s).sort_stats(sortby)
-ps.print_stats()
-print(s.getvalue())

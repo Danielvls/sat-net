@@ -26,10 +26,10 @@ def find_time_indices(time_series, start_time, duration):
 def timeit_decorator(func):
     def wrapper(*args, **kwargs):
         start_time = time.time()
-        print(f"Running {func.__name__}...", end='')
+        # print(f"Running {func.__name__}...", end='')
         result = func(*args, **kwargs)
         end_time = time.time()
-        print(f"Completed {func.__name__} in : {end_time - start_time:.3f} seconds")
+        print(f"Completed {func.__name__} in : {end_time - start_time:.3f} seconds...", end="")
         return result
     return wrapper
 

@@ -3,12 +3,13 @@
 # @Author  : DanielFu
 # @Email   : daniel_fys@163.com
 # @File    : topo_builder.py
-
+import json
 import os
 import networkx as nx
 from src.utils import save_graph_after_modification, slot_num
 from bisect import bisect_left
 from pathlib import Path
+from src.network.edge_weight_calculator import EdgeWeightCalculator
 import pandas as pd
 
 
@@ -16,23 +17,29 @@ class TopoBuilder:
     def __init__(self):
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
-        self.node_list = []
-        self.slot_num = slot_num
         self.graph_path = self.project_root / 'graphs'
         self.sat_distance_file = self.project_root / 'data' / 'inter_satellite_distances.csv'
         self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
         self.fac_sat_chains_directory = self.project_root / 'data' / 'fac_sat_chains'
 
-    def gen_topo(self):
-        time_df = pd.read_csv(self.time_series_directory)
-        time_series = time_df['Time Series']
+        self.slot_num = slot_num
+        self.graph_list = []
 
+        time_df = pd.read_csv(self.time_series_directory)
+        self.time_series = pd.to_datetime(time_df['Time Series']).tolist()
+
+    def gen_topo(self):
         # create graph for each time step
-        for index in range(len(time_series)):
+        for index in range(len(self.time_series)):
             graph = nx.Graph()
             self._add_sat_to_topo(graph, index)
             self._add_fac_to_topo(graph, index)
             self._add_bandwidth_to_edges(graph, index)
+
+        self.load_graphs()
+        for index in range(len(self.graph_list)):
+            graph = self.graph_list[index]
+            self._add_weight_to_edges(graph, index)
 
     @save_graph_after_modification
     def _add_bandwidth_to_edges(self, graph, index):
@@ -50,7 +57,6 @@ class TopoBuilder:
                 graph[u][v]['wavelengths'] = [False] * self.slot_num
                 graph[u][v]['bandwidth_usage'] = 0
                 graph[u][v]['share_degree'] = [0] * self.slot_num
-                # graph[u][v]['wavelengths'][0] = True  # 假设第一个波长通道被占用
 
     # add satellite links to topo
     @save_graph_after_modification
@@ -80,9 +86,6 @@ class TopoBuilder:
     # add facility to topo
     @save_graph_after_modification
     def _add_fac_to_topo(self, graph, index):
-        time_df = pd.read_csv(self.time_series_directory)
-        time_list = pd.to_datetime(time_df['Time Series']).tolist()
-
         # Iterate over each file in the directory
         for filename in os.listdir(self.fac_sat_chains_directory):
             if filename.endswith(".csv"):  # Ensure we are processing CSV files
@@ -99,7 +102,7 @@ class TopoBuilder:
                     distance = row['Distance']
 
                     # Use find_time_index to determine the correct graph index
-                    idx = self.find_time_index(time_list, chain_time)
+                    idx = self.find_time_index(chain_time)
 
                     # Ensure that the found index matches the current index being processed
                     if idx is not None and idx == index:
@@ -110,26 +113,102 @@ class TopoBuilder:
                         graph.add_edge(node_a, node_b, weight=distance, bidirectional=True)
                         break
 
-    @staticmethod
-    def find_time_index(time_list, target_time):
-        # Use bisect_left to find the insertion position that would keep time_list sorted
-        pos = bisect_left(time_list, target_time)
+    @save_graph_after_modification
+    def _add_weight_to_edges(self, graph, idx):
+        def _generate_node_lists(g):
+            sats = []
+            facs = []
+            # Separate satellites and ground stations
+            for node in g.nodes():
+                if 'Sat' in node:
+                    sats.append(node)
+                elif 'Fac' in node:
+                    facs.append(node)
+            return sats, facs
 
-        # If pos is 0, it means target_time is less than all elements in time_list
+        if graph:
+            satellites, facilities = _generate_node_lists(graph)
+            # print(f"satellites: {satellites}, facilities: {facilities}")
+
+            # compute static centrality
+            bc_values_static = nx.edge_betweenness_centrality_subset(
+                graph, satellites, facilities, normalized=False, weight=None)
+
+            # Stores the intermediate centrality value as an attribute of the edge
+            for edge, bc_value in bc_values_static.items():
+                u, v = edge  # unpack the edge tuple
+                if graph.has_edge(u, v):
+                    graph[u][v]['betweenness'] = bc_value
+                    # print(f"At index {idx}, Edge ({u}, {v}): Betweenness Centrality = {bc_value}")
+
+    def find_time_index(self, target_time):
+        # Use bisect_left to find the insertion position that would keep self.time_series sorted
+        pos = bisect_left(self.time_series, target_time)
+
+        # If pos is 0, it means target_time is less than all elements in self.time_series
         if pos == 0:
             return 0
-        # If pos is len(time_list), it means target_time is greater than all elements in time_list
-        elif pos == len(time_list):
-            return len(time_list) - 1
+        # If pos is len(self.time_series), it means target_time is greater than all elements in self.time_series
+        elif pos == len(self.time_series):
+            return len(self.time_series) - 1
         # Otherwise, find the closest time by comparing with the previous element
         else:
-            prev_time = time_list[pos - 1]
-            next_time = time_list[pos]
+            prev_time = self.time_series[pos - 1]
+            next_time = self.time_series[pos]
             # Return the index of the time which is closest to target_time
             if (target_time - prev_time) <= (next_time - target_time):
                 return pos - 1
             else:
                 return pos
+
+    # @save_graph_after_modification
+    # def add_weight_to_edges(self):
+    #     def _generate_node_lists():
+    #         # Separate satellites and ground stations
+    #         for node in graph.nodes():
+    #             if 'Sat' in node:
+    #                 satellites.append(node)
+    #             elif 'Fac' in node:
+    #                 facilities.append(node)
+    #
+    #         return satellites, facilities
+    #     for index, graph in enumerate(self.graph_list):
+    #         if graph:
+    #             satellites = []
+    #             facilities = []
+    #             satellites, facilities = _generate_node_lists()
+    #             # edge_weight_calculator = EdgeWeightCalculator(
+    #             #     self.graph_list,
+    #             #     self.time_series,
+    #             # )
+    #             # print(f"satellites: {satellites}, facilities: {facilities}")
+    #
+    #             # compute static centrality
+    #             bc_values_static = nx.edge_betweenness_centrality_subset(
+    #                 graph, satellites, facilities, normalized=False, weight=None)
+    #
+    #             # print(f"{bc_values_static}")
+    #             # Stores the intermediate centrality value as an attribute of the node
+    #             for edge, bc_value in bc_values_static.items():
+    #                 u, v = edge  # unpack the edge tuple
+    #                 if graph.has_edge(u, v):
+    #                     graph[u][v]['betweenness'] = bc_value
+    #                     print(f"At index {index}, Edge ({u}, {v}): Betweenness Centrality = {bc_value}")
+
+    def load_graphs(self):
+        # Load all graphs and store them in a dictionary with their corresponding times
+        for index, _ in enumerate(self.time_series):
+            graph_file = self.graph_path / f"graph{index}.json"
+            if graph_file.exists():
+                try:
+                    with open(graph_file, 'r') as file:
+                        data = json.load(file)
+                        graph = nx.node_link_graph(data)
+                        self.graph_list.append(graph)
+                except json.JSONDecodeError as e:
+                    print(f"Error loading {graph_file}: {e}")
+            else:
+                print(f"File {graph_file} does not exist.")
 
 
 if __name__ == "__main__":
