@@ -31,6 +31,7 @@ class STKManager:
         self.time_list = []
         self.time_step = 300
         self.constellation = None
+        self.satellites = []
         self.facilities = []
         self.sat_distance = {}
         self.chain_time_list = []
@@ -97,6 +98,7 @@ class STKManager:
         """Create a satellite constellation within the scenario."""
         self.constellation = self.scenario.Children.New(AgESTKObjectType.eConstellation, "IridiumConstellation")
         self.stk_root.BeginUpdate()
+
         for plane_num, RAAN in enumerate(
                 range(0, 180, 180 // num_orbit_planes), start=1
         ):  # RAAN in degrees
@@ -138,6 +140,8 @@ class STKManager:
                 satellite.Propagator.InitialState.Representation.Assign(keplerian)
                 satellite.Propagator.Propagate()
 
+                # Add to list
+                self.satellites.append(satellite)
                 # Add to constellation object
                 self.constellation.Objects.AddObject(satellite)
 
@@ -278,6 +282,32 @@ class STKManager:
                 filepath = f'{self.data_directory}/fac_sat_chains/{self.sat_name} To {self.fac_name}.csv'
                 distance_df.to_csv(filepath, index=False)
                 # print(f"Data saved to {filepath}")
+
+    def get_sat_lla(self):
+        for sat in self.satellites:
+            rpt_elms = ["Time", "Lat", "Lon"]
+            sat_lla = []
+            sat_name = sat.InstanceName
+            chainDataProvider = sat.DataProviders.GetDataPrvTimeVarFromPath("LLA State/TrueOfDateRotating")
+            chainResults = chainDataProvider.ExecElements(
+                self.scenario.StartTime,
+                self.scenario.StopTime,
+                60,  # Ensure time_step is defined or passed to the function
+                rpt_elms
+            )
+
+            for i in range(len(chainResults.DataSets.GetDataSetByName("Time").GetValues())):
+                sat_time = chainResults.DataSets.GetDataSetByName("Time").GetValues()[i]
+                lat = chainResults.DataSets.GetDataSetByName("Lat").GetValues()[i]
+                lon = chainResults.DataSets.GetDataSetByName("Lon").GetValues()[i]
+                sat_lla.append([sat_time, lat, lon])
+
+            # Save satellite LLA data to CSV file
+            os.makedirs(f"{self.data_directory}/sat_lla_reports", exist_ok=True)
+            lla_df = pd.DataFrame(sat_lla, columns=['Time', 'Latitude', 'Longitude'])
+            filepath = f"{self.data_directory}/sat_lla_reports/{sat_name}_lla.csv"
+            lla_df.to_csv(filepath, index=False)
+            print(f"Saved LLA data for {sat_name} to {filepath}")
 
     # Truncate the given time string to remove microseconds or smaller units.
     @staticmethod

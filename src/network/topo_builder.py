@@ -18,6 +18,7 @@ class TopoBuilder:
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
         self.graph_path = self.project_root / 'graphs'
+        self.data_directory = self.project_root / 'data'
         self.sat_distance_file = self.project_root / 'data' / 'inter_satellite_distances.csv'
         self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
         self.fac_sat_chains_directory = self.project_root / 'data' / 'fac_sat_chains'
@@ -36,10 +37,13 @@ class TopoBuilder:
             self._add_fac_to_topo(graph, index)
             self._add_bandwidth_to_edges(graph, index)
 
+        # form graph_list
         self.load_graphs()
+
         for index in range(len(self.graph_list)):
             graph = self.graph_list[index]
             self._add_weight_to_edges(graph, index)
+            self._add_sat_lla_to_topo(graph, index)
 
     @save_graph_after_modification
     def _add_bandwidth_to_edges(self, graph, index):
@@ -78,10 +82,56 @@ class TopoBuilder:
                 # 添加边到图中
                 graph.add_edge(node1, node2, weight=distance)
 
-            # print(graph.edges(data=True))
+    @save_graph_after_modification
+    def _add_sat_lla_to_topo(self, graph, index):
+        # Load LLA data for all satellites from CSV files
+        sat_lla_data = {}
+        lla_reports_dir = f"{self.data_directory}/sat_lla_reports"
+        if not os.path.exists(lla_reports_dir):
+            print(f"Warning: LLA reports directory {lla_reports_dir} does not exist.")
+            return
 
-            # write in file
-            # nx.write_graphml(graph, f"./graphs/graph{i}.graphml")
+        # List all CSV files in the LLA reports directory
+        lla_files = [f for f in os.listdir(lla_reports_dir) if f.endswith('_lla.csv')]
+        if not lla_files:
+            print(f"Warning: No LLA CSV files found in {lla_reports_dir}")
+            return
+
+        # Load all satellites' LLA data into a dictionary
+        for filename in lla_files:
+            # Extract satellite name from filename
+            sat_name = filename[:-8]  # Remove '_lla.csv' from the end
+            lla_filepath = os.path.join(lla_reports_dir, filename)
+            lla_df = pd.read_csv(lla_filepath)
+            # Ensure 'Time' column is in datetime format
+            lla_df['Time'] = pd.to_datetime(lla_df['Time'])
+            # Store the DataFrame in the dictionary
+            sat_lla_data[sat_name] = lla_df
+
+        # For each satellite, get the LLA data
+        for sat_name, lla_df in sat_lla_data.items():
+            # Iterate over each row in the DataFrame to match times with graphs
+            for _, row in lla_df.iterrows():
+                lla_time = row['Time']
+                latitude = row['Latitude']
+                longitude = row['Longitude']
+
+                # Use find_time_index to determine the closest time index
+                idx = self.find_time_index(lla_time)
+
+                # Ensure that the found index is valid
+                if idx is None or idx < 0 or idx >= len(self.graph_list):
+                    print(f"Warning: Time {lla_time} not found in time series.")
+                    continue
+                if idx == index:
+                    # Add or update the node with latitude and longitude attributes
+                    if graph.has_node(sat_name):
+                        # Update the node attributes
+                        graph.nodes[sat_name]['latitude'] = latitude
+                        graph.nodes[sat_name]['longitude'] = longitude
+                    else:
+                        # Add the node with latitude and longitude attributes
+                        graph.add_node(sat_name, latitude=latitude, longitude=longitude)
 
     # add facility to topo
     @save_graph_after_modification
@@ -121,6 +171,7 @@ class TopoBuilder:
             # Separate satellites and ground stations
             for node in g.nodes():
                 if 'Sat' in node:
+
                     sats.append(node)
                 elif 'Fac' in node:
                     facs.append(node)

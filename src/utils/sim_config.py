@@ -10,7 +10,12 @@ num_sat_per_plane = 11
 
 slot_num = 100
 slot_size = 100
+
 avg_duration = 1800
-minimum_bandwidth, maximum_bandwidth = 1000, 1000
+minimum_bandwidth, maximum_bandwidth = 100, 1000
+avg_bandwidth = (minimum_bandwidth + maximum_bandwidth) / 2
+bandwidth_stddev = 1
+duration_stddev = 1
+
 # snapshot step
 time_step = 300   # 5min

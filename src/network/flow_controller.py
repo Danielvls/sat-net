@@ -286,6 +286,18 @@ class FlowController:
 
     def is_valid_for_share(self, flow, path, idx) -> bool:
 
+        graph = self.graph_list[flow['graph_index']]
+        if graph.has_edge(path[idx], path[idx + 1]):
+            edge = graph[path[idx]][path[idx + 1]]
+            betweenness = edge['betweenness']
+            if betweenness < self.threshold:
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def is_valid_for_share_tv(self, flow, path, idx) -> bool:
         t = self.time_series[flow['graph_index']]
         delta_t = flow['duration']
         indices = find_time_indices(self.time_series, t, delta_t)
@@ -305,8 +317,6 @@ class FlowController:
             return True
         else:
             return False
-
-
 
 
 
