@@ -119,12 +119,6 @@ class FlowGenerator:
         graph_path = project_root / 'graphs'
         graph_file = graph_path / 'graph0.json'
 
-        # 或者使用 glob 并获取第一个文件
-        # graph_files = list(graph_path.glob('graph0.json'))
-        # if not graph_files:
-        #     raise FileNotFoundError(f"在 {graph_path} 中未找到 'graph0.json'")
-        # graph_file = graph_files[0]
-
         if graph_file.exists():
             try:
                 with open(graph_file, 'r') as file:
@@ -132,10 +126,17 @@ class FlowGenerator:
                     graph = nx.node_link_graph(graph_data)
             except json.JSONDecodeError as e:
                 print(f"Error loading {graph_file}: {e}")
+                return  # 读取失败，直接返回
         else:
             print(f"File {graph_file} does not exist.")
+            return  # 文件不存在，直接返回
 
-        satellite_coords = self._load_satellite_data(self.graph_path / f'graph0.json')
+        satellites_to_remove = ['Sat14', 'Sat23', 'Sat19', 'Sat29', 'Sat33', 'Sat39', 'Sat43', 'Sat49', 'Sat53', 'Sat58', 'Sat63', 'Sat68']  # 替换为您想移除的卫星ID
+
+        # 从图中移除指定的卫星节点
+        graph.remove_nodes_from(satellites_to_remove)
+
+        satellite_coords = self._load_satellite_data(graph_file)
 
         # 为每个图生成节点列表
         satellites, facilities = self._generate_node_lists(graph)
@@ -154,17 +155,24 @@ class FlowGenerator:
                 # 否则，随机选择一个卫星节点
                 start_node = random.choice(satellites)
 
-            # 目标节点随机选择一个地面站
+            # 随机选择一个地面站作为目标节点
             target_node = random.choice(facilities)
 
+            # 创建图的副本并移除其他地面站
+            graph_copy = graph.copy()
+            other_facilities = [node for node in facilities if node != target_node]
+            graph_copy.remove_nodes_from(other_facilities)
+
             try:
-                path = nx.shortest_path(graph, source=start_node, target=target_node)
+                path = nx.shortest_path(graph_copy, source=start_node, target=target_node)
+                if len(path) > 3:
+                    continue  # 跳过这个流
             except nx.NetworkXNoPath:
                 # 如果没有路径，处理异常，例如跳过这个流
                 continue
 
             for node in path:
-                self.counter.increment_node_usage(node)
+                counter.increment_node_usage(node)
 
     @staticmethod
     def _generate_node_lists(graph):

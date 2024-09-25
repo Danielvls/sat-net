@@ -7,6 +7,9 @@ import json
 from src.utils.counter import Counter
 from scipy.ndimage import gaussian_filter
 from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+import re
+import numpy as np
+from src.utils.sim_config import num_orbit_planes, num_sat_per_plane
 
 class SatelliteVisualizer:
     def __init__(self, satellite_usage=None):
@@ -48,7 +51,7 @@ class SatelliteVisualizer:
                 })
         return satellite_coords
 
-    def plot_satellite_usage_heatmap(self, bins=100, sigma=10):
+    def plot_satellite_usage_heatmap(self, bins=100, sigma=7):
         lats = [sat['latitude'] for sat in self.satellite_positions]
         lons = [sat['longitude'] for sat in self.satellite_positions]
         weights = [self.satellite_usage.get(sat['id'], 0) for sat in self.satellite_positions]
@@ -61,6 +64,7 @@ class SatelliteVisualizer:
         plt.figure(figsize=(15, 10), dpi=300)
         ax = plt.axes(projection=ccrs.PlateCarree())
 
+        # 地图背景设置
         ax.add_feature(cfeature.OCEAN.with_scale('50m'), zorder=0, facecolor='lightblue')
         ax.add_feature(cfeature.LAND.with_scale('50m'), zorder=0, facecolor='beige')
         ax.coastlines(resolution='50m')
@@ -76,50 +80,103 @@ class SatelliteVisualizer:
             transform=ccrs.PlateCarree()
         )
 
-        # 绘制卫星点
         ax.scatter(
             lons, lats, color='black', edgecolor='white', s=100, zorder=5, marker='o', label='Satellites',
             transform=ccrs.PlateCarree()
         )
 
-        # 使用卫星的实际 ID 作为标签
-        for sat in self.satellite_positions:
-            lon = sat['longitude']
-            lat = sat['latitude']
-            sat_id = sat['id']
-            ax.text(lon + 2, lat + 2, sat_id, color='black', fontsize=9, transform=ccrs.PlateCarree())
+        # Iteration of orbits and satellite serial numbers
+        for orbit_num in range(1, num_orbit_planes + 1):
+            satellites_in_orbit = {}
+            for sat in self.satellite_positions:
+                sat_id = sat['id']
+                num = int(re.search(r'\d+', sat_id).group())
+                current_orbit_num = num // 100 if num >= 100 else num // 10
+                sequence_num = num % 100 if num >= 100 else num % 10
+
+                if current_orbit_num == orbit_num:
+                    satellites_in_orbit[sequence_num] = sat
+
+            # start 1
+            seq_nums = sorted(satellites_in_orbit.keys())
+
+            for i in range(num_sat_per_plane):
+                # get next satellite
+                current_seq = seq_nums[i]
+                current_sat = satellites_in_orbit[current_seq]
+                next_seq = seq_nums[(i + 1) % num_sat_per_plane]
+                next_sat = satellites_in_orbit[next_seq]
+
+                current_lon = current_sat['longitude']
+                current_lat = current_sat['latitude']
+                next_lon = next_sat['longitude']
+                next_lat = next_sat['latitude']
+
+                # calculate 2d distance
+                distance = np.sqrt((next_lon - current_lon) ** 2 + (next_lat - current_lat) ** 2)
+
+                # if the distance is too large, use the previous satellite
+                if distance > 50:
+                    prev_seq = seq_nums[i - 1] if i > 1 else seq_nums[-1]
+                    prev_sat = satellites_in_orbit[prev_seq]
+
+                    next_lon = current_lon - (prev_sat['longitude'] - current_lon)
+                    next_lat = current_lat - (prev_sat['latitude'] - current_lat)
+
+
+                # 计算箭头的终点，保持定长
+                arrow_length = 10  # 定义箭头长度
+                direction_lon = next_lon - current_lon
+                direction_lat = next_lat - current_lat
+                length = np.sqrt(direction_lon ** 2 + direction_lat ** 2)
+
+                if length > 0:
+                    unit_lon = direction_lon / length
+                    unit_lat = direction_lat / length
+                    arrow_end_lon = current_lon + unit_lon * arrow_length
+                    arrow_end_lat = current_lat + unit_lat * arrow_length
+                else:
+                    arrow_end_lon = current_lon
+                    arrow_end_lat = current_lat
+
+                # 绘制箭头
+                ax.annotate(
+                    '',
+                    xy=(arrow_end_lon, arrow_end_lat),
+                    xytext=(current_lon, current_lat),
+                    arrowprops=dict(arrowstyle='->', color='blue', lw=1.5),
+                    transform=ccrs.PlateCarree()
+                )
+
+                ax.text(current_lon + 2, current_lat + 2, current_sat['id'], color='black', fontsize=9,
+                        transform=ccrs.PlateCarree())
 
         # 添加地面站
         facility_data = [
-            ("Facility1", 28.62, -80.62, 10.0),  # 美国佛罗里达州
-            ("Facility2", 34.30, 108.95, 400.0),  # 中国西安卫星测控中心
-            ("Facility3", -23.80, 133.89, 600.0),  # 澳大利亚艾丽斯泉地面站
-            ("Facility4", 47.83, 11.14, 600.0)  # 德国魏尔海姆跟踪站
+            ("Facility1", 28.62, -80.62, 10.0),
+            ("Facility2", 34.30, 108.95, 400.0),
+            ("Facility3", -23.80, 133.89, 600.0),
+            ("Facility4", 47.83, 11.14, 600.0)
         ]
 
-        # 提取地面站的经纬度
         facility_lats = [facility[1] for facility in facility_data]
         facility_lons = [facility[2] for facility in facility_data]
 
-        # 使用三角形标出地面站
         ax.scatter(
             facility_lons, facility_lats, color='red', s=150, marker='^', label='Facilities',
             transform=ccrs.PlateCarree()
         )
 
-        # 设置经纬度刻度
         ax.set_xticks(np.arange(-180, 181, 60), crs=ccrs.PlateCarree())
         ax.set_yticks(np.arange(-90, 91, 30), crs=ccrs.PlateCarree())
 
         ax.xaxis.set_major_formatter(LongitudeFormatter())
         ax.yaxis.set_major_formatter(LatitudeFormatter())
 
-        # 添加颜色条
-        plt.colorbar(label="Satellite Usage")
-
-        # 添加图例
+        plt.colorbar(label="Satellite Usage", fraction=0.03, pad=0.04)
         ax.legend(loc='upper right')
-        plt.title("Satellite Usage Heatmap with Facilities")
+        # plt.title("Satellite Usage Heatmap with Facilities")
+        plt.savefig('satellite_usage_heatmap.png', dpi=300)
         plt.show()
 
 
