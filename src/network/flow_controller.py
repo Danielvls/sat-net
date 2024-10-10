@@ -20,14 +20,15 @@ from datetime import timedelta
 from src.network.flow_generator import FlowGenerator
 
 from src.utils import slot_num, slot_size, timeit_decorator
+from src.utils import Counter
 # from joblib import Parallel, delayed
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 
 
 class FlowController:
-    def __init__(self, threshold, counter, flows, graph_list):
+    def __init__(self, flows, graph_list, threshold=100):
         self.threshold = threshold
-        self.counter = counter
+        self.counter = Counter()
         self.flows = flows
         self.graph_list = graph_list
 
@@ -70,7 +71,7 @@ class FlowController:
 
         # if no path is found, increment the counter
         if not primary_paths_across_graphs or not backup_paths_across_graphs:
-            self.counter.blocked_flows += 1
+            self.counter.increment_blocked_flows()
             # print(f"No available resource found for flow {idx}...", end="")
             # print(f"{primary_paths_across_graphs}, {backup_paths_across_graphs}")
             return
@@ -200,7 +201,7 @@ class FlowController:
                         if edge['share_degree'][wavelength_idx] == 0:
                             continuous_bandwidth_num += 1
                             current_available_wavelengths.append(wavelength_idx)
-                        elif edge['share_degree'][wavelength_idx] == 1 and self.is_valid_for_share(flow, path, i):
+                        elif edge['share_degree'][wavelength_idx] == 1 and self.is_valid_for_share_tv(flow, path, i):
                             current_available_wavelengths.append(wavelength_idx)
                             continuous_bandwidth_num += 1
                         else:
@@ -285,7 +286,6 @@ class FlowController:
         return graph_index, graph
 
     def is_valid_for_share(self, flow, path, idx) -> bool:
-
         graph = self.graph_list[flow['graph_index']]
         if graph.has_edge(path[idx], path[idx + 1]):
             edge = graph[path[idx]][path[idx + 1]]

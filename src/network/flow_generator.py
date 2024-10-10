@@ -18,12 +18,12 @@ import geopandas as gpd
 from shapely.geometry import Point, Polygon, MultiPolygon
 from fuzzywuzzy import process
 from src.utils.sim_config import *
-from src.utils.counter import Counter
+from src.utils import Counter
 import pycountry
 
 
 class FlowGenerator:
-    def __init__(self, avg_flow_num=None, graph_list=None):
+    def __init__(self,  graph_list=None, avg_flow_num=None):
         # Initialize flow generator with the number of flows
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
@@ -45,15 +45,15 @@ class FlowGenerator:
         self.flows = []
 
         # 初始化国家数据
-        self.country_data = self._load_country_data(self.project_root / 'data' / 'world_internet_user.csv')
-        # 加载国家边界数据
-        self.country_shapes = self._load_country_shapes(
-            self.project_root / 'data' / 'ne_10m_admin_0_countries' / 'ne_10m_admin_0_countries.shp')
+        # self.country_data = self._load_country_data(self.project_root / 'data' / 'world_internet_user.csv')
+        # # 加载国家边界数据
+        # self.country_shapes = self._load_country_shapes(
+        #     self.project_root / 'data' / 'ne_10m_admin_0_countries' / 'ne_10m_admin_0_countries.shp')
 
     def generate_flows_for_each_graph(self):
         # the number of flows is Poisson distributed
         k = 3  # k 越大，方差越小
-        num_flows = round(np.mean([np.random.poisson(self.avg_flow_num) for _ in range(k)]))
+        num_flows = self.avg_flow_num
 
         # 用于记录每个卫星节点作为起始节点的次数
         satellite_usage = {}
@@ -67,9 +67,9 @@ class FlowGenerator:
             satellites, facilities = self._generate_node_lists(graph)
 
             # 生成随机国家和随机点
-            selected_countries, selected_points = self._select_countries_and_points(num_flows)
+            selected_points = self._select_countries_and_points(num_flows)
 
-            for country, point in zip(selected_countries, selected_points):
+            for point in selected_points:
                 # 找到最近的卫星
                 nearest_satellite_id, distance_to_sat = self._find_nearest_satellite(point[0], point[1], satellite_coords)
 
@@ -103,7 +103,6 @@ class FlowGenerator:
                     "target_node": target_node,
                     "bandwidth": bandwidth,
                     "duration": duration,
-                    "country": country,
                     "random_point": point,
                     "distance_to_satellite": distance_to_sat
                 }
@@ -112,7 +111,7 @@ class FlowGenerator:
 
     def generate_flows_for_plotting(self, num_flows):
         # 用于记录每个卫星节点作为起始节点的次数
-        counter = Counter()
+        # counter = Counter()
 
         current_file = Path(__file__).resolve()
         project_root = current_file.parents[2]
@@ -142,11 +141,16 @@ class FlowGenerator:
         satellites, facilities = self._generate_node_lists(graph)
 
         # 生成随机国家和随机点
-        selected_countries, selected_points = self._select_countries_and_points(num_flows)
+        selected_points = self._select_countries_and_points(num_flows)
+        print(len(selected_points))
 
-        for country, point in zip(selected_countries, selected_points):
+        for point in selected_points:
             # 找到最近的卫星
             nearest_satellite_id, distance_to_sat = self._find_nearest_satellite(point[0], point[1], satellite_coords)
+
+            # count
+            # print("Country:", country, "Point:", point)
+            self.counter.increment_user_point(point[0], point[1])
 
             # 如果卫星在图中，使用该卫星作为起始节点
             if nearest_satellite_id in graph.nodes:
@@ -165,14 +169,14 @@ class FlowGenerator:
 
             try:
                 path = nx.shortest_path(graph_copy, source=start_node, target=target_node)
-                if len(path) > 3:
-                    continue  # 跳过这个流
+                # if len(path) > 3:
+                #     continue  # 跳过这个流
             except nx.NetworkXNoPath:
                 # 如果没有路径，处理异常，例如跳过这个流
                 continue
 
             for node in path:
-                counter.increment_node_usage(node)
+                self.counter.increment_node_usage(node)
 
     @staticmethod
     def _generate_node_lists(graph):
@@ -188,49 +192,98 @@ class FlowGenerator:
 
         return satellites, facilities
 
-    @staticmethod
-    def _load_country_data(csv_file):
-        # 读取CSV文件并准备数据
-        data = pd.read_csv(csv_file, encoding='ISO-8859-1')
-        relevant_data = data[['Country', 'Unnamed: 6']].dropna()
-        # 归一化权重
-        relevant_data['weights'] = relevant_data['Unnamed: 6'] / relevant_data['Unnamed: 6'].sum()
-        # 将国家名称转换为小写并去除前后空格
-        relevant_data['Country'] = relevant_data['Country'].str.lower().str.strip()
-        return relevant_data
+    # @staticmethod
+    # def _load_country_data(csv_file):
+    #     # 读取CSV文件并准备数据
+    #     data = pd.read_csv(csv_file, encoding='ISO-8859-1', header=None)
+    #
+    #     # 指定列名
+    #     data.columns = ['Country', 'weights']  # 直接使用归一化的权重
+    #
+    #     # 将国家名称转换为小写并去除前后空格
+    #     data['Country'] = data['Country'].str.lower().str.strip()
+    #
+    #     # 输出调试信息
+    #     # print("Columns in country_data:", data.columns.tolist())
+    #
+    #     return data[['Country', 'weights']]
 
     def _select_countries_and_points(self, n):
-        countries = random.choices(
-            self.country_data['Country'].tolist(),
-            weights=self.country_data['weights'].tolist(),
-            k=n
+        # Get the current file path and locate the project root directory
+        current_file = Path(__file__).resolve()
+        project_root = current_file.parents[2]
+
+        # File paths
+        file_path_city = project_root / 'data' / 'population_data' / 'worldcities.csv'
+        file_path_internet = project_root / 'data' / 'population_data' / 'world_internet_user_origin.csv'
+
+        # Load city data with geographic information and internet usage data
+        city_data = pd.read_csv(file_path_city)
+        internet_data = pd.read_csv(file_path_internet, encoding='ISO-8859-1')
+
+        # Extract relevant columns: city, country, population, latitude, and longitude
+        city_country_population = city_data[['city', 'country', 'population', 'lat', 'lng']].copy()
+
+        # Extract internet usage information: country and internet usage percentage
+        internet_usage = internet_data[['Country', '% of Population']].copy()
+
+        # Rename columns for clarity
+        internet_usage = internet_usage.rename(columns={'% of Population': 'InternetUsagePercentage'})
+        city_country_population = city_country_population.rename(
+            columns={
+                'city': 'City',
+                'country': 'Country',
+                'population': 'Population',
+                'lat': 'Latitude',
+                'lng': 'Longitude'
+            }
         )
-        points = []
-        for country in countries:
-            # 标准化并预处理国家名称
-            standardized_country = self._standardize_country_name(country)
-            # 在 country_shapes 中查找标准化后的名称
-            country_shape = self.country_shapes[self.country_shapes['standardized_name'] == standardized_country]
-            if country_shape.empty:
-                # 如果未找到，使用模糊匹配
-                matched_country = self._get_best_match(standardized_country)
-                if matched_country:
-                    country_shape = self.country_shapes[self.country_shapes['standardized_name'] == matched_country]
-                else:
-                    country_shape = gpd.GeoDataFrame()
-                    print(f"未找到 {country} 的国家形状。使用随机全球点。")
-            if country_shape.empty:
-                # 使用随机全球点
-                random_point = (random.uniform(-90, 90), random.uniform(-180, 180))
-            else:
-                # 从国家多边形中生成随机点
-                polygon = country_shape.iloc[0]['geometry']
-                if isinstance(polygon, MultiPolygon):
-                    # 随机选择一个多边形
-                    polygon = random.choice(polygon.geoms)
-                random_point = self._generate_random_point_in_polygon(polygon)
-            points.append(random_point)
-        return countries, points
+
+        # Merge city population data with internet usage data
+        merged_data = pd.merge(city_country_population, internet_usage, on='Country', how='left')
+
+        # Drop rows with NaN values in Population or InternetUsagePercentage
+        cleaned_data = merged_data.dropna(subset=['Population', 'InternetUsagePercentage']).copy()
+
+        # Add a new column for the number of internet users
+        cleaned_data['InternetUsers'] = cleaned_data['Population'] * (cleaned_data['InternetUsagePercentage'] / 100)
+
+        sampled_data = cleaned_data.sample(n=n, weights='InternetUsers', replace=True)
+        points = list(zip(sampled_data['Longitude'], sampled_data['Latitude']))
+
+        return points
+
+        # countries = random.choices(
+        #     self.country_data['Country'].tolist(),
+        #     weights=self.country_data['weights'].tolist(),
+        #     k=n
+        # )
+        # points = []
+        # for country in countries:
+        #     # 标准化并预处理国家名称
+        #     standardized_country = self._standardize_country_name(country)
+        #     # 在 country_shapes 中查找标准化后的名称
+        #     country_shape = self.country_shapes[self.country_shapes['standardized_name'] == standardized_country]
+        #     if country_shape.empty:
+        #         # 如果未找到，使用模糊匹配
+        #         matched_country = self._get_best_match(standardized_country)
+        #         if matched_country:
+        #             country_shape = self.country_shapes[self.country_shapes['standardized_name'] == matched_country]
+        #         else:
+        #             country_shape = gpd.GeoDataFrame()
+        #             print(f"未找到 {country} 的国家形状。使用随机全球点。")
+        #     if country_shape.empty:
+        #         # 使用随机全球点
+        #         random_point = (random.uniform(-90, 90), random.uniform(-180, 180))
+        #     else:
+        #         # 从国家多边形中生成随机点
+        #         polygon = country_shape.iloc[0]['geometry']
+        #         if isinstance(polygon, MultiPolygon):
+        #             # 随机选择一个多边形
+        #             polygon = random.choice(polygon.geoms)
+        #         random_point = self._generate_random_point_in_polygon(polygon)
+        #     points.append(random_point)
+        # return countries, points
 
     @staticmethod
     def _load_satellite_data(graph_file_path):
@@ -277,30 +330,30 @@ class FlowGenerator:
         country_shapes['standardized_name'] = country_shapes['NAME'].apply(self._standardize_country_name)
         return country_shapes
 
-    @staticmethod
-    def _generate_random_point_in_polygon(polygon):
-        minx, miny, maxx, maxy = polygon.bounds
-        while True:
-            random_point = Point(random.uniform(minx, maxx), random.uniform(miny, maxy))
-            if polygon.contains(random_point):
-                return random_point.x, random_point.y
+    # @staticmethod
+    # def _generate_random_point_in_polygon(polygon):
+    #     minx, miny, maxx, maxy = polygon.bounds
+    #     while True:
+    #         random_point = Point(random.uniform(minx, maxx), random.uniform(miny, maxy))
+    #         if polygon.contains(random_point):
+    #             return random_point.x, random_point.y
 
-    def _get_best_match(self, country_name):
-        choices = self.country_shapes['NAME'].tolist()
-        best_match = process.extractOne(country_name, choices)
-        if best_match[1] >= 80:  # 匹配度阈值，可根据需要调整
-            return best_match[0]
-        else:
-            return None
-
-    @staticmethod
-    def _standardize_country_name(country_name):
-        try:
-            # 尝试通过 pycountry 查找国家
-            country = pycountry.countries.lookup(country_name)
-            return country.name.lower()
-        except LookupError:
-            # 如果未找到，返回原始名称
-            return country_name.lower()
+    # def _get_best_match(self, country_name):
+    #     choices = self.country_shapes['NAME'].tolist()
+    #     best_match = process.extractOne(country_name, choices)
+    #     if best_match[1] >= 80:  # 匹配度阈值，可根据需要调整
+    #         return best_match[0]
+    #     else:
+    #         return None
+    #
+    # @staticmethod
+    # def _standardize_country_name(country_name):
+    #     try:
+    #         # 尝试通过 pycountry 查找国家
+    #         country = pycountry.countries.lookup(country_name)
+    #         return country.name.lower()
+    #     except LookupError:
+    #         # 如果未找到，返回原始名称
+    #         return country_name.lower()
 
 

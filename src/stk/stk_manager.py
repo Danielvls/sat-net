@@ -357,7 +357,7 @@ class STKManager:
             for distance in distance_list:
                 distance_data.append([satellite_pair, distance])
         distance_df = pd.DataFrame(distance_data, columns=['SatellitePair', 'Distance'])
-        distance_df.to_csv(f'{self.data_directory}/inter_satellite_distances.csv', index=False)
+        distance_df.to_csv(f'{self.data_directory}/aer_data/inter_satellite_distances.csv', index=False)
 
         # save time series data to csv file
         time_series = pd.Series(self.time_list, name='Time Series')
