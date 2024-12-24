@@ -83,16 +83,18 @@ class FlowGenerator:
                 # 统计卫星节点的使用次数
                 satellite_usage[start_node] = satellite_usage.get(start_node, 0) + 1
 
+
                 # 目标节点随机选择一个地面站
                 target_node = random.choice(facilities)
 
-                # 使用正态分布生成带宽
-                bandwidth = round(np.random.normal(self.avg_bandwidth, self.bandwidth_stddev), 2)
-                # 确保带宽在最小和最大带宽之间
-                bandwidth = max(min(bandwidth, self.maximum_bandwidth), self.minimum_bandwidth)
+
+                # # 使用正态分布生成带宽
+                # bandwidth = round(np.random.normal(self.avg_bandwidth, self.bandwidth_stddev), 2)
+                # # 确保带宽在最小和最大带宽之间
+                # bandwidth = max(min(bandwidth, self.maximum_bandwidth), self.minimum_bandwidth)
 
                 # 使用平均持续时间
-                duration = self.avg_duration
+                duration = 900
 
                 # 流信息
                 flow = {
@@ -101,7 +103,7 @@ class FlowGenerator:
                     "backup_path": None,
                     "start_node": start_node,
                     "target_node": target_node,
-                    "bandwidth": bandwidth,
+                    # "bandwidth": bandwidth,
                     "duration": duration,
                     "random_point": point,
                     "distance_to_satellite": distance_to_sat

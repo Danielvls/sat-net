@@ -59,7 +59,7 @@ class SatelliteVisualizer:
                 })
         return satellite_coords
 
-    def plot_satellite_usage_heatmap(self,  bins=100, sigma=4):
+    def plot_satellite_usage_heatmap(self,  bins=100, sigma=5):
         lats = [sat['latitude'] for sat in self.satellite_positions]
         lons = [sat['longitude'] for sat in self.satellite_positions]
         weights = [self.satellite_usage.get(sat['id'], 0) for sat in self.satellite_positions]
@@ -183,7 +183,7 @@ class SatelliteVisualizer:
         plt.colorbar(label="Satellite Usage", fraction=0.03, pad=0.04, aspect=15)
         ax.legend(loc='upper right')
         # plt.title("Satellite Usage Heatmap with Facilities")
-        plt.savefig('satellite_usage_heatmap.png', dpi=300)
+        plt.savefig('satellite_usage_heatmap.png', dpi=600, bbox_inches='tight')
         plt.show()
 
     def plot_user_heatmap(self):
@@ -267,7 +267,7 @@ class SatelliteVisualizer:
         # ax.gridlines(draw_labels=False, linewidth=0.5, color='gray', alpha=0.5, linestyle='--')
 
         ax.legend(loc='upper right')
-        plt.savefig('world_user_heatmap.png', dpi=300)
+        plt.savefig('world_user_heatmap.png', dpi=1000, bbox_inches='tight')
         plt.show()
 
 if __name__ == '__main__':

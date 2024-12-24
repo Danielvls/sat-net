@@ -5,10 +5,10 @@
 # @File    : sim_config.py.py
 
 # satellite network configure
-num_orbit_planes = 6
+num_orbit_planes = 7
 num_sat_per_plane = 11
 
-slot_num = 100
+slot_num = 10
 slot_size = 100
 
 avg_duration = 1200

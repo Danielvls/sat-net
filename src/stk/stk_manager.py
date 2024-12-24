@@ -104,12 +104,12 @@ class STKManager:
         ):  # RAAN in degrees
 
             for sat_num in range(
-                    1, 12
+                    1, num_sat_per_plane + 1
             ):  # trueAnomaly in degrees
 
                 # Insert satellite
                 satellite = self.scenario.Children.New(
-                    AgESTKObjectType.eSatellite, f"Sat{plane_num}{sat_num}"
+                    AgESTKObjectType.eSatellite, f"Sat{plane_num}_{sat_num}"
                 )
 
                 # Select Propagator
@@ -124,16 +124,16 @@ class STKManager:
                 keplerian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
 
                 # Orbital Six Elements
-                keplerian.SizeShape.SemiMajorAxis = 8200  # km
+                keplerian.SizeShape.SemiMajorAxis = 7137  # km
                 keplerian.SizeShape.Eccentricity = 0
-                keplerian.Orientation.Inclination = 90  # degrees
+                keplerian.Orientation.Inclination = 53  # degrees
                 keplerian.Orientation.ArgOfPerigee = 0  # degrees
                 keplerian.Orientation.AscNode.Value = RAAN  # degrees
                 # keplerian.Location.Value = trueAnomaly
                 keplerian.Location.Value = (
                         # (sat_num - 1) * (360 / 11) + (plane_num - 1) * (360 / 66)
-                        (sat_num - 1) * (360 / num_sat_per_plane) + (plane_num - 1) *
-                        (360 / (num_orbit_planes * num_sat_per_plane))
+                        (sat_num - 1) * (360 / num_sat_per_plane) +
+                        (plane_num - 1) * (360 / num_sat_per_plane) / (num_orbit_planes + 1)
                 )  # true anomalies (degrees) for every other orbital plane
 
                 # Propagate
@@ -152,10 +152,26 @@ class STKManager:
 
         # List of facility names and their geographical coordinates (latitude, longitude, altitude)
         facility_data = [
-            ("Facility1", 28.62, -80.62, 10.0),  # 美国佛罗里达州
-            ("Facility2", 34.30, 108.95, 400.0),  # 中国西安卫星测控中心
-            ("Facility3", -23.80, 133.89, 600.0),  # 澳大利亚艾丽斯泉地面站
-            ("Facility4", 47.83, 11.14, 600.0)  # 德国魏尔海姆跟踪站
+            ("Facility1", 34.0522, -118.2437, 85.0),  # 美国洛杉矶
+            ("Facility2", -33.8688, 151.2093, 85.0),  # 澳大利亚悉尼
+            ("Facility3", 51.5074, -0.1278, 85.0),  # 英国伦敦
+            ("Facility4", 48.8566, 2.3522, 85.0),  # 法国巴黎
+            ("Facility5", 40.7128, -74.0060, 85.0),  # 美国纽约
+            ("Facility6", 39.9042, 116.4074, 85.0),  # 中国北京
+            ("Facility7", -23.5505, -46.6333, 85.0),  # 巴西圣保罗
+            ("Facility8", 35.6895, 139.6917, 85.0),  # 日本东京
+            ("Facility9", 55.7558, 37.6173, 85.0),  # 俄罗斯莫斯科
+            ("Facility10", -34.6037, -58.3816, 85.0),  # 阿根廷布宜诺斯艾利斯
+            ("Facility11", 40.7306, -73.9352, 85.0),  # 美国纽约（偏北）
+            ("Facility12", 52.3676, 4.9041, 85.0),  # 荷兰阿姆斯特丹
+            ("Facility13", 37.9838, 23.7275, 85.0),  # 希腊雅典
+            ("Facility14", 19.4326, -99.1332, 85.0),  # 墨西哥墨西哥城
+            ("Facility15", 43.6532, -79.3832, 85.0),  # 加拿大多伦多
+            ("Facility16", 1.3521, 103.8198, 85.0),  # 新加坡
+            ("Facility17", 55.6761, 12.5683, 85.0),  # 丹麦哥本哈根
+            ("Facility18", 37.7749, -122.4194, 85.0),  # 美国旧金山
+            ("Facility19", 40.7306, -73.9352, 85.0),  # 美国纽约（偏南）
+            ("Facility20", 51.1657, 10.4515, 85.0),  # 德国
         ]
 
         # Loop through each entry in the facility data
@@ -181,20 +197,20 @@ class STKManager:
         all_satellites = self.scenario.Children.GetElements(AgESTKObjectType.eSatellite)
         for plane_num in range(1, num_orbit_planes + 1):
             for sat_num in range(1, num_sat_per_plane + 1):
-                cur_sat_name = f"Sat{plane_num}{sat_num}"
+                cur_sat_name = f"Sat{plane_num}_{sat_num}"
 
                 # get satellites in the same orbital plane and the next orbital plane
                 if plane_num < num_orbit_planes:
-                    intra_sat_name = f"Sat{plane_num + 1}{sat_num}"
+                    intra_sat_name = f"Sat{plane_num + 1}_{sat_num}"
                     intra_sat = next(sat for sat in all_satellites if sat.InstanceName == intra_sat_name)
                 else:
                     intra_sat_name = 0
                     intra_sat = 0
 
                 if sat_num == num_sat_per_plane:
-                    inter_sat_name = f"Sat{plane_num}1"
+                    inter_sat_name = f"Sat{plane_num}_1"
                 else:
-                    inter_sat_name = f"Sat{plane_num}{sat_num + 1}"
+                    inter_sat_name = f"Sat{plane_num}_{sat_num + 1}"
 
                 # get satellites in the same orbital plane and the previous orbital plane
                 cur_sat = next(sat for sat in all_satellites if sat.InstanceName == cur_sat_name)
@@ -292,7 +308,7 @@ class STKManager:
             chainResults = chainDataProvider.ExecElements(
                 self.scenario.StartTime,
                 self.scenario.StopTime,
-                60,  # Ensure time_step is defined or passed to the function
+                self.time_step,  # Ensure time_step is defined or passed to the function
                 rpt_elms
             )
 

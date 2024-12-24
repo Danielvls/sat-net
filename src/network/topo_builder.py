@@ -19,7 +19,7 @@ class TopoBuilder:
         self.project_root = self.current_file.parents[2]
         self.graph_path = self.project_root / 'graphs'
         self.data_directory = self.project_root / 'data'
-        self.sat_distance_file = self.project_root / 'data' / 'inter_satellite_distances.csv'
+        self.sat_distance_file = self.project_root / 'data' / 'aer_data' / 'inter_satellite_distances.csv'
         self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
         self.fac_sat_chains_directory = self.project_root / 'data' / 'fac_sat_chains'
 
@@ -35,7 +35,7 @@ class TopoBuilder:
             graph = nx.Graph()
             self._add_sat_to_topo(graph, index)
             self._add_fac_to_topo(graph, index)
-            self._add_bandwidth_to_edges(graph, index)
+            # self._add_bandwidth_to_edges(graph, index)
 
         # form graph_list
         self.load_graphs()
@@ -59,7 +59,6 @@ class TopoBuilder:
             for u, v in graph.edges():
                 # supose all wavelengths are available
                 graph[u][v]['wavelengths'] = [False] * self.slot_num
-                graph[u][v]['bandwidth_usage'] = 0
                 graph[u][v]['share_degree'] = [0] * self.slot_num
 
     # add satellite links to topo

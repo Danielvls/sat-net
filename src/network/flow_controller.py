@@ -21,8 +21,6 @@ from src.network.flow_generator import FlowGenerator
 
 from src.utils import slot_num, slot_size, timeit_decorator
 from src.utils import Counter
-# from joblib import Parallel, delayed
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed
 
 
 class FlowController:
@@ -55,8 +53,10 @@ class FlowController:
         for i in range(len(self.flows)):
             flow = self.flows[i]
             self.process_flow(i, flow)
+
             # print(f"Flow {i} completed.")
 
+    # process flows one by one
     def process_flow(self, idx, flow):
         # print(f"flow{idx} from {flow['start_node']} to {flow['target_node']}...", end="")
 
@@ -70,7 +70,7 @@ class FlowController:
         )
 
         # if no path is found, increment the counter
-        if not primary_paths_across_graphs or not backup_paths_across_graphs:
+        if primary_paths_across_graphs is None or backup_paths_across_graphs is None:
             self.counter.increment_blocked_flows()
             # print(f"No available resource found for flow {idx}...", end="")
             # print(f"{primary_paths_across_graphs}, {backup_paths_across_graphs}")
@@ -80,50 +80,49 @@ class FlowController:
             # print(f"self.graph_list[{10}]: {self.graph_list[10].edges.data()}")
 
     # @timeit_decorator
-    def find_resource_across_graphs(self, flow, indices) -> (list, list):
+    def find_resource_across_graphs(self, flow, indices):
         # Initialize lists to store primary and backup paths across graphs
         primary_paths_across_graphs = []
         backup_paths_across_graphs = []
 
-        # Find resources for both paths across all graphs
         for index in indices:
             graph = self.graph_list[index]
-            primary_path, pp_wavelengths = self.find_path_and_wavelengths(graph, flow, path_type='primary')
+
+            primary_path, pp_wavelength = self.find_path_and_wavelength(graph, flow, path_type='primary')
 
             # If primary path is not found
-            if not primary_path or not pp_wavelengths:
-                return [], []
+            if primary_path is None or pp_wavelength is None:
+                return None, None
 
-            # Find backup path with existing primary path
-            backup_path, bp_wavelengths = self.find_path_and_wavelengths(
-                graph, flow, path_type='backup', existing_path=primary_path
-            )
-
-            # If backup path is not found
-            if not backup_path or not bp_wavelengths:
-                if len(primary_path) == 2:
-                    primary_paths_across_graphs.append(
-                        [index, primary_path, pp_wavelengths])
-                    backup_paths_across_graphs.append(
-                        [index, primary_path, pp_wavelengths])
-                break
-
-            # If backup path is found, append to respective lists
-            if backup_path and bp_wavelengths:
+            # if 0 hop between satellite, no need for backup
+            elif len(primary_path) == 2:
                 primary_paths_across_graphs.append(
-                    [index, primary_path, pp_wavelengths])
-                backup_paths_across_graphs.append(
-                    [index, backup_path, bp_wavelengths])
-                continue
+                    [index, primary_path, pp_wavelength])
+                backup_paths_across_graphs.append(None)
+                # print(f"Flow {flow['start_node']} to {flow['target_node']} has a 0-hop path between satellite.")
             else:
-                return [], []
+
+                # Find backup path with existing primary path
+                # make sure the length of primary path is greater than 2
+                backup_path, bp_wavelength = self.find_path_and_wavelength(
+                    graph, flow, path_type='backup', existing_path=primary_path
+                )
+
+                # If backup path is not found,stop the loop and return None
+                if backup_path is None or bp_wavelength is None:
+                    return None, None
+                else:
+                    primary_paths_across_graphs.append(
+                        [index, primary_path, pp_wavelength])
+                    backup_paths_across_graphs.append(
+                        [index, backup_path, bp_wavelength])
+
         return primary_paths_across_graphs, backup_paths_across_graphs
 
-    # @timeit_decorator
-    def find_path_and_wavelengths(self, graph, flow, path_type='primary', existing_path=None) -> (list, list):
-        # find path and wavelenghts for a single flow and graph
+    def find_path_and_wavelength(self, graph, flow, path_type='primary', existing_path=None):
+        # remove the facilities who is not the target node
         def remove_other_facilities(_graph):
-            pattern = r'^Facility'  # 假设设施节点名称以 'facility' 开头
+            pattern = r'^Facility'
             facilities_to_remove = [node for node in _graph.nodes() if
                                     re.match(pattern, node) and node != flow['target_node']]
             _graph.remove_nodes_from(facilities_to_remove)
@@ -133,164 +132,127 @@ class FlowController:
                 islice(nx.shortest_simple_paths(_graph, _source, _target, weight=weight), k)
             )
         try:
-            # Create a copy of the graph
+            # Create a copy of the graph for path calculation
             graph_copy = graph.copy()
 
             # Remove other facilities from the graph
             remove_other_facilities(graph_copy)
 
-            # If path type is backup, primary path must exist
             if path_type == 'primary':
                 source = flow['start_node']
                 target = flow['target_node']
-            elif path_type == 'backup' and existing_path:
-                if len(existing_path) > 2:
-                    # Remove edges explicitly between intermediate nodes
-                    for i in range(1, len(existing_path) - 1):
-                        start_node = existing_path[i - 1]
-                        end_node = existing_path[i]
-                        if graph_copy.has_edge(start_node, end_node):
-                            graph_copy.remove_edge(start_node, end_node)
-                            # print(f"Removed edge: {start_node} -> {end_node}")
-                    source = existing_path[0]
-                    target = existing_path[-2]
-                else:
-                    # If only two nodes remain, no need to back up
-                    source = existing_path[0]
-                    target = existing_path[-1]
+
+            # if the pp exist, find backup path
             else:
-                return [], []
+                # Remove edges explicitly between intermediate nodes
+                # remove the edge from the first satellite to feedback satellite
+                for i in range(1, len(existing_path) - 1):
+                    start_node = existing_path[i - 1]
+                    end_node = existing_path[i]
+                    if graph_copy.has_edge(start_node, end_node):
+                        graph_copy.remove_edge(start_node, end_node)
+                        # print(f"Removed edge: {start_node} -> {end_node}")
+
+                # Remove target facility from the graph_copy
+                target_facility = flow['target_node']
+                if graph_copy.has_node(target_facility):
+                    graph_copy.remove_node(target_facility)
+
+                source = existing_path[0]
+                target = existing_path[-2]
 
             paths = k_shortest_paths(graph_copy, source, target)
             # print(f"found {path_type} paths: {paths}")
             for path in paths:
-                wavelength_list = self.find_continuous_wavelengths(graph_copy, path, flow, path_type)
-                if wavelength_list:
-                    # print(f"found {path_type} path: {path}, wavelength_list: {wavelength_list}")
-                    return [path, wavelength_list]
-            return [], []
+                wavelength_id = self.find_available_wavelength(graph_copy, path, path_type)
+                if wavelength_id is not None:
+                    # print(f"found {path_type} path: {path}, wavelength_id {wavelength_id}")
+                    return [path, wavelength_id]
+            return None, None
         except (nx.NetworkXNoPath, nx.NodeNotFound):
-            return [], []
+            return None, None
 
-    def find_continuous_wavelengths(self, graph, path, flow, path_type) -> list:
+    def find_available_wavelength(self, graph, path, path_type='primary'):
+        wavelength_usage = [graph[path[i]][path[i + 1]]['wavelengths'] for i in range(len(path) - 1)]
+        # print(f"found {path}")
+        # print(f"wavelength usage: {wavelength_usage[0]}")
+        share_degree = [graph[path[i]][path[i + 1]]['share_degree'] for i in range(len(path) - 1)]
 
-        # Check how many slots the path needs
-        slots = math.ceil(flow['bandwidth'] / self.slot_size)
-        continuous_bandwidth_num = 0
-        wavelength_indices = list(range(self.slot_num))
+        for wavelength_idx in range(len(wavelength_usage[0])):
+            # check if the wavelength is not used
+            if path_type == 'primary':
 
-        # Find continuous wavelengths;
-        for i in range(len(path) - 1):
-            edge = graph[path[i]][path[i + 1]]
-            current_available_wavelengths = []
-            if graph.has_edge(path[i], path[i + 1]):
-                for wavelength_idx in wavelength_indices:
-                    # check if the wavelength is available
-                    if path_type == 'primary':
-                        # if the wavelength is not shared, it is available for primary path
-                        if not edge['wavelengths'][wavelength_idx] and not edge['share_degree'][wavelength_idx]:
-                            continuous_bandwidth_num += 1
-                            current_available_wavelengths.append(wavelength_idx)
-                        else:
-                            continuous_bandwidth_num = 0
-                            current_available_wavelengths = []
-
-                    # if the share degree is less than 2, it is available for backup path
-                    elif path_type == 'backup':
-                        # For backup paths, check if the share degree is less than 2
-                        if edge['share_degree'][wavelength_idx] == 0:
-                            continuous_bandwidth_num += 1
-                            current_available_wavelengths.append(wavelength_idx)
-                        elif edge['share_degree'][wavelength_idx] == 1 and self.is_valid_for_share_tv(flow, path, i):
-                            current_available_wavelengths.append(wavelength_idx)
-                            continuous_bandwidth_num += 1
-                        else:
-                            continuous_bandwidth_num = 0
-                            current_available_wavelengths = []
-
-                    if continuous_bandwidth_num >= slots:
-                        # print(f"Found continuous wavelengths on edge: {path[i]} - {path[i + 1]}")
-                        return current_available_wavelengths[:slots]
-            else:
-                return []
-
-            # Update the list of available wavelengths
-            wavelength_indices = current_available_wavelengths
-
-            # Check if the number of available wavelengths is less than required slots
-            if len(wavelength_indices) < slots:
-                # print(f"Insufficient continuous wavelengths on edge: {path[i]} - {path[i + 1]}")
-                return []
-
-        # If enough continuous wavelengths are available, return the list
-        # print(f"Use wavelengths from {wavelength_indices[0]} to"
-        #       f" {wavelength_indices[slots - 1]} for path: {path}")
-        return wavelength_indices[:slots]
+                # if the path is primary path, check if the wavelength is not shared
+                if (all(wavelength[wavelength_idx] is False for wavelength in wavelength_usage) or
+                        all(shares[wavelength_idx] == 0 for shares in share_degree)):
+                    # print(f"wavelength {wavelength_idx} is available for primary path")
+                    return wavelength_idx
+            elif path_type == 'backup':
+                if all(wavelength[wavelength_idx] is False for wavelength in wavelength_usage):
+                    # 遍历每条链路，如果 share_degree 为 1，则调用 is_valid_for_share() 进行判断
+                    valid_for_share = [
+                        self.is_valid_for_share(graph, path, i) if shares[wavelength_idx] == 1 else True
+                        for i, shares in enumerate(share_degree)
+                    ]
+                    # 最后的判断条件：每个链路满足 valid_for_share 或者共享度为 0
+                    if all(valid for valid in valid_for_share):
+                        return wavelength_idx
+        return None
 
     # @timeit_decorator
     def sequential_allocate_wavelengths(self, primary_paths_across_graphs, backup_paths_across_graphs):
-        # First, handle all primary paths
-        primary_results = []
+        # Allocate wavelengths for primary paths and update graphs
         for path_info in primary_paths_across_graphs:
-            result = self.allocate_wavelengths(
+            graph_index, updated_graph = self.allocate_wavelengths(
                 graph_index=path_info[0],
                 graph=self.graph_list[path_info[0]],
                 path=path_info[1],
-                wavelengths=path_info[2],
+                wavelength_idx=path_info[2],
                 path_type='primary'
             )
-            primary_results.append(result)
-
-        # Update graph_list with results from primary path processing
-        for result in primary_results:
-            graph_index, updated_graph = result
             self.graph_list[graph_index] = updated_graph
 
-        # Prepare tasks for backup paths only if the primary path length is 3 or more
-        backup_results = []
-        for path_info, backup_path_info in zip(primary_paths_across_graphs, backup_paths_across_graphs):
-            if len(path_info[1]) >= 3:  # Check if a backup path is needed
-                result = self.allocate_wavelengths(
-                    graph_index=backup_path_info[0],
-                    graph=self.graph_list[backup_path_info[0]],
-                    path=backup_path_info[1],
-                    wavelengths=backup_path_info[2],
+        # Allocate wavelengths for all backup paths and update graphs
+        for backup_info in backup_paths_across_graphs:
+            if backup_info is not None:
+                graph_index, updated_graph = self.allocate_wavelengths(
+                    graph_index=backup_info[0],
+                    graph=self.graph_list[backup_info[0]],
+                    path=backup_info[1],
+                    wavelength_idx=backup_info[2],
                     path_type='backup'
                 )
-                backup_results.append(result)
+                self.graph_list[graph_index] = updated_graph
+            else:
+                continue
 
-        # Update graph_list with results from backup path processing
-        for result in backup_results:
-            graph_index, updated_graph = result
-            self.graph_list[graph_index] = updated_graph
-
-    @staticmethod
-    def allocate_wavelengths(graph_index, graph, path, wavelengths, path_type='primary'):
+    def allocate_wavelengths(self, graph_index, graph, path, wavelength_idx, path_type='primary'):
         for i in range(len(path) - 1):
+            # edge is the networkx edge between two nodes
             edge = graph[path[i]][path[i + 1]]
-            for wavelength_idx in wavelengths:
-                if wavelength_idx is not None:
-                    if path_type == 'primary':
-                        if edge['share_degree'][wavelength_idx] == 0:
-                            edge['wavelengths'][wavelength_idx] = True
-                            edge['bandwidth_usage'] += 1
-                    elif path_type == 'backup':
-                        if edge['share_degree'][wavelength_idx] == 0:
-                            edge['bandwidth_usage'] += 1
-                            edge['share_degree'][wavelength_idx] += 1
-                        elif edge['share_degree'][wavelength_idx] > 0:
-                            edge['share_degree'][wavelength_idx] += 1
-                            edge['bandwidth_usage'] += 1
-                            edge['wavelengths'][wavelength_idx] = True
 
+            # link is tuple of source and destination nodes
+            link = (path[i], path[i + 1])
+
+            if wavelength_idx is not None:
+                if path_type == 'primary':
+                    if edge['share_degree'][wavelength_idx] == 0:
+                        edge['wavelengths'][wavelength_idx] = True
+                        self.counter.increase_link_usage(link)
+                elif path_type == 'backup':
+                    if edge['share_degree'][wavelength_idx] == 0:
+                        edge['share_degree'][wavelength_idx] += 1
+                        self.counter.increase_link_usage(link)
+                    elif edge['share_degree'][wavelength_idx] > 0:
+                        edge['share_degree'][wavelength_idx] += 1
+                        edge['wavelengths'][wavelength_idx] = True
         return graph_index, graph
 
-    def is_valid_for_share(self, flow, path, idx) -> bool:
-        graph = self.graph_list[flow['graph_index']]
+    def is_valid_for_share(self, graph, path, idx) -> bool:
         if graph.has_edge(path[idx], path[idx + 1]):
             edge = graph[path[idx]][path[idx + 1]]
             betweenness = edge['betweenness']
-            if betweenness < self.threshold:
+            if betweenness < self.threshold:  # threshold 需要在外部定义或作为参数传递
                 return True
             else:
                 return False
