@@ -5,9 +5,15 @@
 # @File    : sim_config.py.py
 
 # satellite network configure
-num_orbit_planes = 7
-num_sat_per_plane = 11
+T = 200
+P = 20
+F = 5
+inc = 53
 
+num_orbit_planes = int(P)
+num_sat_per_plane = int(T / P)
+
+height = 7000
 slot_num = 10
 slot_size = 100
 

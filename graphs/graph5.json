@@ -4,388 +4,234 @@
     "graph": {},
     "nodes": [
         {
-            "latitude": 86.4197300359843,
-            "longitude": -105.0412117999586,
             "id": "Sat1_1"
         },
         {
-            "latitude": 57.148331048055695,
-            "longitude": -22.28941747610567,
             "id": "Sat1_2"
         },
         {
-            "latitude": 84.4823303547523,
-            "longitude": -32.72814733962223,
             "id": "Sat2_1"
         },
         {
-            "latitude": 24.517409037814826,
-            "longitude": -18.365968207760904,
             "id": "Sat1_3"
         },
         {
-            "latitude": 53.09699284353107,
-            "longitude": 3.428029731909787,
             "id": "Sat2_2"
         },
         {
-            "latitude": -8.320596417105383,
-            "longitude": -16.20734037294575,
             "id": "Sat1_4"
         },
         {
-            "latitude": 20.42812403885309,
-            "longitude": 6.916735947253768,
             "id": "Sat2_3"
         },
         {
-            "latitude": -41.0870236381717,
-            "longitude": -13.605340078823144,
             "id": "Sat1_5"
         },
         {
-            "latitude": -12.414767075007864,
-            "longitude": 9.068525468986254,
             "id": "Sat2_4"
         },
         {
-            "latitude": -73.4530569866478,
-            "longitude": -4.579546261217655,
             "id": "Sat1_6"
         },
         {
-            "latitude": -45.1508365670762,
-            "longitude": 11.921782834325567,
             "id": "Sat2_5"
         },
         {
-            "latitude": -73.2468682462472,
-            "longitude": 151.27735328024534,
             "id": "Sat1_7"
         },
         {
-            "latitude": -77.36943304484396,
-            "longitude": 24.69670534389121,
             "id": "Sat2_6"
         },
         {
-            "latitude": -40.87524913294519,
-            "longitude": 160.1657875350365,
             "id": "Sat1_8"
         },
         {
-            "latitude": -69.25635968552528,
-            "longitude": 178.63696491912924,
             "id": "Sat2_7"
         },
         {
-            "latitude": -8.107473837606065,
-            "longitude": 162.7581206063353,
             "id": "Sat1_9"
         },
         {
-            "latitude": -36.8007354186289,
-            "longitude": -174.44815391960248,
             "id": "Sat2_8"
         },
         {
-            "latitude": 24.730062152723026,
-            "longitude": 164.91924137793586,
             "id": "Sat1_10"
         },
         {
-            "latitude": -4.011207683716266,
-            "longitude": -171.9853990524217,
             "id": "Sat2_9"
         },
         {
-            "latitude": 57.358713120108334,
-            "longitude": 168.8717736671329,
             "id": "Sat1_11"
         },
         {
-            "latitude": 28.813121511119306,
-            "longitude": -169.73318823774025,
             "id": "Sat2_10"
         },
         {
-            "latitude": 61.39090665806656,
-            "longitude": -165.05860914598676,
             "id": "Sat2_11"
         },
         {
-            "latitude": 81.02429047608511,
-            "longitude": 9.349455334586311,
             "id": "Sat3_1"
         },
         {
-            "latitude": 49.05891449222269,
-            "longitude": 29.037083703620777,
             "id": "Sat3_2"
         },
         {
-            "latitude": 16.35595060790129,
-            "longitude": 32.194070163115654,
             "id": "Sat3_3"
         },
         {
-            "latitude": -16.48765779396637,
-            "longitude": 34.35724870566072,
             "id": "Sat3_4"
         },
         {
-            "latitude": -49.18951208966096,
-            "longitude": 37.52464988445755,
             "id": "Sat3_5"
         },
         {
-            "latitude": -81.14325901334006,
-            "longitude": 57.54017577005239,
             "id": "Sat3_6"
         },
         {
-            "latitude": -65.26195629119329,
-            "longitude": -154.71912206892114,
             "id": "Sat3_7"
         },
         {
-            "latitude": -32.74172324776603,
-            "longitude": -149.08918223579371,
             "id": "Sat3_8"
         },
         {
-            "latitude": 0.0659284088885595,
-            "longitude": -146.72470297462283,
             "id": "Sat3_9"
         },
         {
-            "latitude": 32.87300515119559,
-            "longitude": -144.35675621396857,
             "id": "Sat3_10"
         },
         {
-            "latitude": 65.39123967541585,
-            "longitude": -138.69074373173615,
             "id": "Sat3_11"
         },
         {
-            "latitude": 77.24010007391888,
-            "longitude": 41.74195240333179,
             "id": "Sat4_1"
         },
         {
-            "latitude": 45.029659279663534,
-            "longitude": 54.57540991634232,
             "id": "Sat4_2"
         },
         {
-            "latitude": 12.295778864898203,
-            "longitude": 57.46910161038538,
             "id": "Sat4_3"
         },
         {
-            "latitude": -20.54465198808517,
-            "longitude": 59.65762878628112,
             "id": "Sat4_4"
         },
         {
-            "latitude": -53.208653659010686,
-            "longitude": 63.21675888154297,
             "id": "Sat4_5"
         },
         {
-            "latitude": -84.52919087027107,
-            "longitude": 100.55833970249329,
             "id": "Sat4_6"
         },
         {
-            "latitude": -61.2674608339068,
-            "longitude": -128.47634692768358,
             "id": "Sat4_7"
         },
         {
-            "latitude": -28.69316483217347,
-            "longitude": -123.74733458823547,
             "id": "Sat4_8"
         },
         {
-            "latitude": 4.129122354199411,
-            "longitude": -121.45963747050082,
             "id": "Sat4_9"
         },
         {
-            "latitude": 36.91535734224605,
-            "longitude": -118.95149177489878,
             "id": "Sat4_10"
         },
         {
-            "latitude": 69.3613319086571,
-            "longitude": -111.87526364228944,
             "id": "Sat4_11"
         },
         {
-            "latitude": 73.35241884976762,
-            "longitude": 70.82497974402885,
             "id": "Sat5_1"
         },
         {
-            "latitude": 41.00161470913642,
-            "longitude": 80.06386040880267,
             "id": "Sat5_2"
         },
         {
-            "latitude": 8.23978671683347,
-            "longitude": 82.74199800412435,
             "id": "Sat5_3"
         },
         {
-            "latitude": -24.593779988249487,
-            "longitude": 84.96798515127674,
             "id": "Sat5_4"
         },
         {
-            "latitude": -57.21617578044916,
-            "longitude": 89.02225025280747,
             "id": "Sat5_5"
         },
         {
-            "latitude": -86.31089189209125,
-            "longitude": 172.86478916571454,
             "id": "Sat5_6"
         },
         {
-            "latitude": -57.269020204574055,
-            "longitude": -102.48005269757935,
             "id": "Sat5_7"
         },
         {
-            "latitude": -24.64720918501244,
-            "longitude": -98.4182612550604,
             "id": "Sat5_8"
         },
         {
-            "latitude": 8.18623835245337,
-            "longitude": -96.19162858261578,
             "id": "Sat5_9"
         },
         {
-            "latitude": 40.948409764569966,
-            "longitude": -93.5159938969593,
             "id": "Sat5_10"
         },
         {
-            "latitude": 73.30068300123732,
-            "longitude": -84.31257862928948,
             "id": "Sat5_11"
         },
         {
-            "latitude": 69.41276680331514,
-            "longitude": 98.44677804542056,
             "id": "Sat6_1"
         },
         {
-            "latitude": 36.96573390648514,
-            "longitude": 105.51260273545384,
             "id": "Sat6_2"
         },
         {
-            "latitude": 4.179038772307908,
-            "longitude": 108.01126851074872,
             "id": "Sat6_3"
         },
         {
-            "latitude": -28.644079588409028,
-            "longitude": 110.28776697961608,
             "id": "Sat6_4"
         },
         {
-            "latitude": -61.22036502120977,
-            "longitude": 114.98625572017804,
             "id": "Sat6_5"
         },
         {
-            "latitude": -84.57675013765409,
-            "longitude": -114.227655315891,
             "id": "Sat6_6"
         },
         {
-            "latitude": -53.259363630597456,
-            "longitude": -76.64986913967118,
             "id": "Sat6_7"
         },
         {
-            "latitude": -20.59481001061596,
-            "longitude": -73.10140862674547,
             "id": "Sat6_8"
         },
         {
-            "latitude": 12.246203617848634,
-            "longitude": -70.92241591459558,
             "id": "Sat6_9"
         },
         {
-            "latitude": 44.98129094517741,
-            "longitude": -68.04469088638987,
             "id": "Sat6_10"
         },
         {
-            "latitude": 77.19754786140277,
-            "longitude": -55.32316297403688,
             "id": "Sat6_11"
         },
         {
-            "latitude": 65.43404407554581,
-            "longitude": 125.2944090336282,
             "id": "Sat7_1"
         },
         {
-            "latitude": 32.913457155003734,
-            "longitude": 130.92559726084812,
             "id": "Sat7_2"
         },
         {
-            "latitude": 0.1053047479813596,
-            "longitude": 133.2751979360484,
             "id": "Sat7_3"
         },
         {
-            "latitude": -32.70376307887471,
-            "longitude": 135.61930513761558,
             "id": "Sat7_4"
         },
         {
-            "latitude": -65.22751241802852,
-            "longitude": 141.19332570108085,
             "id": "Sat7_5"
         },
         {
-            "latitude": -81.19108957613267,
-            "longitude": -70.91605324090118,
             "id": "Sat7_6"
         },
         {
-            "latitude": -49.23074294200137,
-            "longitude": -50.94278357564745,
             "id": "Sat7_7"
         },
         {
-            "latitude": -16.52756077093184,
-            "longitude": -47.79810792605748,
             "id": "Sat7_8"
         },
         {
-            "latitude": 16.317189677380604,
-            "longitude": -45.65264448708776,
             "id": "Sat7_9"
         },
         {
-            "latitude": 49.02213552272491,
-            "longitude": -42.52446976391533,
             "id": "Sat7_10"
         },
         {
-            "latitude": 81.00080851403327,
-            "longitude": -23.072162513102857,
             "id": "Sat7_11"
         },
         {
@@ -422,41 +268,27 @@
             "id": "Facility18"
         },
         {
-            "latitude": 24.09398851509489,
-            "longitude": -106.6741170207855,
             "id": "Sat410"
         },
         {
-            "latitude": 56.846815406468416,
-            "longitude": -106.55247278325778,
             "id": "Sat411"
         },
         {
-            "latitude": 57.96967821565705,
-            "longitude": 73.09626055277036,
             "id": "Sat42"
         },
         {
-            "latitude": 25.223148099588247,
-            "longitude": 73.22281022495484,
             "id": "Sat43"
         },
         {
-            "latitude": -8.789518179751493,
-            "longitude": -106.74167010765674,
             "id": "Sat49"
         },
         {
             "id": "Facility14"
         },
         {
-            "latitude": -13.083077355939675,
-            "longitude": 103.29830786796283,
             "id": "Sat54"
         },
         {
-            "latitude": -45.893848106554536,
-            "longitude": 103.37594927080086,
             "id": "Sat55"
         },
         {
@@ -475,13 +307,9 @@
             "id": "Facility16"
         },
         {
-            "latitude": 34.934432556954604,
-            "longitude": -46.68515297541411,
             "id": "Sat610"
         },
         {
-            "latitude": 67.6267599135319,
-            "longitude": -46.58822907534265,
             "id": "Sat611"
         },
         {
@@ -494,2140 +322,1547 @@
             "id": "Facility7"
         },
         {
-            "latitude": 61.41904230017843,
-            "longitude": 151.6730915671768,
             "id": "Sat8_1"
         },
         {
-            "latitude": 53.07633489818826,
-            "longitude": -16.930520232757686,
             "id": "Sat8_10"
         },
         {
-            "latitude": 28.83848893828538,
-            "longitude": 156.30404388377386,
             "id": "Sat8_2"
         },
         {
-            "latitude": -3.987256779801881,
-            "longitude": 158.5332016741305,
             "id": "Sat8_3"
         },
         {
-            "latitude": -36.77854483282083,
-            "longitude": 160.96945645120562,
             "id": "Sat8_4"
         },
         {
-            "latitude": -45.177182956120376,
-            "longitude": -25.334792057662742,
             "id": "Sat8_7"
         },
         {
-            "latitude": -12.43940566650389,
-            "longitude": -22.509785309200804,
             "id": "Sat8_8"
         },
         {
-            "latitude": 20.40494313265043,
-            "longitude": -20.380590666518344,
             "id": "Sat8_9"
-        },
-        {
-            "latitude": 7.772119823183562,
-            "longitude": 163.27570581265962,
-            "id": "Sat110"
-        },
-        {
-            "latitude": 40.60704482542886,
-            "longitude": 163.27581277783804,
-            "id": "Sat111"
-        },
-        {
-            "latitude": 73.26919082685772,
-            "longitude": 163.27617921204228,
-            "id": "Sat11"
-        },
-        {
-            "latitude": 74.16460346927613,
-            "longitude": -16.724837614432982,
-            "id": "Sat12"
-        },
-        {
-            "latitude": 41.50704817625687,
-            "longitude": -16.724445759224455,
-            "id": "Sat13"
-        },
-        {
-            "latitude": 8.675986182406195,
-            "longitude": -16.724337084206297,
-            "id": "Sat14"
-        },
-        {
-            "latitude": -24.207416650125545,
-            "longitude": -16.72424772805893,
-            "id": "Sat15"
-        },
-        {
-            "latitude": -56.9597325969978,
-            "longitude": -16.724086288329605,
-            "id": "Sat16"
-        },
-        {
-            "latitude": -89.55266115108743,
-            "longitude": -16.705308514118617,
-            "id": "Sat17"
-        },
-        {
-            "latitude": -57.85712498560999,
-            "longitude": 163.2754493947272,
-            "id": "Sat18"
-        },
-        {
-            "latitude": -25.109837687484355,
-            "longitude": 163.2756160165409,
-            "id": "Sat19"
-        },
-        {
-            "latitude": 13.23800488605024,
-            "longitude": -166.71112915497162,
-            "id": "Sat210"
-        },
-        {
-            "latitude": 46.04807015591681,
-            "longitude": -166.66601294260028,
-            "id": "Sat211"
-        },
-        {
-            "latitude": 78.68349333626028,
-            "longitude": -166.44326310610236,
-            "id": "Sat21"
-        },
-        {
-            "latitude": 68.74769572438858,
-            "longitude": 13.130999872521466,
-            "id": "Sat22"
-        },
-        {
-            "latitude": 36.06152616331035,
-            "longitude": 13.234675060172732,
-            "id": "Sat23"
-        },
-        {
-            "latitude": 3.208812389902413,
-            "longitude": 13.272483830252856,
-            "id": "Sat24"
-        },
-        {
-            "latitude": -29.66352258614325,
-            "longitude": 13.307676107848147,
-            "id": "Sat25"
-        },
-        {
-            "latitude": -62.38521067520495,
-            "longitude": 13.383172220778247,
-            "id": "Sat26"
-        },
-        {
-            "latitude": -85.03580793339498,
-            "longitude": -167.37201490325631,
-            "id": "Sat27"
-        },
-        {
-            "latitude": -52.42750248199992,
-            "longitude": -166.7974810991693,
-            "id": "Sat28"
-        },
-        {
-            "latitude": -19.6502854721251,
-            "longitude": -166.74444882233203,
-            "id": "Sat29"
-        },
-        {
-            "latitude": 18.67518910310634,
-            "longitude": -136.69148036380403,
-            "id": "Sat310"
-        },
-        {
-            "latitude": 51.45755030649551,
-            "longitude": -136.6022443528937,
-            "id": "Sat311"
-        },
-        {
-            "latitude": 84.06919616399895,
-            "longitude": -135.78783639454005,
-            "id": "Sat31"
-        },
-        {
-            "latitude": 63.353242557806325,
-            "longitude": 43.081759114662326,
-            "id": "Sat32"
-        },
-        {
-            "latitude": 30.6370998098213,
-            "longitude": 43.21801875055339,
-            "id": "Sat33"
-        },
-        {
-            "latitude": -2.2326603819953306,
-            "longitude": 43.27943048828299,
-            "id": "Sat34"
-        },
-        {
-            "latitude": -35.08875162243802,
-            "longitude": 43.3439818447257,
-            "id": "Sat35"
-        },
-        {
-            "latitude": -67.7801359653753,
-            "longitude": 43.51379190045423,
-            "id": "Sat36"
-        },
-        {
-            "latitude": -79.64957916032824,
-            "longitude": -137.25703035670458,
-            "id": "Sat37"
-        },
-        {
-            "latitude": -47.01883793370024,
-            "longitude": -136.82875623758076,
-            "id": "Sat38"
-        },
-        {
-            "latitude": -14.213591252131344,
-            "longitude": -136.74900358561007,
-            "id": "Sat39"
-        },
-        {
-            "latitude": 89.42911931765,
-            "longitude": -95.3850113840674,
-            "id": "Sat41"
-        },
-        {
-            "latitude": -7.658549766035893,
-            "longitude": 73.29077976397673,
-            "id": "Sat44"
-        },
-        {
-            "latitude": -40.49387314515055,
-            "longitude": 73.37153479115779,
-            "id": "Sat45"
-        },
-        {
-            "latitude": -73.1563315202837,
-            "longitude": 73.64645513247314,
-            "id": "Sat46"
-        },
-        {
-            "latitude": -74.27669726830004,
-            "longitude": -107.12303507460508,
-            "id": "Sat47"
-        },
-        {
-            "latitude": -41.62000648368153,
-            "longitude": -106.82404360022925,
-            "id": "Sat48"
-        },
-        {
-            "latitude": 29.508886229369395,
-            "longitude": -76.66928929557913,
-            "id": "Sat510"
-        },
-        {
-            "latitude": 62.23137053060572,
-            "longitude": -76.53978520903864,
-            "id": "Sat511"
-        },
-        {
-            "latitude": 85.18854909823162,
-            "longitude": 102.1216513852965,
-            "id": "Sat51"
-        },
-        {
-            "latitude": 52.58141501053732,
-            "longitude": 103.14877004077576,
-            "id": "Sat52"
-        },
-        {
-            "latitude": 19.805080062865137,
-            "longitude": 103.24075308284708,
-            "id": "Sat53"
-        },
-        {
-            "latitude": -78.52977290578465,
-            "longitude": 103.75445473531502,
-            "id": "Sat56"
-        },
-        {
-            "latitude": -68.9011522991763,
-            "longitude": -76.97601740822834,
-            "id": "Sat57"
-        },
-        {
-            "latitude": -36.21592336172853,
-            "longitude": -76.79540048616411,
-            "id": "Sat58"
-        },
-        {
-            "latitude": -3.3638021983609026,
-            "longitude": -76.7299754575486,
-            "id": "Sat59"
-        },
-        {
-            "latitude": 79.80321163413855,
-            "longitude": 132.96441843943842,
-            "id": "Sat61"
-        },
-        {
-            "latitude": 47.17292210031301,
-            "longitude": 133.21532091382088,
-            "id": "Sat62"
-        },
-        {
-            "latitude": 14.368395686688151,
-            "longitude": 133.26138941449202,
-            "id": "Sat63"
-        },
-        {
-            "latitude": -18.52048339119451,
-            "longitude": 133.2944919061815,
-            "id": "Sat64"
-        },
-        {
-            "latitude": -51.30371404443896,
-            "longitude": 133.3456374526763,
-            "id": "Sat65"
-        },
-        {
-            "latitude": -83.91643570893918,
-            "longitude": 133.80113692052055,
-            "id": "Sat66"
-        },
-        {
-            "latitude": -63.50695444208454,
-            "longitude": -46.83661124180696,
-            "id": "Sat67"
-        },
-        {
-            "latitude": -30.79160087902484,
-            "longitude": -46.75763532429672,
-            "id": "Sat68"
-        },
-        {
-            "latitude": 2.077776244830264,
-            "longitude": -46.722234737803895,
-            "id": "Sat69"
-        },
-        {
-            "latitude": 84.48903439905855,
-            "longitude": 18.81999403976529,
-            "id": "Sat8_11"
-        },
-        {
-            "latitude": -69.23913878225532,
-            "longitude": 167.80437594932624,
-            "id": "Sat8_5"
-        },
-        {
-            "latitude": -77.40300057418919,
-            "longitude": -38.01370322934695,
-            "id": "Sat8_6"
         }
     ],
     "links": [
         {
             "weight": 4021.450936966409,
-            "betweenness": 1.908943199552052,
             "source": "Sat1_1",
             "target": "Sat1_2"
         },
         {
             "weight": 1262.5111879052097,
-            "betweenness": 2.278027909021931,
             "source": "Sat1_1",
             "target": "Sat2_1"
         },
         {
             "weight": 4021.4509369644834,
-            "betweenness": 37.24592661861326,
             "source": "Sat1_1",
             "target": "Sat1_11"
         },
         {
             "weight": 3249,
             "bidirectional": true,
-            "betweenness": 9.117640936699653,
             "source": "Sat1_1",
             "target": "Facility12"
         },
         {
             "weight": 3250,
             "bidirectional": true,
-            "betweenness": 9.065309587493305,
             "source": "Sat1_1",
             "target": "Facility17"
         },
         {
             "weight": 3247,
             "bidirectional": true,
-            "betweenness": 7.93497681935395,
             "source": "Sat1_1",
             "target": "Facility20"
         },
         {
             "weight": 3248,
             "bidirectional": true,
-            "betweenness": 10.371259952056473,
             "source": "Sat1_1",
             "target": "Facility3"
         },
         {
             "weight": 3246,
             "bidirectional": true,
-            "betweenness": 11.653770298793624,
             "source": "Sat1_1",
             "target": "Facility4"
         },
         {
             "weight": 4021.450936969596,
-            "betweenness": 28.264470251287328,
             "source": "Sat1_2",
             "target": "Sat1_3"
         },
         {
             "weight": 2550.3072196368985,
-            "betweenness": 2.7521886809504617,
             "source": "Sat1_2",
             "target": "Sat2_2"
         },
         {
             "weight": 2627,
             "bidirectional": true,
-            "betweenness": 10.395418775460824,
             "source": "Sat1_2",
             "target": "Facility12"
         },
         {
             "weight": 3059,
             "bidirectional": true,
-            "betweenness": 10.50975409292114,
             "source": "Sat1_2",
             "target": "Facility17"
         },
         {
             "weight": 2439,
             "bidirectional": true,
-            "betweenness": 4.288350518537769,
             "source": "Sat1_2",
             "target": "Facility20"
         },
         {
             "weight": 2270,
             "bidirectional": true,
-            "betweenness": 10.45267290845761,
             "source": "Sat1_2",
             "target": "Facility3"
         },
         {
             "weight": 2039,
             "bidirectional": true,
-            "betweenness": 5.522649126779766,
             "source": "Sat1_2",
             "target": "Facility4"
         },
         {
             "weight": 4021.450942529101,
-            "betweenness": 1.961200587674266,
             "source": "Sat2_1",
             "target": "Sat2_2"
         },
         {
             "weight": 1437.5254250055098,
-            "betweenness": 1.555216899305253,
             "source": "Sat2_1",
             "target": "Sat3_1"
         },
         {
             "weight": 4021.4509425268257,
-            "betweenness": 22.262171514137492,
             "source": "Sat2_1",
             "target": "Sat2_11"
         },
         {
             "weight": 3250,
             "bidirectional": true,
-            "betweenness": 6.422207326758151,
             "source": "Sat2_1",
             "target": "Facility12"
         },
         {
             "weight": 3251,
             "bidirectional": true,
-            "betweenness": 6.513815371491197,
             "source": "Sat2_1",
             "target": "Facility17"
         },
         {
             "weight": 3249,
             "bidirectional": true,
-            "betweenness": 3.879690858445082,
             "source": "Sat2_1",
             "target": "Facility20"
         },
         {
             "weight": 3249,
             "bidirectional": true,
-            "betweenness": 7.1649652632660885,
             "source": "Sat2_1",
             "target": "Facility3"
         },
         {
             "weight": 3248,
             "bidirectional": true,
-            "betweenness": 5.979391583690295,
             "source": "Sat2_1",
             "target": "Facility4"
         },
         {
             "weight": 3250,
             "bidirectional": true,
-            "betweenness": 9.198666059564518,
             "source": "Sat2_1",
             "target": "Facility9"
         },
         {
             "weight": 4021.450936970334,
-            "betweenness": 22.241022936442562,
             "source": "Sat1_3",
             "target": "Sat1_4"
         },
         {
             "weight": 3150.5969547137784,
-            "betweenness": 3.0216020127566394,
             "source": "Sat1_3",
             "target": "Sat2_3"
         },
         {
             "weight": 4021.4509425321744,
-            "betweenness": 25.500001922107785,
             "source": "Sat2_2",
             "target": "Sat2_3"
         },
         {
             "weight": 2672.6247510128496,
-            "betweenness": 0.14634848430471814,
             "source": "Sat2_2",
             "target": "Sat3_2"
         },
         {
             "weight": 1292,
             "bidirectional": true,
-            "betweenness": 9.89515694381654,
             "source": "Sat2_2",
             "target": "Facility12"
         },
         {
             "weight": 2008,
             "bidirectional": true,
-            "betweenness": 6.692146395838094,
             "source": "Sat2_2",
             "target": "Facility13"
         },
         {
             "weight": 1486,
             "bidirectional": true,
-            "betweenness": 9.945098321882917,
             "source": "Sat2_2",
             "target": "Facility17"
         },
         {
             "weight": 1421,
             "bidirectional": true,
-            "betweenness": 4.148686825035314,
             "source": "Sat2_2",
             "target": "Facility20"
         },
         {
             "weight": 1312,
             "bidirectional": true,
-            "betweenness": 10.936283845912435,
             "source": "Sat2_2",
             "target": "Facility3"
         },
         {
             "weight": 1291,
             "bidirectional": true,
-            "betweenness": 6.546756515868485,
             "source": "Sat2_2",
             "target": "Facility4"
         },
         {
             "weight": 3042,
             "bidirectional": true,
-            "betweenness": 10.253907348435261,
             "source": "Sat2_2",
             "target": "Facility9"
         },
         {
             "weight": 4021.4509369677344,
-            "betweenness": 14.883272122771665,
             "source": "Sat1_4",
             "target": "Sat1_5"
         },
         {
             "weight": 2803.459077009138,
-            "betweenness": 1.565054245852913,
             "source": "Sat1_4",
             "target": "Sat2_4"
         },
         {
             "weight": 4021.450942532442,
-            "betweenness": 22.81132832246019,
             "source": "Sat2_3",
             "target": "Sat2_4"
         },
         {
             "weight": 3159.825348732973,
-            "betweenness": 1.3318176807760143,
             "source": "Sat2_3",
             "target": "Sat3_3"
         },
         {
             "weight": 3202,
             "bidirectional": true,
-            "betweenness": 8.244696766283646,
             "source": "Sat2_3",
             "target": "Facility13"
         },
         {
             "weight": 4021.450936964849,
-            "betweenness": 11.970719397582426,
             "source": "Sat1_5",
             "target": "Sat1_6"
         },
         {
             "weight": 1649.232951347714,
-            "betweenness": 1.5539089138298763,
             "source": "Sat1_5",
             "target": "Sat2_5"
         },
         {
             "weight": 4021.450942529594,
-            "betweenness": 13.221162469464417,
             "source": "Sat2_4",
             "target": "Sat2_5"
         },
         {
             "weight": 2696.091600291252,
-            "betweenness": 0.96875,
             "source": "Sat2_4",
             "target": "Sat3_4"
         },
         {
             "weight": 4021.4509369650577,
-            "betweenness": 12.190873437209575,
             "source": "Sat1_6",
             "target": "Sat1_7"
         },
         {
             "weight": 718.9368009671912,
-            "betweenness": 3.72339119682324,
             "source": "Sat1_6",
             "target": "Sat2_6"
         },
         {
             "weight": 4021.450942526954,
-            "betweenness": 9.38518126128076,
             "source": "Sat2_5",
             "target": "Sat2_6"
         },
         {
             "weight": 1473.4832233546042,
-            "betweenness": 2.2279015782395466,
             "source": "Sat2_5",
             "target": "Sat3_5"
         },
         {
             "weight": 4021.450936968098,
-            "betweenness": 4.391392778035165,
             "source": "Sat1_7",
             "target": "Sat1_8"
         },
         {
             "weight": 1955.9843050198945,
-            "betweenness": 10.922610209643087,
             "source": "Sat1_7",
             "target": "Sat2_7"
         },
         {
             "weight": 3235,
             "bidirectional": true,
-            "betweenness": 18.816445447668272,
             "source": "Sat1_7",
             "target": "Facility2"
         },
         {
             "weight": 4021.450942527618,
-            "betweenness": 8.59578663068525,
             "source": "Sat2_6",
             "target": "Sat2_7"
         },
         {
             "weight": 807.0739645996168,
-            "betweenness": 5.025659847285716,
             "source": "Sat2_6",
             "target": "Sat3_6"
         },
         {
             "weight": 4021.450936970437,
-            "betweenness": 26.087214417315394,
             "source": "Sat1_8",
             "target": "Sat1_9"
         },
         {
             "weight": 2962.803366369432,
-            "betweenness": 18.57822299327041,
             "source": "Sat1_8",
             "target": "Sat2_8"
         },
         {
             "weight": 1635,
             "bidirectional": true,
-            "betweenness": 33.0214832139118,
             "source": "Sat1_8",
             "target": "Facility2"
         },
         {
             "weight": 4021.450942530795,
-            "betweenness": 7.254596569221944,
             "source": "Sat2_7",
             "target": "Sat2_8"
         },
         {
             "weight": 2118.121105720696,
-            "betweenness": 10.560207482185348,
             "source": "Sat2_7",
             "target": "Sat3_7"
         },
         {
             "weight": 4021.450936969321,
-            "betweenness": 27.62534319644107,
             "source": "Sat1_9",
             "target": "Sat1_10"
         },
         {
             "weight": 3095.761263514765,
-            "betweenness": 11.843767107797383,
             "source": "Sat1_9",
             "target": "Sat2_9"
         },
         {
             "weight": 4021.4509425327833,
-            "betweenness": 14.457602014838809,
             "source": "Sat2_8",
             "target": "Sat2_9"
         },
         {
             "weight": 3031.9170466310024,
-            "betweenness": 18.537601628581644,
             "source": "Sat2_8",
             "target": "Sat3_8"
         },
         {
             "weight": 4021.450936966066,
-            "betweenness": 35.31741124870979,
             "source": "Sat1_10",
             "target": "Sat1_11"
         },
         {
             "weight": 2302.318020077227,
-            "betweenness": 22.647440470644327,
             "source": "Sat1_10",
             "target": "Sat2_10"
         },
         {
             "weight": 2518,
             "bidirectional": true,
-            "betweenness": 36.507116918258724,
             "source": "Sat1_10",
             "target": "Facility8"
         },
         {
             "weight": 4021.450942531253,
-            "betweenness": 15.62945276888276,
             "source": "Sat2_9",
             "target": "Sat2_10"
         },
         {
             "weight": 3044.240701986544,
-            "betweenness": 17.88130788814497,
             "source": "Sat2_9",
             "target": "Sat3_9"
         },
         {
             "weight": 967.8012297441768,
-            "betweenness": 3.5806309715599425,
             "source": "Sat1_11",
             "target": "Sat2_11"
         },
         {
             "weight": 4021.450942527985,
-            "betweenness": 16.4714435832976,
             "source": "Sat2_10",
             "target": "Sat2_11"
         },
         {
             "weight": 2150.239578810876,
-            "betweenness": 26.05365956690373,
             "source": "Sat2_10",
             "target": "Sat3_10"
         },
         {
             "weight": 830.8965648611157,
-            "betweenness": 3.5791195412737618,
             "source": "Sat2_11",
             "target": "Sat3_11"
         },
         {
             "weight": 4021.4509470463618,
-            "betweenness": 2.340486842938133,
             "source": "Sat3_1",
             "target": "Sat3_2"
         },
         {
             "weight": 1613.522015599235,
-            "betweenness": 5.88697897739537,
             "source": "Sat3_1",
             "target": "Sat4_1"
         },
         {
             "weight": 4021.450947043775,
-            "betweenness": 36.49256089440056,
             "source": "Sat3_1",
             "target": "Sat3_11"
         },
         {
             "weight": 3250,
             "bidirectional": true,
-            "betweenness": 7.034862360717688,
             "source": "Sat3_1",
             "target": "Facility12"
         },
         {
             "weight": 3239,
             "bidirectional": true,
-            "betweenness": 16.6369922326532,
             "source": "Sat3_1",
             "target": "Facility13"
         },
         {
             "weight": 1531,
             "bidirectional": true,
-            "betweenness": 7.0431370721174,
             "source": "Sat3_1",
             "target": "Facility17"
         },
         {
             "weight": 3249,
             "bidirectional": true,
-            "betweenness": 5.062414331778448,
             "source": "Sat3_1",
             "target": "Facility20"
         },
         {
             "weight": 3249,
             "bidirectional": true,
-            "betweenness": 9.755443168798495,
             "source": "Sat3_1",
             "target": "Facility3"
         },
         {
             "weight": 3247,
             "bidirectional": true,
-            "betweenness": 14.952625434721972,
             "source": "Sat3_1",
             "target": "Facility4"
         },
         {
             "weight": 1462,
             "bidirectional": true,
-            "betweenness": 6.425144164972924,
             "source": "Sat3_1",
             "target": "Facility9"
         },
         {
             "weight": 4021.450947049247,
-            "betweenness": 37.10434211440341,
             "source": "Sat3_2",
             "target": "Sat3_3"
         },
         {
             "weight": 2782.6006815364703,
-            "betweenness": 23.184222983478044,
             "source": "Sat3_2",
             "target": "Sat4_2"
         },
         {
             "weight": 2295,
             "bidirectional": true,
-            "betweenness": 14.808198374397298,
             "source": "Sat3_2",
             "target": "Facility12"
         },
         {
             "weight": 1400,
             "bidirectional": true,
-            "betweenness": 4.913129757162351,
             "source": "Sat3_2",
             "target": "Facility13"
         },
         {
             "weight": 1718,
             "bidirectional": true,
-            "betweenness": 14.812380823892246,
             "source": "Sat3_2",
             "target": "Facility17"
         },
         {
             "weight": 1975,
             "bidirectional": true,
-            "betweenness": 8.927165705891447,
             "source": "Sat3_2",
             "target": "Facility20"
         },
         {
             "weight": 2704,
             "bidirectional": true,
-            "betweenness": 20.568980645976673,
             "source": "Sat3_2",
             "target": "Facility3"
         },
         {
             "weight": 2670,
             "bidirectional": true,
-            "betweenness": 16.498574574710528,
             "source": "Sat3_2",
             "target": "Facility4"
         },
         {
             "weight": 1480,
             "bidirectional": true,
-            "betweenness": 5.740209343139485,
             "source": "Sat3_2",
             "target": "Facility9"
         },
         {
             "weight": 4021.450947049049,
-            "betweenness": 25.87430701718847,
             "source": "Sat3_3",
             "target": "Sat3_4"
         },
         {
             "weight": 3153.723551946712,
-            "betweenness": 15.914250748818032,
             "source": "Sat3_3",
             "target": "Sat4_3"
         },
         {
             "weight": 3199,
             "bidirectional": true,
-            "betweenness": 8.519229592979837,
             "source": "Sat3_3",
             "target": "Facility13"
         },
         {
             "weight": 4021.450947046004,
-            "betweenness": 14.204395174289607,
             "source": "Sat3_4",
             "target": "Sat3_5"
         },
         {
             "weight": 2576.229736952586,
-            "betweenness": 7.314833444732197,
             "source": "Sat3_4",
             "target": "Sat4_4"
         },
         {
             "weight": 4021.4509470436738,
-            "betweenness": 8.978601861618374,
             "source": "Sat3_5",
             "target": "Sat3_6"
         },
         {
             "weight": 1297.9347248656306,
-            "betweenness": 4.496716105806995,
             "source": "Sat3_5",
             "target": "Sat4_5"
         },
         {
             "weight": 4021.450947044775,
-            "betweenness": 8.637484521756459,
             "source": "Sat3_6",
             "target": "Sat3_7"
         },
         {
             "weight": 937.6049911459678,
-            "betweenness": 5.80987531081216,
             "source": "Sat3_6",
             "target": "Sat4_6"
         },
         {
             "weight": 4021.450947048029,
-            "betweenness": 10.336173255722029,
             "source": "Sat3_7",
             "target": "Sat3_8"
         },
         {
             "weight": 2272.039886620685,
-            "betweenness": 10.585239283892593,
             "source": "Sat3_7",
             "target": "Sat4_7"
         },
         {
             "weight": 4021.450947049622,
-            "betweenness": 16.900021949487392,
             "source": "Sat3_8",
             "target": "Sat3_9"
         },
         {
             "weight": 3086.454519231378,
-            "betweenness": 18.631055903523805,
             "source": "Sat3_8",
             "target": "Sat4_8"
         },
         {
             "weight": 4021.4509470477033,
-            "betweenness": 15.871944688337837,
             "source": "Sat3_9",
             "target": "Sat3_10"
         },
         {
             "weight": 2978.070530528072,
-            "betweenness": 24.497388492443914,
             "source": "Sat3_9",
             "target": "Sat4_9"
         },
         {
             "weight": 4021.450947044503,
-            "betweenness": 33.76523905034939,
             "source": "Sat3_10",
             "target": "Sat3_11"
         },
         {
             "weight": 1989.665102905201,
-            "betweenness": 8.616299959914985,
             "source": "Sat3_10",
             "target": "Sat4_10"
         },
         {
             "weight": 2616,
             "bidirectional": true,
-            "betweenness": 26.428501602221136,
             "source": "Sat3_10",
             "target": "Facility1"
         },
         {
             "weight": 2172,
             "bidirectional": true,
-            "betweenness": 19.224524329493864,
             "source": "Sat3_10",
             "target": "Facility18"
         },
         {
             "weight": 732.5169696692226,
-            "betweenness": 4.477418738874872,
             "source": "Sat3_11",
             "target": "Sat4_11"
         },
         {
             "weight": 4021.4509496717874,
-            "betweenness": 13.840424008092373,
             "source": "Sat4_1",
             "target": "Sat4_2"
         },
         {
             "weight": 1787.1555983190708,
-            "betweenness": 14.148878711581542,
             "source": "Sat4_1",
             "target": "Sat5_1"
         },
         {
             "weight": 4021.4509496689498,
-            "betweenness": 22.572498009791186,
             "source": "Sat4_1",
             "target": "Sat4_11"
         },
         {
             "weight": 3248,
             "bidirectional": true,
-            "betweenness": 10.14963362144993,
             "source": "Sat4_1",
             "target": "Facility12"
         },
         {
             "weight": 2486,
             "bidirectional": true,
-            "betweenness": 9.801757539198848,
             "source": "Sat4_1",
             "target": "Facility17"
         },
         {
             "weight": 3248,
             "bidirectional": true,
-            "betweenness": 13.419666247520627,
             "source": "Sat4_1",
             "target": "Facility20"
         },
         {
             "weight": 1535,
             "bidirectional": true,
-            "betweenness": 4.412810904003009,
             "source": "Sat4_1",
             "target": "Facility9"
         },
         {
             "weight": 4021.450949674426,
-            "betweenness": 25.29988810633081,
             "source": "Sat4_2",
             "target": "Sat4_3"
         },
         {
             "weight": 2879.5284762632277,
-            "betweenness": 24.502763360669142,
             "source": "Sat4_2",
             "target": "Sat5_2"
         },
         {
             "weight": 2956,
             "bidirectional": true,
-            "betweenness": 11.392307366950666,
             "source": "Sat4_2",
             "target": "Facility13"
         },
         {
             "weight": 3215,
             "bidirectional": true,
-            "betweenness": 9.016242763480882,
             "source": "Sat4_2",
             "target": "Facility9"
         },
         {
             "weight": 4021.450949673776,
-            "betweenness": 19.112147896499597,
             "source": "Sat4_3",
             "target": "Sat4_4"
         },
         {
             "weight": 3132.32715911315,
-            "betweenness": 22.326458566495063,
             "source": "Sat4_3",
             "target": "Sat5_3"
         },
         {
             "weight": 4021.450949670603,
-            "betweenness": 13.780082452586834,
             "source": "Sat4_4",
             "target": "Sat4_5"
         },
         {
             "weight": 2444.6669976974395,
-            "betweenness": 9.986788485073905,
             "source": "Sat4_4",
             "target": "Sat5_4"
         },
         {
             "weight": 4021.4509496686032,
-            "betweenness": 12.638131253949648,
             "source": "Sat4_5",
             "target": "Sat4_6"
         },
         {
             "weight": 1127.0841213878762,
-            "betweenness": 6.24994439540877,
             "source": "Sat4_5",
             "target": "Sat5_5"
         },
         {
             "weight": 4021.450949670137,
-            "betweenness": 12.569474258264282,
             "source": "Sat4_6",
             "target": "Sat4_7"
         },
         {
             "weight": 1093.3610388286086,
-            "betweenness": 5.676472224652289,
             "source": "Sat4_6",
             "target": "Sat5_6"
         },
         {
             "weight": 4021.450949673384,
-            "betweenness": 17.65232841189786,
             "source": "Sat4_7",
             "target": "Sat4_8"
         },
         {
             "weight": 2416.4650625185627,
-            "betweenness": 9.942527105867192,
             "source": "Sat4_7",
             "target": "Sat5_7"
         },
         {
             "weight": 4021.450949674565,
-            "betweenness": 26.469627958045,
             "source": "Sat4_8",
             "target": "Sat4_9"
         },
         {
             "weight": 3126.0922185307086,
-            "betweenness": 17.6659510732008,
             "source": "Sat4_8",
             "target": "Sat5_8"
         },
         {
             "weight": 4021.4509496722976,
-            "betweenness": 6.226560669963055,
             "source": "Sat4_9",
             "target": "Sat4_10"
         },
         {
             "weight": 2897.6469728608936,
-            "betweenness": 25.02847410393248,
             "source": "Sat4_9",
             "target": "Sat5_9"
         },
         {
             "weight": 3196,
             "bidirectional": true,
-            "betweenness": 9.411914098704935,
             "source": "Sat4_9",
             "target": "Facility1"
         },
         {
             "weight": 2580,
             "bidirectional": true,
-            "betweenness": 9.887534563173471,
             "source": "Sat4_9",
             "target": "Facility14"
         },
         {
             "weight": 3198,
             "bidirectional": true,
-            "betweenness": 8.568164098704935,
             "source": "Sat4_9",
             "target": "Facility18"
         },
         {
             "weight": 4021.450949669223,
-            "betweenness": 24.269318926347285,
             "source": "Sat4_10",
             "target": "Sat4_11"
         },
         {
             "weight": 1822.0625246387117,
-            "betweenness": 5.3063231904032495,
             "source": "Sat4_10",
             "target": "Sat5_10"
         },
         {
             "weight": 1333,
             "bidirectional": true,
-            "betweenness": 5.267864492461042,
             "source": "Sat4_10",
             "target": "Facility1"
         },
         {
             "weight": 3002,
             "bidirectional": true,
-            "betweenness": 14.74613326005571,
             "source": "Sat4_10",
             "target": "Facility14"
         },
         {
             "weight": 1386,
             "bidirectional": true,
-            "betweenness": 3.3701372197337696,
             "source": "Sat4_10",
             "target": "Facility18"
         },
         {
             "weight": 691.6258345658771,
-            "betweenness": 4.665075396384562,
             "source": "Sat4_11",
             "target": "Sat5_11"
         },
         {
             "weight": 4021.4509499134847,
-            "betweenness": 19.681528352510576,
             "source": "Sat5_1",
             "target": "Sat5_2"
         },
         {
             "weight": 1955.984299672209,
-            "betweenness": 24.32250539493649,
             "source": "Sat5_1",
             "target": "Sat6_1"
         },
         {
             "weight": 4021.4509499104574,
-            "betweenness": 26.637876736591963,
             "source": "Sat5_1",
             "target": "Sat5_11"
         },
         {
             "weight": 2492,
             "bidirectional": true,
-            "betweenness": 20.356477819235607,
             "source": "Sat5_1",
             "target": "Facility9"
         },
         {
             "weight": 4021.450949915835,
-            "betweenness": 20.280540367500496,
             "source": "Sat5_2",
             "target": "Sat5_3"
         },
         {
             "weight": 2962.8033628528674,
-            "betweenness": 21.308425545024175,
             "source": "Sat5_2",
             "target": "Sat6_2"
         },
         {
             "weight": 4021.450949914735,
-            "betweenness": 18.655716675357706,
             "source": "Sat5_3",
             "target": "Sat5_4"
         },
         {
             "weight": 3095.761267612789,
-            "betweenness": 14.067006803120005,
             "source": "Sat5_3",
             "target": "Sat6_3"
         },
         {
             "weight": 2589,
             "bidirectional": true,
-            "betweenness": 19.49953682609171,
             "source": "Sat5_3",
             "target": "Facility16"
         },
         {
             "weight": 4021.450949911494,
-            "betweenness": 14.632122556943198,
             "source": "Sat5_4",
             "target": "Sat5_5"
         },
         {
             "weight": 2302.318028670657,
-            "betweenness": 7.698823919117224,
             "source": "Sat5_4",
             "target": "Sat6_4"
         },
         {
             "weight": 4021.4509499098817,
-            "betweenness": 14.441156148925785,
             "source": "Sat5_5",
             "target": "Sat5_6"
         },
         {
             "weight": 967.8012344013111,
-            "betweenness": 5.267529188330758,
             "source": "Sat5_5",
             "target": "Sat6_5"
         },
         {
             "weight": 4021.4509499118,
-            "betweenness": 18.33690573344128,
             "source": "Sat5_6",
             "target": "Sat5_7"
         },
         {
             "weight": 1262.5111848996978,
-            "betweenness": 5.288522377291261,
             "source": "Sat5_6",
             "target": "Sat6_6"
         },
         {
             "weight": 4021.4509499149954,
-            "betweenness": 28.670266683362527,
             "source": "Sat5_7",
             "target": "Sat5_8"
         },
         {
             "weight": 2550.307214098357,
-            "betweenness": 10.005049745922873,
             "source": "Sat5_7",
             "target": "Sat6_7"
         },
         {
             "weight": 4021.450949915736,
-            "betweenness": 42.80891545881816,
             "source": "Sat5_8",
             "target": "Sat5_9"
         },
         {
             "weight": 3150.5969547896693,
-            "betweenness": 19.699806950429707,
             "source": "Sat5_8",
             "target": "Sat6_8"
         },
         {
             "weight": 3194,
             "bidirectional": true,
-            "betweenness": 16.424096877706337,
             "source": "Sat5_8",
             "target": "Facility14"
         },
         {
             "weight": 4021.450949913161,
-            "betweenness": 2.8024963446744664,
             "source": "Sat5_9",
             "target": "Sat5_10"
         },
         {
             "weight": 2803.4590842821394,
-            "betweenness": 9.174806498929268,
             "source": "Sat5_9",
             "target": "Sat6_9"
         },
         {
             "weight": 3204,
             "bidirectional": true,
-            "betweenness": 21.038413200098,
             "source": "Sat5_9",
             "target": "Facility1"
         },
         {
             "weight": 3207,
             "bidirectional": true,
-            "betweenness": 18.523317220365996,
             "source": "Sat5_9",
             "target": "Facility11"
         },
         {
             "weight": 1298,
             "bidirectional": true,
-            "betweenness": 3.1198446508450375,
             "source": "Sat5_9",
             "target": "Facility14"
         },
         {
             "weight": 3206,
             "bidirectional": true,
-            "betweenness": 17.73862674417552,
             "source": "Sat5_9",
             "target": "Facility15"
         },
         {
             "weight": 3210,
             "bidirectional": true,
-            "betweenness": 13.141595018279814,
             "source": "Sat5_9",
             "target": "Facility18"
         },
         {
             "weight": 3207,
             "bidirectional": true,
-            "betweenness": 18.523317220365996,
             "source": "Sat5_9",
             "target": "Facility19"
         },
         {
             "weight": 3207,
             "bidirectional": true,
-            "betweenness": 18.523317220365996,
             "source": "Sat5_9",
             "target": "Facility5"
         },
         {
             "weight": 4021.4509499102696,
-            "betweenness": 31.471402930077225,
             "source": "Sat5_10",
             "target": "Sat5_11"
         },
         {
             "weight": 1649.2329589860296,
-            "betweenness": 8.505146848879358,
             "source": "Sat5_10",
             "target": "Sat6_10"
         },
         {
             "weight": 3232,
             "bidirectional": true,
-            "betweenness": 19.96456298777017,
             "source": "Sat5_10",
             "target": "Facility1"
         },
         {
             "weight": 2404,
             "bidirectional": true,
-            "betweenness": 9.114831088493212,
             "source": "Sat5_10",
             "target": "Facility11"
         },
         {
             "weight": 3220,
             "bidirectional": true,
-            "betweenness": 9.637585206984536,
             "source": "Sat5_10",
             "target": "Facility14"
         },
         {
             "weight": 1888,
             "bidirectional": true,
-            "betweenness": 8.368520385307509,
             "source": "Sat5_10",
             "target": "Facility15"
         },
         {
             "weight": 2770,
             "bidirectional": true,
-            "betweenness": 10.806835715042899,
             "source": "Sat5_10",
             "target": "Facility18"
         },
         {
             "weight": 2404,
             "bidirectional": true,
-            "betweenness": 9.114831088493212,
             "source": "Sat5_10",
             "target": "Facility19"
         },
         {
             "weight": 2399,
             "bidirectional": true,
-            "betweenness": 9.114831088493212,
             "source": "Sat5_10",
             "target": "Facility5"
         },
         {
             "weight": 718.9368017120427,
-            "betweenness": 6.45866556724837,
             "source": "Sat5_11",
             "target": "Sat6_11"
         },
         {
             "weight": 4021.4509477262495,
-            "betweenness": 18.646668926236288,
             "source": "Sat6_1",
             "target": "Sat6_2"
         },
         {
             "weight": 2118.1210978876934,
-            "betweenness": 7.9244525384212405,
             "source": "Sat6_1",
             "target": "Sat7_1"
         },
         {
             "weight": 4021.450947723084,
-            "betweenness": 25.024065665505407,
             "source": "Sat6_1",
             "target": "Sat6_11"
         },
         {
             "weight": 3240,
             "bidirectional": true,
-            "betweenness": 16.612012699689068,
             "source": "Sat6_1",
             "target": "Facility6"
         },
         {
             "weight": 4021.450947728249,
-            "betweenness": 17.37817461484261,
             "source": "Sat6_2",
             "target": "Sat6_3"
         },
         {
             "weight": 3031.9170422845064,
-            "betweenness": 15.691735537109498,
             "source": "Sat6_2",
             "target": "Sat7_2"
         },
         {
             "weight": 3204,
             "bidirectional": true,
-            "betweenness": 19.089089367975664,
             "source": "Sat6_2",
             "target": "Facility16"
         },
         {
             "weight": 1744,
             "bidirectional": true,
-            "betweenness": 11.172604796304483,
             "source": "Sat6_2",
             "target": "Facility6"
         },
         {
             "weight": 4021.450947726735,
-            "betweenness": 14.842221391789478,
             "source": "Sat6_3",
             "target": "Sat6_4"
         },
         {
             "weight": 3044.2407063619785,
-            "betweenness": 22.09068878434307,
             "source": "Sat6_3",
             "target": "Sat7_3"
         },
         {
             "weight": 1437,
             "bidirectional": true,
-            "betweenness": 13.634453781512605,
             "source": "Sat6_3",
             "target": "Facility16"
         },
         {
             "weight": 4021.450947723478,
-            "betweenness": 13.998754283300203,
             "source": "Sat6_4",
             "target": "Sat6_5"
         },
         {
             "weight": 2150.2395869461257,
-            "betweenness": 7.214840069659218,
             "source": "Sat6_4",
             "target": "Sat7_4"
         },
         {
             "weight": 4021.450947722281,
-            "betweenness": 15.831712689008151,
             "source": "Sat6_5",
             "target": "Sat6_6"
         },
         {
             "weight": 830.8965673989237,
-            "betweenness": 3.3540109173690253,
             "source": "Sat6_5",
             "target": "Sat7_5"
         },
         {
             "weight": 4021.4509477245606,
-            "betweenness": 22.141875536912654,
             "source": "Sat6_6",
             "target": "Sat6_7"
         },
         {
             "weight": 1437.52541913169,
-            "betweenness": 2.3703237846795693,
             "source": "Sat6_6",
             "target": "Sat7_6"
         },
         {
             "weight": 4021.450947727633,
-            "betweenness": 21.56771196512873,
             "source": "Sat6_7",
             "target": "Sat6_8"
         },
         {
             "weight": 2672.624743748792,
-            "betweenness": 3.7963082330110773,
             "source": "Sat6_7",
             "target": "Sat7_7"
         },
         {
             "weight": 1919,
             "bidirectional": true,
-            "betweenness": 12.395549988645591,
             "source": "Sat6_7",
             "target": "Facility10"
         },
         {
             "weight": 4021.450947727911,
-            "betweenness": 41.90634880948332,
             "source": "Sat6_8",
             "target": "Sat6_9"
         },
         {
             "weight": 3159.825348725399,
-            "betweenness": 1.7094783716575264,
             "source": "Sat6_8",
             "target": "Sat7_8"
         },
         {
             "weight": 3200,
             "bidirectional": true,
-            "betweenness": 13.793537710553334,
             "source": "Sat6_8",
             "target": "Facility10"
         },
         {
             "weight": 3008,
             "bidirectional": true,
-            "betweenness": 25.318232295629276,
             "source": "Sat6_8",
             "target": "Facility7"
         },
         {
             "weight": 4021.4509477250863,
-            "betweenness": 11.505603934427914,
             "source": "Sat6_9",
             "target": "Sat6_10"
         },
         {
             "weight": 2696.091607702448,
-            "betweenness": 4.598182316006605,
             "source": "Sat6_9",
             "target": "Sat7_9"
         },
         {
             "weight": 3200,
             "bidirectional": true,
-            "betweenness": 6.272333513128226,
             "source": "Sat6_9",
             "target": "Facility11"
         },
         {
             "weight": 3208,
             "bidirectional": true,
-            "betweenness": 10.80732199767668,
             "source": "Sat6_9",
             "target": "Facility14"
         },
         {
             "weight": 3202,
             "bidirectional": true,
-            "betweenness": 8.638404941699655,
             "source": "Sat6_9",
             "target": "Facility15"
         },
         {
             "weight": 3200,
             "bidirectional": true,
-            "betweenness": 6.272333513128226,
             "source": "Sat6_9",
             "target": "Facility19"
         },
         {
             "weight": 3200,
             "bidirectional": true,
-            "betweenness": 6.272333513128226,
             "source": "Sat6_9",
             "target": "Facility5"
         },
         {
             "weight": 4021.450947722428,
-            "betweenness": 24.186754008335765,
             "source": "Sat6_10",
             "target": "Sat6_11"
         },
         {
             "weight": 1473.483229673398,
-            "betweenness": 10.394746024282163,
             "source": "Sat6_10",
             "target": "Sat7_10"
         },
         {
             "weight": 1463,
             "bidirectional": true,
-            "betweenness": 2.8568416927569897,
             "source": "Sat6_10",
             "target": "Facility11"
         },
         {
             "weight": 1749,
             "bidirectional": true,
-            "betweenness": 2.8436063986393427,
             "source": "Sat6_10",
             "target": "Facility15"
         },
         {
             "weight": 1463,
             "bidirectional": true,
-            "betweenness": 2.8568416927569897,
             "source": "Sat6_10",
             "target": "Facility19"
         },
         {
             "weight": 1461,
             "bidirectional": true,
-            "betweenness": 2.8568416927569897,
             "source": "Sat6_10",
             "target": "Facility5"
         },
         {
             "weight": 807.0739625918604,
-            "betweenness": 3.0744392934162117,
             "source": "Sat6_11",
             "target": "Sat7_11"
         },
         {
             "weight": 4021.450943519991,
-            "betweenness": 26.701110563792806,
             "source": "Sat7_1",
             "target": "Sat7_2"
         },
         {
             "weight": 4021.4509435167465,
-            "betweenness": 52.438199874494,
             "source": "Sat7_1",
             "target": "Sat7_11"
         },
         {
             "weight": 1608,
             "bidirectional": true,
-            "betweenness": 8.974351234010005,
             "source": "Sat7_1",
             "target": "Facility6"
         },
         {
             "weight": 3237,
             "bidirectional": true,
-            "betweenness": 22.958961340946637,
             "source": "Sat7_1",
             "target": "Facility8"
         },
         {
             "weight": 4021.4509435216105,
-            "betweenness": 47.88510455287555,
             "source": "Sat7_2",
             "target": "Sat7_3"
         },
         {
             "weight": 1942,
             "bidirectional": true,
-            "betweenness": 14.428196680527778,
             "source": "Sat7_2",
             "target": "Facility6"
         },
         {
             "weight": 1631,
             "bidirectional": true,
-            "betweenness": 25.50391045045826,
             "source": "Sat7_2",
             "target": "Facility8"
         },
         {
             "weight": 4021.4509435197047,
-            "betweenness": 11.755329553722687,
             "source": "Sat7_3",
             "target": "Sat7_4"
         },
         {
             "weight": 3201,
             "bidirectional": true,
-            "betweenness": 47.16796726610546,
             "source": "Sat7_3",
             "target": "Facility2"
         },
         {
             "weight": 4021.4509435164905,
-            "betweenness": 20.344713064178663,
             "source": "Sat7_4",
             "target": "Sat7_5"
         },
         {
             "weight": 2198,
             "bidirectional": true,
-            "betweenness": 16.53646099628049,
             "source": "Sat7_4",
             "target": "Facility2"
         },
         {
             "weight": 4021.450943515754,
-            "betweenness": 23.557264092683237,
             "source": "Sat7_5",
             "target": "Sat7_6"
         },
         {
             "weight": 4021.4509435183295,
-            "betweenness": 30.226722704319904,
             "source": "Sat7_6",
             "target": "Sat7_7"
         },
         {
             "weight": 4021.450943521217,
-            "betweenness": 20.075298372910623,
             "source": "Sat7_7",
             "target": "Sat7_8"
         },
         {
             "weight": 1474,
             "bidirectional": true,
-            "betweenness": 6.2647899305555566,
             "source": "Sat7_7",
             "target": "Facility10"
         },
         {
             "weight": 1332,
             "bidirectional": true,
-            "betweenness": 13.806684603679042,
             "source": "Sat7_7",
             "target": "Facility7"
         },
         {
             "weight": 4021.450943521047,
-            "betweenness": 68.1536927647427,
             "source": "Sat7_8",
             "target": "Sat7_9"
         },
         {
             "weight": 3198,
             "bidirectional": true,
-            "betweenness": 15.972999586149536,
             "source": "Sat7_8",
             "target": "Facility10"
         },
         {
             "weight": 1317,
             "bidirectional": true,
-            "betweenness": 26.944028041167876,
             "source": "Sat7_8",
             "target": "Facility7"
         },
         {
             "weight": 4021.450943518009,
-            "betweenness": 60.684648411262955,
             "source": "Sat7_9",
             "target": "Sat7_10"
         },
         {
             "weight": 3213,
             "bidirectional": true,
-            "betweenness": 4.794236473493826,
             "source": "Sat7_9",
             "target": "Facility11"
         },
         {
             "weight": 3213,
             "bidirectional": true,
-            "betweenness": 4.794236473493826,
             "source": "Sat7_9",
             "target": "Facility19"
         },
         {
             "weight": 3213,
             "bidirectional": true,
-            "betweenness": 4.794236473493826,
             "source": "Sat7_9",
             "target": "Facility5"
         },
         {
             "weight": 4021.450943515655,
-            "betweenness": 58.003057966698705,
             "source": "Sat7_10",
             "target": "Sat7_11"
         },
         {
             "weight": 3237,
             "bidirectional": true,
-            "betweenness": 31.32983959323618,
             "source": "Sat7_10",
             "target": "Facility11"
         },
         {
             "weight": 3239,
             "bidirectional": true,
-            "betweenness": 57.2947855857664,
             "source": "Sat7_10",
             "target": "Facility12"
         },
         {
             "weight": 3237,
             "bidirectional": true,
-            "betweenness": 32.21376816466475,
             "source": "Sat7_10",
             "target": "Facility15"
         },
         {
             "weight": 3244,
             "bidirectional": true,
-            "betweenness": 54.24085059242839,
             "source": "Sat7_10",
             "target": "Facility17"
         },
         {
             "weight": 3237,
             "bidirectional": true,
-            "betweenness": 31.32983959323618,
             "source": "Sat7_10",
             "target": "Facility19"
         },
         {
             "weight": 3233,
             "bidirectional": true,
-            "betweenness": 67.1467289914625,
             "source": "Sat7_10",
             "target": "Facility3"
         },
         {
             "weight": 3237,
             "bidirectional": true,
-            "betweenness": 31.32983959323618,
             "source": "Sat7_10",
             "target": "Facility5"
         },
         {
             "weight": 2194,
             "bidirectional": true,
-            "betweenness": 3.676162701305634,
             "source": "Facility12",
             "target": "Sat8_10"
         },
         {
             "weight": 3216,
             "bidirectional": true,
-            "betweenness": 5.066414701130263,
             "source": "Facility12",
             "target": "Sat8_9"
         },
         {
             "weight": 2063,
             "bidirectional": true,
-            "betweenness": 3.7677707460386785,
             "source": "Facility17",
             "target": "Sat8_10"
         },
         {
             "weight": 2646,
             "bidirectional": true,
-            "betweenness": 1.8486768651284569,
             "source": "Facility20",
             "target": "Sat8_10"
         },
         {
             "weight": 3220,
             "bidirectional": true,
-            "betweenness": 2.2891459077945564,
             "source": "Facility20",
             "target": "Sat8_9"
         },
         {
             "weight": 4032,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility3",
             "target": "Sat54"
         },
         {
             "weight": 4989,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility3",
             "target": "Sat55"
         },
         {
             "weight": 1910,
             "bidirectional": true,
-            "betweenness": 4.387069134054172,
             "source": "Facility3",
             "target": "Sat8_10"
         },
         {
             "weight": 3213,
             "bidirectional": true,
-            "betweenness": 4.9372886188791805,
             "source": "Facility3",
             "target": "Sat8_9"
         },
         {
             "weight": 5176,
             "bidirectional": true,
-            "betweenness": 10.000000000000002,
             "source": "Facility4",
             "target": "Sat610"
         },
         {
             "weight": 4762,
             "bidirectional": true,
-            "betweenness": 10.000000000000002,
             "source": "Facility4",
             "target": "Sat611"
         },
         {
             "weight": 2164,
             "bidirectional": true,
-            "betweenness": 3.9165260866142715,
             "source": "Facility4",
             "target": "Sat8_10"
         },
         {
             "weight": 3213,
             "bidirectional": true,
-            "betweenness": 2.9090018566593305,
             "source": "Facility4",
             "target": "Sat8_9"
         },
         {
             "weight": 1745,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility8",
             "target": "Sat8_1"
         },
         {
             "weight": 2216,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility8",
             "target": "Sat8_2"
         },
         {
             "weight": 4370,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility2",
             "target": "Sat42"
         },
         {
             "weight": 4402,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility2",
             "target": "Sat43"
         },
         {
             "weight": 3197,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility2",
             "target": "Sat8_3"
         },
         {
             "weight": 1737,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility2",
             "target": "Sat8_4"
         },
         {
             "weight": 3244,
             "bidirectional": true,
-            "betweenness": 4.247969163338447,
             "source": "Facility9",
             "target": "Sat8_10"
         },
         {
             "weight": 3451,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility1",
             "target": "Sat410"
         },
         {
             "weight": 5177,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility1",
             "target": "Sat411"
         },
         {
             "weight": 5147,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility1",
             "target": "Sat49"
         },
         {
             "weight": 3222,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility7",
             "target": "Sat8_7"
         },
         {
             "weight": 3202,
             "bidirectional": true,
-            "betweenness": 10.0,
             "source": "Facility7",
             "target": "Sat8_8"
         }

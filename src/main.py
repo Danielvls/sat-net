@@ -11,7 +11,7 @@ from stk.stk_manager import STKManager
 from network.topo_builder import TopoBuilder
 from network.flow_generator import FlowGenerator
 from network.flow_controller import FlowController
-from plot.satellite_visualizer import SatelliteVisualizer
+# from plot.satellite_visualizer import SatelliteVisualizer
 from src.utils import Counter
 from utils.utils import timeit_decorator
 import pandas as pd
@@ -32,10 +32,10 @@ def main():
     manager.attach_to_application()
     # manager.load_scenario('D:/STKScenario/star_blank/star.sc',
     #                       "1 Aug 2020 16:00:00", "2 Aug 2020 16:00:00")
-    manager.create_scenario("IridiumConstellation", "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-    manager.create_constellation()
+    manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
+    manager.create_constellation("DeltaConstellation")
     manager.create_facilities()
-    # manager.create_access()
+    manager.create_access()
     # manager.get_sat_lla()
     # manager.save_data()
 
