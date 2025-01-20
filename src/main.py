@@ -30,8 +30,8 @@ def main():
     manager = STKManager()
     manager.launch_stk()
     manager.attach_to_application()
-    # manager.load_scenario('D:/STKScenario/star_blank/star.sc',
-    #                       "1 Aug 2020 16:00:00", "2 Aug 2020 16:00:00")
+    # manager.load_scenario('D:/STKScenario/200/200sat.sc',
+    #                       "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
     manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
     manager.create_constellation("DeltaConstellation")
     manager.create_facilities()
@@ -206,8 +206,8 @@ def main():
     # threshold = 0
     #
     # # build topo from csv files
-    topo_builder = TopoBuilder()
-    topo_builder.gen_topo()
+    # topo_builder = TopoBuilder()
+    # topo_builder.gen_topo()
     # graph_list = topo_builder.graph_list
     #
     # # Initialize flow generator with the number of flows

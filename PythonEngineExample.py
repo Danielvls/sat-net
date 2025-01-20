@@ -18,7 +18,19 @@ from agi.stk12.stkutil import AgEOrbitStateType
 startTime = time.time()
 
 """
+This example demonstrates key STK functionality using Python, including:
+1. Basic scenario setup
+2. Satellite and facility creation
+3. Access computation
+4. Constellation creation
+5. Chain analysis
+6. Coverage analysis
+"""
+
+"""
 SET TO TRUE TO USE ENGINE, FALSE TO USE GUI
+The STK Engine mode runs without graphics and is required for Linux
+The GUI mode provides visual feedback and is available on Windows
 """
 if platform.system() == "Linux":
     # Only STK Engine is available on Linux
@@ -29,6 +41,11 @@ else:
 ############################################################################
 # Scenario Setup
 ############################################################################
+"""
+This section initializes STK and creates a new scenario with:
+- UTC time format
+- 24-hour analysis period from Aug 1-2, 2020
+"""
 
 if useStkEngine:
     from agi.stk12.stkengine import STKEngine
@@ -75,6 +92,12 @@ print(
 ############################################################################
 # Simple Access
 ############################################################################
+"""
+This section demonstrates basic orbit setup and access analysis:
+1. Creates a satellite in a circular orbit at 8000km altitude
+2. Creates a ground facility at Cape Canaveral (28.62°N, 80.62°W)
+3. Computes access times between the satellite and facility
+"""
 
 # Create satellite
 satellite = scenario.Children.New(AgESTKObjectType.eSatellite, "MySatellite")
@@ -123,6 +146,7 @@ print("\nComputing access...")
 access = satellite.GetAccessToObject(facility)
 access.ComputeAccess()
 
+
 # Get access interval data
 stkRoot.UnitPreferences.SetCurrentUnit("Time", "Min")
 accessDataProvider = access.DataProviders.GetDataPrvIntervalFromPath("Access Data")
@@ -164,6 +188,14 @@ print(
 ############################################################################
 # Constellations and Chains
 ############################################################################
+"""
+This section creates and analyzes a Walker-Delta constellation:
+- 4 orbital planes
+- 8 satellites per plane
+- 60° inclination
+- 8200km circular orbits
+- Analyzes access chains between constellation and ground facility
+"""
 
 # Remove initial satellite
 satellite.Unload()
@@ -210,9 +242,7 @@ for orbitPlaneNum, RAAN in enumerate(
         keplarian.Orientation.AscNode.Value = RAAN  # degrees
 
         keplarian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
-        keplarian.Location.Value = trueAnomaly + (360 // numSatsPerPlane / 2) * (
-            orbitPlaneNum % 2
-        )  # Stagger true anomalies (degrees) for every other orbital plane
+        keplarian.Location.Value = 0 + (360 // numSatsPerPlane / 2)
 
         # Propagate
         satellite.Propagator.InitialState.Representation.Assign(keplarian)
@@ -274,6 +304,13 @@ print(
 ############################################################################
 # Coverage
 ############################################################################
+"""
+This section performs coverage analysis over the United States:
+1. Creates a coverage definition using US shapefile boundaries
+2. Sets 75km grid resolution
+3. Uses constellation as coverage assets
+4. Computes access duration statistics using Figure of Merit
+"""
 
 # Create coverage definition
 coverageDefinition = scenario.Children.New(

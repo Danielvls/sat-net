@@ -133,6 +133,14 @@ class STKManager:
                 satellite.Propagator.InitialState.Representation.Assign(keplerian)
                 satellite.Propagator.Propagate()
 
+                # add constrains for Satellite object
+                accessConstraints = satellite.AccessConstraints
+
+                # IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+                # Angle constraint
+                cnstrAngle = accessConstraints.AddConstraint(29)
+                cnstrAngle.Angle = 5.0
+
                 # Add to list
                 self.satellites.append(satellite)
                 # Add to constellation object
