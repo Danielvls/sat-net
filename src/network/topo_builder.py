@@ -4,46 +4,47 @@
 # @Email   : daniel_fys@163.com
 # @File    : topo_builder.py
 import json
-import os
 import networkx as nx
-from src.utils import save_graph_after_modification, slot_num
+from src.utils import save_graph_after_modification
 from bisect import bisect_left
 from pathlib import Path
-from src.network.edge_weight_calculator import EdgeWeightCalculator
 import pandas as pd
+from src.utils.logger import Logger
+
+logger = Logger().get_logger()
 
 
 class TopoBuilder:
     def __init__(self):
-        self.current_file = Path(__file__).resolve()
-        self.project_root = self.current_file.parents[2]
+        self.project_root = Path(__file__).resolve().parents[2]
         self.graph_path = self.project_root / 'graphs'
         self.data_directory = self.project_root / 'data'
         self.sat_distance_file = self.project_root / 'data' / 'aer_data' / 'inter_satellite_distances.csv'
-        self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
-        self.fac_sat_chains_directory = self.project_root / 'data' / 'fac_sat_chains'
+        
 
-        self.slot_num = slot_num
         self.graph_list = []
 
-        time_df = pd.read_csv(self.time_series_directory)
-        self.time_series = pd.to_datetime(time_df['Time Series']).tolist()
+        with open(self.project_root / 'data' / 'time_series.json', 'r') as f:
+            time_data = json.load(f)
+        self.time_series = [pd.to_datetime(t) for t in time_data]
 
     def gen_topo(self):
-        # create graph for each time step
+        '''create graph for each time step'''
         for index in range(len(self.time_series)):
             graph = nx.Graph()
             self._add_sat_to_topo(graph, index)
             self._add_fac_to_topo(graph, index)
             # self._add_bandwidth_to_edges(graph, index)
 
-        # form graph_list
-        self.load_graphs()
 
-        for index in range(len(self.graph_list)):
-            graph = self.graph_list[index]
-            self._add_weight_to_edges(graph, index)
-            self._add_sat_lla_to_topo(graph, index)
+
+        # form graph_list
+        # self.load_graphs()
+
+        # for index in range(len(self.graph_list)):
+        #     graph = self.graph_list[index]
+        #     self._add_weight_to_edges(graph, index)
+        #     self._add_sat_lla_to_topo(graph, index)
 
     @save_graph_after_modification
     def _add_bandwidth_to_edges(self, graph, index):
@@ -62,24 +63,74 @@ class TopoBuilder:
                 graph[u][v]['share_degree'] = [0] * self.slot_num
 
     # add satellite links to topo
-    @save_graph_after_modification
     def _add_sat_to_topo(self, graph, index):
-        # generate sat links
-        sat_df = pd.read_csv(self.sat_distance_file)
-        # sat_df['Distance'] = sat_df['Distance'].round(0)
+        '''add satellite links to topo'''
+        logger.info(f"Adding satellite links to topo at index {index} ...")
+        try:
+            sat_df = pd.read_csv(self.sat_distance_file)
+            sat_df['Distance'] = sat_df['Distance'].round(0)
+        except Exception as e:
+            logger.error(f"Error reading satellite distance file: {e}")
+            return
 
-        # calculate time steps
-        time_steps = len(sat_df) // len(sat_df['SatellitePair'].unique())
+        try:
+            # Iterate over each time step
+            for index in range(len(self.time_series)):
+                counter = 0
+                graph = nx.Graph()
+                time = self.time_series[index]
+                links = sat_df[pd.to_datetime(sat_df['Time']) == time]
+                
+                for _, row in links.iterrows():
+                    source_node = row['SourceSatellite']
+                    target_node = row['TargetSatellite'] 
+                    distance = row['Distance']
+                    graph.add_edge(source_node, target_node, weight=distance)
+                    counter += 1
 
-        # Iterate over each time step
-        for i in range(time_steps):
-            for j in range(i, len(sat_df), time_steps):
-                row = sat_df.iloc[j]
-                node1, node2 = row['SatellitePair'].split(' to ')
-                distance = row['Distance']
+                # Save graph to file
+                graph_path = self.graph_path / f"graph{index}.json"
+                data = nx.node_link_data(graph)
+                with open(graph_path, 'w') as f:
+                    json.dump(data, f, indent=4)
+                logger.debug(f"Graph {index} has {counter} edges")
+                
+        except Exception as e:
+            logger.error(f"Error adding satellite links to topo: {e}")
 
-                # 添加边到图中
-                graph.add_edge(node1, node2, weight=distance)
+
+    # add facility to topo
+    @save_graph_after_modification
+    def _add_fac_to_topo(self, graph, index):
+        logger.info(f"Adding facility to topo at index {index} ...")
+        # Iterate over each file in the directory
+        fac_sat_chains_directory = self.project_root / 'data' / 'fac_sat_chains'
+        for file_path in fac_sat_chains_directory.glob('*.csv'):
+            # Parse node names from the filename
+            node_a, node_b = file_path.stem.split(' To ')
+
+            # Read the file content
+            df = pd.read_csv(file_path)
+
+            # Get the current time from time_series
+            current_time = pd.to_datetime(self.time_series[index])
+            
+            # Find the row in df that matches the current time
+            matching_row = df[pd.to_datetime(df['Time']) == current_time]
+            
+            if not matching_row.empty:
+                # Get the distance for the matching time
+                distance = matching_row['Distance'].iloc[0]
+                distance = distance.round(0)
+                
+                # Add nodes and edge with the distance
+                if not graph.has_node(node_a):
+                    graph.add_node(node_a)
+                if not graph.has_node(node_b):
+                    graph.add_node(node_b)
+                    
+                graph.add_edge(node_a, node_b, weight=distance)
+                logger.debug(f"Edge ({node_a}, {node_b}) added to graph")
 
     @save_graph_after_modification
     def _add_sat_lla_to_topo(self, graph, index):
@@ -132,35 +183,7 @@ class TopoBuilder:
                         # Add the node with latitude and longitude attributes
                         graph.add_node(sat_name, latitude=latitude, longitude=longitude)
 
-    # add facility to topo
-    @save_graph_after_modification
-    def _add_fac_to_topo(self, graph, index):
-        # Iterate over each file in the directory
-        for filename in os.listdir(self.fac_sat_chains_directory):
-            if filename.endswith(".csv"):  # Ensure we are processing CSV files
-                filepath = os.path.join(self.fac_sat_chains_directory, filename)
-                # Parse node names from the filename
-                node_a, node_b = filename[:-4].split(' To ')
 
-                # Read the file content
-                df = pd.read_csv(filepath)
-
-                # Iterate over each row in the DataFrame to match times with graphs
-                for _, row in df.iterrows():
-                    chain_time = pd.to_datetime(row['Time'])
-                    distance = row['Distance']
-
-                    # Use find_time_index to determine the correct graph index
-                    idx = self.find_time_index(chain_time)
-
-                    # Ensure that the found index matches the current index being processed
-                    if idx is not None and idx == index:
-                        if not graph.has_node(node_a):
-                            graph.add_node(node_a)
-                        if not graph.has_node(node_b):
-                            graph.add_node(node_b)
-                        graph.add_edge(node_a, node_b, weight=distance, bidirectional=True)
-                        break
 
     @save_graph_after_modification
     def _add_weight_to_edges(self, graph, idx):

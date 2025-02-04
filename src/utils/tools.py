@@ -10,7 +10,9 @@ import json
 import os
 from pathlib import Path
 from datetime import timedelta, datetime
+from src.utils.logger import Logger
 
+logger = Logger().get_logger()
 
 # find time indices in the time series that are within the duration time of the flow
 def find_time_indices(time_series, start_time, duration):
@@ -22,16 +24,16 @@ def find_time_indices(time_series, start_time, duration):
     return indices
 
 
-# decorator to measure the running time of a function
-def timeit_decorator(func):
-    def wrapper(*args, **kwargs):
-        start_time = time.time()
-        # print(f"Running {func.__name__}...", end='')
-        result = func(*args, **kwargs)
-        end_time = time.time()
-        print(f"Completed {func.__name__} in : {end_time - start_time:.3f} seconds...", end="")
-        return result
-    return wrapper
+# # decorator to measure the running time of a function
+# def timeit_decorator(func):
+#     def wrapper(*args, **kwargs):
+#         start_time = time.time()
+#         logger.info(f"Running {func.__name__}...", end='')
+#         result = func(*args, **kwargs)
+#         end_time = time.time()
+#         logger.info(f"Completed {func.__name__} in : {end_time - start_time:.3f} seconds...", end="")
+#         return result
+#     return wrapper
 
 
 # decorator to save the graph after modification
@@ -45,11 +47,12 @@ def save_graph_after_modification(func):
             # save graph as json
             data = nx.node_link_data(graph)  # or nx.adjacency_data(graph)
             with open(graph_path, 'w') as f:
+                logger.debug(f"trying to dump {data} to {graph_path}")
                 json.dump(data, f, indent=4)
             # nx.write_graphml(graph, graph_path)
-            print(f"Graph {idx} successfully saved after {func.__name__} modification. File path: {graph_path}")
+            logger.info(f"Graph {idx} successfully saved after {func.__name__} modification. File path: {graph_path}")
         else:
-            print(f"Warning: No graph was provided for saving at index {idx}.")
+            logger.warning(f"Warning: No graph was provided for saving at index {idx}.")
         return result
     return wrapper
 

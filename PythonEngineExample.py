@@ -18,19 +18,7 @@ from agi.stk12.stkutil import AgEOrbitStateType
 startTime = time.time()
 
 """
-This example demonstrates key STK functionality using Python, including:
-1. Basic scenario setup
-2. Satellite and facility creation
-3. Access computation
-4. Constellation creation
-5. Chain analysis
-6. Coverage analysis
-"""
-
-"""
 SET TO TRUE TO USE ENGINE, FALSE TO USE GUI
-The STK Engine mode runs without graphics and is required for Linux
-The GUI mode provides visual feedback and is available on Windows
 """
 if platform.system() == "Linux":
     # Only STK Engine is available on Linux
@@ -41,11 +29,6 @@ else:
 ############################################################################
 # Scenario Setup
 ############################################################################
-"""
-This section initializes STK and creates a new scenario with:
-- UTC time format
-- 24-hour analysis period from Aug 1-2, 2020
-"""
 
 if useStkEngine:
     from agi.stk12.stkengine import STKEngine
@@ -92,12 +75,6 @@ print(
 ############################################################################
 # Simple Access
 ############################################################################
-"""
-This section demonstrates basic orbit setup and access analysis:
-1. Creates a satellite in a circular orbit at 8000km altitude
-2. Creates a ground facility at Cape Canaveral (28.62°N, 80.62°W)
-3. Computes access times between the satellite and facility
-"""
 
 # Create satellite
 satellite = scenario.Children.New(AgESTKObjectType.eSatellite, "MySatellite")
@@ -146,7 +123,6 @@ print("\nComputing access...")
 access = satellite.GetAccessToObject(facility)
 access.ComputeAccess()
 
-
 # Get access interval data
 stkRoot.UnitPreferences.SetCurrentUnit("Time", "Min")
 accessDataProvider = access.DataProviders.GetDataPrvIntervalFromPath("Access Data")
@@ -188,14 +164,6 @@ print(
 ############################################################################
 # Constellations and Chains
 ############################################################################
-"""
-This section creates and analyzes a Walker-Delta constellation:
-- 4 orbital planes
-- 8 satellites per plane
-- 60° inclination
-- 8200km circular orbits
-- Analyzes access chains between constellation and ground facility
-"""
 
 # Remove initial satellite
 satellite.Unload()
@@ -242,7 +210,9 @@ for orbitPlaneNum, RAAN in enumerate(
         keplarian.Orientation.AscNode.Value = RAAN  # degrees
 
         keplarian.LocationType = AgEClassicalLocation.eLocationTrueAnomaly
-        keplarian.Location.Value = 0 + (360 // numSatsPerPlane / 2)
+        keplarian.Location.Value = trueAnomaly + (360 // numSatsPerPlane / 2) * (
+            orbitPlaneNum % 2
+        )  # Stagger true anomalies (degrees) for every other orbital plane
 
         # Propagate
         satellite.Propagator.InitialState.Representation.Assign(keplarian)
@@ -279,6 +249,8 @@ for intervalNum in range(chainResults.Intervals.Count - 1):
     objectName = interval.DataSets.GetDataSetByName("Strand Name").GetValues()[0]
     durations = interval.DataSets.GetDataSetByName("Duration").GetValues()
 
+    print(f"objectName: {objectName}, durations: {durations}")
+
     # Add data to list
     objectList.append(objectName)
     durationList.append(sum(durations))
@@ -301,83 +273,79 @@ print(
     )
 )
 
-############################################################################
-# Coverage
-############################################################################
-"""
-This section performs coverage analysis over the United States:
-1. Creates a coverage definition using US shapefile boundaries
-2. Sets 75km grid resolution
-3. Uses constellation as coverage assets
-4. Computes access duration statistics using Figure of Merit
-"""
+# ############################################################################
+# # Coverage
+# ############################################################################
 
-# Create coverage definition
-coverageDefinition = scenario.Children.New(
-    AgESTKObjectType.eCoverageDefinition, "CoverageDefinition"
-)
+# # Create coverage definition
+# coverageDefinition = scenario.Children.New(
+#     AgESTKObjectType.eCoverageDefinition, "CoverageDefinition"
+# )
 
-# Set grid bounds type
-grid = coverageDefinition.Grid
-grid.BoundsType = AgECvBounds.eBoundsCustomRegions
+# # Set grid bounds type
+# grid = coverageDefinition.Grid
+# grid.BoundsType = AgECvBounds.eBoundsCustomRegions
 
-# Add US shapefile to bounds
-bounds = coverageDefinition.Grid.Bounds
+# # Add US shapefile to bounds
+# bounds = coverageDefinition.Grid.Bounds
 
-if platform.system() == "Linux":
-    install_path = os.getenv("STK_INSTALL_DIR")
-else:
-    import winreg
+# if platform.system() == "Linux":
+#     install_path = os.getenv("STK_INSTALL_DIR")
+# else:
+#     import winreg
 
-    registry = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
-    key = winreg.OpenKey(registry, r"Software\AGI\STK\12.0")
-    install_path = winreg.QueryValueEx(key, "InstallHome")
+#     registry = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+#     key = winreg.OpenKey(registry, r"Software\AGI\STK\12.0")
+#     install_path = winreg.QueryValueEx(key, "InstallHome")
 
-bounds.RegionFiles.Add(
-    os.path.join(
-        install_path[0],
-        r"Data/Shapefiles/Countries/United_States_of_America\United_States_of_America.shp",
-    )
-)
+# bounds.RegionFiles.Add(
+#     os.path.join(
+#         install_path[0],
+#         r"Data/Shapefiles/Countries/United_States_of_America\United_States_of_America.shp",
+#     )
+# )
 
-# Set resolution
-grid.ResolutionType = AgECvResolution.eResolutionDistance
-resolution = grid.Resolution
-resolution.Distance = 75
+# # Set resolution
+# grid.ResolutionType = AgECvResolution.eResolutionDistance
+# resolution = grid.Resolution
+# resolution.Distance = 75
 
-# Add constellation as asset
-coverageDefinition.AssetList.Add("Constellation/SatConstellation")
-coverageDefinition.ComputeAccesses()
+# # Add constellation as asset
+# coverageDefinition.AssetList.Add("Constellation/SatConstellation")
+# coverageDefinition.ComputeAccesses()
 
-# Create figure of merit
-figureOfMerit = coverageDefinition.Children.New(
-    AgESTKObjectType.eFigureOfMerit, "FigureOfMerit"
-)
+# # Create figure of merit
+# figureOfMerit = coverageDefinition.Children.New(
+#     AgESTKObjectType.eFigureOfMerit, "FigureOfMerit"
+# )
 
-# Set the definition and compute type
-figureOfMerit.SetDefinitionType(AgEFmDefinitionType.eFmAccessDuration)
-definition = figureOfMerit.Definition
-definition.SetComputeType(AgEFmCompute.eAverage)
+# # Set the definition and compute type
+# figureOfMerit.SetDefinitionType(AgEFmDefinitionType.eFmAccessDuration)
+# definition = figureOfMerit.Definition
+# definition.SetComputeType(AgEFmCompute.eAverage)
 
-fomDataProvider = figureOfMerit.DataProviders.GetDataPrvFixedFromPath("Overall Value")
-fomResults = fomDataProvider.Exec()
+# fomDataProvider = figureOfMerit.DataProviders.GetDataPrvFixedFromPath("Overall Value")
+# fomResults = fomDataProvider.Exec()
 
-minAccessDuration = fomResults.DataSets.GetDataSetByName("Minimum").GetValues()[0]
-maxAccessDuration = fomResults.DataSets.GetDataSetByName("Maximum").GetValues()[0]
-avgAccessDuration = fomResults.DataSets.GetDataSetByName("Average").GetValues()[0]
+# minAccessDuration = fomResults.DataSets.GetDataSetByName("Minimum").GetValues()[0]
+# maxAccessDuration = fomResults.DataSets.GetDataSetByName("Maximum").GetValues()[0]
+# avgAccessDuration = fomResults.DataSets.GetDataSetByName("Average").GetValues()[0]
 
-# Computation time
-totalTime = time.time() - startTime
-sectionTime = time.time() - splitTime
+# # Computation time
+# totalTime = time.time() - startTime
+# sectionTime = time.time() - splitTime
 
-# Print data to console
-print("\nThe minimum coverage duration is {a:4.2f} min.".format(a=minAccessDuration))
-print("The maximum coverage duration is {a:4.2f} min.".format(a=maxAccessDuration))
-print("The average coverage duration is {a:4.2f} min.".format(a=avgAccessDuration))
-print(
-    "--- Coverage computation: {a:0.3f} sec\t\tTotal time: {b:0.3f} sec ---".format(
-        a=sectionTime, b=totalTime
-    )
-)
+# # Print data to console
+# print("\nThe minimum coverage duration is {a:4.2f} min.".format(a=minAccessDuration))
+# print("The maximum coverage duration is {a:4.2f} min.".format(a=maxAccessDuration))
+# print("The average coverage duration is {a:4.2f} min.".format(a=avgAccessDuration))
+# print(
+#     "--- Coverage computation: {a:0.3f} sec\t\tTotal time: {b:0.3f} sec ---".format(
+#         a=sectionTime, b=totalTime
+#     )
+# )
+
+# stkRoot.CloseScenario()
+# stk.ShutDown()
 
 print("\nClosed STK successfully.")

@@ -4,13 +4,15 @@
 # @Email   : daniel_fys@163.com
 # @File    : stk_manager.py
 
-import os
 import platform
 import pandas as pd
 from datetime import datetime
-from src.utils import *
+from src.utils.sim_config import *
+from src.utils.tools import truncate_times
 import re
-
+import json
+import numpy as np
+from pathlib import Path
 
 from agi.stk12.stkobjects import (
     AgEClassicalLocation,
@@ -21,10 +23,14 @@ from agi.stk12.stkobjects import (
 )
 from agi.stk12.stkdesktop import STKDesktop
 from agi.stk12.stkutil import AgEOrbitStateType
-import numpy as np
+from src.utils import Logger
+
+logger = Logger().get_logger()
 
 class STKManager:
     def __init__(self):
+        self.project_root = Path(__file__).resolve().parents[2]
+        self.data_directory = self.project_root / 'data'
         self.stk = None
         self.stk_root = None
         self.scenario = None
@@ -38,7 +44,6 @@ class STKManager:
         self.sat_fac_distances = []
         self.sat_name = ""
         self.fac_name = ""
-        self.data_directory = '../data'
         if platform.system() == "Linux":
             # Only STK Engine is available on Linux
             self.use_stk_engine = True
@@ -46,13 +51,12 @@ class STKManager:
             # Change to true to run engine on Windows
             self.use_stk_engine = False
 
-    @timeit_decorator
     def launch_stk(self):
         if self.use_stk_engine:
             from agi.stk12.stkengine import STKEngine
 
             # Launch STK Engine with NoGraphics mode
-            print("Launching STK Engine...")
+            logger.info("Launching STK Engine...")
             self.stk = STKEngine.StartApplication(noGraphics=True)
 
             # Create root object
@@ -62,19 +66,18 @@ class STKManager:
             from agi.stk12.stkdesktop import STKDesktop
 
             # Launch GUI
-            print("Launching STK...")
+            logger.info("Launching STK...")
             self.stk = STKDesktop.StartApplication(visible=True, userControl=True)
 
             # Get root object
             self.stk_root = self.stk.Root
 
-    @timeit_decorator
     def attach_to_application(self):
+        logger.info("Attaching to STK application...")
         self.stk = STKDesktop.AttachToApplication()
         self.stk_root = self.stk.Root
         self.stk_root.UnitPreferences.SetCurrentUnit("DateFormat", "UTCG")
 
-    @timeit_decorator
     def load_scenario(self, scenario_path, start_time, end_time):
         self.stk_root.LoadScenario(scenario_path)
         self.scenario = self.stk_root.CurrentScenario
@@ -83,7 +86,6 @@ class STKManager:
             # Graphics calls are not available when running STK Engine in NoGraphics mode
             self.stk_root.Rewind()
 
-    @timeit_decorator
     def create_scenario(self, start_time, end_time):
         # Create new scenario
         self.stk_root.NewScenario("new")
@@ -93,8 +95,7 @@ class STKManager:
             # Graphics calls are not available when running STK Engine in NoGraphics mode
             self.stk_root.Rewind()
 
-    @timeit_decorator
-    def create_constellation(self, constellation_name) -> AgESTKObjectType:
+    def create_constellation(self, constellation_name):
         """Create a satellite constellation within the scenario."""
         self.constellation = self.scenario.Children.New(AgESTKObjectType.eConstellation, constellation_name)
         self.stk_root.BeginUpdate()
@@ -133,13 +134,13 @@ class STKManager:
                 satellite.Propagator.InitialState.Representation.Assign(keplerian)
                 satellite.Propagator.Propagate()
 
-                # add constrains for Satellite object
-                accessConstraints = satellite.AccessConstraints
+                # # add constrains for Satellite object
+                # accessConstraints = satellite.AccessConstraints
 
-                # IAgAccessConstraintCollection accessConstraints: Access Constraint collection
-                # Angle constraint
-                cnstrAngle = accessConstraints.AddConstraint(29)
-                cnstrAngle.Angle = 5.0
+                # # IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+                # # Angle constraint
+                # cnstrAngle = accessConstraints.AddConstraint(29)
+                # cnstrAngle.Angle = 5.0
 
                 # Add to list
                 self.satellites.append(satellite)
@@ -186,202 +187,106 @@ class STKManager:
             # Add the facility to the list
             self.facilities.append(facility)
 
-        # # maybe worth trying to use the STK API for this
-        # facility = self.scenario.Children.New(AgESTKObjectType.eFacility, name)
-        # facility.SetPosition(lat, lon, alt)
-        # return facility
+    def get_sat_access(self):
+        sce_time = []
 
-    @timeit_decorator
-    def create_access(self):
-        unique_times = set()
-
-        # 获取所有卫星对象并将其按 InstanceName 存入字典
+        # get all satellites in the scenario and create a dictionary mapping satellite names to satellite objects
         all_satellites = self.scenario.Children.GetElements(AgESTKObjectType.eSatellite)
         satellite_dict = {sat.InstanceName: sat for sat in all_satellites}
-        # print(satellite_dict)
 
-        for plane_num in range(1, num_orbit_planes + 1):
-            for sat_num in range(1, num_sat_per_plane + 1):
-                cur_sat_name = f"Sat{plane_num}_{sat_num}"
-                cur_sat = satellite_dict.get(cur_sat_name)
-                if not cur_sat:
-                    break  # 如果未找到该卫星，可以选择跳过或者处理缺失的情况
+        try:
+            for plane_num in range(1, num_orbit_planes + 1):
+                for sat_num in range(1, num_sat_per_plane + 1):
+                    cur_sat_name = f"Sat{plane_num}_{sat_num}"
+                    cur_sat = satellite_dict.get(cur_sat_name)
+                    if not cur_sat:
+                        break
 
-                # get satellite in adjacent orbit for current satellite
-                if plane_num < num_orbit_planes:
-                    inter_sat_name = f"Sat{plane_num + 1}_{sat_num}"
-                else:
-                    print(f"this is {cur_sat_name} trying to connect Sat1_{int((sat_num + F) % (T / P)) or int(T / P)}")
-                    inter_sat_name = f"Sat1_{int((sat_num + F) % (T / P)) or int(T / P)}"
-                inter_sat = satellite_dict.get(inter_sat_name)
+                    # get satellite in adjacent orbit for current satellite
+                    if plane_num < num_orbit_planes:
+                        inter_sat_name = f"Sat{plane_num + 1}_{sat_num}"
+                    else:
+                        # print(f"this is {cur_sat_name} trying to connect Sat1_{int((sat_num + F) % (T / P)) or int(T / P)}")
+                        inter_sat_name = f"Sat1_{int((sat_num + F) % (T / P)) or int(T / P)}"
+                    inter_sat = satellite_dict.get(inter_sat_name)
 
-                # get satellite in same orbit for current satellite
-                if sat_num == num_sat_per_plane:
-                    intra_sat_name = f"Sat{plane_num}_1"
-                else:
-                    intra_sat_name = f"Sat{plane_num}_{sat_num + 1}"
-                intra_sat = satellite_dict.get(intra_sat_name)
+                    # get satellite in same orbit for current satellite
+                    if sat_num == num_sat_per_plane:
+                        intra_sat_name = f"Sat{plane_num}_1"
+                    else:
+                        intra_sat_name = f"Sat{plane_num}_{sat_num + 1}"
+                    intra_sat = satellite_dict.get(intra_sat_name)
 
-                # compute access between satellites
-                if inter_sat:
-                    # sce_time, self.sat_distance[f"{cur_sat_name} to {inter_sat_name}"] = (
-                    self.compute_sat_access(cur_sat, inter_sat)
-                    # )
-                    # unique_times.update(sce_time)
-                if intra_sat:
-                    # sce_time, self.sat_distance[f"{cur_sat_name} to {intra_sat_name}"] = (
-                    self.compute_sat_access(cur_sat, intra_sat)
-                    # )
-        # self.time_list = list(unique_times)
-        # self.time_list.sort()
-        # self.time_list = [datetime.strptime(t.split('.')[0], '%d %b %Y %H:%M:%S') for t in self.time_list]
-        # self.compute_fac_access()
-        # self.save_data()
+                    # compute access between satellites
+                    if inter_sat:
+                        _, self.sat_distance[f"{cur_sat_name} to {inter_sat_name}"] = (
+                        self.compute_sat_access(cur_sat, inter_sat)
+                        )
+                        
+                    if intra_sat:
+                        sce_time, self.sat_distance[f"{cur_sat_name} to {intra_sat_name}"] = (
+                        self.compute_sat_access(cur_sat, intra_sat)
+                        )
+        except Exception as e:
+            logger.error(f"Error in get_access: {e}")
+            raise e
+        try:
+            # Parse scenario time strings into datetime objects
+            self.time_list = []
+            for t in sce_time:
+                try:
+                    # Remove microseconds before parsing
+                    time_str = t.split('.')[0]
+                    dt = datetime.strptime(time_str, '%d %b %Y %H:%M:%S')
+                    self.time_list.append(dt)
+                except ValueError as e:
+                    logger.error(f"Failed to parse time string: {t}")
+                    raise e
 
-    #
-    # # creating access between satellites
-    # @timeit_decorator
-    # def create_access(self):
-    #     unique_times = set()
-    #     all_satellites = self.scenario.Children.GetElements(AgESTKObjectType.eSatellite)
-    #     for plane_num in range(1, num_orbit_planes + 1):
-    #         for sat_num in range(1, num_sat_per_plane + 1):
-    #             cur_sat_name = f"Sat{plane_num}_{sat_num}"
-    #             cur_sat = next(sat for sat in all_satellites if sat.InstanceName == cur_sat_name)
-    #
-    #             # get satellite in adjacent orbit for current satellite
-    #             if plane_num < num_orbit_planes:
-    #                 inter_sat_name = f"Sat{plane_num + 1}_{sat_num}"
-    #                 inter_sat = next(sat for sat in all_satellites if sat.InstanceName == inter_sat_name)
-    #             else:
-    #                 inter_sat_name = f"Sat0_{sat_num}"
-    #                 inter_sat = next(sat for sat in all_satellites if sat.InstanceName == inter_sat_name)
-    #
-    #             # get satellite in same orbit for current satellite
-    #             if sat_num == num_sat_per_plane:
-    #                 intra_sat_name = f"Sat{plane_num}_1"
-    #             else:
-    #                 intra_sat_name = f"Sat{plane_num}_{sat_num + 1}"
-    #
-    #             # compute access between satellites
-    #             if inter_sat:
-    #                 sce_time, self.sat_distance[f"{cur_sat_name} to {inter_sat_name}"] = (
-    #                     self.compute_sat_access(cur_sat, inter_sat)
-    #                 )
-    #                 unique_times.update(sce_time)
-    #             if intra_sat:
-    #                 sce_time, self.sat_distance[f"{cur_sat_name} to {intra_sat_name}"] = (
-    #                     self.compute_sat_access(cur_sat, intra_sat)
-    #                 )
-    #
-    #
-    #
-    #
-    #             if plane_num < num_orbit_planes:
-    #                 inter_sat_name = f"Sat{plane_num + 1}_{sat_num}"
-    #                 inter_sat = next(sat for sat in all_satellites if sat.InstanceName == inter_sat_name)
-    #             else:
-    #                 inter_sat_name = 0
-    #                 inter_sat = 0
-    #
-    #             if sat_num == num_sat_per_plane:
-    #                 intra_sat_name = f"Sat{plane_num}_1"
-    #             else:
-    #                 intra_sat_name = f"Sat{plane_num}_{sat_num + 1}"
-    #
-    #             # get satellites in the same orbital plane and the previous orbital plane
-    #             cur_sat = next(sat for sat in all_satellites if sat.InstanceName == cur_sat_name)
-    #             intra_sat = next(sat for sat in all_satellites if sat.InstanceName == intra_sat_name)
-    #
-    #             # compute access between satellites
-    #             if inter_sat:
-    #                 sce_time, self.sat_distance[f"{cur_sat_name} to {inter_sat_name}"] = (
-    #                     self.compute_sat_access(cur_sat, inter_sat)
-    #                 )
-    #                 unique_times.update(sce_time)
-    #             if intra_sat:
-    #                 sce_time, self.sat_distance[f"{cur_sat_name} to {intra_sat_name}"] = (
-    #                     self.compute_sat_access(cur_sat, intra_sat)
-    #                 )
-    #                 unique_times.update(sce_time)
-    #     self.time_list = list(unique_times)
-    #     self.time_list.sort()
-    #     self.time_list = [datetime.strptime(t.split('.')[0], '%d %b %Y %H:%M:%S') for t in self.time_list]
-    #     self.compute_fac_access()
-    #     self.save_data()
+            # Create data directory if it doesn't exist
+            self.data_directory.mkdir(parents=True, exist_ok=True)
+            
+            # Save time series data to JSON file with datetime objects in ISO format
+            time_file = self.data_directory / 'time_series.json'
+            with open(time_file, 'w') as f:
+                # Convert datetime objects to ISO format strings before serializing
+                iso_times = [dt.isoformat() for dt in self.time_list]
+                json.dump(iso_times, f, indent=4)
+            logger.info(f"Parsed scenario time list saved to {time_file}")
+        except Exception as e:
+            logger.error(f"Error saving time list: {str(e)}")
+            raise e
+        try:
+            # Reorganize distance data into quadruples (time, source, target, range)
+            distance_data = []
+            for satellite_pair, distance_list in self.sat_distance.items():
+                source, target = satellite_pair.split(" to ")
+                for time, distance in zip(self.time_list, distance_list):
+                    distance_data.append([time, source, target, distance])
 
-    # @timeit_decorator
-    def compute_sat_access(self, sat1, sat2):
-        access = sat1.GetAccessToObject(sat2)
-        access.ComputeAccess()
-        # rpt_elms = ["Time", "Range"]
-        # access_DP = access.DataProviders.GetDataPrvTimeVarFromPath("AER Data/Default")
-        # access_result = access_DP.ExecElements(self.scenario.StartTime, self.scenario.StopTime, time_step, rpt_elms)
-        # time_origin = access_result.DataSets.GetDataSetByName('Time').GetValues()
-        # sat_range = access_result.DataSets.GetDataSetByName('Range').GetValues()
-        # return time_origin, sat_range
+            # create dataframe
+            distance_df = pd.DataFrame(
+                distance_data, 
+                columns=['Time', 'SourceSatellite', 'TargetSatellite', 'Distance']
+            )
 
-    # calculate distance between sat and fac
-    @timeit_decorator
-    def compute_fac_access(self):
-        if not self.constellation:
-            raise Exception("Constellation object is not initialized.")
-        for facility in self.facilities:
-
-            # Create chain object for satellite to facility
-            sat_fac_chain = self.scenario.Children.New(AgESTKObjectType.eChain, f"Chain_{facility.InstanceName}")
-
-            # Add satellite constellation and facility
-            sat_fac_chain.Objects.AddObject(self.constellation)
-            sat_fac_chain.Objects.AddObject(facility)
-            sat_fac_chain.ComputeAccess()
-            #
-            # # Get data provider for range data as TimeVar
-            # rpt_elms = ["Time", "Strand Name", "Range"]
-            # chainDataProvider = sat_fac_chain.DataProviders.GetDataPrvTimeVarFromPath("Range Data")
-            # chainResults = chainDataProvider.ExecElements(
-            #     self.scenario.StartTime,
-            #     self.scenario.StopTime,
-            #     self.time_step,  # Ensure time_step is defined or passed to the function
-            #     rpt_elms
-            # )
-            # # chainDataProvider = chain.DataProviders.GetDataPrvIntervalFromPath("Range Data")
-            # # chainResults = chainDataProvider.Exec(scenario.StartTime, scenario.StopTime, 300, rpt_elms)
-            #
-            # # Loop through all satellite access intervals
-            # for intervalNum in range(chainResults.Intervals.Count):
-            #     # Get interval
-            #     interval = chainResults.Intervals[intervalNum]
-            #
-            #     # Get data for interval
-            #     chain_times = interval.DataSets.GetDataSetByName("Time").GetValues()
-            #     strand_names = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
-            #     sat_fac_distances = interval.DataSets.GetDataSetByName("Range").GetValues()
-            #
-            #     # Process each data
-            #     chain_times = self.truncate_times(chain_times)
-            #
-            #     self.chain_time_list = self.approximate_time(chain_times)
-            #     self.sat_fac_distances = self.round_distances(sat_fac_distances)
-            #     self.sat_name, self.fac_name = self.extract_pattern_from_string(
-            #         strand_names[0],
-            #         pattern=r"\/(\w+)\s+To\s+.*\/(\w+)"
-            #     )
-            #
-            #     # Save satellite to facility chain data to csv file
-            #     os.makedirs(f"{self.data_directory}/fac_sat_chains", exist_ok=True)
-            #     processed_data = list(zip(self.chain_time_list, self.sat_fac_distances))
-            #     distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
-            #     filepath = f'{self.data_directory}/fac_sat_chains/{self.sat_name} To {self.fac_name}.csv'
-            #     distance_df.to_csv(filepath, index=False)
-            #     # print(f"Data saved to {filepath}")
+            # save to csv
+            aer_folder_path = self.data_directory / 'aer_data'
+            aer_folder_path.mkdir(parents=True, exist_ok=True)
+            distance_file = aer_folder_path / 'inter_satellite_distances.csv'
+            distance_df.to_csv(distance_file, index=False)
+            logger.info(f"The inter-satellite distances data is saved to {distance_file}")
+        except Exception as e:
+            logger.error(f"Error in save_distance_data: {e}")
+            raise e
 
     def get_sat_lla(self):
-        for sat in self.satellites:
-            rpt_elms = ["Time", "Lat", "Lon"]
-            sat_lla = []
-            sat_name = sat.InstanceName
-            chainDataProvider = sat.DataProviders.GetDataPrvTimeVarFromPath("LLA State/TrueOfDateRotating")
+        try:
+            for sat in self.satellites:
+                rpt_elms = ["Time", "Lat", "Lon"]
+                sat_lla = []
+                sat_name = sat.InstanceName
+                chainDataProvider = sat.DataProviders.GetDataPrvTimeVarFromPath("LLA State/TrueOfDateRotating")
             chainResults = chainDataProvider.ExecElements(
                 self.scenario.StartTime,
                 self.scenario.StopTime,
@@ -396,22 +301,102 @@ class STKManager:
                 sat_lla.append([sat_time, lat, lon])
 
             # Save satellite LLA data to CSV file
-            os.makedirs(f"{self.data_directory}/sat_lla_reports", exist_ok=True)
+            lla_reports_path = self.data_directory / 'sat_lla_reports'
+            lla_reports_path.mkdir(parents=True, exist_ok=True)
             lla_df = pd.DataFrame(sat_lla, columns=['Time', 'Latitude', 'Longitude'])
-            filepath = f"{self.data_directory}/sat_lla_reports/{sat_name}_lla.csv"
+            filepath = lla_reports_path / f"{sat_name}_lla.csv"
             lla_df.to_csv(filepath, index=False)
-            print(f"Saved LLA data for {sat_name} to {filepath}")
+            logger.info(f"Saved LLA data for {sat_name} to {filepath}")
+        except Exception as e:
+            logger.error(f"Error in get_sat_lla: {e}")
+            raise e
 
-    # Truncate the given time string to remove microseconds or smaller units.
-    @staticmethod
-    def truncate_times(chain_times, format_str="%d %b %Y %H:%M:%S") -> list:
-        dt_times = []
-        for time_str in chain_times:
-            if '.' in time_str:
-                time_str = time_str[:time_str.rfind('.')]
-            dt_time = datetime.strptime(time_str, format_str)
-            dt_times.append(dt_time)
-        return dt_times
+    # @timeit_decorator
+    def compute_sat_access(self, sat1, sat2):
+        access = sat1.GetAccessToObject(sat2)
+        access.ComputeAccess()
+        rpt_elms = ["Time", "Range"]
+        access_DP = access.DataProviders.GetDataPrvTimeVarFromPath("AER Data/Default")
+        access_result = access_DP.ExecElements(self.scenario.StartTime, self.scenario.StopTime, time_step, rpt_elms)
+        time_origin = access_result.DataSets.GetDataSetByName('Time').GetValues()
+        sat_range = access_result.DataSets.GetDataSetByName('Range').GetValues()
+        return time_origin, sat_range
+
+    # calculate distance between sat and fac
+    # @timeit_decorator
+    def get_fac_access(self):
+        try:
+            if not self.constellation:
+                raise Exception("Constellation object is not initialized.")
+            for facility in self.facilities:
+                # Create chain object for satellite to facility
+                sat_fac_chain = self.scenario.Children.New(AgESTKObjectType.eChain, f"Chain_{facility.InstanceName}")
+
+                # Add satellite constellation and facility
+                sat_fac_chain.Objects.AddObject(self.constellation)
+                sat_fac_chain.Objects.AddObject(facility)
+                sat_fac_chain.ComputeAccess()
+                
+                # Get data provider for range data as TimeVar
+                rpt_elms = ["Time", "Strand Name", "Range"]
+                chainDataProvider = sat_fac_chain.DataProviders.GetDataPrvTimeVarFromPath("Range Data")
+                chainResults = chainDataProvider.ExecElements(
+                    self.scenario.StartTime,
+                    self.scenario.StopTime,
+                    self.time_step,  # Ensure time_step is defined or passed to the function
+                    rpt_elms
+                )
+                # chainDataProvider = chain.DataProviders.GetDataPrvIntervalFromPath("Range Data")
+                # chainResults = chainDataProvider.Exec(scenario.StartTime, scenario.StopTime, 300, rpt_elms)
+                
+                # Loop through all satellite access intervals
+                for intervalNum in range(chainResults.Intervals.Count):
+                    # Get interval
+                    interval = chainResults.Intervals[intervalNum]
+                
+                    # Get data for interval
+                    chain_times = interval.DataSets.GetDataSetByName("Time").GetValues()
+                    strand_names = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
+                    sat_fac_distances = interval.DataSets.GetDataSetByName("Range").GetValues()
+                
+                    # Process each data
+                    chain_times = truncate_times(chain_times)
+                
+                    self.chain_time_list = self.approximate_time(chain_times)
+                    self.sat_fac_distances = self.round_distances(sat_fac_distances)
+                    self.sat_name, self.fac_name = self.extract_pattern_from_string(
+                        strand_names[0],
+                            pattern=r"\/(\w+)\s+To\s+.*\/(\w+)"
+                        )
+
+                try:
+                    # Save satellite to facility chain data to csv file
+                    fac_sat_chains_path = self.data_directory / 'fac_sat_chains'
+                    fac_sat_chains_path.mkdir(parents=True, exist_ok=True)
+                    processed_data = list(zip(self.chain_time_list, self.sat_fac_distances))
+                    distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
+                    filepath = fac_sat_chains_path / f'{self.sat_name} To {self.fac_name}.csv'
+                    distance_df.to_csv(filepath, index=False)
+                    # logger.info(f"satellite to facility chain data saved to {filepath}")
+                except Exception as e:
+                    logger.error(f"Error in save_fac_sat_chain_data: {e}")
+                    raise e
+            logger.info("satellite to facility chain data saved")
+        except Exception as e:
+            logger.error(f"Error in compute_fac_access: {e}")
+            raise e
+        try:
+            # Save satellite to facility chain data to csv file
+            fac_sat_chains_path = self.data_directory / 'fac_sat_chains'
+            fac_sat_chains_path.mkdir(parents=True, exist_ok=True)
+            processed_data = list(zip(self.chain_time_list, self.sat_fac_distances))
+            distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
+            filepath = fac_sat_chains_path / f'{self.sat_name} To {self.fac_name}.csv'
+            distance_df.to_csv(filepath, index=False)
+            logger.info(f"satellite to facility chain data saved to {filepath}")
+        except Exception as e:
+            logger.error(f"Error in save_fac_sat_chain_data: {e}")
+            raise e
 
     @staticmethod
     def round_distances(distances):
@@ -438,31 +423,6 @@ class STKManager:
                 approximated_times.append(approx_time)
         return approximated_times
 
-    # save data to csv files
-    @timeit_decorator
-    def save_data(self):
-        if not os.path.exists(self.data_directory):
-            os.makedirs(self.data_directory)
-        distance_data = []
-
-        # save satellite distance data to csv file
-        for satellite_pair, distance_list in self.sat_distance.items():
-            for distance in distance_list:
-                distance_data.append([satellite_pair, distance])
-        distance_df = pd.DataFrame(distance_data, columns=['SatellitePair', 'Distance'])
-        distance_df.to_csv(f'{self.data_directory}/aer_data/inter_satellite_distances.csv', index=False)
-
-        # save time series data to csv file
-        time_series = pd.Series(self.time_list, name='Time Series')
-        time_series.to_csv(f'{self.data_directory}/time_series.csv', index=False)
-
 
 if __name__ == "__main__":
-    manager = STKManager()
-    manager.attach_to_application()
-    manager.load_scenario('D:/STKScenario/star_blank/star.sc',
-                          "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-    manager.create_constellation()
-    manager.create_facilities()
-    manager.create_access()
-    manager.save_data()
+    pass

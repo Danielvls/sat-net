@@ -9,7 +9,7 @@ T = 200
 P = 20
 F = 5
 inc = 53
-height = 7000
+height = 6928
 num_orbit_planes = int(P)
 num_sat_per_plane = int(T / P)
 

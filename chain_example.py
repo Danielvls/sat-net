@@ -14,6 +14,10 @@ for i in range(1,numOrbitPlanes+1):
     n = (i-1) * (numSatsPerPlane)
     sat_last = stkRoot.GetObjectFromPath(satPaths[n])
     sat_chain.Objects.AddObject(sat_last)
+    sat_chain.Objects.AddObject(sat_first)
+    sat_chain.Propagate()
+    sat_chain.Graphics.PassData = True
+    sat_chain.Graphics.Line.Width = 1
 
 for i in range(1,numSatsPerPlane+1):
     sat_chain = scenario.Children.New(AgESTKObjectType.eChain, "yg_Chain"+ str(i).zfill(2))

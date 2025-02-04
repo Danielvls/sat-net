@@ -7,67 +7,61 @@
             "id": "Sat1_1"
         },
         {
-            "id": "Sat1_2"
-        },
-        {
             "id": "Sat2_1"
         },
         {
-            "id": "Sat1_3"
+            "id": "Sat1_2"
         },
         {
             "id": "Sat2_2"
         },
         {
-            "id": "Sat1_4"
+            "id": "Sat1_3"
         },
         {
             "id": "Sat2_3"
         },
         {
-            "id": "Sat1_5"
+            "id": "Sat1_4"
         },
         {
             "id": "Sat2_4"
         },
         {
-            "id": "Sat1_6"
+            "id": "Sat1_5"
         },
         {
             "id": "Sat2_5"
         },
         {
-            "id": "Sat1_7"
+            "id": "Sat1_6"
         },
         {
             "id": "Sat2_6"
         },
         {
-            "id": "Sat1_8"
+            "id": "Sat1_7"
         },
         {
             "id": "Sat2_7"
         },
         {
-            "id": "Sat1_9"
+            "id": "Sat1_8"
         },
         {
             "id": "Sat2_8"
         },
         {
-            "id": "Sat1_10"
+            "id": "Sat1_9"
         },
         {
             "id": "Sat2_9"
         },
         {
-            "id": "Sat1_11"
+            "id": "Sat1_10"
         },
         {
             "id": "Sat2_10"
-        },
-        {
-            "id": "Sat2_11"
         },
         {
             "id": "Sat3_1"
@@ -100,9 +94,6 @@
             "id": "Sat3_10"
         },
         {
-            "id": "Sat3_11"
-        },
-        {
             "id": "Sat4_1"
         },
         {
@@ -131,9 +122,6 @@
         },
         {
             "id": "Sat4_10"
-        },
-        {
-            "id": "Sat4_11"
         },
         {
             "id": "Sat5_1"
@@ -166,9 +154,6 @@
             "id": "Sat5_10"
         },
         {
-            "id": "Sat5_11"
-        },
-        {
             "id": "Sat6_1"
         },
         {
@@ -197,9 +182,6 @@
         },
         {
             "id": "Sat6_10"
-        },
-        {
-            "id": "Sat6_11"
         },
         {
             "id": "Sat7_1"
@@ -232,103 +214,7 @@
             "id": "Sat7_10"
         },
         {
-            "id": "Sat7_11"
-        },
-        {
-            "id": "Facility8"
-        },
-        {
-            "id": "Facility2"
-        },
-        {
-            "id": "Facility17"
-        },
-        {
-            "id": "Facility12"
-        },
-        {
-            "id": "Facility20"
-        },
-        {
-            "id": "Facility3"
-        },
-        {
-            "id": "Facility4"
-        },
-        {
-            "id": "Facility9"
-        },
-        {
-            "id": "Facility13"
-        },
-        {
-            "id": "Facility1"
-        },
-        {
-            "id": "Facility18"
-        },
-        {
-            "id": "Sat41"
-        },
-        {
-            "id": "Sat411"
-        },
-        {
-            "id": "Sat42"
-        },
-        {
-            "id": "Sat44"
-        },
-        {
-            "id": "Sat45"
-        },
-        {
-            "id": "Facility14"
-        },
-        {
-            "id": "Facility15"
-        },
-        {
-            "id": "Sat55"
-        },
-        {
-            "id": "Sat56"
-        },
-        {
-            "id": "Sat57"
-        },
-        {
-            "id": "Facility11"
-        },
-        {
-            "id": "Facility19"
-        },
-        {
-            "id": "Facility5"
-        },
-        {
-            "id": "Facility6"
-        },
-        {
-            "id": "Facility16"
-        },
-        {
-            "id": "Sat61"
-        },
-        {
-            "id": "Sat62"
-        },
-        {
-            "id": "Facility10"
-        },
-        {
-            "id": "Facility7"
-        },
-        {
             "id": "Sat8_1"
-        },
-        {
-            "id": "Sat8_11"
         },
         {
             "id": "Sat8_2"
@@ -346,1594 +232,2378 @@
             "id": "Sat8_6"
         },
         {
+            "id": "Sat8_7"
+        },
+        {
+            "id": "Sat8_8"
+        },
+        {
             "id": "Sat8_9"
+        },
+        {
+            "id": "Sat8_10"
+        },
+        {
+            "id": "Sat9_1"
+        },
+        {
+            "id": "Sat9_2"
+        },
+        {
+            "id": "Sat9_3"
+        },
+        {
+            "id": "Sat9_4"
+        },
+        {
+            "id": "Sat9_5"
+        },
+        {
+            "id": "Sat9_6"
+        },
+        {
+            "id": "Sat9_7"
+        },
+        {
+            "id": "Sat9_8"
+        },
+        {
+            "id": "Sat9_9"
+        },
+        {
+            "id": "Sat9_10"
+        },
+        {
+            "id": "Sat10_1"
+        },
+        {
+            "id": "Sat10_2"
+        },
+        {
+            "id": "Sat10_3"
+        },
+        {
+            "id": "Sat10_4"
+        },
+        {
+            "id": "Sat10_5"
+        },
+        {
+            "id": "Sat10_6"
+        },
+        {
+            "id": "Sat10_7"
+        },
+        {
+            "id": "Sat10_8"
+        },
+        {
+            "id": "Sat10_9"
+        },
+        {
+            "id": "Sat10_10"
+        },
+        {
+            "id": "Sat11_1"
+        },
+        {
+            "id": "Sat11_2"
+        },
+        {
+            "id": "Sat11_3"
+        },
+        {
+            "id": "Sat11_4"
+        },
+        {
+            "id": "Sat11_5"
+        },
+        {
+            "id": "Sat11_6"
+        },
+        {
+            "id": "Sat11_7"
+        },
+        {
+            "id": "Sat11_8"
+        },
+        {
+            "id": "Sat11_9"
+        },
+        {
+            "id": "Sat11_10"
+        },
+        {
+            "id": "Sat12_1"
+        },
+        {
+            "id": "Sat12_2"
+        },
+        {
+            "id": "Sat12_3"
+        },
+        {
+            "id": "Sat12_4"
+        },
+        {
+            "id": "Sat12_5"
+        },
+        {
+            "id": "Sat12_6"
+        },
+        {
+            "id": "Sat12_7"
+        },
+        {
+            "id": "Sat12_8"
+        },
+        {
+            "id": "Sat12_9"
+        },
+        {
+            "id": "Sat12_10"
+        },
+        {
+            "id": "Sat13_1"
+        },
+        {
+            "id": "Sat13_2"
+        },
+        {
+            "id": "Sat13_3"
+        },
+        {
+            "id": "Sat13_4"
+        },
+        {
+            "id": "Sat13_5"
+        },
+        {
+            "id": "Sat13_6"
+        },
+        {
+            "id": "Sat13_7"
+        },
+        {
+            "id": "Sat13_8"
+        },
+        {
+            "id": "Sat13_9"
+        },
+        {
+            "id": "Sat13_10"
+        },
+        {
+            "id": "Sat14_1"
+        },
+        {
+            "id": "Sat14_2"
+        },
+        {
+            "id": "Sat14_3"
+        },
+        {
+            "id": "Sat14_4"
+        },
+        {
+            "id": "Sat14_5"
+        },
+        {
+            "id": "Sat14_6"
+        },
+        {
+            "id": "Sat14_7"
+        },
+        {
+            "id": "Sat14_8"
+        },
+        {
+            "id": "Sat14_9"
+        },
+        {
+            "id": "Sat14_10"
+        },
+        {
+            "id": "Sat15_1"
+        },
+        {
+            "id": "Sat15_2"
+        },
+        {
+            "id": "Sat15_3"
+        },
+        {
+            "id": "Sat15_4"
+        },
+        {
+            "id": "Sat15_5"
+        },
+        {
+            "id": "Sat15_6"
+        },
+        {
+            "id": "Sat15_7"
+        },
+        {
+            "id": "Sat15_8"
+        },
+        {
+            "id": "Sat15_9"
+        },
+        {
+            "id": "Sat15_10"
+        },
+        {
+            "id": "Sat16_1"
+        },
+        {
+            "id": "Sat16_2"
+        },
+        {
+            "id": "Sat16_3"
+        },
+        {
+            "id": "Sat16_4"
+        },
+        {
+            "id": "Sat16_5"
+        },
+        {
+            "id": "Sat16_6"
+        },
+        {
+            "id": "Sat16_7"
+        },
+        {
+            "id": "Sat16_8"
+        },
+        {
+            "id": "Sat16_9"
+        },
+        {
+            "id": "Sat16_10"
+        },
+        {
+            "id": "Sat17_1"
+        },
+        {
+            "id": "Sat17_2"
+        },
+        {
+            "id": "Sat17_3"
+        },
+        {
+            "id": "Sat17_4"
+        },
+        {
+            "id": "Sat17_5"
+        },
+        {
+            "id": "Sat17_6"
+        },
+        {
+            "id": "Sat17_7"
+        },
+        {
+            "id": "Sat17_8"
+        },
+        {
+            "id": "Sat17_9"
+        },
+        {
+            "id": "Sat17_10"
+        },
+        {
+            "id": "Sat18_1"
+        },
+        {
+            "id": "Sat18_2"
+        },
+        {
+            "id": "Sat18_3"
+        },
+        {
+            "id": "Sat18_4"
+        },
+        {
+            "id": "Sat18_5"
+        },
+        {
+            "id": "Sat18_6"
+        },
+        {
+            "id": "Sat18_7"
+        },
+        {
+            "id": "Sat18_8"
+        },
+        {
+            "id": "Sat18_9"
+        },
+        {
+            "id": "Sat18_10"
+        },
+        {
+            "id": "Sat19_1"
+        },
+        {
+            "id": "Sat19_2"
+        },
+        {
+            "id": "Sat19_3"
+        },
+        {
+            "id": "Sat19_4"
+        },
+        {
+            "id": "Sat19_5"
+        },
+        {
+            "id": "Sat19_6"
+        },
+        {
+            "id": "Sat19_7"
+        },
+        {
+            "id": "Sat19_8"
+        },
+        {
+            "id": "Sat19_9"
+        },
+        {
+            "id": "Sat19_10"
+        },
+        {
+            "id": "Sat20_1"
+        },
+        {
+            "id": "Sat20_2"
+        },
+        {
+            "id": "Sat20_3"
+        },
+        {
+            "id": "Sat20_4"
+        },
+        {
+            "id": "Sat20_5"
+        },
+        {
+            "id": "Sat20_6"
+        },
+        {
+            "id": "Sat20_7"
+        },
+        {
+            "id": "Sat20_8"
+        },
+        {
+            "id": "Sat20_9"
+        },
+        {
+            "id": "Sat20_10"
         }
     ],
     "links": [
         {
-            "weight": 4021.450936966409,
-            "source": "Sat1_1",
-            "target": "Sat1_2"
-        },
-        {
-            "weight": 1262.5111879052097,
+            "weight": 2789.0,
             "source": "Sat1_1",
             "target": "Sat2_1"
         },
         {
-            "weight": 4021.4509369644834,
+            "weight": 4282.0,
             "source": "Sat1_1",
-            "target": "Sat1_11"
+            "target": "Sat1_2"
         },
         {
-            "weight": 3213,
-            "bidirectional": true,
+            "weight": 4282.0,
             "source": "Sat1_1",
-            "target": "Facility8"
+            "target": "Sat1_10"
         },
         {
-            "weight": 4021.450936969596,
-            "source": "Sat1_2",
-            "target": "Sat1_3"
+            "weight": 2857.0,
+            "source": "Sat1_1",
+            "target": "Sat20_6"
         },
         {
-            "weight": 2550.3072196368985,
-            "source": "Sat1_2",
-            "target": "Sat2_2"
-        },
-        {
-            "weight": 4021.450942529101,
-            "source": "Sat2_1",
-            "target": "Sat2_2"
-        },
-        {
-            "weight": 1437.5254250055098,
+            "weight": 2707.0,
             "source": "Sat2_1",
             "target": "Sat3_1"
         },
         {
-            "weight": 4021.4509425268257,
+            "weight": 4282.0,
             "source": "Sat2_1",
-            "target": "Sat2_11"
+            "target": "Sat2_2"
         },
         {
-            "weight": 4021.450936970334,
+            "weight": 4282.0,
+            "source": "Sat2_1",
+            "target": "Sat2_10"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat1_2",
+            "target": "Sat2_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat1_2",
+            "target": "Sat1_3"
+        },
+        {
+            "weight": 2533.0,
+            "source": "Sat1_2",
+            "target": "Sat20_7"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat2_2",
+            "target": "Sat3_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat2_2",
+            "target": "Sat2_3"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat1_3",
+            "target": "Sat2_3"
+        },
+        {
+            "weight": 4282.0,
             "source": "Sat1_3",
             "target": "Sat1_4"
         },
         {
-            "weight": 3150.5969547137784,
+            "weight": 2380.0,
             "source": "Sat1_3",
-            "target": "Sat2_3"
+            "target": "Sat20_8"
         },
         {
-            "weight": 3250,
-            "bidirectional": true,
-            "source": "Sat1_3",
-            "target": "Facility17"
+            "weight": 2471.0,
+            "source": "Sat2_3",
+            "target": "Sat3_3"
         },
         {
-            "weight": 4021.4509425321744,
-            "source": "Sat2_2",
-            "target": "Sat2_3"
+            "weight": 4282.0,
+            "source": "Sat2_3",
+            "target": "Sat2_4"
         },
         {
-            "weight": 2672.6247510128496,
-            "source": "Sat2_2",
-            "target": "Sat3_2"
+            "weight": 2723.0,
+            "source": "Sat1_4",
+            "target": "Sat2_4"
         },
         {
-            "weight": 4021.4509369677344,
+            "weight": 4282.0,
             "source": "Sat1_4",
             "target": "Sat1_5"
         },
         {
-            "weight": 2803.459077009138,
+            "weight": 2635.0,
             "source": "Sat1_4",
-            "target": "Sat2_4"
+            "target": "Sat20_9"
         },
         {
-            "weight": 1869,
-            "bidirectional": true,
-            "source": "Sat1_4",
-            "target": "Facility12"
+            "weight": 2802.0,
+            "source": "Sat2_4",
+            "target": "Sat3_4"
         },
         {
-            "weight": 2145,
-            "bidirectional": true,
-            "source": "Sat1_4",
-            "target": "Facility17"
+            "weight": 4282.0,
+            "source": "Sat2_4",
+            "target": "Sat2_5"
         },
         {
-            "weight": 2173,
-            "bidirectional": true,
-            "source": "Sat1_4",
-            "target": "Facility20"
+            "weight": 2936.0,
+            "source": "Sat1_5",
+            "target": "Sat2_5"
         },
         {
-            "weight": 1673,
-            "bidirectional": true,
-            "source": "Sat1_4",
-            "target": "Facility3"
-        },
-        {
-            "weight": 1810,
-            "bidirectional": true,
-            "source": "Sat1_4",
-            "target": "Facility4"
-        },
-        {
-            "weight": 4021.450942532442,
-            "source": "Sat2_3",
-            "target": "Sat2_4"
-        },
-        {
-            "weight": 3159.825348732973,
-            "source": "Sat2_3",
-            "target": "Sat3_3"
-        },
-        {
-            "weight": 3250,
-            "bidirectional": true,
-            "source": "Sat2_3",
-            "target": "Facility12"
-        },
-        {
-            "weight": 3251,
-            "bidirectional": true,
-            "source": "Sat2_3",
-            "target": "Facility17"
-        },
-        {
-            "weight": 3249,
-            "bidirectional": true,
-            "source": "Sat2_3",
-            "target": "Facility20"
-        },
-        {
-            "weight": 3249,
-            "bidirectional": true,
-            "source": "Sat2_3",
-            "target": "Facility3"
-        },
-        {
-            "weight": 3248,
-            "bidirectional": true,
-            "source": "Sat2_3",
-            "target": "Facility4"
-        },
-        {
-            "weight": 3250,
-            "bidirectional": true,
-            "source": "Sat2_3",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.450936964849,
+            "weight": 4282.0,
             "source": "Sat1_5",
             "target": "Sat1_6"
         },
         {
-            "weight": 1649.232951347714,
+            "weight": 2914.0,
             "source": "Sat1_5",
-            "target": "Sat2_5"
+            "target": "Sat20_10"
         },
         {
-            "weight": 3054,
-            "bidirectional": true,
-            "source": "Sat1_5",
-            "target": "Facility12"
+            "weight": 2934.0,
+            "source": "Sat2_5",
+            "target": "Sat3_5"
         },
         {
-            "weight": 2774,
-            "bidirectional": true,
-            "source": "Sat1_5",
-            "target": "Facility3"
+            "weight": 4282.0,
+            "source": "Sat2_5",
+            "target": "Sat2_6"
         },
         {
-            "weight": 2641,
-            "bidirectional": true,
-            "source": "Sat1_5",
-            "target": "Facility4"
+            "weight": 2789.0,
+            "source": "Sat1_6",
+            "target": "Sat2_6"
         },
         {
-            "weight": 4021.450942529594,
-            "source": "Sat2_4",
-            "target": "Sat2_5"
-        },
-        {
-            "weight": 2696.091600291252,
-            "source": "Sat2_4",
-            "target": "Sat3_4"
-        },
-        {
-            "weight": 1159,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility12"
-        },
-        {
-            "weight": 1737,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility13"
-        },
-        {
-            "weight": 965,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility17"
-        },
-        {
-            "weight": 1278,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility20"
-        },
-        {
-            "weight": 1316,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility3"
-        },
-        {
-            "weight": 1385,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility4"
-        },
-        {
-            "weight": 2103,
-            "bidirectional": true,
-            "source": "Sat2_4",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.4509369650577,
+            "weight": 4282.0,
             "source": "Sat1_6",
             "target": "Sat1_7"
         },
         {
-            "weight": 718.9368009671912,
+            "weight": 2857.0,
             "source": "Sat1_6",
-            "target": "Sat2_6"
+            "target": "Sat20_1"
         },
         {
-            "weight": 4021.450942526954,
-            "source": "Sat2_5",
-            "target": "Sat2_6"
+            "weight": 2707.0,
+            "source": "Sat2_6",
+            "target": "Sat3_6"
         },
         {
-            "weight": 1473.4832233546042,
-            "source": "Sat2_5",
-            "target": "Sat3_5"
+            "weight": 4282.0,
+            "source": "Sat2_6",
+            "target": "Sat2_7"
         },
         {
-            "weight": 3108,
-            "bidirectional": true,
-            "source": "Sat2_5",
-            "target": "Facility12"
+            "weight": 2459.0,
+            "source": "Sat1_7",
+            "target": "Sat2_7"
         },
         {
-            "weight": 1928,
-            "bidirectional": true,
-            "source": "Sat2_5",
-            "target": "Facility13"
-        },
-        {
-            "weight": 2924,
-            "bidirectional": true,
-            "source": "Sat2_5",
-            "target": "Facility20"
-        },
-        {
-            "weight": 3129,
-            "bidirectional": true,
-            "source": "Sat2_5",
-            "target": "Facility3"
-        },
-        {
-            "weight": 2789,
-            "bidirectional": true,
-            "source": "Sat2_5",
-            "target": "Facility4"
-        },
-        {
-            "weight": 4021.450936968098,
+            "weight": 4282.0,
             "source": "Sat1_7",
             "target": "Sat1_8"
         },
         {
-            "weight": 1955.9843050198945,
+            "weight": 2533.0,
             "source": "Sat1_7",
-            "target": "Sat2_7"
+            "target": "Sat20_2"
         },
         {
-            "weight": 4021.450942527618,
-            "source": "Sat2_6",
-            "target": "Sat2_7"
+            "weight": 2404.0,
+            "source": "Sat2_7",
+            "target": "Sat3_7"
         },
         {
-            "weight": 807.0739645996168,
-            "source": "Sat2_6",
-            "target": "Sat3_6"
+            "weight": 4282.0,
+            "source": "Sat2_7",
+            "target": "Sat2_8"
         },
         {
-            "weight": 4021.450936970437,
+            "weight": 2413.0,
+            "source": "Sat1_8",
+            "target": "Sat2_8"
+        },
+        {
+            "weight": 4282.0,
             "source": "Sat1_8",
             "target": "Sat1_9"
         },
         {
-            "weight": 2962.803366369432,
+            "weight": 2380.0,
             "source": "Sat1_8",
-            "target": "Sat2_8"
+            "target": "Sat20_3"
         },
         {
-            "weight": 4021.450942530795,
-            "source": "Sat2_7",
-            "target": "Sat2_8"
+            "weight": 2471.0,
+            "source": "Sat2_8",
+            "target": "Sat3_8"
         },
         {
-            "weight": 2118.121105720696,
-            "source": "Sat2_7",
-            "target": "Sat3_7"
+            "weight": 4282.0,
+            "source": "Sat2_8",
+            "target": "Sat2_9"
         },
         {
-            "weight": 4021.450936969321,
+            "weight": 2723.0,
+            "source": "Sat1_9",
+            "target": "Sat2_9"
+        },
+        {
+            "weight": 4282.0,
             "source": "Sat1_9",
             "target": "Sat1_10"
         },
         {
-            "weight": 3095.761263514765,
+            "weight": 2635.0,
             "source": "Sat1_9",
-            "target": "Sat2_9"
+            "target": "Sat20_4"
         },
         {
-            "weight": 4021.4509425327833,
-            "source": "Sat2_8",
-            "target": "Sat2_9"
-        },
-        {
-            "weight": 3031.9170466310024,
-            "source": "Sat2_8",
-            "target": "Sat3_8"
-        },
-        {
-            "weight": 4021.450936966066,
-            "source": "Sat1_10",
-            "target": "Sat1_11"
-        },
-        {
-            "weight": 2302.318020077227,
-            "source": "Sat1_10",
-            "target": "Sat2_10"
-        },
-        {
-            "weight": 1735,
-            "bidirectional": true,
-            "source": "Sat1_10",
-            "target": "Facility2"
-        },
-        {
-            "weight": 4021.450942531253,
-            "source": "Sat2_9",
-            "target": "Sat2_10"
-        },
-        {
-            "weight": 3044.240701986544,
+            "weight": 2802.0,
             "source": "Sat2_9",
             "target": "Sat3_9"
         },
         {
-            "weight": 967.8012297441768,
-            "source": "Sat1_11",
-            "target": "Sat2_11"
+            "weight": 4282.0,
+            "source": "Sat2_9",
+            "target": "Sat2_10"
         },
         {
-            "weight": 2912,
-            "bidirectional": true,
-            "source": "Sat1_11",
-            "target": "Facility2"
+            "weight": 2936.0,
+            "source": "Sat1_10",
+            "target": "Sat2_10"
         },
         {
-            "weight": 4021.450942527985,
-            "source": "Sat2_10",
-            "target": "Sat2_11"
+            "weight": 2914.0,
+            "source": "Sat1_10",
+            "target": "Sat20_5"
         },
         {
-            "weight": 2150.239578810876,
+            "weight": 2934.0,
             "source": "Sat2_10",
             "target": "Sat3_10"
         },
         {
-            "weight": 830.8965648611157,
-            "source": "Sat2_11",
-            "target": "Sat3_11"
-        },
-        {
-            "weight": 4021.4509470463618,
-            "source": "Sat3_1",
-            "target": "Sat3_2"
-        },
-        {
-            "weight": 1613.522015599235,
+            "weight": 2619.0,
             "source": "Sat3_1",
             "target": "Sat4_1"
         },
         {
-            "weight": 4021.450947043775,
+            "weight": 4282.0,
             "source": "Sat3_1",
-            "target": "Sat3_11"
+            "target": "Sat3_2"
         },
         {
-            "weight": 2230,
-            "bidirectional": true,
+            "weight": 4282.0,
             "source": "Sat3_1",
-            "target": "Facility1"
+            "target": "Sat3_10"
         },
         {
-            "weight": 1874,
-            "bidirectional": true,
-            "source": "Sat3_1",
-            "target": "Facility18"
+            "weight": 2377.0,
+            "source": "Sat3_2",
+            "target": "Sat4_2"
         },
         {
-            "weight": 4021.450947049247,
+            "weight": 4282.0,
             "source": "Sat3_2",
             "target": "Sat3_3"
         },
         {
-            "weight": 2782.6006815364703,
-            "source": "Sat3_2",
-            "target": "Sat4_2"
+            "weight": 2548.0,
+            "source": "Sat3_3",
+            "target": "Sat4_3"
         },
         {
-            "weight": 2779,
-            "bidirectional": true,
-            "source": "Sat3_2",
-            "target": "Facility18"
-        },
-        {
-            "weight": 4021.450947049049,
+            "weight": 4282.0,
             "source": "Sat3_3",
             "target": "Sat3_4"
         },
         {
-            "weight": 3153.723551946712,
-            "source": "Sat3_3",
-            "target": "Sat4_3"
+            "weight": 2868.0,
+            "source": "Sat3_4",
+            "target": "Sat4_4"
         },
         {
-            "weight": 3250,
-            "bidirectional": true,
-            "source": "Sat3_3",
-            "target": "Facility12"
-        },
-        {
-            "weight": 3251,
-            "bidirectional": true,
-            "source": "Sat3_3",
-            "target": "Facility17"
-        },
-        {
-            "weight": 3249,
-            "bidirectional": true,
-            "source": "Sat3_3",
-            "target": "Facility20"
-        },
-        {
-            "weight": 3249,
-            "bidirectional": true,
-            "source": "Sat3_3",
-            "target": "Facility3"
-        },
-        {
-            "weight": 3247,
-            "bidirectional": true,
-            "source": "Sat3_3",
-            "target": "Facility4"
-        },
-        {
-            "weight": 3251,
-            "bidirectional": true,
-            "source": "Sat3_3",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.450947046004,
+            "weight": 4282.0,
             "source": "Sat3_4",
             "target": "Sat3_5"
         },
         {
-            "weight": 2576.229736952586,
-            "source": "Sat3_4",
-            "target": "Sat4_4"
+            "weight": 2907.0,
+            "source": "Sat3_5",
+            "target": "Sat4_5"
         },
         {
-            "weight": 2109,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility12"
-        },
-        {
-            "weight": 1551,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility13"
-        },
-        {
-            "weight": 1557,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility17"
-        },
-        {
-            "weight": 1826,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility20"
-        },
-        {
-            "weight": 2459,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility3"
-        },
-        {
-            "weight": 2441,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility4"
-        },
-        {
-            "weight": 834,
-            "bidirectional": true,
-            "source": "Sat3_4",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.4509470436738,
+            "weight": 4282.0,
             "source": "Sat3_5",
             "target": "Sat3_6"
         },
         {
-            "weight": 1297.9347248656306,
-            "source": "Sat3_5",
-            "target": "Sat4_5"
+            "weight": 2619.0,
+            "source": "Sat3_6",
+            "target": "Sat4_6"
         },
         {
-            "weight": 2322,
-            "bidirectional": true,
-            "source": "Sat3_5",
-            "target": "Facility13"
-        },
-        {
-            "weight": 4021.450947044775,
+            "weight": 4282.0,
             "source": "Sat3_6",
             "target": "Sat3_7"
         },
         {
-            "weight": 937.6049911459678,
-            "source": "Sat3_6",
-            "target": "Sat4_6"
+            "weight": 2377.0,
+            "source": "Sat3_7",
+            "target": "Sat4_7"
         },
         {
-            "weight": 4021.450947048029,
+            "weight": 4282.0,
             "source": "Sat3_7",
             "target": "Sat3_8"
         },
         {
-            "weight": 2272.039886620685,
-            "source": "Sat3_7",
-            "target": "Sat4_7"
+            "weight": 2548.0,
+            "source": "Sat3_8",
+            "target": "Sat4_8"
         },
         {
-            "weight": 4021.450947049622,
+            "weight": 4282.0,
             "source": "Sat3_8",
             "target": "Sat3_9"
         },
         {
-            "weight": 3086.454519231378,
-            "source": "Sat3_8",
-            "target": "Sat4_8"
+            "weight": 2868.0,
+            "source": "Sat3_9",
+            "target": "Sat4_9"
         },
         {
-            "weight": 4021.4509470477033,
+            "weight": 4282.0,
             "source": "Sat3_9",
             "target": "Sat3_10"
         },
         {
-            "weight": 2978.070530528072,
-            "source": "Sat3_9",
-            "target": "Sat4_9"
-        },
-        {
-            "weight": 4021.450947044503,
-            "source": "Sat3_10",
-            "target": "Sat3_11"
-        },
-        {
-            "weight": 1989.665102905201,
+            "weight": 2907.0,
             "source": "Sat3_10",
             "target": "Sat4_10"
         },
         {
-            "weight": 732.5169696692226,
-            "source": "Sat3_11",
-            "target": "Sat4_11"
-        },
-        {
-            "weight": 4021.4509496717874,
-            "source": "Sat4_1",
-            "target": "Sat4_2"
-        },
-        {
-            "weight": 1787.1555983190708,
+            "weight": 2533.0,
             "source": "Sat4_1",
             "target": "Sat5_1"
         },
         {
-            "weight": 4021.4509496689498,
+            "weight": 4282.0,
             "source": "Sat4_1",
-            "target": "Sat4_11"
+            "target": "Sat4_2"
         },
         {
-            "weight": 952,
-            "bidirectional": true,
+            "weight": 4282.0,
             "source": "Sat4_1",
-            "target": "Facility1"
+            "target": "Sat4_10"
         },
         {
-            "weight": 2213,
-            "bidirectional": true,
-            "source": "Sat4_1",
-            "target": "Facility14"
+            "weight": 2380.0,
+            "source": "Sat4_2",
+            "target": "Sat5_2"
         },
         {
-            "weight": 3223,
-            "bidirectional": true,
-            "source": "Sat4_1",
-            "target": "Facility15"
-        },
-        {
-            "weight": 1387,
-            "bidirectional": true,
-            "source": "Sat4_1",
-            "target": "Facility18"
-        },
-        {
-            "weight": 4021.450949674426,
+            "weight": 4282.0,
             "source": "Sat4_2",
             "target": "Sat4_3"
         },
         {
-            "weight": 2879.5284762632277,
-            "source": "Sat4_2",
-            "target": "Sat5_2"
+            "weight": 2635.0,
+            "source": "Sat4_3",
+            "target": "Sat5_3"
         },
         {
-            "weight": 3127,
-            "bidirectional": true,
-            "source": "Sat4_2",
-            "target": "Facility15"
-        },
-        {
-            "weight": 3175,
-            "bidirectional": true,
-            "source": "Sat4_2",
-            "target": "Facility18"
-        },
-        {
-            "weight": 4021.450949673776,
+            "weight": 4282.0,
             "source": "Sat4_3",
             "target": "Sat4_4"
         },
         {
-            "weight": 3132.32715911315,
-            "source": "Sat4_3",
-            "target": "Sat5_3"
+            "weight": 2914.0,
+            "source": "Sat4_4",
+            "target": "Sat5_4"
         },
         {
-            "weight": 3251,
-            "bidirectional": true,
-            "source": "Sat4_3",
-            "target": "Facility17"
-        },
-        {
-            "weight": 3246,
-            "bidirectional": true,
-            "source": "Sat4_3",
-            "target": "Facility20"
-        },
-        {
-            "weight": 3251,
-            "bidirectional": true,
-            "source": "Sat4_3",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.450949670603,
+            "weight": 4282.0,
             "source": "Sat4_4",
             "target": "Sat4_5"
         },
         {
-            "weight": 2444.6669976974395,
-            "source": "Sat4_4",
-            "target": "Sat5_4"
+            "weight": 2857.0,
+            "source": "Sat4_5",
+            "target": "Sat5_5"
         },
         {
-            "weight": 1725,
-            "bidirectional": true,
-            "source": "Sat4_4",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.4509496686032,
+            "weight": 4282.0,
             "source": "Sat4_5",
             "target": "Sat4_6"
         },
         {
-            "weight": 1127.0841213878762,
-            "source": "Sat4_5",
-            "target": "Sat5_5"
+            "weight": 2533.0,
+            "source": "Sat4_6",
+            "target": "Sat5_6"
         },
         {
-            "weight": 4021.450949670137,
+            "weight": 4282.0,
             "source": "Sat4_6",
             "target": "Sat4_7"
         },
         {
-            "weight": 1093.3610388286086,
-            "source": "Sat4_6",
-            "target": "Sat5_6"
+            "weight": 2380.0,
+            "source": "Sat4_7",
+            "target": "Sat5_7"
         },
         {
-            "weight": 4021.450949673384,
+            "weight": 4282.0,
             "source": "Sat4_7",
             "target": "Sat4_8"
         },
         {
-            "weight": 2416.4650625185627,
-            "source": "Sat4_7",
-            "target": "Sat5_7"
+            "weight": 2635.0,
+            "source": "Sat4_8",
+            "target": "Sat5_8"
         },
         {
-            "weight": 4021.450949674565,
+            "weight": 4282.0,
             "source": "Sat4_8",
             "target": "Sat4_9"
         },
         {
-            "weight": 3126.0922185307086,
-            "source": "Sat4_8",
-            "target": "Sat5_8"
+            "weight": 2914.0,
+            "source": "Sat4_9",
+            "target": "Sat5_9"
         },
         {
-            "weight": 4021.4509496722976,
+            "weight": 4282.0,
             "source": "Sat4_9",
             "target": "Sat4_10"
         },
         {
-            "weight": 2897.6469728608936,
-            "source": "Sat4_9",
-            "target": "Sat5_9"
-        },
-        {
-            "weight": 4021.450949669223,
-            "source": "Sat4_10",
-            "target": "Sat4_11"
-        },
-        {
-            "weight": 1822.0625246387117,
+            "weight": 2857.0,
             "source": "Sat4_10",
             "target": "Sat5_10"
         },
         {
-            "weight": 691.6258345658771,
-            "source": "Sat4_11",
-            "target": "Sat5_11"
-        },
-        {
-            "weight": 3196,
-            "bidirectional": true,
-            "source": "Sat4_11",
-            "target": "Facility1"
-        },
-        {
-            "weight": 3197,
-            "bidirectional": true,
-            "source": "Sat4_11",
-            "target": "Facility14"
-        },
-        {
-            "weight": 3198,
-            "bidirectional": true,
-            "source": "Sat4_11",
-            "target": "Facility18"
-        },
-        {
-            "weight": 4021.4509499134847,
-            "source": "Sat5_1",
-            "target": "Sat5_2"
-        },
-        {
-            "weight": 1955.984299672209,
+            "weight": 2459.0,
             "source": "Sat5_1",
             "target": "Sat6_1"
         },
         {
-            "weight": 4021.4509499104574,
+            "weight": 4282.0,
             "source": "Sat5_1",
-            "target": "Sat5_11"
+            "target": "Sat5_2"
         },
         {
-            "weight": 2963,
-            "bidirectional": true,
+            "weight": 4282.0,
             "source": "Sat5_1",
-            "target": "Facility1"
+            "target": "Sat5_10"
         },
         {
-            "weight": 1715,
-            "bidirectional": true,
-            "source": "Sat5_1",
-            "target": "Facility11"
+            "weight": 2413.0,
+            "source": "Sat5_2",
+            "target": "Sat6_2"
         },
         {
-            "weight": 2174,
-            "bidirectional": true,
-            "source": "Sat5_1",
-            "target": "Facility14"
-        },
-        {
-            "weight": 1456,
-            "bidirectional": true,
-            "source": "Sat5_1",
-            "target": "Facility15"
-        },
-        {
-            "weight": 3220,
-            "bidirectional": true,
-            "source": "Sat5_1",
-            "target": "Facility18"
-        },
-        {
-            "weight": 1715,
-            "bidirectional": true,
-            "source": "Sat5_1",
-            "target": "Facility19"
-        },
-        {
-            "weight": 1712,
-            "bidirectional": true,
-            "source": "Sat5_1",
-            "target": "Facility5"
-        },
-        {
-            "weight": 4021.450949915835,
+            "weight": 4282.0,
             "source": "Sat5_2",
             "target": "Sat5_3"
         },
         {
-            "weight": 2962.8033628528674,
-            "source": "Sat5_2",
-            "target": "Sat6_2"
+            "weight": 2723.0,
+            "source": "Sat5_3",
+            "target": "Sat6_3"
         },
         {
-            "weight": 3210,
-            "bidirectional": true,
-            "source": "Sat5_2",
-            "target": "Facility11"
-        },
-        {
-            "weight": 2841,
-            "bidirectional": true,
-            "source": "Sat5_2",
-            "target": "Facility15"
-        },
-        {
-            "weight": 3210,
-            "bidirectional": true,
-            "source": "Sat5_2",
-            "target": "Facility19"
-        },
-        {
-            "weight": 3211,
-            "bidirectional": true,
-            "source": "Sat5_2",
-            "target": "Facility5"
-        },
-        {
-            "weight": 4021.450949914735,
+            "weight": 4282.0,
             "source": "Sat5_3",
             "target": "Sat5_4"
         },
         {
-            "weight": 3095.761267612789,
-            "source": "Sat5_3",
-            "target": "Sat6_3"
+            "weight": 2936.0,
+            "source": "Sat5_4",
+            "target": "Sat6_4"
         },
         {
-            "weight": 2706,
-            "bidirectional": true,
-            "source": "Sat5_3",
-            "target": "Facility9"
-        },
-        {
-            "weight": 4021.450949911494,
+            "weight": 4282.0,
             "source": "Sat5_4",
             "target": "Sat5_5"
         },
         {
-            "weight": 2302.318028670657,
-            "source": "Sat5_4",
-            "target": "Sat6_4"
+            "weight": 2789.0,
+            "source": "Sat5_5",
+            "target": "Sat6_5"
         },
         {
-            "weight": 2977,
-            "bidirectional": true,
-            "source": "Sat5_4",
-            "target": "Facility6"
-        },
-        {
-            "weight": 4021.4509499098817,
+            "weight": 4282.0,
             "source": "Sat5_5",
             "target": "Sat5_6"
         },
         {
-            "weight": 967.8012344013111,
-            "source": "Sat5_5",
-            "target": "Sat6_5"
+            "weight": 2459.0,
+            "source": "Sat5_6",
+            "target": "Sat6_6"
         },
         {
-            "weight": 2118,
-            "bidirectional": true,
-            "source": "Sat5_5",
-            "target": "Facility16"
-        },
-        {
-            "weight": 4021.4509499118,
+            "weight": 4282.0,
             "source": "Sat5_6",
             "target": "Sat5_7"
         },
         {
-            "weight": 1262.5111848996978,
-            "source": "Sat5_6",
-            "target": "Sat6_6"
+            "weight": 2413.0,
+            "source": "Sat5_7",
+            "target": "Sat6_7"
         },
         {
-            "weight": 2894,
-            "bidirectional": true,
-            "source": "Sat5_6",
-            "target": "Facility16"
-        },
-        {
-            "weight": 4021.4509499149954,
+            "weight": 4282.0,
             "source": "Sat5_7",
             "target": "Sat5_8"
         },
         {
-            "weight": 2550.307214098357,
-            "source": "Sat5_7",
-            "target": "Sat6_7"
+            "weight": 2723.0,
+            "source": "Sat5_8",
+            "target": "Sat6_8"
         },
         {
-            "weight": 4021.450949915736,
+            "weight": 4282.0,
             "source": "Sat5_8",
             "target": "Sat5_9"
         },
         {
-            "weight": 3150.5969547896693,
-            "source": "Sat5_8",
-            "target": "Sat6_8"
+            "weight": 2936.0,
+            "source": "Sat5_9",
+            "target": "Sat6_9"
         },
         {
-            "weight": 4021.450949913161,
+            "weight": 4282.0,
             "source": "Sat5_9",
             "target": "Sat5_10"
         },
         {
-            "weight": 2803.4590842821394,
-            "source": "Sat5_9",
-            "target": "Sat6_9"
-        },
-        {
-            "weight": 4021.4509499102696,
-            "source": "Sat5_10",
-            "target": "Sat5_11"
-        },
-        {
-            "weight": 1649.2329589860296,
+            "weight": 2789.0,
             "source": "Sat5_10",
             "target": "Sat6_10"
         },
         {
-            "weight": 718.9368017120427,
-            "source": "Sat5_11",
-            "target": "Sat6_11"
-        },
-        {
-            "weight": 3204,
-            "bidirectional": true,
-            "source": "Sat5_11",
-            "target": "Facility11"
-        },
-        {
-            "weight": 1447,
-            "bidirectional": true,
-            "source": "Sat5_11",
-            "target": "Facility14"
-        },
-        {
-            "weight": 3204,
-            "bidirectional": true,
-            "source": "Sat5_11",
-            "target": "Facility15"
-        },
-        {
-            "weight": 3204,
-            "bidirectional": true,
-            "source": "Sat5_11",
-            "target": "Facility19"
-        },
-        {
-            "weight": 3204,
-            "bidirectional": true,
-            "source": "Sat5_11",
-            "target": "Facility5"
-        },
-        {
-            "weight": 4021.4509477262495,
-            "source": "Sat6_1",
-            "target": "Sat6_2"
-        },
-        {
-            "weight": 2118.1210978876934,
+            "weight": 2404.0,
             "source": "Sat6_1",
             "target": "Sat7_1"
         },
         {
-            "weight": 4021.450947723084,
+            "weight": 4282.0,
             "source": "Sat6_1",
-            "target": "Sat6_11"
+            "target": "Sat6_2"
         },
         {
-            "weight": 1228,
-            "bidirectional": true,
+            "weight": 4282.0,
             "source": "Sat6_1",
-            "target": "Facility11"
+            "target": "Sat6_10"
         },
         {
-            "weight": 1693,
-            "bidirectional": true,
-            "source": "Sat6_1",
-            "target": "Facility15"
+            "weight": 2471.0,
+            "source": "Sat6_2",
+            "target": "Sat7_2"
         },
         {
-            "weight": 1228,
-            "bidirectional": true,
-            "source": "Sat6_1",
-            "target": "Facility19"
-        },
-        {
-            "weight": 1233,
-            "bidirectional": true,
-            "source": "Sat6_1",
-            "target": "Facility5"
-        },
-        {
-            "weight": 4021.450947728249,
+            "weight": 4282.0,
             "source": "Sat6_2",
             "target": "Sat6_3"
         },
         {
-            "weight": 3031.9170422845064,
-            "source": "Sat6_2",
-            "target": "Sat7_2"
+            "weight": 2802.0,
+            "source": "Sat6_3",
+            "target": "Sat7_3"
         },
         {
-            "weight": 4021.450947726735,
+            "weight": 4282.0,
             "source": "Sat6_3",
             "target": "Sat6_4"
         },
         {
-            "weight": 3044.2407063619785,
-            "source": "Sat6_3",
-            "target": "Sat7_3"
+            "weight": 2934.0,
+            "source": "Sat6_4",
+            "target": "Sat7_4"
         },
         {
-            "weight": 3241,
-            "bidirectional": true,
-            "source": "Sat6_3",
-            "target": "Facility6"
-        },
-        {
-            "weight": 4021.450947723478,
+            "weight": 4282.0,
             "source": "Sat6_4",
             "target": "Sat6_5"
         },
         {
-            "weight": 2150.2395869461257,
-            "source": "Sat6_4",
-            "target": "Sat7_4"
+            "weight": 2707.0,
+            "source": "Sat6_5",
+            "target": "Sat7_5"
         },
         {
-            "weight": 3204,
-            "bidirectional": true,
-            "source": "Sat6_4",
-            "target": "Facility16"
-        },
-        {
-            "weight": 1052,
-            "bidirectional": true,
-            "source": "Sat6_4",
-            "target": "Facility6"
-        },
-        {
-            "weight": 2943,
-            "bidirectional": true,
-            "source": "Sat6_4",
-            "target": "Facility8"
-        },
-        {
-            "weight": 4021.450947722281,
+            "weight": 4282.0,
             "source": "Sat6_5",
             "target": "Sat6_6"
         },
         {
-            "weight": 830.8965673989237,
-            "source": "Sat6_5",
-            "target": "Sat7_5"
+            "weight": 2404.0,
+            "source": "Sat6_6",
+            "target": "Sat7_6"
         },
         {
-            "weight": 1542,
-            "bidirectional": true,
-            "source": "Sat6_5",
-            "target": "Facility16"
-        },
-        {
-            "weight": 4021.4509477245606,
+            "weight": 4282.0,
             "source": "Sat6_6",
             "target": "Sat6_7"
         },
         {
-            "weight": 1437.52541913169,
-            "source": "Sat6_6",
-            "target": "Sat7_6"
+            "weight": 2471.0,
+            "source": "Sat6_7",
+            "target": "Sat7_7"
         },
         {
-            "weight": 3091,
-            "bidirectional": true,
-            "source": "Sat6_6",
-            "target": "Facility16"
-        },
-        {
-            "weight": 4021.450947727633,
+            "weight": 4282.0,
             "source": "Sat6_7",
             "target": "Sat6_8"
         },
         {
-            "weight": 2672.624743748792,
-            "source": "Sat6_7",
-            "target": "Sat7_7"
+            "weight": 2802.0,
+            "source": "Sat6_8",
+            "target": "Sat7_8"
         },
         {
-            "weight": 4021.450947727911,
+            "weight": 4282.0,
             "source": "Sat6_8",
             "target": "Sat6_9"
         },
         {
-            "weight": 3159.825348725399,
-            "source": "Sat6_8",
-            "target": "Sat7_8"
+            "weight": 2934.0,
+            "source": "Sat6_9",
+            "target": "Sat7_9"
         },
         {
-            "weight": 4021.4509477250863,
+            "weight": 4282.0,
             "source": "Sat6_9",
             "target": "Sat6_10"
         },
         {
-            "weight": 2696.091607702448,
-            "source": "Sat6_9",
-            "target": "Sat7_9"
-        },
-        {
-            "weight": 1654,
-            "bidirectional": true,
-            "source": "Sat6_9",
-            "target": "Facility10"
-        },
-        {
-            "weight": 4021.450947722428,
-            "source": "Sat6_10",
-            "target": "Sat6_11"
-        },
-        {
-            "weight": 1473.483229673398,
+            "weight": 2707.0,
             "source": "Sat6_10",
             "target": "Sat7_10"
         },
         {
-            "weight": 1551,
-            "bidirectional": true,
-            "source": "Sat6_10",
-            "target": "Facility10"
+            "weight": 2377.0,
+            "source": "Sat7_1",
+            "target": "Sat8_1"
         },
         {
-            "weight": 2469,
-            "bidirectional": true,
-            "source": "Sat6_10",
-            "target": "Facility7"
-        },
-        {
-            "weight": 807.0739625918604,
-            "source": "Sat6_11",
-            "target": "Sat7_11"
-        },
-        {
-            "weight": 3200,
-            "bidirectional": true,
-            "source": "Sat6_11",
-            "target": "Facility11"
-        },
-        {
-            "weight": 3204,
-            "bidirectional": true,
-            "source": "Sat6_11",
-            "target": "Facility15"
-        },
-        {
-            "weight": 3200,
-            "bidirectional": true,
-            "source": "Sat6_11",
-            "target": "Facility19"
-        },
-        {
-            "weight": 3200,
-            "bidirectional": true,
-            "source": "Sat6_11",
-            "target": "Facility5"
-        },
-        {
-            "weight": 4021.450943519991,
+            "weight": 4282.0,
             "source": "Sat7_1",
             "target": "Sat7_2"
         },
         {
-            "weight": 4021.4509435167465,
+            "weight": 4282.0,
             "source": "Sat7_1",
-            "target": "Sat7_11"
+            "target": "Sat7_10"
         },
         {
-            "weight": 3170,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility11"
+            "weight": 2548.0,
+            "source": "Sat7_2",
+            "target": "Sat8_2"
         },
         {
-            "weight": 3233,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility12"
-        },
-        {
-            "weight": 3239,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility17"
-        },
-        {
-            "weight": 3170,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility19"
-        },
-        {
-            "weight": 3227,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility3"
-        },
-        {
-            "weight": 3231,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility4"
-        },
-        {
-            "weight": 3176,
-            "bidirectional": true,
-            "source": "Sat7_1",
-            "target": "Facility5"
-        },
-        {
-            "weight": 4021.4509435216105,
+            "weight": 4282.0,
             "source": "Sat7_2",
             "target": "Sat7_3"
         },
         {
-            "weight": 3150,
-            "bidirectional": true,
-            "source": "Sat7_2",
-            "target": "Facility12"
+            "weight": 2868.0,
+            "source": "Sat7_3",
+            "target": "Sat8_3"
         },
         {
-            "weight": 2992,
-            "bidirectional": true,
-            "source": "Sat7_2",
-            "target": "Facility17"
-        },
-        {
-            "weight": 3136,
-            "bidirectional": true,
-            "source": "Sat7_2",
-            "target": "Facility3"
-        },
-        {
-            "weight": 4021.4509435197047,
+            "weight": 4282.0,
             "source": "Sat7_3",
             "target": "Sat7_4"
         },
         {
-            "weight": 3241,
-            "bidirectional": true,
-            "source": "Sat7_3",
-            "target": "Facility6"
+            "weight": 2907.0,
+            "source": "Sat7_4",
+            "target": "Sat8_4"
         },
         {
-            "weight": 3237,
-            "bidirectional": true,
-            "source": "Sat7_3",
-            "target": "Facility8"
-        },
-        {
-            "weight": 4021.4509435164905,
+            "weight": 4282.0,
             "source": "Sat7_4",
             "target": "Sat7_5"
         },
         {
-            "weight": 1873,
-            "bidirectional": true,
-            "source": "Sat7_4",
-            "target": "Facility6"
+            "weight": 2619.0,
+            "source": "Sat7_5",
+            "target": "Sat8_5"
         },
         {
-            "weight": 976,
-            "bidirectional": true,
-            "source": "Sat7_4",
-            "target": "Facility8"
-        },
-        {
-            "weight": 4021.450943515754,
+            "weight": 4282.0,
             "source": "Sat7_5",
             "target": "Sat7_6"
         },
         {
-            "weight": 3199,
-            "bidirectional": true,
-            "source": "Sat7_5",
-            "target": "Facility2"
+            "weight": 2377.0,
+            "source": "Sat7_6",
+            "target": "Sat8_6"
         },
         {
-            "weight": 4021.4509435183295,
+            "weight": 4282.0,
             "source": "Sat7_6",
             "target": "Sat7_7"
         },
         {
-            "weight": 1569,
-            "bidirectional": true,
-            "source": "Sat7_6",
-            "target": "Facility2"
+            "weight": 2548.0,
+            "source": "Sat7_7",
+            "target": "Sat8_7"
         },
         {
-            "weight": 4021.450943521217,
+            "weight": 4282.0,
             "source": "Sat7_7",
             "target": "Sat7_8"
         },
         {
-            "weight": 3057,
-            "bidirectional": true,
-            "source": "Sat7_7",
-            "target": "Facility2"
+            "weight": 2868.0,
+            "source": "Sat7_8",
+            "target": "Sat8_8"
         },
         {
-            "weight": 4021.450943521047,
+            "weight": 4282.0,
             "source": "Sat7_8",
             "target": "Sat7_9"
         },
         {
-            "weight": 4021.450943518009,
+            "weight": 2907.0,
+            "source": "Sat7_9",
+            "target": "Sat8_9"
+        },
+        {
+            "weight": 4282.0,
             "source": "Sat7_9",
             "target": "Sat7_10"
         },
         {
-            "weight": 1674,
-            "bidirectional": true,
-            "source": "Sat7_9",
-            "target": "Facility10"
-        },
-        {
-            "weight": 3225,
-            "bidirectional": true,
-            "source": "Sat7_9",
-            "target": "Facility7"
-        },
-        {
-            "weight": 4021.450943515655,
+            "weight": 2619.0,
             "source": "Sat7_10",
-            "target": "Sat7_11"
+            "target": "Sat8_10"
         },
         {
-            "weight": 2190,
-            "bidirectional": true,
-            "source": "Sat7_10",
-            "target": "Facility10"
+            "weight": 2380.0,
+            "source": "Sat8_1",
+            "target": "Sat9_1"
         },
         {
-            "weight": 847,
-            "bidirectional": true,
-            "source": "Sat7_10",
-            "target": "Facility7"
+            "weight": 4282.0,
+            "source": "Sat8_1",
+            "target": "Sat8_2"
         },
         {
-            "weight": 3236,
-            "bidirectional": true,
-            "source": "Facility8",
+            "weight": 4282.0,
+            "source": "Sat8_1",
+            "target": "Sat8_10"
+        },
+        {
+            "weight": 2635.0,
+            "source": "Sat8_2",
+            "target": "Sat9_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat8_2",
             "target": "Sat8_3"
         },
         {
-            "weight": 2151,
-            "bidirectional": true,
-            "source": "Facility8",
+            "weight": 2914.0,
+            "source": "Sat8_3",
+            "target": "Sat9_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat8_3",
             "target": "Sat8_4"
         },
         {
-            "weight": 3933,
-            "bidirectional": true,
-            "source": "Facility2",
-            "target": "Sat44"
+            "weight": 2857.0,
+            "source": "Sat8_4",
+            "target": "Sat9_4"
         },
         {
-            "weight": 4349,
-            "bidirectional": true,
-            "source": "Facility2",
-            "target": "Sat45"
-        },
-        {
-            "weight": 3198,
-            "bidirectional": true,
-            "source": "Facility2",
+            "weight": 4282.0,
+            "source": "Sat8_4",
             "target": "Sat8_5"
         },
         {
-            "weight": 1662,
-            "bidirectional": true,
-            "source": "Facility2",
+            "weight": 2533.0,
+            "source": "Sat8_5",
+            "target": "Sat9_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat8_5",
             "target": "Sat8_6"
         },
         {
-            "weight": 1878,
-            "bidirectional": true,
-            "source": "Facility17",
-            "target": "Sat8_1"
+            "weight": 2380.0,
+            "source": "Sat8_6",
+            "target": "Sat9_6"
         },
         {
-            "weight": 2847,
-            "bidirectional": true,
-            "source": "Facility17",
-            "target": "Sat8_2"
+            "weight": 4282.0,
+            "source": "Sat8_6",
+            "target": "Sat8_7"
         },
         {
-            "weight": 1664,
-            "bidirectional": true,
-            "source": "Facility12",
-            "target": "Sat8_1"
+            "weight": 2635.0,
+            "source": "Sat8_7",
+            "target": "Sat9_7"
         },
         {
-            "weight": 3214,
-            "bidirectional": true,
-            "source": "Facility12",
-            "target": "Sat8_11"
+            "weight": 4282.0,
+            "source": "Sat8_7",
+            "target": "Sat8_8"
         },
         {
-            "weight": 3186,
-            "bidirectional": true,
-            "source": "Facility12",
-            "target": "Sat8_2"
+            "weight": 2914.0,
+            "source": "Sat8_8",
+            "target": "Sat9_8"
         },
         {
-            "weight": 1925,
-            "bidirectional": true,
-            "source": "Facility20",
-            "target": "Sat8_1"
-        },
-        {
-            "weight": 5147,
-            "bidirectional": true,
-            "source": "Facility3",
-            "target": "Sat55"
-        },
-        {
-            "weight": 3515,
-            "bidirectional": true,
-            "source": "Facility3",
-            "target": "Sat56"
-        },
-        {
-            "weight": 4706,
-            "bidirectional": true,
-            "source": "Facility3",
-            "target": "Sat57"
-        },
-        {
-            "weight": 1378,
-            "bidirectional": true,
-            "source": "Facility3",
-            "target": "Sat8_1"
-        },
-        {
-            "weight": 3211,
-            "bidirectional": true,
-            "source": "Facility3",
-            "target": "Sat8_11"
-        },
-        {
-            "weight": 4611,
-            "bidirectional": true,
-            "source": "Facility4",
-            "target": "Sat61"
-        },
-        {
-            "weight": 4693,
-            "bidirectional": true,
-            "source": "Facility4",
-            "target": "Sat62"
-        },
-        {
-            "weight": 1457,
-            "bidirectional": true,
-            "source": "Facility4",
-            "target": "Sat8_1"
-        },
-        {
-            "weight": 3210,
-            "bidirectional": true,
-            "source": "Facility4",
-            "target": "Sat8_11"
-        },
-        {
-            "weight": 3239,
-            "bidirectional": true,
-            "source": "Facility9",
-            "target": "Sat8_1"
-        },
-        {
-            "weight": 3130,
-            "bidirectional": true,
-            "source": "Facility9",
-            "target": "Sat8_2"
-        },
-        {
-            "weight": 2947,
-            "bidirectional": true,
-            "source": "Facility1",
-            "target": "Sat41"
-        },
-        {
-            "weight": 3936,
-            "bidirectional": true,
-            "source": "Facility1",
-            "target": "Sat411"
-        },
-        {
-            "weight": 5017,
-            "bidirectional": true,
-            "source": "Facility1",
-            "target": "Sat42"
-        },
-        {
-            "weight": 3219,
-            "bidirectional": true,
-            "source": "Facility7",
+            "weight": 4282.0,
+            "source": "Sat8_8",
             "target": "Sat8_9"
+        },
+        {
+            "weight": 2857.0,
+            "source": "Sat8_9",
+            "target": "Sat9_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat8_9",
+            "target": "Sat8_10"
+        },
+        {
+            "weight": 2533.0,
+            "source": "Sat8_10",
+            "target": "Sat9_10"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat9_1",
+            "target": "Sat10_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_1",
+            "target": "Sat9_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_1",
+            "target": "Sat9_10"
+        },
+        {
+            "weight": 2723.0,
+            "source": "Sat9_2",
+            "target": "Sat10_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_2",
+            "target": "Sat9_3"
+        },
+        {
+            "weight": 2936.0,
+            "source": "Sat9_3",
+            "target": "Sat10_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_3",
+            "target": "Sat9_4"
+        },
+        {
+            "weight": 2789.0,
+            "source": "Sat9_4",
+            "target": "Sat10_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_4",
+            "target": "Sat9_5"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat9_5",
+            "target": "Sat10_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_5",
+            "target": "Sat9_6"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat9_6",
+            "target": "Sat10_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_6",
+            "target": "Sat9_7"
+        },
+        {
+            "weight": 2723.0,
+            "source": "Sat9_7",
+            "target": "Sat10_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_7",
+            "target": "Sat9_8"
+        },
+        {
+            "weight": 2936.0,
+            "source": "Sat9_8",
+            "target": "Sat10_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_8",
+            "target": "Sat9_9"
+        },
+        {
+            "weight": 2789.0,
+            "source": "Sat9_9",
+            "target": "Sat10_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat9_9",
+            "target": "Sat9_10"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat9_10",
+            "target": "Sat10_10"
+        },
+        {
+            "weight": 2471.0,
+            "source": "Sat10_1",
+            "target": "Sat11_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_1",
+            "target": "Sat10_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_1",
+            "target": "Sat10_10"
+        },
+        {
+            "weight": 2802.0,
+            "source": "Sat10_2",
+            "target": "Sat11_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_2",
+            "target": "Sat10_3"
+        },
+        {
+            "weight": 2934.0,
+            "source": "Sat10_3",
+            "target": "Sat11_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_3",
+            "target": "Sat10_4"
+        },
+        {
+            "weight": 2707.0,
+            "source": "Sat10_4",
+            "target": "Sat11_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_4",
+            "target": "Sat10_5"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat10_5",
+            "target": "Sat11_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_5",
+            "target": "Sat10_6"
+        },
+        {
+            "weight": 2471.0,
+            "source": "Sat10_6",
+            "target": "Sat11_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_6",
+            "target": "Sat10_7"
+        },
+        {
+            "weight": 2802.0,
+            "source": "Sat10_7",
+            "target": "Sat11_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_7",
+            "target": "Sat10_8"
+        },
+        {
+            "weight": 2934.0,
+            "source": "Sat10_8",
+            "target": "Sat11_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_8",
+            "target": "Sat10_9"
+        },
+        {
+            "weight": 2707.0,
+            "source": "Sat10_9",
+            "target": "Sat11_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat10_9",
+            "target": "Sat10_10"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat10_10",
+            "target": "Sat11_10"
+        },
+        {
+            "weight": 2548.0,
+            "source": "Sat11_1",
+            "target": "Sat12_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_1",
+            "target": "Sat11_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_1",
+            "target": "Sat11_10"
+        },
+        {
+            "weight": 2868.0,
+            "source": "Sat11_2",
+            "target": "Sat12_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_2",
+            "target": "Sat11_3"
+        },
+        {
+            "weight": 2907.0,
+            "source": "Sat11_3",
+            "target": "Sat12_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_3",
+            "target": "Sat11_4"
+        },
+        {
+            "weight": 2619.0,
+            "source": "Sat11_4",
+            "target": "Sat12_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_4",
+            "target": "Sat11_5"
+        },
+        {
+            "weight": 2377.0,
+            "source": "Sat11_5",
+            "target": "Sat12_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_5",
+            "target": "Sat11_6"
+        },
+        {
+            "weight": 2548.0,
+            "source": "Sat11_6",
+            "target": "Sat12_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_6",
+            "target": "Sat11_7"
+        },
+        {
+            "weight": 2868.0,
+            "source": "Sat11_7",
+            "target": "Sat12_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_7",
+            "target": "Sat11_8"
+        },
+        {
+            "weight": 2907.0,
+            "source": "Sat11_8",
+            "target": "Sat12_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_8",
+            "target": "Sat11_9"
+        },
+        {
+            "weight": 2619.0,
+            "source": "Sat11_9",
+            "target": "Sat12_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat11_9",
+            "target": "Sat11_10"
+        },
+        {
+            "weight": 2377.0,
+            "source": "Sat11_10",
+            "target": "Sat12_10"
+        },
+        {
+            "weight": 2635.0,
+            "source": "Sat12_1",
+            "target": "Sat13_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_1",
+            "target": "Sat12_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_1",
+            "target": "Sat12_10"
+        },
+        {
+            "weight": 2914.0,
+            "source": "Sat12_2",
+            "target": "Sat13_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_2",
+            "target": "Sat12_3"
+        },
+        {
+            "weight": 2857.0,
+            "source": "Sat12_3",
+            "target": "Sat13_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_3",
+            "target": "Sat12_4"
+        },
+        {
+            "weight": 2533.0,
+            "source": "Sat12_4",
+            "target": "Sat13_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_4",
+            "target": "Sat12_5"
+        },
+        {
+            "weight": 2380.0,
+            "source": "Sat12_5",
+            "target": "Sat13_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_5",
+            "target": "Sat12_6"
+        },
+        {
+            "weight": 2635.0,
+            "source": "Sat12_6",
+            "target": "Sat13_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_6",
+            "target": "Sat12_7"
+        },
+        {
+            "weight": 2914.0,
+            "source": "Sat12_7",
+            "target": "Sat13_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_7",
+            "target": "Sat12_8"
+        },
+        {
+            "weight": 2857.0,
+            "source": "Sat12_8",
+            "target": "Sat13_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_8",
+            "target": "Sat12_9"
+        },
+        {
+            "weight": 2533.0,
+            "source": "Sat12_9",
+            "target": "Sat13_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat12_9",
+            "target": "Sat12_10"
+        },
+        {
+            "weight": 2380.0,
+            "source": "Sat12_10",
+            "target": "Sat13_10"
+        },
+        {
+            "weight": 2723.0,
+            "source": "Sat13_1",
+            "target": "Sat14_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_1",
+            "target": "Sat13_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_1",
+            "target": "Sat13_10"
+        },
+        {
+            "weight": 2936.0,
+            "source": "Sat13_2",
+            "target": "Sat14_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_2",
+            "target": "Sat13_3"
+        },
+        {
+            "weight": 2789.0,
+            "source": "Sat13_3",
+            "target": "Sat14_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_3",
+            "target": "Sat13_4"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat13_4",
+            "target": "Sat14_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_4",
+            "target": "Sat13_5"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat13_5",
+            "target": "Sat14_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_5",
+            "target": "Sat13_6"
+        },
+        {
+            "weight": 2723.0,
+            "source": "Sat13_6",
+            "target": "Sat14_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_6",
+            "target": "Sat13_7"
+        },
+        {
+            "weight": 2936.0,
+            "source": "Sat13_7",
+            "target": "Sat14_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_7",
+            "target": "Sat13_8"
+        },
+        {
+            "weight": 2789.0,
+            "source": "Sat13_8",
+            "target": "Sat14_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_8",
+            "target": "Sat13_9"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat13_9",
+            "target": "Sat14_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat13_9",
+            "target": "Sat13_10"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat13_10",
+            "target": "Sat14_10"
+        },
+        {
+            "weight": 2802.0,
+            "source": "Sat14_1",
+            "target": "Sat15_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_1",
+            "target": "Sat14_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_1",
+            "target": "Sat14_10"
+        },
+        {
+            "weight": 2934.0,
+            "source": "Sat14_2",
+            "target": "Sat15_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_2",
+            "target": "Sat14_3"
+        },
+        {
+            "weight": 2707.0,
+            "source": "Sat14_3",
+            "target": "Sat15_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_3",
+            "target": "Sat14_4"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat14_4",
+            "target": "Sat15_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_4",
+            "target": "Sat14_5"
+        },
+        {
+            "weight": 2471.0,
+            "source": "Sat14_5",
+            "target": "Sat15_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_5",
+            "target": "Sat14_6"
+        },
+        {
+            "weight": 2802.0,
+            "source": "Sat14_6",
+            "target": "Sat15_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_6",
+            "target": "Sat14_7"
+        },
+        {
+            "weight": 2934.0,
+            "source": "Sat14_7",
+            "target": "Sat15_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_7",
+            "target": "Sat14_8"
+        },
+        {
+            "weight": 2707.0,
+            "source": "Sat14_8",
+            "target": "Sat15_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_8",
+            "target": "Sat14_9"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat14_9",
+            "target": "Sat15_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat14_9",
+            "target": "Sat14_10"
+        },
+        {
+            "weight": 2471.0,
+            "source": "Sat14_10",
+            "target": "Sat15_10"
+        },
+        {
+            "weight": 2868.0,
+            "source": "Sat15_1",
+            "target": "Sat16_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_1",
+            "target": "Sat15_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_1",
+            "target": "Sat15_10"
+        },
+        {
+            "weight": 2907.0,
+            "source": "Sat15_2",
+            "target": "Sat16_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_2",
+            "target": "Sat15_3"
+        },
+        {
+            "weight": 2619.0,
+            "source": "Sat15_3",
+            "target": "Sat16_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_3",
+            "target": "Sat15_4"
+        },
+        {
+            "weight": 2377.0,
+            "source": "Sat15_4",
+            "target": "Sat16_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_4",
+            "target": "Sat15_5"
+        },
+        {
+            "weight": 2548.0,
+            "source": "Sat15_5",
+            "target": "Sat16_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_5",
+            "target": "Sat15_6"
+        },
+        {
+            "weight": 2868.0,
+            "source": "Sat15_6",
+            "target": "Sat16_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_6",
+            "target": "Sat15_7"
+        },
+        {
+            "weight": 2907.0,
+            "source": "Sat15_7",
+            "target": "Sat16_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_7",
+            "target": "Sat15_8"
+        },
+        {
+            "weight": 2619.0,
+            "source": "Sat15_8",
+            "target": "Sat16_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_8",
+            "target": "Sat15_9"
+        },
+        {
+            "weight": 2377.0,
+            "source": "Sat15_9",
+            "target": "Sat16_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat15_9",
+            "target": "Sat15_10"
+        },
+        {
+            "weight": 2548.0,
+            "source": "Sat15_10",
+            "target": "Sat16_10"
+        },
+        {
+            "weight": 2914.0,
+            "source": "Sat16_1",
+            "target": "Sat17_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_1",
+            "target": "Sat16_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_1",
+            "target": "Sat16_10"
+        },
+        {
+            "weight": 2857.0,
+            "source": "Sat16_2",
+            "target": "Sat17_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_2",
+            "target": "Sat16_3"
+        },
+        {
+            "weight": 2533.0,
+            "source": "Sat16_3",
+            "target": "Sat17_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_3",
+            "target": "Sat16_4"
+        },
+        {
+            "weight": 2380.0,
+            "source": "Sat16_4",
+            "target": "Sat17_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_4",
+            "target": "Sat16_5"
+        },
+        {
+            "weight": 2635.0,
+            "source": "Sat16_5",
+            "target": "Sat17_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_5",
+            "target": "Sat16_6"
+        },
+        {
+            "weight": 2914.0,
+            "source": "Sat16_6",
+            "target": "Sat17_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_6",
+            "target": "Sat16_7"
+        },
+        {
+            "weight": 2857.0,
+            "source": "Sat16_7",
+            "target": "Sat17_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_7",
+            "target": "Sat16_8"
+        },
+        {
+            "weight": 2533.0,
+            "source": "Sat16_8",
+            "target": "Sat17_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_8",
+            "target": "Sat16_9"
+        },
+        {
+            "weight": 2380.0,
+            "source": "Sat16_9",
+            "target": "Sat17_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat16_9",
+            "target": "Sat16_10"
+        },
+        {
+            "weight": 2635.0,
+            "source": "Sat16_10",
+            "target": "Sat17_10"
+        },
+        {
+            "weight": 2936.0,
+            "source": "Sat17_1",
+            "target": "Sat18_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_1",
+            "target": "Sat17_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_1",
+            "target": "Sat17_10"
+        },
+        {
+            "weight": 2789.0,
+            "source": "Sat17_2",
+            "target": "Sat18_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_2",
+            "target": "Sat17_3"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat17_3",
+            "target": "Sat18_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_3",
+            "target": "Sat17_4"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat17_4",
+            "target": "Sat18_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_4",
+            "target": "Sat17_5"
+        },
+        {
+            "weight": 2723.0,
+            "source": "Sat17_5",
+            "target": "Sat18_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_5",
+            "target": "Sat17_6"
+        },
+        {
+            "weight": 2936.0,
+            "source": "Sat17_6",
+            "target": "Sat18_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_6",
+            "target": "Sat17_7"
+        },
+        {
+            "weight": 2789.0,
+            "source": "Sat17_7",
+            "target": "Sat18_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_7",
+            "target": "Sat17_8"
+        },
+        {
+            "weight": 2459.0,
+            "source": "Sat17_8",
+            "target": "Sat18_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_8",
+            "target": "Sat17_9"
+        },
+        {
+            "weight": 2413.0,
+            "source": "Sat17_9",
+            "target": "Sat18_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat17_9",
+            "target": "Sat17_10"
+        },
+        {
+            "weight": 2723.0,
+            "source": "Sat17_10",
+            "target": "Sat18_10"
+        },
+        {
+            "weight": 2934.0,
+            "source": "Sat18_1",
+            "target": "Sat19_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_1",
+            "target": "Sat18_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_1",
+            "target": "Sat18_10"
+        },
+        {
+            "weight": 2707.0,
+            "source": "Sat18_2",
+            "target": "Sat19_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_2",
+            "target": "Sat18_3"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat18_3",
+            "target": "Sat19_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_3",
+            "target": "Sat18_4"
+        },
+        {
+            "weight": 2471.0,
+            "source": "Sat18_4",
+            "target": "Sat19_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_4",
+            "target": "Sat18_5"
+        },
+        {
+            "weight": 2802.0,
+            "source": "Sat18_5",
+            "target": "Sat19_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_5",
+            "target": "Sat18_6"
+        },
+        {
+            "weight": 2934.0,
+            "source": "Sat18_6",
+            "target": "Sat19_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_6",
+            "target": "Sat18_7"
+        },
+        {
+            "weight": 2707.0,
+            "source": "Sat18_7",
+            "target": "Sat19_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_7",
+            "target": "Sat18_8"
+        },
+        {
+            "weight": 2404.0,
+            "source": "Sat18_8",
+            "target": "Sat19_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_8",
+            "target": "Sat18_9"
+        },
+        {
+            "weight": 2471.0,
+            "source": "Sat18_9",
+            "target": "Sat19_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat18_9",
+            "target": "Sat18_10"
+        },
+        {
+            "weight": 2802.0,
+            "source": "Sat18_10",
+            "target": "Sat19_10"
+        },
+        {
+            "weight": 2907.0,
+            "source": "Sat19_1",
+            "target": "Sat20_1"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_1",
+            "target": "Sat19_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_1",
+            "target": "Sat19_10"
+        },
+        {
+            "weight": 2619.0,
+            "source": "Sat19_2",
+            "target": "Sat20_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_2",
+            "target": "Sat19_3"
+        },
+        {
+            "weight": 2377.0,
+            "source": "Sat19_3",
+            "target": "Sat20_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_3",
+            "target": "Sat19_4"
+        },
+        {
+            "weight": 2548.0,
+            "source": "Sat19_4",
+            "target": "Sat20_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_4",
+            "target": "Sat19_5"
+        },
+        {
+            "weight": 2868.0,
+            "source": "Sat19_5",
+            "target": "Sat20_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_5",
+            "target": "Sat19_6"
+        },
+        {
+            "weight": 2907.0,
+            "source": "Sat19_6",
+            "target": "Sat20_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_6",
+            "target": "Sat19_7"
+        },
+        {
+            "weight": 2619.0,
+            "source": "Sat19_7",
+            "target": "Sat20_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_7",
+            "target": "Sat19_8"
+        },
+        {
+            "weight": 2377.0,
+            "source": "Sat19_8",
+            "target": "Sat20_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_8",
+            "target": "Sat19_9"
+        },
+        {
+            "weight": 2548.0,
+            "source": "Sat19_9",
+            "target": "Sat20_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat19_9",
+            "target": "Sat19_10"
+        },
+        {
+            "weight": 2868.0,
+            "source": "Sat19_10",
+            "target": "Sat20_10"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_1",
+            "target": "Sat20_2"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_1",
+            "target": "Sat20_10"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_2",
+            "target": "Sat20_3"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_3",
+            "target": "Sat20_4"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_4",
+            "target": "Sat20_5"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_5",
+            "target": "Sat20_6"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_6",
+            "target": "Sat20_7"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_7",
+            "target": "Sat20_8"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_8",
+            "target": "Sat20_9"
+        },
+        {
+            "weight": 4282.0,
+            "source": "Sat20_9",
+            "target": "Sat20_10"
         }
     ]
 }
