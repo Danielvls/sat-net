@@ -1,0 +1,38 @@
+# 忽略文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.zip
+.idea/
+
+# IDE settings
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Virtual Environment
+venv/
+env/
+.env/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# ignore the data folder
+!data/lla_data/.gitkeep
+!data/aer_data/.gitkeep
+!data/fac_sat_chains/.gitkeep
+
