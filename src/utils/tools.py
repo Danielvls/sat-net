@@ -8,6 +8,7 @@ import time
 import networkx as nx
 import json
 import os
+import pandas as pd
 from pathlib import Path
 from datetime import timedelta, datetime
 from src.utils.logger import Logger
@@ -56,13 +57,49 @@ def save_graph_after_modification(func):
         return result
     return wrapper
 
-# truncate the time string to remove microseconds or smaller units
-def truncate_times(chain_times, format_str="%d %b %Y %H:%M:%S") -> list:
-    dt_times = []
-    for time_str in chain_times:
-        if '.' in time_str:
-            time_str = time_str[:time_str.rfind('.')]
-        dt_time = datetime.strptime(time_str, format_str)
-        dt_times.append(dt_time)
-    return dt_times
+def approx_time(origin_times: list, reference_time_list: list):
+    """Approximate times from origin_times to nearest times in reference_time_list."""
+    try:
+        # Convert origin times to datetime objects, truncating seconds and microseconds
+        processed_times = []
+        for time_str in origin_times:
+            # Split at decimal point to remove microseconds
+            time_str = time_str.split('.')[0]
+            try:
+                dt = datetime.strptime(time_str, '%d %b %Y %H:%M:%S')
+                processed_times.append(dt)
+            except ValueError as e:
+                logger.error(f"Failed to parse time string: {time_str}")
+                raise e
+        
+        # Approximate each time to nearest reference time
+        approximated_times = set()  # Use set to avoid duplicates
+        
+        for orig_time in processed_times:
+            # Find the closest time that's less than or equal to orig_time
+            approx_time = None
+            for ref_time in reference_time_list:
+                if ref_time > orig_time:
+                    break
+                approx_time = ref_time
+            
+            # Only add if we found an approximation
+            if approx_time is not None:
+                approximated_times.add(approx_time)
+            else:
+                logger.warning(f"No approximation found for {orig_time}")
+    
+        result = sorted(list(approximated_times))
 
+        return result
+        
+    except Exception as e:
+        logger.error(f"Error in approx_time: {e}")
+        raise e
+
+def get_time_list():
+    project_root = Path(__file__).resolve().parents[2]
+    with open(project_root / 'data' / 'time_series.json', 'r') as f:
+        time_data = json.load(f)
+    time_series = [pd.to_datetime(t) for t in time_data]
+    return time_series

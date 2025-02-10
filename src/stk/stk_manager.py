@@ -8,7 +8,7 @@ import platform
 import pandas as pd
 from datetime import datetime
 from src.utils.sim_config import *
-from src.utils.tools import truncate_times
+from src.utils.tools import approx_time, get_time_list
 import re
 import json
 import numpy as np
@@ -134,13 +134,13 @@ class STKManager:
                 satellite.Propagator.InitialState.Representation.Assign(keplerian)
                 satellite.Propagator.Propagate()
 
-                # # add constrains for Satellite object
-                # accessConstraints = satellite.AccessConstraints
+                # add constrains for Satellite object
+                accessConstraints = satellite.AccessConstraints
 
-                # # IAgAccessConstraintCollection accessConstraints: Access Constraint collection
-                # # Angle constraint
-                # cnstrAngle = accessConstraints.AddConstraint(29)
-                # cnstrAngle.Angle = 5.0
+                # IAgAccessConstraintCollection accessConstraints: Access Constraint collection
+                # Angle constraint
+                cnstrAngle = accessConstraints.AddConstraint(29)
+                cnstrAngle.Angle = 3.0
 
                 # Add to list
                 self.satellites.append(satellite)
@@ -328,10 +328,16 @@ class STKManager:
         try:
             if not self.constellation:
                 raise Exception("Constellation object is not initialized.")
+            
+            # Dictionary to store data for each facility
+            facility_data = {}
+            
             for facility in self.facilities:
+                facility_records = []  # List to store all records for current facility
+                
                 # Create chain object for satellite to facility
                 sat_fac_chain = self.scenario.Children.New(AgESTKObjectType.eChain, f"Chain_{facility.InstanceName}")
-
+                
                 # Add satellite constellation and facility
                 sat_fac_chain.Objects.AddObject(self.constellation)
                 sat_fac_chain.Objects.AddObject(facility)
@@ -343,59 +349,57 @@ class STKManager:
                 chainResults = chainDataProvider.ExecElements(
                     self.scenario.StartTime,
                     self.scenario.StopTime,
-                    self.time_step,  # Ensure time_step is defined or passed to the function
+                    self.time_step,
                     rpt_elms
                 )
-                # chainDataProvider = chain.DataProviders.GetDataPrvIntervalFromPath("Range Data")
-                # chainResults = chainDataProvider.Exec(scenario.StartTime, scenario.StopTime, 300, rpt_elms)
                 
                 # Loop through all satellite access intervals
                 for intervalNum in range(chainResults.Intervals.Count):
-                    # Get interval
                     interval = chainResults.Intervals[intervalNum]
-                
+                    
                     # Get data for interval
                     chain_times = interval.DataSets.GetDataSetByName("Time").GetValues()
                     strand_names = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
                     sat_fac_distances = interval.DataSets.GetDataSetByName("Range").GetValues()
-                
-                    # Process each data
-                    chain_times = truncate_times(chain_times)
-                
-                    self.chain_time_list = self.approximate_time(chain_times)
-                    self.sat_fac_distances = self.round_distances(sat_fac_distances)
-                    self.sat_name, self.fac_name = self.extract_pattern_from_string(
+                    
+                    # Process time data
+                    self.time_list = get_time_list()
+                    chain_time_list = approx_time(chain_times, self.time_list)
+                    
+                    # Extract satellite name
+                    sat_name, _ = self.extract_pattern_from_string(
                         strand_names[0],
-                            pattern=r"\/(\w+)\s+To\s+.*\/(\w+)"
-                        )
-
-                try:
-                    # Save satellite to facility chain data to csv file
-                    fac_sat_chains_path = self.data_directory / 'fac_sat_chains'
-                    fac_sat_chains_path.mkdir(parents=True, exist_ok=True)
-                    processed_data = list(zip(self.chain_time_list, self.sat_fac_distances))
-                    distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
-                    filepath = fac_sat_chains_path / f'{self.sat_name} To {self.fac_name}.csv'
-                    distance_df.to_csv(filepath, index=False)
-                    # logger.info(f"satellite to facility chain data saved to {filepath}")
-                except Exception as e:
-                    logger.error(f"Error in save_fac_sat_chain_data: {e}")
-                    raise e
-            logger.info("satellite to facility chain data saved")
-        except Exception as e:
-            logger.error(f"Error in compute_fac_access: {e}")
-            raise e
-        try:
-            # Save satellite to facility chain data to csv file
+                        pattern=r"\/(\w+)\s+To\s+.*\/(\w+)"
+                    )
+                    
+                    # Add records for this interval
+                    for time, distance in zip(chain_time_list, sat_fac_distances):
+                        facility_records.append({
+                            'Time': time,
+                            'Satellite': sat_name,
+                            'Facility': facility.InstanceName,
+                            'Distance': round(distance)
+                        })
+                
+                # Store all records for this facility
+                facility_data[facility.InstanceName] = facility_records
+            
+            # Save data for each facility
             fac_sat_chains_path = self.data_directory / 'fac_sat_chains'
             fac_sat_chains_path.mkdir(parents=True, exist_ok=True)
-            processed_data = list(zip(self.chain_time_list, self.sat_fac_distances))
-            distance_df = pd.DataFrame(processed_data, columns=['Time', 'Distance'])
-            filepath = fac_sat_chains_path / f'{self.sat_name} To {self.fac_name}.csv'
-            distance_df.to_csv(filepath, index=False)
-            logger.info(f"satellite to facility chain data saved to {filepath}")
+            
+            # Create separate CSV file for each facility
+            for fac_name, records in facility_data.items():
+                if records:  # Only create file if there are records
+                    df = pd.DataFrame(records)
+                    filepath = fac_sat_chains_path / f'{fac_name}_access_data.csv'
+                    df.to_csv(filepath, index=False)
+                    logger.info(f"Access data for {fac_name} saved to {filepath}")
+            
+            logger.info("All facility access data saved successfully")
+        
         except Exception as e:
-            logger.error(f"Error in save_fac_sat_chain_data: {e}")
+            logger.error(f"Error in get_fac_access: {e}")
             raise e
 
     @staticmethod

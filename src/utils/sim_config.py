@@ -5,9 +5,9 @@
 # @File    : sim_config.py.py
 
 # satellite network configure
-T = 200
-P = 20
-F = 5
+T = 1584
+P = 72
+F = 11
 inc = 53
 height = 6928
 num_orbit_planes = int(P)

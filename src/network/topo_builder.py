@@ -5,7 +5,7 @@
 # @File    : topo_builder.py
 import json
 import networkx as nx
-from src.utils import save_graph_after_modification
+from src.utils import save_graph_after_modification, get_time_list, approx_time, get_time_list
 from bisect import bisect_left
 from pathlib import Path
 import pandas as pd
@@ -13,20 +13,14 @@ from src.utils.logger import Logger
 
 logger = Logger().get_logger()
 
-
 class TopoBuilder:
     def __init__(self):
         self.project_root = Path(__file__).resolve().parents[2]
         self.graph_path = self.project_root / 'graphs'
         self.data_directory = self.project_root / 'data'
         self.sat_distance_file = self.project_root / 'data' / 'aer_data' / 'inter_satellite_distances.csv'
-        
-
         self.graph_list = []
-
-        with open(self.project_root / 'data' / 'time_series.json', 'r') as f:
-            time_data = json.load(f)
-        self.time_series = [pd.to_datetime(t) for t in time_data]
+        self.time_series = get_time_list()
 
     def gen_topo(self):
         '''create graph for each time step'''

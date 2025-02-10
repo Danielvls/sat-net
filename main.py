@@ -22,20 +22,20 @@ def main():
     # # 调试部分
     # # --------------------------------------------------------------------------------------
     # Initialize STK Manager
-    # manager = STKManager()
-    # manager.launch_stk()
-    # manager.attach_to_application()
-    #    # manager.load_scenario('D:/STKScenario/200/200sat.sc',
-    # #                       "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-    # manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-    # manager.create_constellation("DeltaConstellation")
-    # manager.create_facilities()
-    # manager.get_sat_access()
+    manager = STKManager()
+    manager.launch_stk()
+    manager.attach_to_application()
+       # manager.load_scenario('D:/STKScenario/200/200sat.sc',
+    #                       "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
+    manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
+    manager.create_constellation("DeltaConstellation")
+    manager.create_facilities()
+    manager.get_sat_access()
     # manager.get_fac_access()
     # manager.get_sat_lla()
 
-    topo_builder = TopoBuilder()
-    topo_builder.gen_topo()
+    # topo_builder = TopoBuilder()
+    # topo_builder.gen_topo()
 
     # counter = Counter()
     # avg_flow_num = 250
