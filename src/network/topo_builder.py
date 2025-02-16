@@ -27,7 +27,7 @@ class TopoBuilder:
         for index in range(len(self.time_series)):
             graph = nx.Graph()
             self._add_sat_to_topo(graph, index)
-            self._add_fac_to_topo(graph, index)
+            # self._add_fac_to_topo(graph, index)
             # self._add_bandwidth_to_edges(graph, index)
 
 

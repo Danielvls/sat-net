@@ -5,9 +5,20 @@
 # @File    : sim_config.py.py
 
 # satellite network configure
-T = 1584
-P = 72
-F = 11
+# T = 1584
+# P = 72
+# F = 11
+
+# test topology
+# T = 200
+# P = 20
+# F = 5
+
+# test topology
+T = 100
+P = 10
+F = 3
+
 inc = 53
 height = 6928
 num_orbit_planes = int(P)
@@ -18,8 +29,7 @@ time_step = 300   # 5min
 
 
 
-slot_num = 10
-slot_size = 100
+
 
 avg_duration = 1200
 minimum_bandwidth, maximum_bandwidth = 300, 500

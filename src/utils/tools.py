@@ -103,3 +103,32 @@ def get_time_list():
         time_data = json.load(f)
     time_series = [pd.to_datetime(t) for t in time_data]
     return time_series
+
+def get_graph_list():
+    project_root = Path(__file__).resolve().parents[2]
+    graph_dir = project_root / 'data' / 'graphs'
+    graph_list = []
+    
+    # Get all json files sorted by number
+    graph_files = sorted(graph_dir.glob('graph*.json'), 
+                        key=lambda x: int(x.stem.replace('graph','')))
+    
+    # Read each graph file and convert to networkx graph
+    for graph_file in graph_files:
+        with open(graph_file, 'r') as f:
+            graph_data = json.load(f)
+            graph = nx.node_link_graph(graph_data)
+            graph_list.append(graph)
+            
+    return graph_list
+
+def generate_time_series(start_time, end_time, time_step):
+    project_root = Path(__file__).resolve().parents[2]
+    # Convert time_step (in seconds) to pandas frequency string
+    freq = f'{time_step}s'  # 'S' represents seconds
+    time_series = pd.date_range(start=start_time, end=end_time, freq=freq)
+    # Convert timestamps to ISO format strings
+    formatted_times = [ts.strftime('%Y-%m-%dT%H:%M:%S') for ts in time_series]
+    with open(project_root / 'data' / 'time_series.json', 'w') as f:
+        json.dump(formatted_times, f)
+    return time_series

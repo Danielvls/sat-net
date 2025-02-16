@@ -6,19 +6,19 @@
 
 import random
 import networkx as nx
-import os
-import numpy as np
 from pathlib import Path
 import json
 import pandas as pd
 import math
-from scipy.stats import poisson
 from datetime import timedelta
+
+# geometry  
 import geopandas as gpd
 from shapely.geometry import Point, Polygon, MultiPolygon
 from fuzzywuzzy import process
-from src.utils.sim_config import *
-from src.utils import Counter
+
+# utils
+from src.utils import Counter, get_time_list
 import pycountry
 
 
@@ -27,12 +27,11 @@ class FlowGenerator:
         # Initialize flow generator with the number of flows
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
-        self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
+        self.time_series = get_time_list()
         self.graph_path = self.project_root / 'graphs'
         self.counter = Counter()
 
         # get configuration
-        # 定义必要的参数，如果有配置文件，可以从配置文件中导入
         self.avg_flow_num = avg_flow_num
         self.avg_duration = avg_duration
         self.minimum_bandwidth = minimum_bandwidth

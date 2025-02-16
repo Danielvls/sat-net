@@ -14,25 +14,41 @@ import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
 from src.utils.logger import Logger
+from src.utils.tools import get_graph_list
 
-
+logger = Logger().get_logger()
 
 def main():
     # # --------------------------------------------------------------------------------------
     # # 调试部分
     # # --------------------------------------------------------------------------------------
-    # Initialize STK Manager
-    manager = STKManager()
-    manager.launch_stk()
-    manager.attach_to_application()
-       # manager.load_scenario('D:/STKScenario/200/200sat.sc',
-    #                       "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-    manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-    manager.create_constellation("DeltaConstellation")
-    manager.create_facilities()
-    manager.get_sat_access()
-    # manager.get_fac_access()
-    # manager.get_sat_lla()
+    # Check if graphs folder exists and contains graph files
+    project_root = Path(__file__).resolve().parent
+    graphs_dir = project_root / 'graphs'
+    
+    if graphs_dir.exists() and any(graphs_dir.glob('graph*.json')):
+        # If graph files exist, generate graph list
+        graph_list = get_graph_list(graphs_dir)
+        logger.info("Graph files found, generating graph list...")
+        topo_builder = TopoBuilder()
+        topo_builder.gen_topo()
+    else:
+        # Create graphs directory if it doesn't exist
+        graphs_dir.mkdir(parents=True, exist_ok=True)
+        logger.info("No graph files found, running STK simulation first...")
+        # Initialize STK Manager
+        manager = STKManager()
+        manager.launch_stk()
+        manager.attach_to_application()
+        # manager.load_scenario('D:/STKScenario/200/200sat.sc',
+        #                       "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
+        manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
+        manager.create_constellation("DeltaConstellation")
+        manager.create_facilities()
+        manager.get_sat_access()
+        manager.save_graph_data()
+        # manager.get_fac_access()
+        # manager.get_sat_lla()
 
     # topo_builder = TopoBuilder()
     # topo_builder.gen_topo()
