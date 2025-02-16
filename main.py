@@ -6,7 +6,6 @@
 
 
 from src.stk import STKManager
-from src.network import TopoBuilder
 # from plot.satellite_visualizer import SatelliteVisualizer
 from src.utils import *
 import pandas as pd
@@ -15,6 +14,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from src.utils.logger import Logger
 from src.utils.tools import get_graph_list
+from src.network import FlowGenerator
 
 logger = Logger().get_logger()
 
@@ -28,10 +28,7 @@ def main():
     
     if graphs_dir.exists() and any(graphs_dir.glob('graph*.json')):
         # If graph files exist, generate graph list
-        graph_list = get_graph_list(graphs_dir)
         logger.info("Graph files found, generating graph list...")
-        topo_builder = TopoBuilder()
-        topo_builder.gen_topo()
     else:
         # Create graphs directory if it doesn't exist
         graphs_dir.mkdir(parents=True, exist_ok=True)
@@ -46,9 +43,14 @@ def main():
         manager.create_constellation("DeltaConstellation")
         manager.create_facilities()
         manager.get_sat_access()
+        manager.get_sat_lla()
         manager.save_graph_data()
         # manager.get_fac_access()
-        # manager.get_sat_lla()
+
+    graph_list = get_graph_list(graphs_dir)
+    # # Initialize flow generator with the number of flows
+    flow_generator = FlowGenerator(graph_list)
+    flows = flow_generator.generate_flows_for_each_graph()
 
     # topo_builder = TopoBuilder()
     # topo_builder.gen_topo()

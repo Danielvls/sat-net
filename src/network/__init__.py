@@ -4,7 +4,6 @@
 # @Email   : daniel_fys@163.com
 # @File    : __init__.py
 
-from .topo_builder import TopoBuilder
-# from .flow_generator import FlowGenerator
+from .flow_generator import FlowGenerator
 # from .flow_controller import FlowController
 

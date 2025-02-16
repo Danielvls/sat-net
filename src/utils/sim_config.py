@@ -27,14 +27,12 @@ num_sat_per_plane = int(T / P)
 # snapshot step
 time_step = 300   # 5min
 
-
-
-
-
-avg_duration = 1200
-minimum_bandwidth, maximum_bandwidth = 300, 500
-avg_bandwidth = (minimum_bandwidth + maximum_bandwidth) / 2
-bandwidth_stddev = 0.01
+# flow configure
+avg_flow_num = 10
+# avg_duration = 1200
+# minimum_bandwidth, maximum_bandwidth = 300, 500
+# avg_bandwidth = (minimum_bandwidth + maximum_bandwidth) / 2
+# bandwidth_stddev = 0.01
 # duration_stddev = 0.1
 
 

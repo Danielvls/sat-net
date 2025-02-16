@@ -207,7 +207,7 @@ class STKManager:
             # Add facility object to all graphs in graph_list
             for graph in self.graph_list:
                 if not graph.has_node(name):
-                    graph.add_node(name, latitude=latitude, longitude=longitude, altitude=altitude)
+                    graph.add_node(name, lat=latitude, lon=longitude, alt=altitude)
 
     def get_sat_access(self):
         sce_time = []
@@ -270,14 +270,12 @@ class STKManager:
                     lat = chainResults.DataSets.GetDataSetByName("Lat").GetValues()[i]
                     lon = chainResults.DataSets.GetDataSetByName("Lon").GetValues()[i]
                     sat_lla.append([sat_time, lat, lon])
-
-            # Save satellite LLA data to CSV file
-            lla_reports_path = self.data_directory / 'sat_lla_reports'
-            lla_reports_path.mkdir(parents=True, exist_ok=True)
-            lla_df = pd.DataFrame(sat_lla, columns=['Time', 'Latitude', 'Longitude'])
-            filepath = lla_reports_path / f"{sat_name}_lla.csv"
-            lla_df.to_csv(filepath, index=False)
-            logger.info(f"Saved LLA data for {sat_name} to {filepath}")
+                    
+                    # 更新 NetworkX 图中节点的属性
+                    for node in self.graph_list[i].nodes():
+                        if node == sat.InstanceName:
+                            self.graph_list[i].nodes[node]['lat'] = lat
+                            self.graph_list[i].nodes[node]['lon'] = lon
         except Exception as e:
             logger.error(f"Error in get_sat_lla: {e}")
             raise e
@@ -334,7 +332,7 @@ class STKManager:
         for idx, graph in enumerate(self.graph_list):
             graph_path = graphs_dir / f'graph{idx}.json'
             with open(graph_path, 'w') as f:
-                data = nx.node_link_data(graph)
+                data = nx.node_link_data(graph, edges="links")
                 # indent=2 for more compact but still readable JSON formatting
                 json.dump(data, f, indent=2)
             logger.info(f"Saved graph data to {graph_path}")

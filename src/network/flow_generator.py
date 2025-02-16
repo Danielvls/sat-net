@@ -6,42 +6,43 @@
 
 import random
 import networkx as nx
-from pathlib import Path
 import json
 import pandas as pd
 import math
 from datetime import timedelta
+from pathlib import Path
 
 # geometry  
 import geopandas as gpd
 from shapely.geometry import Point, Polygon, MultiPolygon
 from fuzzywuzzy import process
+import pycountry
 
 # utils
 from src.utils import Counter, get_time_list
-import pycountry
+from src.utils.sim_config import *
+from src.utils import Logger
 
+logger = Logger().get_logger()
 
 class FlowGenerator:
-    def __init__(self,  graph_list=None, avg_flow_num=None):
+    def __init__(self,  graph_list=None):
         # Initialize flow generator with the number of flows
+        self.graph_list = graph_list
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
         self.time_series = get_time_list()
-        self.graph_path = self.project_root / 'graphs'
         self.counter = Counter()
+        self.flows = []
+        self.coordinates = []
 
         # get configuration
-        self.avg_flow_num = avg_flow_num
-        self.avg_duration = avg_duration
-        self.minimum_bandwidth = minimum_bandwidth
-        self.maximum_bandwidth = maximum_bandwidth
-        self.avg_bandwidth = (self.minimum_bandwidth + self.maximum_bandwidth) / 2
-        self.bandwidth_stddev = (self.maximum_bandwidth - self.minimum_bandwidth) / 6  # 假设99.7%的数据在范围内
+        # self.minimum_bandwidth = minimum_bandwidth
+        # self.maximum_bandwidth = maximum_bandwidth
+        # self.avg_bandwidth = (self.minimum_bandwidth + self.maximum_bandwidth) / 2
+        # self.bandwidth_stddev = (self.maximum_bandwidth - self.minimum_bandwidth) / 6  # 假设99.7%的数据在范围内
 
-        # initialize lists
-        self.graph_list = graph_list
-        self.flows = []
+
 
         # 初始化国家数据
         # self.country_data = self._load_country_data(self.project_root / 'data' / 'world_internet_user.csv')
@@ -50,65 +51,58 @@ class FlowGenerator:
         #     self.project_root / 'data' / 'ne_10m_admin_0_countries' / 'ne_10m_admin_0_countries.shp')
 
     def generate_flows_for_each_graph(self):
-        # the number of flows is Poisson distributed
-        k = 3  # k 越大，方差越小
-        num_flows = self.avg_flow_num
+        # # the number of flows is Poisson distributed
+        # k = 3  # k 越大，方差越小
 
-        # 用于记录每个卫星节点作为起始节点的次数
-        satellite_usage = {}
+        # # 用于记录每个卫星节点作为起始节点的次数
+        # satellite_usage = {}
 
         # generate flows for each graph
         for index in range(len(self.graph_list)):
             graph = self.graph_list[index]
-            satellite_coords = self._load_satellite_data(self.graph_path / f'graph{index}.json')
 
             # generate node lists for each graph
             satellites, facilities = self._generate_node_lists(graph)
 
-            # 生成随机国家和随机点
-            selected_points = self._select_countries_and_points(num_flows)
+            # generate random countries and random points
+            start_points, end_points= self._select_points(avg_flow_num)
 
-            for point in selected_points:
-                # 找到最近的卫星
-                nearest_satellite_id, distance_to_sat = self._find_nearest_satellite(point[0], point[1], satellite_coords)
+            for start_point, end_point in zip(start_points, end_points):
+                # find the nearest satellite to the start point
+                nearest_sat_name, _ = self._find_nearest_satellite(start_point[0], start_point[1], index)
 
-                # 如果卫星在图中，使用该卫星作为起始节点
-                if nearest_satellite_id in graph.nodes:
-                    start_node = nearest_satellite_id
-                else:
-                    # 否则，随机选择一个卫星节点
-                    start_node = random.choice(satellites)
+                # find the nearest facility to the end point
+                nearest_fac_name, _ = self._find_nearest_facility(end_point[0], end_point[1], index)
+                logger.debug(f"Nearest satellite: {nearest_sat_name}, Nearest facility: {nearest_fac_name}")
 
-                # 统计卫星节点的使用次数
-                satellite_usage[start_node] = satellite_usage.get(start_node, 0) + 1
+                # # count the usage of the satellite
+                # satellite_usage[start_node] = satellite_usage.get(start_node, 0) + 1
 
-
-                # 目标节点随机选择一个地面站
-                target_node = random.choice(facilities)
+                # target node is randomly selected from the ground station
+                # target_node = random.choice(facilities)
 
 
-                # # 使用正态分布生成带宽
+                # # generate bandwidth with normal distribution
                 # bandwidth = round(np.random.normal(self.avg_bandwidth, self.bandwidth_stddev), 2)
-                # # 确保带宽在最小和最大带宽之间
+                # # ensure the bandwidth is between the minimum and maximum bandwidth
                 # bandwidth = max(min(bandwidth, self.maximum_bandwidth), self.minimum_bandwidth)
 
-                # 使用平均持续时间
+                # use the average duration
                 duration = 900
 
-                # 流信息
+                # flow information
                 flow = {
                     "graph_index": index,
                     "primary_path": None,
                     "backup_path": None,
-                    "start_node": start_node,
-                    "target_node": target_node,
+                    "start_node": nearest_sat_name,
+                    "target_node": nearest_fac_name,
                     # "bandwidth": bandwidth,
                     "duration": duration,
-                    "random_point": point,
-                    "distance_to_satellite": distance_to_sat
                 }
                 self.flows.append(flow)
         return self.flows
+    
 
     def generate_flows_for_plotting(self, num_flows):
         # 用于记录每个卫星节点作为起始节点的次数
@@ -123,7 +117,7 @@ class FlowGenerator:
             try:
                 with open(graph_file, 'r') as file:
                     graph_data = json.load(file)
-                    graph = nx.node_link_graph(graph_data)
+                    graph = nx.node_link_graph(graph_data, edges="links")
             except json.JSONDecodeError as e:
                 print(f"Error loading {graph_file}: {e}")
                 return  # 读取失败，直接返回
@@ -147,7 +141,7 @@ class FlowGenerator:
 
         for point in selected_points:
             # 找到最近的卫星
-            nearest_satellite_id, distance_to_sat = self._find_nearest_satellite(point[0], point[1], satellite_coords)
+            nearest_satellite_id, distance_to_sat = self._find_nearest_satellite(point[0], point[1], 0)
 
             # count
             # print("Country:", country, "Point:", point)
@@ -209,14 +203,10 @@ class FlowGenerator:
     #
     #     return data[['Country', 'weights']]
 
-    def _select_countries_and_points(self, n):
-        # Get the current file path and locate the project root directory
-        current_file = Path(__file__).resolve()
-        project_root = current_file.parents[2]
-
+    def _select_points(self, n):
         # File paths
-        file_path_city = project_root / 'data' / 'population_data' / 'worldcities.csv'
-        file_path_internet = project_root / 'data' / 'population_data' / 'world_internet_user_origin.csv'
+        file_path_city = self.project_root / 'data' / 'population_data' / 'worldcities.csv'
+        file_path_internet = self.project_root / 'data' / 'population_data' / 'world_internet_user_origin.csv'
 
         # Load city data with geographic information and internet usage data
         city_data = pd.read_csv(file_path_city)
@@ -250,7 +240,40 @@ class FlowGenerator:
         cleaned_data['InternetUsers'] = cleaned_data['Population'] * (cleaned_data['InternetUsagePercentage'] / 100)
 
         sampled_data = cleaned_data.sample(n=n, weights='InternetUsers', replace=True)
-        points = list(zip(sampled_data['Longitude'], sampled_data['Latitude']))
+        start_points = list(zip(sampled_data['Longitude'], sampled_data['Latitude']))
+        # Generate second set of points with minimum distance constraint
+        end_points = []
+        min_distance = 10000  # minimum distance in km
+        
+        for first_point in start_points:
+            valid_point = False
+            max_attempts = 100
+            attempts = 0
+            
+            while not valid_point and attempts < max_attempts:
+                # Sample a candidate point
+                candidate = cleaned_data.sample(n=1, weights='InternetUsers').iloc[0]
+                candidate_point = (candidate['Longitude'], candidate['Latitude'])
+                
+                # Calculate distance using existing haversine function
+                lon1, lat1 = first_point
+                lon2, lat2 = candidate_point
+                distance = self.haversine(lat1, lon1, lat2, lon2)
+                
+                if distance >= min_distance:
+                    end_points.append(candidate_point)
+                    valid_point = True
+                
+                attempts += 1
+            
+            # If no valid point found after max attempts, take the last candidate
+            if not valid_point:
+                end_points.append(candidate_point)
+        
+        return start_points, end_points
+
+
+           
 
         return points
 
@@ -304,7 +327,7 @@ class FlowGenerator:
 
     @staticmethod
     def haversine(lat1, lon1, lat2, lon2):
-        R = 6371  # 地球半径，单位为公里
+        R = 6371  # earth radius
         delta_lat = math.radians(lat2 - lat1)
         delta_lon = math.radians(lon2 - lon1)
         a = (math.sin(delta_lat / 2) ** 2 +
@@ -313,15 +336,33 @@ class FlowGenerator:
         c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
         return R * c
 
-    def _find_nearest_satellite(self, lat, lon, satellite_coords):
+    def _find_nearest_satellite(self, lat, lon, graph_index):
         nearest_sat = None
         min_distance = float('inf')
-        for sat in satellite_coords:
-            distance = self.haversine(lat, lon, sat['latitude'], sat['longitude'])
-            if distance < min_distance:
-                min_distance = distance
-                nearest_sat = sat['id']
+        current_graph = self.graph_list[graph_index]
+        
+        for node in current_graph.nodes(data=True):
+            node_name, node_attrs = node
+            if 'Sat' in node_name:
+                distance = self.haversine(lat, lon, node_attrs['lat'], node_attrs['lon'])
+                if distance < min_distance:
+                    min_distance = distance
+                    nearest_sat = node_name
         return nearest_sat, min_distance
+
+    def _find_nearest_facility(self, lat, lon, graph_index):
+        nearest_fac = None
+        min_distance = float('inf')
+        current_graph = self.graph_list[graph_index]
+        
+        for node in current_graph.nodes(data=True):
+            node_name, node_attrs = node
+            if 'Fac' in node_name:  # Only consider facility nodes
+                distance = self.haversine(lat, lon, node_attrs['lat'], node_attrs['lon'])
+                if distance < min_distance:
+                    min_distance = distance
+                    nearest_fac = node_name
+        return nearest_fac, min_distance
 
     def _load_country_shapes(self, shapefile_path):
         country_shapes = gpd.read_file(shapefile_path)
