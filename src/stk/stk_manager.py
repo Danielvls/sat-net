@@ -332,90 +332,68 @@ class STKManager:
         for idx, graph in enumerate(self.graph_list):
             graph_path = graphs_dir / f'graph{idx}.json'
             with open(graph_path, 'w') as f:
-                data = nx.node_link_data(graph, edges="links")
+                data = nx.node_link_data(graph, attrs={"link": "edges"})
                 # indent=2 for more compact but still readable JSON formatting
                 json.dump(data, f, indent=2)
             logger.info(f"Saved graph data to {graph_path}")
 
     # calculate distance between sat and fac
-    # @timeit_decorator
-    # def get_fac_access(self):
-    #     try:
-    #         if not self.constellation:
-    #             raise Exception("Constellation object is not initialized.")
-            
-    #         # Dictionary to store data for each facility
-    #         facility_data = {}
-            
-    #         for facility in self.facilities:
-    #             facility_records = []  # List to store all records for current facility
+    def get_fac_access(self):
+        try: 
+            for facility in self.facilities:              
+                # Create chain object for satellite to facility
+                sat_fac_chain = self.scenario.Children.New(AgESTKObjectType.eChain, f"Chain_{facility.InstanceName}")
                 
-    #             # Create chain object for satellite to facility
-    #             sat_fac_chain = self.scenario.Children.New(AgESTKObjectType.eChain, f"Chain_{facility.InstanceName}")
+                # Add satellite constellation and facility
+                sat_fac_chain.Objects.AddObject(self.constellation)
+                sat_fac_chain.Objects.AddObject(facility)
+                sat_fac_chain.ComputeAccess()
                 
-    #             # Add satellite constellation and facility
-    #             sat_fac_chain.Objects.AddObject(self.constellation)
-    #             sat_fac_chain.Objects.AddObject(facility)
-    #             sat_fac_chain.ComputeAccess()
+                # Get data provider for range data as TimeVar
+                rpt_elms = ["Time", "Strand Name", "Range"]
+                chainDataProvider = sat_fac_chain.DataProviders.GetDataPrvTimeVarFromPath("Range Data")
+                chainResults = chainDataProvider.ExecElements(
+                    self.scenario.StartTime,
+                    self.scenario.StopTime,
+                    self.time_step,
+                    rpt_elms
+                )
                 
-    #             # Get data provider for range data as TimeVar
-    #             rpt_elms = ["Time", "Strand Name", "Range"]
-    #             chainDataProvider = sat_fac_chain.DataProviders.GetDataPrvTimeVarFromPath("Range Data")
-    #             chainResults = chainDataProvider.ExecElements(
-    #                 self.scenario.StartTime,
-    #                 self.scenario.StopTime,
-    #                 self.time_step,
-    #                 rpt_elms
-    #             )
-                
-    #             # Loop through all satellite access intervals
-    #             for intervalNum in range(chainResults.Intervals.Count):
-    #                 interval = chainResults.Intervals[intervalNum]
+                # Loop through all satellite access intervals
+                for intervalNum in range(chainResults.Intervals.Count):
+                    interval = chainResults.Intervals[intervalNum]
                     
-    #                 # Get data for interval
-    #                 chain_times = interval.DataSets.GetDataSetByName("Time").GetValues()
-    #                 strand_names = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
-    #                 sat_fac_distances = interval.DataSets.GetDataSetByName("Range").GetValues()
+                    # Get data for interval
+                    chain_times = interval.DataSets.GetDataSetByName("Time").GetValues()
+                    strand_names = interval.DataSets.GetDataSetByName("Strand Name").GetValues()
+                    sat_fac_distances = interval.DataSets.GetDataSetByName("Range").GetValues()
                     
-    #                 # Process time data
-    #                 self.time_list = get_time_list()
-    #                 chain_time_list = approx_time(chain_times, self.time_list)
+                    # Process time data
+                    self.time_list = get_time_list()
+                    chain_time_list = approx_time(chain_times, self.time_list)
+                    time_indices = [self.time_series.get_loc(t) for t in chain_time_list]
                     
-    #                 # Extract satellite name
-    #                 sat_name, _ = self.extract_pattern_from_string(
-    #                     strand_names[0],
-    #                     pattern=r"\/(\w+)\s+To\s+.*\/(\w+)"
-    #                 )
+                    # Extract satellite name
+                    # Extract satellite name from strand name using regex
+                    match = re.search(r"\/(\w+)\s+To\s+.*\/(\w+)", strand_names[0])
+                    if match:
+                        sat_name = match.group(1)
+                    else:
+                        logger.error(f"Could not extract satellite name from strand: {strand_names[0]}")
+                        raise ValueError("Invalid strand name format")
+                    facility_name = facility.InstanceName
                     
-    #                 # Add records for this interval
-    #                 for time, distance in zip(chain_time_list, sat_fac_distances):
-    #                     facility_records.append({
-    #                         'Time': time,
-    #                         'Satellite': sat_name,
-    #                         'Facility': facility.InstanceName,
-    #                         'Distance': round(distance)
-    #                     })
-                
-    #             # Store all records for this facility
-    #             facility_data[facility.InstanceName] = facility_records
-            
-    #         # Save data for each facility
-    #         fac_sat_chains_path = self.data_directory / 'fac_sat_chains'
-    #         fac_sat_chains_path.mkdir(parents=True, exist_ok=True)
-            
-    #         # Create separate CSV file for each facility
-    #         for fac_name, records in facility_data.items():
-    #             if records:  # Only create file if there are records
-    #                 df = pd.DataFrame(records)
-    #                 filepath = fac_sat_chains_path / f'{fac_name}_access_data.csv'
-    #                 df.to_csv(filepath, index=False)
-    #                 logger.info(f"Access data for {fac_name} saved to {filepath}")
-            
-    #         logger.info("All facility access data saved successfully")
+                    # Add range data as edge attribute to corresponding graphs
+                    for time_idx, distance in zip(time_indices, sat_fac_distances):
+                        # Get corresponding graph from graph_list
+                        graph = self.graph_list[time_idx]        
+                        # Add edge with range attribute if it doesn't exist, update range if it does
+                        graph.add_edge(sat_name, facility_name, range=distance)
+                        logger.debug(f"Added/updated range {distance} between {sat_name} and {facility_name} at time index {time_idx}")                       
         
-    #     except Exception as e:
-    #         logger.error(f"Error in get_fac_access: {e}")
-    #         raise e
+        except Exception as e:
+            logger.error(f"Error in get_fac_access: {e}")
+            raise e
 
 
 if __name__ == "__main__":

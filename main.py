@@ -14,7 +14,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from src.utils.logger import Logger
 from src.utils.tools import get_graph_list
-from src.network import FlowGenerator
+from src.network import FlowGenerator, FlowController
 
 logger = Logger().get_logger()
 
@@ -43,17 +43,20 @@ def main():
         manager.create_constellation("DeltaConstellation")
         manager.create_facilities()
         manager.get_sat_access()
+        manager.get_fac_access()
         manager.get_sat_lla()
         manager.save_graph_data()
-        # manager.get_fac_access()
+        
 
-    graph_list = get_graph_list(graphs_dir)
-    # # Initialize flow generator with the number of flows
-    flow_generator = FlowGenerator(graph_list)
-    flows = flow_generator.generate_flows_for_each_graph()
+    # graph_list = get_graph_list(graphs_dir)
+    # # # Initialize flow generator with the number of flows
+    # flow_generator = FlowGenerator(graph_list)
+    # flows = flow_generator.generate_flows_for_each_graph()
 
-    # topo_builder = TopoBuilder()
-    # topo_builder.gen_topo()
+    # # process flows
+    # flow_controller = FlowController(flows, graph_list)
+    # flow_controller.control_flow()
+
 
     # counter = Counter()
     # avg_flow_num = 250

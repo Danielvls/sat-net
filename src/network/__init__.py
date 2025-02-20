@@ -5,5 +5,5 @@
 # @File    : __init__.py
 
 from .flow_generator import FlowGenerator
-# from .flow_controller import FlowController
+from .flow_controller import FlowController
 

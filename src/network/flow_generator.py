@@ -88,7 +88,7 @@ class FlowGenerator:
                 # bandwidth = max(min(bandwidth, self.maximum_bandwidth), self.minimum_bandwidth)
 
                 # use the average duration
-                duration = 900
+                duration = 3
 
                 # flow information
                 flow = {

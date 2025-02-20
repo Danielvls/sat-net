@@ -46,7 +46,7 @@ def save_graph_after_modification(func):
         graph_path = project_root / "graphs" / f"graph{idx}.json"
         if graph:
             # save graph as json
-            data = nx.node_link_data(graph)  # or nx.adjacency_data(graph)
+            data = nx.node_link_data(graph, attrs={"link": "edges"})  # or nx.adjacency_data(graph)
             with open(graph_path, 'w') as f:
                 logger.debug(f"trying to dump {data} to {graph_path}")
                 json.dump(data, f, indent=4)
@@ -115,7 +115,7 @@ def get_graph_list(graphs_dir):
     for graph_file in graph_files:
         with open(graph_file, 'r') as f:
             graph_data = json.load(f)
-            graph = nx.node_link_graph(graph_data, edges="links")
+            graph = nx.node_link_graph(graph_data)
             graph_list.append(graph)
             
     return graph_list

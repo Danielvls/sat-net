@@ -3,81 +3,130 @@
 # @Author  : DanielFu
 # @Email   : daniel_fys@163.com
 # @File    : flow_controller.py
-from pathlib import Path
+
 import pandas as pd
 import math
 import re
 import random
 import networkx as nx
-# from sim_config import *
-import os
-import numpy as np
-from pathlib import Path
-from src.utils import find_time_indices
 import json
+import numpy as np
+
+from pathlib import Path
 from itertools import islice
-from datetime import timedelta
-from src.network.flow_generator import FlowGenerator
 
-from src.utils import slot_num, slot_size, timeit_decorator
-from src.utils import Counter
+from src.utils import Counter, Logger
+from src.utils import find_time_indices
 
+logger = Logger().get_logger()
 
 class FlowController:
-    def __init__(self, flows, graph_list, threshold=100):
-        self.threshold = threshold
+    def __init__(self, flows, graph_list):
         self.counter = Counter()
         self.flows = flows
         self.graph_list = graph_list
-
-        self.slot_num = slot_num
-        self.slot_size = slot_size
 
         # Get the current file path and project root directory
         self.current_file = Path(__file__).resolve()
         self.project_root = self.current_file.parents[2]
 
-        # Define the path to the time series CSV file
-        self.time_series_directory = self.project_root / 'data' / 'time_series.csv'
-
-        # Read the time series data from the CSV file
-        time_df = pd.read_csv(self.time_series_directory)
-
-        # Convert the 'Time Series' column to datetime
-        self.time_series = pd.to_datetime(time_df['Time Series'])
-
     def control_flow(self):
+        logger.info("Starting flow control...")
         self.counter.total_flows = len(self.flows)
 
         # Process flows
         for i in range(len(self.flows)):
             flow = self.flows[i]
             self.process_flow(i, flow)
+            logger.debug(f"Flow {i} completed.")
 
-            # print(f"Flow {i} completed.")
 
     # process flows one by one
     def process_flow(self, idx, flow):
-        # print(f"flow{idx} from {flow['start_node']} to {flow['target_node']}...", end="")
+        logger.debug(f"Processing flow {idx} from {flow['start_node']} to {flow['target_node']}...")
 
-        # find the time indices within the duration of the flow
-        start_time = pd.to_datetime(self.time_series[flow["graph_index"]])
-        indices = find_time_indices(self.time_series, start_time, flow['duration'])
+        start_index = flow["graph_index"]
+        end_index = start_index + flow["duration"]
 
-        # make sure there is enough resource to allocate
-        primary_paths_across_graphs, backup_paths_across_graphs = (
-            self.find_resource_across_graphs(flow, indices)
-        )
+        # ensure end_index is not greater than the length of the graph_list
+        end_index = min(end_index, len(self.graph_list))
 
-        # if no path is found, increment the counter
-        if primary_paths_across_graphs is None or backup_paths_across_graphs is None:
-            self.counter.increment_blocked_flows()
-            # print(f"No available resource found for flow {idx}...", end="")
-            # print(f"{primary_paths_across_graphs}, {backup_paths_across_graphs}")
-            return
-        else:
-            self.sequential_allocate_wavelengths(primary_paths_across_graphs, backup_paths_across_graphs)
-            # print(f"self.graph_list[{10}]: {self.graph_list[10].edges.data()}")
+        
+        for graph in [self.graph_list[i] for i in range(start_index, end_index)]:
+            
+            primary_path = self.find_path(graph, flow)
+            backup_path = self.find_path(graph, flow, path_type='backup', existing_path=primary_path)
+            graph_time = graph.graph.get('time', 'Unknown') 
+            logger.debug(f"Flow index: {idx}, Graph time: {graph_time}, Primary path: {primary_path}, Backup path: {backup_path}")
+
+
+    
+    def find_path(self, graph, flow, path_type='primary', existing_path=None):
+        # remove the facilities who is not the target node
+        def remove_other_facilities(_graph):
+            pattern = r'^Facility'
+            facilities_to_remove = [node for node in _graph.nodes() if
+                                    re.match(pattern, node) and node != flow['target_node']]
+            _graph.remove_nodes_from(facilities_to_remove)
+
+        def k_shortest_paths(_graph, _source, _target, k=4, weight=None):
+            return list(
+                islice(nx.shortest_simple_paths(_graph, _source, _target, weight=weight), k)
+            )
+        try:
+            # Create a copy of the graph for path calculation
+            graph_copy = graph.copy()
+
+            # Remove other facilities from the graph
+            remove_other_facilities(graph_copy)
+
+            if path_type == 'primary':
+                source = flow['start_node']
+                target = flow['target_node']
+
+            # if the pp exist, find backup path
+            else:
+                # Remove edges explicitly between intermediate nodes
+                # remove the edge from the first satellite to feedback satellite
+                for i in range(1, len(existing_path) - 1):
+                    start_node = existing_path[i - 1]
+                    end_node = existing_path[i]
+                    if graph_copy.has_edge(start_node, end_node):
+                        graph_copy.remove_edge(start_node, end_node)
+                        # print(f"Removed edge: {start_node} -> {end_node}")
+
+                # Remove target facility from the graph_copy
+                target_facility = flow['target_node']
+                if graph_copy.has_node(target_facility):
+                    graph_copy.remove_node(target_facility)
+
+                source = existing_path[0]
+                target = existing_path[-2]
+
+            paths = k_shortest_paths(graph_copy, source, target)
+            # print(f"found {path_type} paths: {paths}")
+            return paths
+        except (nx.NetworkXNoPath, nx.NodeNotFound):
+            return None, None
+
+        # # find the time indices within the duration of the flow
+        # start_time = pd.to_datetime(self.time_series[flow["graph_index"]])
+        # indices = find_time_indices(self.time_series, start_time, flow['duration'])
+
+        # # make sure there is enough resource to allocate
+        # primary_paths_across_graphs, backup_paths_across_graphs = (
+        #     self.find_resource_across_graphs(flow, indices)
+        # )
+
+        # # if no path is found, increment the counter
+        # if primary_paths_across_graphs is None or backup_paths_across_graphs is None:
+        #     self.counter.increment_blocked_flows()
+        #     # print(f"No available resource found for flow {idx}...", end="")
+        #     # print(f"{primary_paths_across_graphs}, {backup_paths_across_graphs}")
+        #     return
+        # else:
+        #     self.sequential_allocate_wavelengths(primary_paths_across_graphs, backup_paths_across_graphs)
+        #     # print(f"self.graph_list[{10}]: {self.graph_list[10].edges.data()}")
 
     # @timeit_decorator
     def find_resource_across_graphs(self, flow, indices):
@@ -119,7 +168,7 @@ class FlowController:
 
         return primary_paths_across_graphs, backup_paths_across_graphs
 
-    def find_path_and_wavelength(self, graph, flow, path_type='primary', existing_path=None):
+    def find_path(self, graph, flow, path_type='primary', existing_path=None):
         # remove the facilities who is not the target node
         def remove_other_facilities(_graph):
             pattern = r'^Facility'
