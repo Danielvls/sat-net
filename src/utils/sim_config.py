@@ -25,7 +25,7 @@ num_orbit_planes = int(P)
 num_sat_per_plane = int(T / P)
 
 # snapshot step
-time_step = 300   # 5min
+time_step = 60   # 5min
 
 # flow configure
 avg_flow_num = 10

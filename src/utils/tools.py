@@ -37,25 +37,25 @@ def find_time_indices(time_series, start_time, duration):
 #     return wrapper
 
 
-# decorator to save the graph after modification
-def save_graph_after_modification(func):
-    def wrapper(self, graph, idx, *args, **kwargs):
-        result = func(self, graph, idx, *args, **kwargs)
-        current_file = Path(__file__).resolve()
-        project_root = current_file.parents[2]
-        graph_path = project_root / "graphs" / f"graph{idx}.json"
-        if graph:
-            # save graph as json
-            data = nx.node_link_data(graph, attrs={"link": "edges"})  # or nx.adjacency_data(graph)
-            with open(graph_path, 'w') as f:
-                logger.debug(f"trying to dump {data} to {graph_path}")
-                json.dump(data, f, indent=4)
-            # nx.write_graphml(graph, graph_path)
-            logger.info(f"Graph {idx} successfully saved after {func.__name__} modification. File path: {graph_path}")
-        else:
-            logger.warning(f"Warning: No graph was provided for saving at index {idx}.")
-        return result
-    return wrapper
+# # decorator to save the graph after modification
+# def save_graph_after_modification(func):
+#     def wrapper(self, graph, idx, *args, **kwargs):
+#         result = func(self, graph, idx, *args, **kwargs)
+#         current_file = Path(__file__).resolve()
+#         project_root = current_file.parents[2]
+#         graph_path = project_root / "graphs" / f"graph{idx}.json"
+#         if graph:
+#             # save graph as json
+#             data = nx.node_link_data(graph)  # or nx.adjacency_data(graph)
+#             with open(graph_path, 'w') as f:
+#                 logger.debug(f"trying to dump {data} to {graph_path}")
+#                 json.dump(data, f, indent=4)
+#             # nx.write_graphml(graph, graph_path)
+#             logger.info(f"Graph {idx} successfully saved after {func.__name__} modification. File path: {graph_path}")
+#         else:
+#             logger.warning(f"Warning: No graph was provided for saving at index {idx}.")
+#         return result
+#     return wrapper
 
 def approx_time(origin_times: list, reference_time_list: list):
     """Approximate times from origin_times to nearest times in reference_time_list."""
@@ -115,7 +115,7 @@ def get_graph_list(graphs_dir):
     for graph_file in graph_files:
         with open(graph_file, 'r') as f:
             graph_data = json.load(f)
-            graph = nx.node_link_graph(graph_data)
+            graph = nx.node_link_graph(graph_data, edges="edges")
             graph_list.append(graph)
             
     return graph_list

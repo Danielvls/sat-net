@@ -29,6 +29,7 @@ def main():
     if graphs_dir.exists() and any(graphs_dir.glob('graph*.json')):
         # If graph files exist, generate graph list
         logger.info("Graph files found, generating graph list...")
+        # graph_list = get_graph_list(graphs_dir)
     else:
         # Create graphs directory if it doesn't exist
         graphs_dir.mkdir(parents=True, exist_ok=True)
@@ -39,16 +40,16 @@ def main():
         manager.attach_to_application()
         # manager.load_scenario('D:/STKScenario/200/200sat.sc',
         #                       "1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
-        manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 16:30:00")
+        manager.create_scenario("1 Aug 2020 16:00:00", "1 Aug 2020 17:00:00")
         manager.create_constellation("DeltaConstellation")
         manager.create_facilities()
-        manager.get_sat_access()
+        manager.get_sat_access(constraint=True)
         manager.get_fac_access()
         manager.get_sat_lla()
         manager.save_graph_data()
         
 
-    # graph_list = get_graph_list(graphs_dir)
+    
     # # # Initialize flow generator with the number of flows
     # flow_generator = FlowGenerator(graph_list)
     # flows = flow_generator.generate_flows_for_each_graph()

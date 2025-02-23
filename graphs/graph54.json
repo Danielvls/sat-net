@@ -2,507 +2,307 @@
   "directed": false,
   "multigraph": false,
   "graph": {
-    "time": "2020-08-01T16:00:00"
+    "time": "2020-08-01T16:54:00"
   },
   "nodes": [
     {
-      "lat": 8.771914691586751,
-      "lon": 176.0938004628002,
       "id": "Sat1_1"
     },
     {
-      "lat": 35.86678669086809,
-      "lon": -157.75890916775478,
       "id": "Sat1_2"
     },
     {
-      "lat": 52.59818622164475,
-      "lon": -112.16870605243673,
       "id": "Sat1_3"
     },
     {
-      "lat": 44.51549474285796,
-      "lon": -57.96431417684589,
       "id": "Sat1_4"
     },
     {
-      "lat": 19.883835643415395,
-      "lon": -26.257906619495294,
       "id": "Sat1_5"
     },
     {
-      "lat": -8.771914691586758,
-      "lon": -3.906199537199802,
       "id": "Sat1_6"
     },
     {
-      "lat": -35.866786690868096,
-      "lon": 22.24109083224522,
       "id": "Sat1_7"
     },
     {
-      "lat": -52.59818622164475,
-      "lon": 67.83129394756332,
       "id": "Sat1_8"
     },
     {
-      "lat": -44.515494742857946,
-      "lon": 122.03568582315417,
       "id": "Sat1_9"
     },
     {
-      "lat": -19.883835643415388,
-      "lon": 153.7420933805047,
       "id": "Sat1_10"
     },
     {
-      "lat": 17.270856420742582,
-      "lon": -141.0284872888004,
       "id": "Sat2_1"
     },
     {
-      "lat": 42.59717560442734,
-      "lon": -110.87560000364535,
       "id": "Sat2_2"
     },
     {
-      "lat": 52.94475305163704,
-      "lon": -58.37874298171004,
       "id": "Sat2_3"
     },
     {
-      "lat": 38.03677946298371,
-      "lon": -10.492008692406033,
       "id": "Sat2_4"
     },
     {
-      "lat": 11.424123659253311,
-      "lon": 16.748496336957597,
       "id": "Sat2_5"
     },
     {
-      "lat": -17.27085642074261,
-      "lon": 38.97151271119962,
       "id": "Sat2_6"
     },
     {
-      "lat": -42.59717560442737,
-      "lon": 69.12439999635468,
       "id": "Sat2_7"
     },
     {
-      "lat": -52.94475305163704,
-      "lon": 121.62125701829002,
       "id": "Sat2_8"
     },
     {
-      "lat": -38.0367794629837,
-      "lon": 169.50799130759398,
       "id": "Sat2_9"
     },
     {
-      "lat": -11.424123659253318,
-      "lon": -163.2515036630424,
       "id": "Sat2_10"
     },
     {
-      "lat": 25.467538295763074,
-      "lon": -97.50083075240795,
       "id": "Sat3_1"
     },
     {
-      "lat": 48.05451083899695,
-      "lon": -61.70032436021508,
       "id": "Sat3_2"
     },
     {
-      "lat": 50.73430070283206,
-      "lon": -5.364726559001157,
       "id": "Sat3_3"
     },
     {
-      "lat": 30.677982826750785,
-      "lon": 35.02811147615628,
       "id": "Sat3_4"
     },
     {
-      "lat": 2.8531894623909833,
-      "lon": 59.36915863580344,
       "id": "Sat3_5"
     },
     {
-      "lat": -25.467538295763102,
-      "lon": 82.49916924759209,
       "id": "Sat3_6"
     },
     {
-      "lat": -48.054510838996954,
-      "lon": 118.29967563978494,
       "id": "Sat3_7"
     },
     {
-      "lat": -50.73430070283206,
-      "lon": 174.63527344099887,
       "id": "Sat3_8"
     },
     {
-      "lat": -30.677982826750785,
-      "lon": -144.97188852384372,
       "id": "Sat3_9"
     },
     {
-      "lat": -2.8531894623910095,
-      "lon": -120.63084136419658,
       "id": "Sat3_10"
     },
     {
-      "lat": 33.219875907430605,
-      "lon": -52.934967265711315,
       "id": "Sat4_1"
     },
     {
-      "lat": 51.73271535604594,
-      "lon": -10.045719558395291,
       "id": "Sat4_2"
     },
     {
-      "lat": 46.38544583147791,
-      "lon": 45.46720961827431,
       "id": "Sat4_3"
     },
     {
-      "lat": 22.75345463568268,
-      "lon": 79.18893572877717,
       "id": "Sat4_4"
     },
     {
-      "lat": -5.736744557067077,
-      "lon": 101.90090797195076,
       "id": "Sat4_5"
     },
     {
-      "lat": -33.219875907430655,
-      "lon": 127.06503273428874,
       "id": "Sat4_6"
     },
     {
-      "lat": -51.73271535604594,
-      "lon": 169.95428044160482,
       "id": "Sat4_7"
     },
     {
-      "lat": -46.38544583147788,
-      "lon": -134.53279038172562,
       "id": "Sat4_8"
     },
     {
-      "lat": -22.753454635682644,
-      "lon": -100.81106427122279,
       "id": "Sat4_9"
     },
     {
-      "lat": 5.73674455706707,
-      "lon": -78.09909202804924,
       "id": "Sat4_10"
     },
     {
-      "lat": 40.31077230333586,
-      "lon": -6.827488144663012,
       "id": "Sat5_1"
     },
     {
-      "lat": 53.103607647831254,
-      "lon": 43.42177882791925,
       "id": "Sat5_2"
     },
     {
-      "lat": 40.45156144157152,
-      "lon": 93.81434985910195,
       "id": "Sat5_3"
     },
     {
-      "lat": 14.450058070399518,
-      "lon": 122.45762441164538,
       "id": "Sat5_4"
     },
     {
-      "lat": -14.269742614993731,
-      "lon": 144.61892795826785,
       "id": "Sat5_5"
     },
     {
-      "lat": -40.310772303335874,
-      "lon": 173.17251185533704,
       "id": "Sat5_6"
     },
     {
-      "lat": -53.103607647831254,
-      "lon": -136.57822117208065,
       "id": "Sat5_7"
     },
     {
-      "lat": -40.451561441571485,
-      "lon": -86.18565014089799,
       "id": "Sat5_8"
     },
     {
-      "lat": -14.450058070399505,
-      "lon": -57.5423755883546,
       "id": "Sat5_9"
     },
     {
-      "lat": 14.269742614993739,
-      "lon": -35.38107204173216,
       "id": "Sat5_10"
     },
     {
-      "lat": 46.37900706547191,
-      "lon": 41.42779325313911,
       "id": "Sat6_1"
     },
     {
-      "lat": 51.87944379625014,
-      "lon": 96.99395643281295,
       "id": "Sat6_2"
     },
     {
-      "lat": 33.40190104925651,
-      "lon": 140.03393483324538,
       "id": "Sat6_3"
     },
     {
-      "lat": 5.893262039197666,
-      "lon": 165.19428537464296,
       "id": "Sat6_4"
     },
     {
-      "lat": -22.646409544910714,
-      "lon": -172.16516178183738,
       "id": "Sat6_5"
     },
     {
-      "lat": -46.37900706547194,
-      "lon": -138.57220674686081,
       "id": "Sat6_6"
     },
     {
-      "lat": -51.87944379625011,
-      "lon": -83.00604356718691,
       "id": "Sat6_7"
     },
     {
-      "lat": -33.40190104925643,
-      "lon": -39.96606516675454,
       "id": "Sat6_8"
     },
     {
-      "lat": -5.893262039197631,
-      "lon": -14.805714625357023,
       "id": "Sat6_9"
     },
     {
-      "lat": 22.64640954491071,
-      "lon": 7.834838218162597,
       "id": "Sat6_10"
     },
     {
-      "lat": 50.871704914038325,
-      "lon": 92.30361481062731,
       "id": "Sat7_1"
     },
     {
-      "lat": 48.23068905304132,
-      "lon": 148.83920342568595,
       "id": "Sat7_2"
     },
     {
-      "lat": 25.582800659712817,
-      "lon": -175.34620749282385,
       "id": "Sat7_3"
     },
     {
-      "lat": -2.803029055410015,
-      "lon": -152.29230176706318,
       "id": "Sat7_4"
     },
     {
-      "lat": -30.704952464743922,
-      "lon": -128.04925200427797,
       "id": "Sat7_5"
     },
     {
-      "lat": -50.871704914038354,
-      "lon": -87.69638518937258,
       "id": "Sat7_6"
     },
     {
-      "lat": -48.23068905304127,
-      "lon": -31.160796574313917,
       "id": "Sat7_7"
     },
     {
-      "lat": -25.582800659712763,
-      "lon": 4.653792507176184,
       "id": "Sat7_8"
     },
     {
-      "lat": 2.8030290554100405,
-      "lon": 27.707698232936846,
       "id": "Sat7_9"
     },
     {
-      "lat": 30.704952464743897,
-      "lon": 51.950747995722,
       "id": "Sat7_10"
     },
     {
-      "lat": 53.123238710268886,
-      "lon": 145.5141842079802,
       "id": "Sat8_1"
     },
     {
-      "lat": 42.67590905678417,
-      "lon": -161.88798493534046,
       "id": "Sat8_2"
     },
     {
-      "lat": 17.2561274600425,
-      "lon": -131.82976403988107,
       "id": "Sat8_3"
     },
     {
-      "lat": -11.506927262043181,
-      "lon": -109.69589470179345,
       "id": "Sat8_4"
     },
     {
-      "lat": -38.18483071938293,
-      "lon": -82.50625599330327,
       "id": "Sat8_5"
     },
     {
-      "lat": -53.123238710268886,
-      "lon": -34.48581579201961,
       "id": "Sat8_6"
     },
     {
-      "lat": -42.67590905678407,
-      "lon": 18.112015064659694,
       "id": "Sat8_7"
     },
     {
-      "lat": -17.25612746004242,
-      "lon": 48.170235960118966,
       "id": "Sat8_8"
     },
     {
-      "lat": 11.50692726204319,
-      "lon": 70.30410529820657,
       "id": "Sat8_9"
     },
     {
-      "lat": 38.184830719382916,
-      "lon": 97.4937440066967,
       "id": "Sat8_10"
     },
     {
-      "lat": 52.672919766053354,
-      "lon": -160.52881554948397,
       "id": "Sat9_1"
     },
     {
-      "lat": 35.800087079428906,
-      "lon": -115.03346203753107,
       "id": "Sat9_2"
     },
     {
-      "lat": 8.636472466795107,
-      "lon": -88.98951178185155,
       "id": "Sat9_3"
     },
     {
-      "lat": -20.056145952396722,
-      "lon": -66.67940502238046,
       "id": "Sat9_4"
     },
     {
-      "lat": -44.69457434444042,
-      "lon": -34.914406839529356,
       "id": "Sat9_5"
     },
     {
-      "lat": -52.67291976605333,
-      "lon": 19.47118445051623,
       "id": "Sat9_6"
     },
     {
-      "lat": -35.800087079428835,
-      "lon": 64.96653796246902,
       "id": "Sat9_7"
     },
     {
-      "lat": -8.636472466795027,
-      "lon": 91.01048821814851,
       "id": "Sat9_8"
     },
     {
-      "lat": 20.056145952396722,
-      "lon": 113.32059497761954,
       "id": "Sat9_9"
     },
     {
-      "lat": 44.6945743444404,
-      "lon": 145.0855931604706,
       "id": "Sat9_10"
     },
     {
-      "lat": 49.61365361026141,
-      "lon": -107.96194098493767,
       "id": "Sat10_1"
     },
     {
-      "lat": 28.086593130690975,
-      "lon": -70.02264466607289,
       "id": "Sat10_2"
     },
     {
-      "lat": -0.09194016980266806,
-      "lon": -46.4572556801297,
       "id": "Sat10_3"
     },
     {
-      "lat": -28.254650808649227,
-      "lon": -22.852950393630742,
       "id": "Sat10_4"
     },
     {
-      "lat": -49.70049035753427,
-      "lon": 15.235529084407455,
       "id": "Sat10_5"
     },
     {
-      "lat": -49.61365361026136,
-      "lon": 72.03805901506249,
       "id": "Sat10_6"
     },
     {
-      "lat": -28.086593130690904,
-      "lon": 109.97735533392718,
       "id": "Sat10_7"
     },
     {
-      "lat": 0.09194016980274468,
-      "lon": 133.54274431987037,
       "id": "Sat10_8"
     },
     {
-      "lat": 28.254650808649217,
-      "lon": 157.14704960636925,
       "id": "Sat10_9"
     },
     {
-      "lat": 49.70049035753425,
-      "lon": -164.7644709155926,
       "id": "Sat10_10"
     },
     {
@@ -568,167 +368,162 @@
   ],
   "edges": [
     {
-      "range": 5026.530142990464,
+      "range": 4632.01438325474,
       "sun_outage": false,
       "source": "Sat1_1",
       "target": "Sat2_1"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.84250722617,
       "sun_outage": false,
       "source": "Sat1_1",
       "target": "Sat1_2"
     },
     {
-      "range": 4281.842507226185,
+      "range": 4281.842507226197,
       "sun_outage": false,
       "source": "Sat1_1",
       "target": "Sat1_10"
     },
     {
-      "range": 5106.139210966633,
+      "range": 4846.495428448736,
       "sun_outage": false,
       "source": "Sat1_1",
       "target": "Sat10_8"
     },
     {
-      "range": 4344.57698683383,
+      "range": 3901.4033092092823,
       "sun_outage": false,
       "source": "Sat1_2",
       "target": "Sat2_2"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.8425072261825,
       "sun_outage": false,
       "source": "Sat1_2",
       "target": "Sat1_3"
     },
     {
-      "range": 4589.3540968496245,
+      "range": 4077.57256863999,
       "sun_outage": false,
       "source": "Sat1_2",
       "target": "Sat10_9"
     },
     {
-      "range": 3807.127693216243,
+      "range": 4005.7625427615003,
       "sun_outage": false,
       "source": "Sat1_3",
       "target": "Sat2_3"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226202,
       "sun_outage": false,
       "source": "Sat1_3",
       "target": "Sat1_4"
     },
     {
-      "range": 3878.029199420949,
+      "range": 3857.707048928532,
       "sun_outage": false,
       "source": "Sat1_3",
       "target": "Sat10_10"
     },
     {
-      "range": 2269.1540623036185,
-      "source": "Sat1_3",
-      "target": "Facility1"
-    },
-    {
-      "range": 4263.474579289667,
+      "range": 4773.966921510082,
       "sun_outage": false,
       "source": "Sat1_4",
       "target": "Sat2_4"
     },
     {
-      "range": 4281.842507226195,
+      "range": 4281.842507226185,
       "sun_outage": false,
       "source": "Sat1_4",
       "target": "Sat1_5"
     },
     {
-      "range": 4040.6855003792903,
+      "range": 4545.940607156477,
       "sun_outage": false,
       "source": "Sat1_4",
       "target": "Sat10_1"
     },
     {
-      "range": 1541.527258065295,
-      "source": "Sat1_4",
-      "target": "Facility5"
-    },
-    {
-      "range": 4983.427903398044,
+      "range": 5112.137502028627,
       "sun_outage": false,
       "source": "Sat1_5",
       "target": "Sat2_5"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226205,
       "sun_outage": false,
       "source": "Sat1_5",
       "target": "Sat1_6"
     },
     {
-      "range": 4811.056690214477,
+      "range": 5097.524023548641,
       "sun_outage": false,
       "source": "Sat1_5",
       "target": "Sat10_2"
     },
     {
-      "range": 5026.530142990464,
+      "range": 4632.014383254768,
       "sun_outage": false,
       "source": "Sat1_6",
       "target": "Sat2_6"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226198,
       "sun_outage": false,
       "source": "Sat1_6",
       "target": "Sat1_7"
     },
     {
-      "range": 5106.139210966644,
+      "range": 4846.495428448734,
       "sun_outage": false,
       "source": "Sat1_6",
       "target": "Sat10_3"
     },
     {
-      "range": 4344.576986833832,
+      "range": 3901.403309209277,
       "sun_outage": false,
       "source": "Sat1_7",
       "target": "Sat2_7"
     },
     {
-      "range": 4281.842507226194,
+      "range": 4281.842507226187,
       "sun_outage": false,
       "source": "Sat1_7",
       "target": "Sat1_8"
     },
     {
-      "range": 4589.354096849622,
+      "range": 4077.5725686399646,
       "sun_outage": false,
       "source": "Sat1_7",
       "target": "Sat10_4"
     },
     {
-      "range": 3807.127693216245,
+      "range": 2735.7930836086343,
+      "source": "Sat1_7",
+      "target": "Facility1"
+    },
+    {
+      "range": 4005.7625427614903,
       "sun_outage": false,
       "source": "Sat1_8",
       "target": "Sat2_8"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226204,
       "sun_outage": false,
       "source": "Sat1_8",
       "target": "Sat1_9"
     },
     {
-      "range": 3878.0291994209447,
+      "range": 3857.707048928533,
       "sun_outage": false,
       "source": "Sat1_8",
       "target": "Sat10_5"
     },
     {
-      "range": 4263.474579289664,
+      "range": 4773.9669215100885,
       "sun_outage": false,
       "source": "Sat1_9",
       "target": "Sat2_9"
@@ -740,35 +535,25 @@
       "target": "Sat1_10"
     },
     {
-      "range": 4040.6855003792834,
+      "range": 4545.940607156512,
       "sun_outage": false,
       "source": "Sat1_9",
       "target": "Sat10_6"
     },
     {
-      "range": 2731.0632222994054,
-      "source": "Sat1_9",
-      "target": "Facility2"
-    },
-    {
-      "range": 4983.427903398042,
+      "range": 5112.137502028601,
       "sun_outage": false,
       "source": "Sat1_10",
       "target": "Sat2_10"
     },
     {
-      "range": 4811.05669021447,
+      "range": 5097.524023548649,
       "sun_outage": false,
       "source": "Sat1_10",
       "target": "Sat10_7"
     },
     {
-      "range": 1723.3476487708556,
-      "source": "Sat1_10",
-      "target": "Facility2"
-    },
-    {
-      "range": 4875.041959551775,
+      "range": 4389.127620163357,
       "sun_outage": false,
       "source": "Sat2_1",
       "target": "Sat3_1"
@@ -780,560 +565,470 @@
       "target": "Sat2_2"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226203,
       "sun_outage": false,
       "source": "Sat2_1",
       "target": "Sat2_10"
     },
     {
-      "range": 2710.0409976008746,
-      "source": "Sat2_1",
-      "target": "Facility1"
-    },
-    {
-      "range": 4110.079237692755,
+      "range": 3812.186939905817,
       "sun_outage": false,
       "source": "Sat2_2",
       "target": "Sat3_2"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.8425072262135,
       "sun_outage": false,
       "source": "Sat2_2",
       "target": "Sat2_3"
     },
     {
-      "range": 1317.9452451192024,
-      "source": "Sat2_2",
-      "target": "Facility1"
-    },
-    {
-      "range": 3843.02965642494,
+      "range": 4220.420139858158,
       "sun_outage": false,
       "source": "Sat2_3",
       "target": "Sat3_3"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.842507226155,
       "sun_outage": false,
       "source": "Sat2_3",
       "target": "Sat2_4"
     },
     {
-      "range": 1955.1156565029685,
-      "source": "Sat2_3",
-      "target": "Facility5"
-    },
-    {
-      "range": 4508.832388966049,
+      "range": 4956.8397870239205,
       "sun_outage": false,
       "source": "Sat2_4",
       "target": "Sat3_4"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226217,
       "sun_outage": false,
       "source": "Sat2_4",
       "target": "Sat2_5"
     },
     {
-      "range": 1856.725045850848,
-      "source": "Sat2_4",
-      "target": "Facility3"
-    },
-    {
-      "range": 1740.4615398546389,
-      "source": "Sat2_4",
-      "target": "Facility4"
-    },
-    {
-      "range": 5088.232797887067,
+      "range": 5046.576079740224,
       "sun_outage": false,
       "source": "Sat2_5",
       "target": "Sat3_5"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226203,
       "sun_outage": false,
       "source": "Sat2_5",
       "target": "Sat2_6"
     },
     {
-      "range": 4875.041959551775,
+      "range": 4389.127620163328,
       "sun_outage": false,
       "source": "Sat2_6",
       "target": "Sat3_6"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226184,
       "sun_outage": false,
       "source": "Sat2_6",
       "target": "Sat2_7"
     },
     {
-      "range": 4110.07923769275,
+      "range": 3812.1869399058214,
       "sun_outage": false,
       "source": "Sat2_7",
       "target": "Sat3_7"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226203,
       "sun_outage": false,
       "source": "Sat2_7",
       "target": "Sat2_8"
     },
     {
-      "range": 3843.0296564249384,
+      "range": 4220.420139858163,
       "sun_outage": false,
       "source": "Sat2_8",
       "target": "Sat3_8"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226188,
       "sun_outage": false,
       "source": "Sat2_8",
       "target": "Sat2_9"
     },
     {
-      "range": 4508.832388966048,
+      "range": 4956.839787023887,
       "sun_outage": false,
       "source": "Sat2_9",
       "target": "Sat3_9"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226175,
       "sun_outage": false,
       "source": "Sat2_9",
       "target": "Sat2_10"
     },
     {
-      "range": 1864.4637763132444,
-      "source": "Sat2_9",
-      "target": "Facility2"
-    },
-    {
-      "range": 5088.232797887067,
+      "range": 5046.576079740222,
       "sun_outage": false,
       "source": "Sat2_10",
       "target": "Sat3_10"
     },
     {
-      "range": 4667.2700662110665,
+      "range": 4150.0483789781465,
       "sun_outage": false,
       "source": "Sat3_1",
       "target": "Sat4_1"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226155,
       "sun_outage": false,
       "source": "Sat3_1",
       "target": "Sat3_2"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226199,
       "sun_outage": false,
       "source": "Sat3_1",
       "target": "Sat3_10"
     },
     {
-      "range": 2363.0182272977077,
-      "source": "Sat3_1",
-      "target": "Facility1"
-    },
-    {
-      "range": 2715.55655351336,
-      "source": "Sat3_1",
-      "target": "Facility5"
-    },
-    {
-      "range": 3923.3693019400735,
+      "range": 3828.6713123786208,
       "sun_outage": false,
       "source": "Sat3_2",
       "target": "Sat4_2"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat3_2",
       "target": "Sat3_3"
     },
     {
-      "range": 1439.5894225308148,
-      "source": "Sat3_2",
-      "target": "Facility5"
-    },
-    {
-      "range": 3978.0026035445467,
+      "range": 4464.452829858972,
       "sun_outage": false,
       "source": "Sat3_3",
       "target": "Sat4_3"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.842507226209,
       "sun_outage": false,
       "source": "Sat3_3",
       "target": "Sat3_4"
     },
     {
-      "range": 686.1370487195404,
-      "source": "Sat3_3",
-      "target": "Facility3"
-    },
-    {
-      "range": 836.181432065501,
-      "source": "Sat3_3",
-      "target": "Facility4"
-    },
-    {
-      "range": 4741.50898901342,
+      "range": 5074.854680667861,
       "sun_outage": false,
       "source": "Sat3_4",
       "target": "Sat4_4"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226215,
       "sun_outage": false,
       "source": "Sat3_4",
       "target": "Sat3_5"
     },
     {
-      "range": 5115.143807666538,
+      "range": 4907.161207314568,
       "sun_outage": false,
       "source": "Sat3_5",
       "target": "Sat4_5"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226152,
       "sun_outage": false,
       "source": "Sat3_5",
       "target": "Sat3_6"
     },
     {
-      "range": 4667.270066211067,
+      "range": 4150.048378978186,
       "sun_outage": false,
       "source": "Sat3_6",
       "target": "Sat4_6"
     },
     {
-      "range": 4281.842507226189,
+      "range": 4281.842507226206,
       "sun_outage": false,
       "source": "Sat3_6",
       "target": "Sat3_7"
     },
     {
-      "range": 3923.369301940079,
+      "range": 2729.5622183481637,
+      "source": "Sat3_6",
+      "target": "Facility1"
+    },
+    {
+      "range": 3828.6713123786353,
       "sun_outage": false,
       "source": "Sat3_7",
       "target": "Sat4_7"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226182,
       "sun_outage": false,
       "source": "Sat3_7",
       "target": "Sat3_8"
     },
     {
-      "range": 3978.0026035445508,
+      "range": 2742.221034930094,
+      "source": "Sat3_7",
+      "target": "Facility3"
+    },
+    {
+      "range": 2741.7416224831227,
+      "source": "Sat3_7",
+      "target": "Facility4"
+    },
+    {
+      "range": 4464.452829858987,
       "sun_outage": false,
       "source": "Sat3_8",
       "target": "Sat4_8"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat3_8",
       "target": "Sat3_9"
     },
     {
-      "range": 4741.508989013424,
+      "range": 1778.4132101768816,
+      "source": "Sat3_8",
+      "target": "Facility3"
+    },
+    {
+      "range": 1702.7632825224853,
+      "source": "Sat3_8",
+      "target": "Facility4"
+    },
+    {
+      "range": 5074.854680667867,
       "sun_outage": false,
       "source": "Sat3_9",
       "target": "Sat4_9"
     },
     {
-      "range": 4281.842507226188,
+      "range": 4281.842507226215,
       "sun_outage": false,
       "source": "Sat3_9",
       "target": "Sat3_10"
     },
     {
-      "range": 5115.143807666541,
+      "range": 4907.161207314574,
       "sun_outage": false,
       "source": "Sat3_10",
       "target": "Sat4_10"
     },
     {
-      "range": 4426.802931163261,
+      "range": 3951.9190942978876,
       "sun_outage": false,
       "source": "Sat4_1",
       "target": "Sat5_1"
     },
     {
-      "range": 4281.842507226189,
+      "range": 4281.842507226173,
       "sun_outage": false,
       "source": "Sat4_1",
       "target": "Sat4_2"
     },
     {
-      "range": 4281.842507226186,
+      "range": 4281.842507226213,
       "sun_outage": false,
       "source": "Sat4_1",
       "target": "Sat4_10"
     },
     {
-      "range": 2195.3820098519245,
-      "source": "Sat4_1",
-      "target": "Facility5"
-    },
-    {
-      "range": 3819.19318757918,
+      "range": 3947.2929203612416,
       "sun_outage": false,
       "source": "Sat4_2",
       "target": "Sat5_2"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.84250722622,
       "sun_outage": false,
       "source": "Sat4_2",
       "target": "Sat4_3"
     },
     {
-      "range": 910.9193173276391,
-      "source": "Sat4_2",
-      "target": "Facility3"
-    },
-    {
-      "range": 1128.25008448348,
-      "source": "Sat4_2",
-      "target": "Facility4"
-    },
-    {
-      "range": 4184.835053690151,
+      "range": 4701.770917041552,
       "sun_outage": false,
       "source": "Sat4_3",
       "target": "Sat5_3"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.8425072261825,
       "sun_outage": false,
       "source": "Sat4_3",
       "target": "Sat4_4"
     },
     {
-      "range": 1348.2209599933185,
-      "source": "Sat4_3",
-      "target": "Facility9"
-    },
-    {
-      "range": 4932.7415216452355,
+      "range": 5116.264214945153,
       "sun_outage": false,
       "source": "Sat4_4",
       "target": "Sat5_4"
     },
     {
-      "range": 4281.842507226197,
+      "range": 4281.842507226209,
       "sun_outage": false,
       "source": "Sat4_4",
       "target": "Sat4_5"
     },
     {
-      "range": 5061.594686485399,
+      "range": 4708.051757837996,
       "sun_outage": false,
       "source": "Sat4_5",
       "target": "Sat5_5"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat4_5",
       "target": "Sat4_6"
     },
     {
-      "range": 4426.802931163256,
+      "range": 3951.919094297876,
       "sun_outage": false,
       "source": "Sat4_6",
       "target": "Sat5_6"
     },
     {
-      "range": 4281.842507226189,
+      "range": 4281.842507226201,
       "sun_outage": false,
       "source": "Sat4_6",
       "target": "Sat4_7"
     },
     {
-      "range": 2387.6492171414416,
-      "source": "Sat4_6",
-      "target": "Facility2"
-    },
-    {
-      "range": 3819.193187579179,
+      "range": 3947.292920361221,
       "sun_outage": false,
       "source": "Sat4_7",
       "target": "Sat5_7"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.8425072262025,
       "sun_outage": false,
       "source": "Sat4_7",
       "target": "Sat4_8"
     },
     {
-      "range": 2644.0342534537826,
-      "source": "Sat4_7",
-      "target": "Facility2"
-    },
-    {
-      "range": 4184.835053690152,
+      "range": 4701.770917041545,
       "sun_outage": false,
       "source": "Sat4_8",
       "target": "Sat5_8"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226155,
       "sun_outage": false,
       "source": "Sat4_8",
       "target": "Sat4_9"
     },
     {
-      "range": 4932.7415216452355,
+      "range": 5116.264214945157,
       "sun_outage": false,
       "source": "Sat4_9",
       "target": "Sat5_9"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226204,
       "sun_outage": false,
       "source": "Sat4_9",
       "target": "Sat4_10"
     },
     {
-      "range": 5061.5946864853995,
+      "range": 4708.0517578380195,
       "sun_outage": false,
       "source": "Sat4_10",
       "target": "Sat5_10"
     },
     {
-      "range": 4184.81634262343,
+      "range": 3830.6902301933865,
       "sun_outage": false,
       "source": "Sat5_1",
       "target": "Sat6_1"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226205,
       "sun_outage": false,
       "source": "Sat5_1",
       "target": "Sat5_2"
     },
     {
-      "range": 4281.842507226185,
+      "range": 4281.842507226191,
       "sun_outage": false,
       "source": "Sat5_1",
       "target": "Sat5_10"
     },
     {
-      "range": 1509.7595118319325,
-      "source": "Sat5_1",
-      "target": "Facility3"
-    },
-    {
-      "range": 1364.4900711920664,
-      "source": "Sat5_1",
-      "target": "Facility4"
-    },
-    {
-      "range": 3819.1971885767316,
+      "range": 4143.719334288569,
       "sun_outage": false,
       "source": "Sat5_2",
       "target": "Sat6_2"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.842507226191,
       "sun_outage": false,
       "source": "Sat5_2",
       "target": "Sat5_3"
     },
     {
-      "range": 752.596552959575,
-      "source": "Sat5_2",
-      "target": "Facility9"
-    },
-    {
-      "range": 4426.824114992469,
+      "range": 4902.280502514365,
       "sun_outage": false,
       "source": "Sat5_3",
       "target": "Sat6_3"
     },
     {
-      "range": 4281.842507226195,
+      "range": 4281.842507226205,
       "sun_outage": false,
       "source": "Sat5_3",
       "target": "Sat5_4"
     },
     {
-      "range": 2071.5048917508047,
-      "source": "Sat5_3",
-      "target": "Facility6"
-    },
-    {
-      "range": 5061.6037778084155,
+      "range": 5077.107462604057,
       "sun_outage": false,
       "source": "Sat5_4",
       "target": "Sat6_4"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226161,
       "sun_outage": false,
       "source": "Sat5_4",
       "target": "Sat5_5"
     },
     {
-      "range": 4932.725956561928,
+      "range": 4471.394808871058,
       "sun_outage": false,
       "source": "Sat5_5",
       "target": "Sat6_5"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226188,
       "sun_outage": false,
       "source": "Sat5_5",
       "target": "Sat5_6"
     },
     {
-      "range": 2418.059969307122,
-      "source": "Sat5_5",
-      "target": "Facility2"
-    },
-    {
-      "range": 4184.816342623432,
+      "range": 3830.6902301934097,
       "sun_outage": false,
       "source": "Sat5_6",
       "target": "Sat6_6"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.842507226227,
       "sun_outage": false,
       "source": "Sat5_6",
       "target": "Sat5_7"
     },
     {
-      "range": 2223.3607129705897,
-      "source": "Sat5_6",
-      "target": "Facility2"
-    },
-    {
-      "range": 3819.197188576738,
+      "range": 4143.719334288574,
       "sun_outage": false,
       "source": "Sat5_7",
       "target": "Sat6_7"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.84250722619,
       "sun_outage": false,
       "source": "Sat5_7",
       "target": "Sat5_8"
     },
     {
-      "range": 4426.824114992471,
+      "range": 4902.280502514375,
       "sun_outage": false,
       "source": "Sat5_8",
       "target": "Sat6_8"
@@ -1345,138 +1040,128 @@
       "target": "Sat5_9"
     },
     {
-      "range": 2680.3616346920403,
+      "range": 2482.382112451767,
       "source": "Sat5_8",
-      "target": "Facility10"
+      "target": "Facility6"
     },
     {
-      "range": 5061.603777808421,
+      "range": 5077.1074626040645,
       "sun_outage": false,
       "source": "Sat5_9",
       "target": "Sat6_9"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226181,
       "sun_outage": false,
       "source": "Sat5_9",
       "target": "Sat5_10"
     },
     {
-      "range": 1680.3184819554588,
-      "source": "Sat5_9",
-      "target": "Facility7"
-    },
-    {
-      "range": 2381.7435018004217,
-      "source": "Sat5_9",
-      "target": "Facility10"
-    },
-    {
-      "range": 4932.725956561928,
+      "range": 4471.394808871063,
       "sun_outage": false,
       "source": "Sat5_10",
       "target": "Sat6_10"
     },
     {
-      "range": 3977.988993152981,
+      "range": 3811.1649348295186,
       "sun_outage": false,
       "source": "Sat6_1",
       "target": "Sat7_1"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226214,
       "sun_outage": false,
       "source": "Sat6_1",
       "target": "Sat6_2"
     },
     {
-      "range": 4281.842507226187,
+      "range": 4281.842507226163,
       "sun_outage": false,
       "source": "Sat6_1",
       "target": "Sat6_10"
     },
     {
-      "range": 1253.9335021663785,
-      "source": "Sat6_1",
-      "target": "Facility9"
-    },
-    {
-      "range": 3923.3807430083034,
+      "range": 4382.166643881406,
       "sun_outage": false,
       "source": "Sat6_2",
       "target": "Sat7_2"
     },
     {
-      "range": 4281.842507226194,
+      "range": 4281.842507226183,
       "sun_outage": false,
       "source": "Sat6_2",
       "target": "Sat6_3"
     },
     {
-      "range": 2151.776553035015,
+      "range": 2725.445553491183,
       "source": "Sat6_2",
-      "target": "Facility6"
+      "target": "Facility7"
     },
     {
-      "range": 4667.290747593225,
+      "range": 5043.609658642739,
       "sun_outage": false,
       "source": "Sat6_3",
       "target": "Sat7_3"
     },
     {
-      "range": 4281.842507226195,
+      "range": 4281.842507226198,
       "sun_outage": false,
       "source": "Sat6_3",
       "target": "Sat6_4"
     },
     {
-      "range": 2373.727734597361,
+      "range": 1648.2770063714183,
       "source": "Sat6_3",
-      "target": "Facility6"
+      "target": "Facility7"
     },
     {
-      "range": 616.9040124623624,
-      "source": "Sat6_3",
-      "target": "Facility8"
-    },
-    {
-      "range": 5115.145148381938,
+      "range": 4961.128036313152,
       "sun_outage": false,
       "source": "Sat6_4",
       "target": "Sat7_4"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226182,
       "sun_outage": false,
       "source": "Sat6_4",
       "target": "Sat6_5"
     },
     {
-      "range": 4741.489136239108,
+      "range": 4227.078852527473,
       "sun_outage": false,
       "source": "Sat6_5",
       "target": "Sat7_5"
     },
     {
-      "range": 4281.842507226196,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat6_5",
       "target": "Sat6_6"
     },
     {
-      "range": 3977.9889931529788,
+      "range": 1882.2193880862787,
+      "source": "Sat6_5",
+      "target": "Facility3"
+    },
+    {
+      "range": 3811.1649348295405,
       "sun_outage": false,
       "source": "Sat6_6",
       "target": "Sat7_6"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.8425072262135,
       "sun_outage": false,
       "source": "Sat6_6",
       "target": "Sat6_7"
     },
     {
-      "range": 3923.380743008303,
+      "range": 1825.9182052520123,
+      "source": "Sat6_6",
+      "target": "Facility9"
+    },
+    {
+      "range": 4382.16664388142,
       "sun_outage": false,
       "source": "Sat6_7",
       "target": "Sat7_7"
@@ -1488,92 +1173,72 @@
       "target": "Sat6_8"
     },
     {
-      "range": 2737.0567927432458,
-      "source": "Sat6_7",
-      "target": "Facility10"
-    },
-    {
-      "range": 4667.290747593225,
+      "range": 5043.609658642742,
       "sun_outage": false,
       "source": "Sat6_8",
       "target": "Sat7_8"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226182,
       "sun_outage": false,
       "source": "Sat6_8",
       "target": "Sat6_9"
     },
     {
-      "range": 1435.7166855405947,
+      "range": 2702.4316166290378,
       "source": "Sat6_8",
-      "target": "Facility7"
+      "target": "Facility8"
     },
     {
-      "range": 1856.8188562625844,
-      "source": "Sat6_8",
-      "target": "Facility10"
-    },
-    {
-      "range": 5115.145148381936,
+      "range": 4961.128036313154,
       "sun_outage": false,
       "source": "Sat6_9",
       "target": "Sat7_9"
     },
     {
-      "range": 4281.842507226187,
+      "range": 4281.842507226201,
       "sun_outage": false,
       "source": "Sat6_9",
       "target": "Sat6_10"
     },
     {
-      "range": 4741.489136239105,
+      "range": 4227.07885252744,
       "sun_outage": false,
       "source": "Sat6_10",
       "target": "Sat7_10"
     },
     {
-      "range": 3843.0230582412364,
+      "range": 3897.5625609741196,
       "sun_outage": false,
       "source": "Sat7_1",
       "target": "Sat8_1"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226204,
       "sun_outage": false,
       "source": "Sat7_1",
       "target": "Sat7_2"
     },
     {
-      "range": 4281.842507226187,
+      "range": 4281.842507226184,
       "sun_outage": false,
       "source": "Sat7_1",
       "target": "Sat7_10"
     },
     {
-      "range": 2382.8723699738207,
-      "source": "Sat7_1",
-      "target": "Facility6"
-    },
-    {
-      "range": 4110.09651197463,
+      "range": 4625.420059784156,
       "sun_outage": false,
       "source": "Sat7_2",
       "target": "Sat8_2"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226203,
       "sun_outage": false,
       "source": "Sat7_2",
       "target": "Sat7_3"
     },
     {
-      "range": 1740.5830768265898,
-      "source": "Sat7_2",
-      "target": "Facility8"
-    },
-    {
-      "range": 4875.059233844413,
+      "range": 5111.375897511085,
       "sun_outage": false,
       "source": "Sat7_3",
       "target": "Sat8_3"
@@ -1585,472 +1250,417 @@
       "target": "Sat7_4"
     },
     {
-      "range": 5088.22619969577,
+      "range": 4779.852052851195,
       "sun_outage": false,
       "source": "Sat7_4",
       "target": "Sat8_4"
     },
     {
-      "range": 4281.842507226194,
+      "range": 4281.842507226186,
       "sun_outage": false,
       "source": "Sat7_4",
       "target": "Sat7_5"
     },
     {
-      "range": 4508.811036766817,
+      "range": 4011.0711486779883,
       "sun_outage": false,
       "source": "Sat7_5",
       "target": "Sat8_5"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat7_5",
       "target": "Sat7_6"
     },
     {
-      "range": 3843.023058241241,
+      "range": 3897.562560974093,
       "sun_outage": false,
       "source": "Sat7_6",
       "target": "Sat8_6"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226189,
       "sun_outage": false,
       "source": "Sat7_6",
       "target": "Sat7_7"
     },
     {
-      "range": 4110.09651197464,
+      "range": 1538.2826982432166,
+      "source": "Sat7_6",
+      "target": "Facility6"
+    },
+    {
+      "range": 2738.0580697456912,
+      "source": "Sat7_6",
+      "target": "Facility8"
+    },
+    {
+      "range": 4625.420059784155,
       "sun_outage": false,
       "source": "Sat7_7",
       "target": "Sat8_7"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226205,
       "sun_outage": false,
       "source": "Sat7_7",
       "target": "Sat7_8"
     },
     {
-      "range": 4875.059233844415,
+      "range": 2112.4141624156887,
+      "source": "Sat7_7",
+      "target": "Facility8"
+    },
+    {
+      "range": 5111.375897511072,
       "sun_outage": false,
       "source": "Sat7_8",
       "target": "Sat8_8"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226172,
       "sun_outage": false,
       "source": "Sat7_8",
       "target": "Sat7_9"
     },
     {
-      "range": 5088.2261996957695,
+      "range": 4779.852052851202,
       "sun_outage": false,
       "source": "Sat7_9",
       "target": "Sat8_9"
     },
     {
-      "range": 4281.842507226187,
+      "range": 4281.842507226165,
       "sun_outage": false,
       "source": "Sat7_9",
       "target": "Sat7_10"
     },
     {
-      "range": 4508.811036766818,
+      "range": 4011.0711486780147,
       "sun_outage": false,
       "source": "Sat7_10",
       "target": "Sat8_10"
     },
     {
-      "range": 3807.1290339299894,
+      "range": 4071.694254997757,
       "sun_outage": false,
       "source": "Sat8_1",
       "target": "Sat9_1"
     },
     {
-      "range": 4281.842507226186,
+      "range": 4281.84250722619,
       "sun_outage": false,
       "source": "Sat8_1",
       "target": "Sat8_2"
     },
     {
-      "range": 4281.842507226185,
+      "range": 4281.842507226199,
       "sun_outage": false,
       "source": "Sat8_1",
       "target": "Sat8_10"
     },
     {
-      "range": 2143.463834736175,
-      "source": "Sat8_1",
-      "target": "Facility8"
-    },
-    {
-      "range": 4344.597668210909,
+      "range": 4841.079696090551,
       "sun_outage": false,
       "source": "Sat8_2",
       "target": "Sat9_2"
     },
     {
-      "range": 4281.842507226196,
+      "range": 4281.842507226222,
       "sun_outage": false,
       "source": "Sat8_2",
       "target": "Sat8_3"
     },
     {
-      "range": 5026.541584069868,
+      "range": 5099.0391520254525,
       "sun_outage": false,
       "source": "Sat8_3",
       "target": "Sat9_3"
     },
     {
-      "range": 4281.842507226197,
+      "range": 4281.8425072261625,
       "sun_outage": false,
       "source": "Sat8_3",
       "target": "Sat8_4"
     },
     {
-      "range": 2449.686568951672,
-      "source": "Sat8_3",
-      "target": "Facility1"
-    },
-    {
-      "range": 4983.414292994682,
+      "range": 4552.757764878798,
       "sun_outage": false,
       "source": "Sat8_4",
       "target": "Sat9_4"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226186,
       "sun_outage": false,
       "source": "Sat8_4",
       "target": "Sat8_5"
     },
     {
-      "range": 4263.454726522706,
+      "range": 3860.672499405586,
       "sun_outage": false,
       "source": "Sat8_5",
       "target": "Sat9_5"
     },
     {
-      "range": 4281.842507226195,
+      "range": 4281.842507226222,
       "sun_outage": false,
       "source": "Sat8_5",
       "target": "Sat8_6"
     },
     {
-      "range": 2343.9641681399876,
+      "range": 2737.2366589996373,
       "source": "Sat8_5",
-      "target": "Facility10"
+      "target": "Facility8"
     },
     {
-      "range": 3807.1290339299894,
+      "range": 4071.6942549977684,
       "sun_outage": false,
       "source": "Sat8_6",
       "target": "Sat9_6"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat8_6",
       "target": "Sat8_7"
     },
     {
-      "range": 4344.59766821091,
+      "range": 4841.079696090557,
       "sun_outage": false,
       "source": "Sat8_7",
       "target": "Sat9_7"
     },
     {
-      "range": 4281.842507226189,
+      "range": 4281.842507226214,
       "sun_outage": false,
       "source": "Sat8_7",
       "target": "Sat8_8"
     },
     {
-      "range": 5026.5415840698715,
+      "range": 5099.03915202544,
       "sun_outage": false,
       "source": "Sat8_8",
       "target": "Sat9_8"
     },
     {
-      "range": 4281.842507226189,
+      "range": 4281.842507226174,
       "sun_outage": false,
       "source": "Sat8_8",
       "target": "Sat8_9"
     },
     {
-      "range": 4983.41429299468,
+      "range": 4552.7577648787865,
       "sun_outage": false,
       "source": "Sat8_9",
       "target": "Sat9_9"
     },
     {
-      "range": 4281.842507226187,
+      "range": 4281.842507226177,
       "sun_outage": false,
       "source": "Sat8_9",
       "target": "Sat8_10"
     },
     {
-      "range": 4263.454726522705,
+      "range": 3860.6724994055558,
       "sun_outage": false,
       "source": "Sat8_10",
       "target": "Sat9_10"
     },
     {
-      "range": 1799.682351184089,
-      "source": "Sat8_10",
-      "target": "Facility6"
-    },
-    {
-      "range": 3878.0382907342123,
+      "range": 4300.370441234429,
       "sun_outage": false,
       "source": "Sat9_1",
       "target": "Sat10_1"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226205,
       "sun_outage": false,
       "source": "Sat9_1",
       "target": "Sat9_2"
     },
     {
-      "range": 4281.842507226183,
+      "range": 4281.842507226196,
       "sun_outage": false,
       "source": "Sat9_1",
       "target": "Sat9_10"
     },
     {
-      "range": 4589.375280681427,
+      "range": 5004.126504230442,
       "sun_outage": false,
       "source": "Sat9_2",
       "target": "Sat10_2"
     },
     {
-      "range": 4281.842507226193,
+      "range": 4281.8425072262,
       "sun_outage": false,
       "source": "Sat9_2",
       "target": "Sat9_3"
     },
     {
-      "range": 666.924069429451,
-      "source": "Sat9_2",
-      "target": "Facility1"
-    },
-    {
-      "range": 5106.143211969019,
+      "range": 5007.774175336055,
       "sun_outage": false,
       "source": "Sat9_3",
       "target": "Sat10_3"
     },
     {
-      "range": 4281.842507226199,
+      "range": 4281.842507226187,
       "sun_outage": false,
       "source": "Sat9_3",
       "target": "Sat9_4"
     },
     {
-      "range": 4811.037979138473,
+      "range": 4307.238668426314,
       "sun_outage": false,
       "source": "Sat9_4",
       "target": "Sat10_4"
     },
     {
-      "range": 4281.842507226194,
+      "range": 4281.842507226201,
       "sun_outage": false,
       "source": "Sat9_4",
       "target": "Sat9_5"
     },
     {
-      "range": 2254.784105420928,
-      "source": "Sat9_4",
-      "target": "Facility7"
-    },
-    {
-      "range": 1957.3944823049771,
-      "source": "Sat9_4",
-      "target": "Facility10"
-    },
-    {
-      "range": 4040.669935307607,
+      "range": 3805.6233932832392,
       "sun_outage": false,
       "source": "Sat9_5",
       "target": "Sat10_5"
     },
     {
-      "range": 4281.842507226191,
+      "range": 4281.842507226197,
       "sun_outage": false,
       "source": "Sat9_5",
       "target": "Sat9_6"
     },
     {
-      "range": 2727.152324564383,
-      "source": "Sat9_5",
-      "target": "Facility7"
-    },
-    {
-      "range": 2443.5655901113387,
-      "source": "Sat9_5",
-      "target": "Facility10"
-    },
-    {
-      "range": 3878.038290734214,
+      "range": 4300.3704412344,
       "sun_outage": false,
       "source": "Sat9_6",
       "target": "Sat10_6"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.842507226209,
       "sun_outage": false,
       "source": "Sat9_6",
       "target": "Sat9_7"
     },
     {
-      "range": 4589.375280681428,
+      "range": 5004.126504230439,
       "sun_outage": false,
       "source": "Sat9_7",
       "target": "Sat10_7"
     },
     {
-      "range": 4281.8425072261925,
+      "range": 4281.842507226163,
       "sun_outage": false,
       "source": "Sat9_7",
       "target": "Sat9_8"
     },
     {
-      "range": 5106.14321196902,
+      "range": 5007.774175336081,
       "sun_outage": false,
       "source": "Sat9_8",
       "target": "Sat10_8"
     },
     {
-      "range": 4281.842507226188,
+      "range": 4281.842507226204,
       "sun_outage": false,
       "source": "Sat9_8",
       "target": "Sat9_9"
     },
     {
-      "range": 4811.037979138472,
+      "range": 4307.238668426295,
       "sun_outage": false,
       "source": "Sat9_9",
       "target": "Sat10_9"
     },
     {
-      "range": 4281.84250722619,
+      "range": 4281.842507226178,
       "sun_outage": false,
       "source": "Sat9_9",
       "target": "Sat9_10"
     },
     {
-      "range": 2368.080491763814,
-      "source": "Sat9_9",
-      "target": "Facility6"
-    },
-    {
-      "range": 4040.669935307609,
+      "range": 3805.6233932832483,
       "sun_outage": false,
       "source": "Sat9_10",
       "target": "Sat10_10"
     },
     {
-      "range": 2561.253429187146,
-      "source": "Sat9_10",
-      "target": "Facility6"
-    },
-    {
-      "range": 1275.3796388730343,
-      "source": "Sat9_10",
-      "target": "Facility8"
-    },
-    {
-      "range": 4281.842507226193,
+      "range": 4281.842507226178,
       "sun_outage": false,
       "source": "Sat10_1",
       "target": "Sat10_2"
     },
     {
-      "range": 4281.842507226186,
+      "range": 4281.8425072262,
       "sun_outage": false,
       "source": "Sat10_1",
       "target": "Sat10_10"
     },
     {
-      "range": 2076.7226913284753,
-      "source": "Sat10_1",
-      "target": "Facility1"
-    },
-    {
-      "range": 2736.8887261901355,
-      "source": "Sat10_1",
-      "target": "Facility5"
-    },
-    {
-      "range": 4281.842507226194,
+      "range": 4281.842507226195,
       "sun_outage": false,
       "source": "Sat10_2",
       "target": "Sat10_3"
     },
     {
-      "range": 1604.7331560556515,
-      "source": "Sat10_2",
-      "target": "Facility5"
-    },
-    {
-      "range": 4281.8425072262,
+      "range": 4281.842507226207,
       "sun_outage": false,
       "source": "Sat10_3",
       "target": "Sat10_4"
     },
     {
-      "range": 2697.2898430149735,
-      "source": "Sat10_3",
-      "target": "Facility7"
-    },
-    {
-      "range": 4281.84250722619,
+      "range": 4281.842507226193,
       "sun_outage": false,
       "source": "Sat10_4",
       "target": "Sat10_5"
     },
     {
-      "range": 2583.243836536253,
+      "range": 2732.622728168454,
       "source": "Sat10_4",
-      "target": "Facility7"
+      "target": "Facility8"
     },
     {
-      "range": 4281.842507226192,
+      "range": 4281.8425072261725,
       "sun_outage": false,
       "source": "Sat10_5",
       "target": "Sat10_6"
     },
     {
-      "range": 4281.842507226192,
+      "range": 2737.5861527111583,
+      "source": "Sat10_5",
+      "target": "Facility1"
+    },
+    {
+      "range": 4281.8425072262135,
       "sun_outage": false,
       "source": "Sat10_6",
       "target": "Sat10_7"
     },
     {
-      "range": 4281.842507226193,
+      "range": 2519.396260348635,
+      "source": "Sat10_6",
+      "target": "Facility1"
+    },
+    {
+      "range": 4281.842507226196,
       "sun_outage": false,
       "source": "Sat10_7",
       "target": "Sat10_8"
     },
     {
-      "range": 4281.842507226187,
+      "range": 4281.842507226175,
       "sun_outage": false,
       "source": "Sat10_8",
       "target": "Sat10_9"
     },
     {
-      "range": 4281.842507226186,
+      "range": 4281.84250722621,
       "sun_outage": false,
       "source": "Sat10_9",
       "target": "Sat10_10"
-    },
-    {
-      "range": 1991.0801440009172,
-      "source": "Sat10_9",
-      "target": "Facility8"
     }
   ]
 }

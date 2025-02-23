@@ -7,5 +7,5 @@
 
 from .tools import *
 from .sim_config import *
-from .counter import *
-from .logger import *
+from .counter import Counter
+from .logger import Logger

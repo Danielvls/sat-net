@@ -73,7 +73,7 @@ class FlowGenerator:
 
                 # find the nearest facility to the end point
                 nearest_fac_name, _ = self._find_nearest_facility(end_point[0], end_point[1], index)
-                logger.debug(f"Nearest satellite: {nearest_sat_name}, Nearest facility: {nearest_fac_name}")
+                # logger.debug(f"Nearest satellite: {nearest_sat_name}, Nearest facility: {nearest_fac_name}")
 
                 # # count the usage of the satellite
                 # satellite_usage[start_node] = satellite_usage.get(start_node, 0) + 1

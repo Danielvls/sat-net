@@ -148,10 +148,7 @@ class STKManager:
                 satellite.Propagator.InitialState.Representation.Assign(keplerian)
                 satellite.Propagator.Propagate()
 
-                # add constrains for Satellite object
-                accessConstraints = satellite.AccessConstraints
-                cnstrAngle = accessConstraints.AddConstraint(29)
-                cnstrAngle.Angle = 10.0
+
 
                 # Add to list
                 self.satellites.append(satellite)
@@ -209,12 +206,19 @@ class STKManager:
                 if not graph.has_node(name):
                     graph.add_node(name, lat=latitude, lon=longitude, alt=altitude)
 
-    def get_sat_access(self):
+    def get_sat_access(self, constraint=False):
         sce_time = []
 
         # get all satellites in the scenario and create a dictionary mapping satellite names to satellite objects
         all_satellites = self.scenario.Children.GetElements(AgESTKObjectType.eSatellite)
         satellite_dict = {sat.InstanceName: sat for sat in all_satellites}
+
+        if constraint:
+            for sat in self.satellites:
+                # add constrains for Satellite object
+                accessConstraints = sat.AccessConstraints
+                cnstrAngle = accessConstraints.AddConstraint(29)
+                cnstrAngle.Angle = 3.0
 
         try:
             for plane_num in range(1, num_orbit_planes + 1):
@@ -241,10 +245,10 @@ class STKManager:
 
                     # compute access between satellites
                     if inter_sat:
-                        self.compute_sat_access(cur_sat, inter_sat)
+                        self.compute_sat_access(cur_sat, inter_sat, constraint)
 
                     if intra_sat:
-                        self.compute_sat_access(cur_sat, intra_sat)
+                        self.compute_sat_access(cur_sat, intra_sat, constraint)
 
         except Exception as e:
             logger.error(f"Error in get_access: {e}")
@@ -281,42 +285,61 @@ class STKManager:
             raise e
 
     # @timeit_decorator
-    def compute_sat_access(self, sat1, sat2):
+    def compute_sat_access(self, sat1, sat2, constraint=False):
         access = sat1.GetAccessToObject(sat2)
         access.ComputeAccess()
         rpt_elms = ["Time", "Range"]
         access_DP = access.DataProviders.GetDataPrvTimeVarFromPath("AER Data/Default")
         access_result = access_DP.ExecElements(self.scenario.StartTime, self.scenario.StopTime, time_step, rpt_elms)
-        time_origin = access_result.DataSets.GetDataSetByName('Time').GetValues()
-        sat_range = access_result.DataSets.GetDataSetByName('Range').GetValues()
+        time_origin = []
+        sat_range = []
+        for intervalNum in range(access_result.Intervals.Count):
+            interval = access_result.Intervals[intervalNum]
+            time_origin.extend(interval.DataSets.GetDataSetByName('Time').GetValues())
+            sat_range.extend(interval.DataSets.GetDataSetByName('Range').GetValues())
 
         try:
             # Approximate time_origin using approx_time function
             matched_times = approx_time(time_origin, self.time_series)
-            # logger.debug(f"Matched times from approx_time: {matched_times}")
             
             # Convert matched times to indices in time_series
             time_indices = [self.time_series.get_loc(t) for t in matched_times]
-            logger.debug(f"Converted to indices: {time_indices}")
             
             # Check for missing indices
             all_indices = set(range(len(self.time_series)))
             missing_indices = sorted(all_indices - set(time_indices))
-            if missing_indices:
-                logger.debug(f"Missing indices: {missing_indices}")
-
+            
             # Add range data as edge attribute to corresponding graphs
-            for i, (time_idx, distance) in enumerate(zip(time_indices, sat_range)):
+            last_valid_range = None  # Track the last valid range value
+            
+            for time_idx in range(len(self.time_series)):
+                if time_idx in time_indices:
+                    # Get the corresponding range value
+                    range_idx = time_indices.index(time_idx)
+                    distance = sat_range[range_idx]
+                    last_valid_range = distance  # Update last valid range
+                    sun_outage = False
+                else:
+                    # Use last valid range or default 500 for missing indices
+                    distance = last_valid_range or 500
+                    sun_outage = True  # Mark as sun outage
+                    logger.debug(f"Missing index: {time_idx}, sun_outage: {sun_outage}")
+                
                 # Get corresponding graph from graph_list
                 graph = self.graph_list[time_idx]
                 
-                # Add range as edge attribute
+                # Add edge with range and sun_outage attributes
                 sat1_name = sat1.InstanceName
                 sat2_name = sat2.InstanceName
+                graph.add_edge(sat1_name, sat2_name, range=distance, sun_outage=sun_outage)
                 
-                # Add edge with range attribute if it doesn't exist, update range if it does
-                graph.add_edge(sat1_name, sat2_name, range=distance)
-                # logger.debug(f"Added/updated range {distance} between {sat1_name} and {sat2_name} at time index {time_idx}")
+            # Log missing indices if any
+            if missing_indices:
+                logger.debug(f"Missing indices: {missing_indices}")
+                logger.debug("Time comparison:")
+                for orig, matched in zip(time_origin, matched_times):
+                    logger.debug(f"  Origin: {orig:<25} Matched: {matched}")
+                    
         except KeyError as e:
             logger.error(f"Failed to find time index in time_series: {e}")
             raise
@@ -332,7 +355,7 @@ class STKManager:
         for idx, graph in enumerate(self.graph_list):
             graph_path = graphs_dir / f'graph{idx}.json'
             with open(graph_path, 'w') as f:
-                data = nx.node_link_data(graph, attrs={"link": "edges"})
+                data = nx.node_link_data(graph, edges="edges")
                 # indent=2 for more compact but still readable JSON formatting
                 json.dump(data, f, indent=2)
             logger.info(f"Saved graph data to {graph_path}")
@@ -389,7 +412,7 @@ class STKManager:
                         graph = self.graph_list[time_idx]        
                         # Add edge with range attribute if it doesn't exist, update range if it does
                         graph.add_edge(sat_name, facility_name, range=distance)
-                        logger.debug(f"Added/updated range {distance} between {sat_name} and {facility_name} at time index {time_idx}")                       
+                        # logger.debug(f"Added/updated range {distance} between {sat_name} and {facility_name} at time index {time_idx}")                       
         
         except Exception as e:
             logger.error(f"Error in get_fac_access: {e}")
